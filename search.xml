@@ -90,7 +90,7 @@
 </code></pre><blockquote>
 <p>显示效果：</p>
 </blockquote>
-<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x61;&#100;&#100;&#x72;&#x65;&#115;&#x73;&#x40;&#101;&#x78;&#x61;&#109;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;">&#x61;&#100;&#100;&#x72;&#x65;&#115;&#x73;&#x40;&#101;&#x78;&#x61;&#109;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a></p>
+<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x61;&#x64;&#100;&#114;&#x65;&#x73;&#x73;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#99;&#x6f;&#x6d;">&#x61;&#x64;&#100;&#114;&#x65;&#x73;&#x73;&#64;&#101;&#x78;&#x61;&#109;&#112;&#108;&#101;&#46;&#99;&#x6f;&#x6d;</a></p>
 <h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
 <p>代码：  </p>
 </blockquote>
@@ -352,49 +352,6 @@ hexo d == hexo deploy
         <tags>
             
             <tag> 博客搭建 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[nginx跨域设置]]></title>
-      <url>http://yoursite.com/2017/03/08/nginx%E8%B7%A8%E5%9F%9F%E8%AE%BE%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p><strong>nginx跨域问题代码</strong></p>
-<a id="more"></a>
-<pre><code>server {
-listen 80;
-server_name tangxiaoyue.com;
-if ( $http_user_agent = &quot;Mozilla/5.0&quot;){
-return 403;
-}
-location / {
-add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos;;
-#
-# Om nom nom cookies
-#
-add_header &apos;Access-Control-Allow-Credentials&apos; &apos;true&apos;;
-add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, OPTIONS&apos;;
-# 
-# Custom headers and headers various browsers *should* be OK with but aren&apos;t
-#
-add_header &apos;Access-Control-Allow-Headers&apos; &apos;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&apos;;
-proxy_pass http://10.0.0.10/;
-proxy_set_header Host &quot;tangxiaoyue&quot;;
-}
-}
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Web服务 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> nginx </tag>
             
         </tags>
         
@@ -952,6 +909,49 @@ DML：
     </entry>
     
     <entry>
+      <title><![CDATA[nginx跨域设置]]></title>
+      <url>http://yoursite.com/2017/03/08/nginx%E8%B7%A8%E5%9F%9F%E8%AE%BE%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p><strong>nginx跨域问题代码</strong></p>
+<a id="more"></a>
+<pre><code>server {
+listen 80;
+server_name tangxiaoyue.com;
+if ( $http_user_agent = &quot;Mozilla/5.0&quot;){
+return 403;
+}
+location / {
+add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos;;
+#
+# Om nom nom cookies
+#
+add_header &apos;Access-Control-Allow-Credentials&apos; &apos;true&apos;;
+add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, OPTIONS&apos;;
+# 
+# Custom headers and headers various browsers *should* be OK with but aren&apos;t
+#
+add_header &apos;Access-Control-Allow-Headers&apos; &apos;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&apos;;
+proxy_pass http://10.0.0.10/;
+proxy_set_header Host &quot;tangxiaoyue&quot;;
+}
+}
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Web服务 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[五分钟商学院--大纲]]></title>
       <url>http://yoursite.com/2016/09/25/%E4%BA%94%E5%88%86%E9%92%9F%E5%95%86%E5%AD%A6%E9%99%A2--%E5%A4%A7%E7%BA%B2/</url>
       <content type="html"><![CDATA[<p>商业四大体系合体。</p>
@@ -983,9 +983,8 @@ DML：
 <h3 id="团队合作"><a href="#团队合作" class="headerlink" title="团队合作"></a>团队合作</h3><p>116.球队，交响乐队，军队<br>117.木桶定律<br>118.多样性（异性效应）<br>119.苛希纳定律<br>120.蚁群效应  </p>
 <h3 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h3><p>121.作战指挥室<br>122.关键路径<br>123.范围、时间、资源的金三角<br>124.风险管理（已知的未知风险）<br>125.权利来源：专业   </p>
 <h3 id="管理常见病"><a href="#管理常见病" class="headerlink" title="管理常见病"></a>管理常见病</h3><p>126.破窗效应<br>127.旁观者效应<br>128.帕金森定律<br>129.彼得原理<br>130.手表定律  </p>
-<p>##个人篇  </p>
-<p>###高效能人士的七种习惯<br>131.范式转变<br>132.情感账户<br>133.积极主动<br>134.以终为始<br>135.要事第一  </p>
-<h3 id="高效能人士的七种习惯"><a href="#高效能人士的七种习惯" class="headerlink" title="高效能人士的七种习惯"></a>高效能人士的七种习惯</h3><p>136.双赢思维<br>137.知彼解己<br>138.统合综效<br>139.不断更新<br>140.找到心声  </p>
+<h2 id="个人篇"><a href="#个人篇" class="headerlink" title="个人篇"></a>个人篇</h2><h3 id="高效能人士的七种习惯"><a href="#高效能人士的七种习惯" class="headerlink" title="高效能人士的七种习惯"></a>高效能人士的七种习惯</h3><p>131.范式转变<br>132.情感账户<br>133.积极主动<br>134.以终为始<br>135.要事第一  </p>
+<h3 id="高效能人士的七种习惯-1"><a href="#高效能人士的七种习惯-1" class="headerlink" title="高效能人士的七种习惯"></a>高效能人士的七种习惯</h3><p>136.双赢思维<br>137.知彼解己<br>138.统合综效<br>139.不断更新<br>140.找到心声  </p>
 <h3 id="时间管理"><a href="#时间管理" class="headerlink" title="时间管理"></a>时间管理</h3><p>141.时间成本<br>142.GTD<br>143.猴子理论<br>144.三八理论<br>145.番茄钟   </p>
 <h3 id="职业素养"><a href="#职业素养" class="headerlink" title="职业素养"></a>职业素养</h3><p>146.如何打招呼<br>147.如何吃西餐<br>148.如何和老板一起坐车<br>149.如何搭配衣服<br>150.邮件礼仪   </p>
 <h3 id="学习能力"><a href="#学习能力" class="headerlink" title="学习能力"></a>学习能力</h3><p>151.幸存者偏见<br>152.库博经验学习圈<br>153.知识、技能、态度<br>154.学习小组（私人董事会）<br>155.如何最快速的学习    </p>
