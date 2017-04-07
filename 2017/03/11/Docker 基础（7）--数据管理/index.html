@@ -57,22 +57,25 @@
 
 
 
-<meta name="description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
+<meta name="description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[ro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（5）--容器管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（5）--容器管理/index.html">
+<meta property="og:title" content="Docker 基础（7）--数据管理">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（7）--数据管理/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
-<meta property="og:updated_time" content="2017-04-07T05:36:54.355Z">
+<meta property="og:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[ro">
+<meta property="og:updated_time" content="2017-04-07T05:46:17.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（5）--容器管理">
-<meta name="twitter:description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
+<meta name="twitter:title" content="Docker 基础（7）--数据管理">
+<meta name="twitter:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[ro">
 
 
 
@@ -90,7 +93,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
   };
 </script>
 
-  <title> Docker 基础（5）--容器管理 | BRUCETANG </title>
+  <title> Docker 基础（7）--数据管理 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +266,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
             
             
               
-                Docker 基础（5）--容器管理
+                Docker 基础（7）--数据管理
               
             
           </h1>
@@ -321,58 +324,138 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
       
 
       
-        <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
-
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
-
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
+        <h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[root@docker_01 /]# cd /docker_01/        
+[root@docker_01 docker_01]# touch docker_01.txt
+</code></pre><a id="more"></a>
+<pre><code>[root@docker_01 docker_01]# exit
 exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@tang docker]# cd /data/docker/docker_01/
+[root@tang docker_01]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 08:03 docker_01.txt
 
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
+[root@tang docker_01]# cd ..
+[root@tang docker]# mkdir docker_02
+[root@tang docker]# docker run -it -h docker_02 --name docker_02 -v /data/docker/docker_02/:/docker_02 centos bash
+[root@docker_02 /]# cd /docker_02/
+[root@docker_02 docker_02]# mkdir docker_02.txt
+[root@docker_02 docker_02]# exit
+exit
+[root@tang docker]# cd docker_02/
+[root@tang docker_02]# ll
+total 4
+drwxr-xr-x 2 root root 4096 Apr  3 08:05 docker_02.txt
 
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
+提示：    
+      -v: 指定挂载目录
+      : : 前面的为本地目录
+      : : 后面到为容器里的目录
+      即使将删除这个容器,文件也不会丢失.
+</code></pre><h4 id="挂载数据卷-多个容器挂载宿主机的同一个目录"><a href="#挂载数据卷-多个容器挂载宿主机的同一个目录" class="headerlink" title="挂载数据卷(多个容器挂载宿主机的同一个目录)"></a>挂载数据卷(多个容器挂载宿主机的同一个目录)</h4><pre><code>[root@tang data]# docker run -it -h docker_03 --name docker_03
+--volumes-from docker_01 centos bash
+[root@docker_03 /]# cd /docker_01/
+[root@docker_03 docker_01]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 00:03 docker_01.txt
+[root@docker_03 docker_01]# df -h|grep docker_01
+/dev/vda1                           99G  5.4G   88G   6% /docker_01
+[root@docker_03 docker_01]# echo &quot;This is Doceker_3&quot; &gt; /docker_01/3.txt
+[root@docker_03 docker_01]# ll
+total 4
+-rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
+-rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
+[root@tang ~]# docker start docker_01
+docker_01
+[root@tang ~]# docker-enter docker_01
+[root@docker_01 ~]# cd /docker_01/
+[root@docker_01 docker_01]# ll
+total 4
+-rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
+-rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
+</code></pre><h4 id="自定义数据卷容器"><a href="#自定义数据卷容器" class="headerlink" title="自定义数据卷容器"></a>自定义数据卷容器</h4><pre><code>[root@tang ~]# docker run -itd -h node --name node -v /data centos bash
+056ac10e28855c3d29a94fe552711e6a712a5670e6e9c43c4b79270cbc6b0a0f
+                #这里的/data是容器node的/data目录,而不是宿主机的/data目录
 
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
+[root@tang ~]# docker-enter node
+[root@node ~]#  touch /data/1 /data/2 /data/3
+[root@node ~]# cd /data/
+[root@node data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+[root@node data]# exit
+logout
+[root@tang ~]# docker run -itd -h node1 --name node1 --volumes-from node centos bash
+2965a8f1184a7a1cbd26ef07e4b3d201fa17e5b68a52c619d6292da75c85d117
+[root@tang ~]# docker-enter node1
+[root@node1 ~]# cd /data/
+[root@node1 data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+[root@node1 data]# touch 4
+[root@node data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+-rw-r--r-- 1 root root 0 Apr  3 01:02 4
+</code></pre><h4 id="数据卷的备份"><a href="#数据卷的备份" class="headerlink" title="数据卷的备份"></a>数据卷的备份</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
+[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
+250da7a47222e52c5a5d387ff8ce816a72b221ffb8d481739c4c68073507fe
+[root@docker ~]# docker-enter tang
+[root@tang ~]# mkdir /data
+[root@tang ~]# touch /data/{1,2,3,4}
+[root@tang ~]# tar cvf /backup/data.tar /data/
+[root@tang ~]# cd /backup/
+[root@tang backup]# ll
+total 12
+-rw-r--r-- 1 root root 10240 Apr  3 01:30 data.tar
+[root@tang backup]# exit
+logout
+[root@docker ~]# cd /docker_data_backup/
+[root@docker docker_data_backup]# ll
+total 12
+-rw-r--r-- 1 root root 10240 Apr  3 09:30 data.tar
+</code></pre><h4 id="数据卷的恢复"><a href="#数据卷的恢复" class="headerlink" title="数据卷的恢复"></a>数据卷的恢复</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
+[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
+3728f6b0a6e5b47f904de0474db7d4479f33e87740906e1539eca385c3fab04d
+[root@docker ~]# docker-enter tang
+[root@tang ~]# mkdir /tools/
+[root@tang ~]# touch /tools/{1,2,3,4}
+[root@tang ~]# tar zcvf /backup/tools.tar /tools/
+/tools/
+/tools/1
+/tools/2
+/tools/3
+/tools/4
+[root@tang ~]# ll /backup/
+total 4
+-rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
+[root@tang ~]# exit
+logout
 
-
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
+[root@docker ~]# docker run -itd -h tang1 --name tang1 -v /tang1 centos bash
+7ec371bb67f136234878771c227c4245a0ccf6c986e8c94a412d6c4111852a2b
+[root@docker ~]# docker run -itd -h tang2 --name tang2 --volumes-from tang1 -v /docker_data_backup/:/backup centos bash
+53e4cea1c45f3c081a6dd95b935f906aa037e6ed2170b6249a913ccd6fb4c119
+[root@docker ~]# docker-enter tang2
+[root@tang2 ~]# ll /backup/
+total 4
+-rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
+[root@tang2 tang1]# tar xvf /backup/tools.tar -C /tang1
+[root@tang2 tang1]# exit
+logout
+[root@docker ~]# docker-enter tang1
+[root@tang1 ~]# cd /tang1/
+[root@tang1 tang1]# ll
+total 4
+drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
 </code></pre>
       
     </div>
@@ -396,13 +479,17 @@ tang                 latest              393d449b1ed4        44 seconds ago     
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（7）--数据管理/" rel="next" title="Docker 基础（7）--数据管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（7）--数据管理
+              <a href="/2017/03/11/Docker基础（2）--命令/" rel="next" title="Docker 基础（2）--命令">
+                <i class="fa fa-chevron-left"></i> Docker 基础（2）--命令
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/Docker 基础（5）--容器管理/" rel="prev" title="Docker 基础（5）--容器管理">
+                Docker 基础（5）--容器管理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +605,7 @@ tang                 latest              393d449b1ed4        44 seconds ago     
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看启动的容器"><span class="nav-number">1.</span> <span class="nav-text">查看启动的容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有的容器-包括启动、停止"><span class="nav-number">2.</span> <span class="nav-text">查看所有的容器(包括启动、停止)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器-create、run-、进入容器"><span class="nav-number">3.</span> <span class="nav-text">创建容器(create、run)、进入容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动停止容器"><span class="nav-number">4.</span> <span class="nav-text">启动停止容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器-指定容器名"><span class="nav-number">5.</span> <span class="nav-text">创建容器,指定容器名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除容器-镜像"><span class="nav-number">6.</span> <span class="nav-text">删除容器/镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导出容器-可迁移到其它机器-导入容器"><span class="nav-number">7.</span> <span class="nav-text">导出容器(可迁移到其它机器)/导入容器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载本地目录到容器里"><span class="nav-number">1.</span> <span class="nav-text">挂载本地目录到容器里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载数据卷-多个容器挂载宿主机的同一个目录"><span class="nav-number">2.</span> <span class="nav-text">挂载数据卷(多个容器挂载宿主机的同一个目录)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义数据卷容器"><span class="nav-number">3.</span> <span class="nav-text">自定义数据卷容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的备份"><span class="nav-number">4.</span> <span class="nav-text">数据卷的备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的恢复"><span class="nav-number">5.</span> <span class="nav-text">数据卷的恢复</span></a></li></ol></div>
             
           </div>
         </section>
