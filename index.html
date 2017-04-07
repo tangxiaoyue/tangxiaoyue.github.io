@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/12/Docker高级（3）--架构总览/" itemprop="url">
-                  Docker高级（3）--架构总览
+                <a class="post-title-link" href="/2017/03/12/Docker高级（1）--架构总览/" itemprop="url">
+                  Docker高级（1）--架构总览
                 </a>
               
             
@@ -320,9 +320,9 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>###Docker简介<br>&#8194;&#8194;&#8194;&#8194;Docker是Docker公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache<br>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h3><p>&#8194;&#8194;&#8194;&#8194;Docker是Docker公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/12/Docker高级（3）--架构总览/#more" rel="contents">
+            <a class="btn" href="/2017/03/12/Docker高级（1）--架构总览/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -369,8 +369,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
+                  Docker 基础（3）--容器登入
                 </a>
               
             
@@ -397,8 +397,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -430,9 +430,16 @@
 
       
         
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
+          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+<p>强烈推荐使用此种方法：简单、方便</p>
+</blockquote>
+<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -591,6 +598,118 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
+                  Docker 基础（4）--镜像管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/11/Docker 基础（7）--数据管理/" itemprop="url">
                   Docker 基础（7）--数据管理
                 </a>
@@ -660,6 +779,117 @@ root@tang docker]# mkdir docker_01
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/Docker 基础（7）--数据管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
+                  Docker 基础（8）--网络管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -824,8 +1054,8 @@ Dockerfile构建步骤：
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
-                  Docker 基础（8）--网络管理
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（5）--容器管理/" itemprop="url">
+                  Docker 基础（5）--容器管理
                 </a>
               
             
@@ -885,10 +1115,125 @@ Dockerfile构建步骤：
 
       
         
-          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
+          <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（5）--容器管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker基础（2）--命令/" itemprop="url">
+                  Docker 基础（2）--命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker基础（2）--命令/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1009,348 +1354,6 @@ Failed to get D-Bus connection: Operation not permitted
 docker run --privileged -itd -h node1 --name node1 centos /sbin/init
 </code></pre>
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（5）--容器管理/" itemprop="url">
-                  Docker 基础（5）--容器管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（5）--容器管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
-                  Docker 基础（4）--镜像管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-                  Docker 基础（3）--容器登入
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
