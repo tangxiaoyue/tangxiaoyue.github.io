@@ -249,6 +249,380 @@ latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65f
     </entry>
     
     <entry>
+      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+<a id="more"></a>
+<pre><code>[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+默认占用5000端口，我们查看是否存在5000端口
+[root@tang ~]# netstat -lntup | grep 5000
+
+运行容器
+[root@tang ~]# docker run -d -p 5000:5000 registry
+f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
+
+提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+</code></pre>  <a id="more"></a>
+<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+
+Exited:表示该容器已经退出。没有启动
+</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
+3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
+
+[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
+[root@b5dbba42703a /]# exit
+exit
+</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+[root@tang ~]# docker start tang_run                #start启动容器
+tang_run
+
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
+
+[root@tang ~]# docker stop tang_run                 #stop停止容器
+tang_run
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
+8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
+        -d: 容器退出后不关闭容器.
+        -h:指定主机名
+</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
+[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
+[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
+</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
+[root@tang ~]# docker rm tang
+tang
+[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
+
+
+提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（8）--网络管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%888%EF%BC%89--%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
+</code></pre><a id="more"></a>
+<pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 --net=host centos bash
+406cdb306f3c350b6f5344048ae25426f1df3f6863162c0b3a91e3dcd48eba
+[root@docker ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
+172.17.82.185
+[root@docker ~]# docker-enter node1    #进去之后修改主机名，因为主机名个宿主机一样，貌似-h也指定不了主机名
+[root@node1 ~]# yum install -y net-tools
+[root@node1 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
+172.17.82.185
+</code></pre><h4 id="第二种网络模式container"><a href="#第二种网络模式container" class="headerlink" title="第二种网络模式container"></a>第二种网络模式container</h4><pre><code>container模式: 使用--net=container:container_id/container_name多个容器使用共同的网络,看到的ip是一样的.
+
+
+[root@docker ~]# docker run -itd -h node2 --name node2  --net=container:node1 centos bash     #此处不能指定主机名创建，否则失败
+/usr/bin/docker-current: Error response from daemon: Conflicting options: hostname and the network mode.
+See &apos;/usr/bin/docker-current run --help&apos;
+[root@docker ~]# docker run -itd  --name node2 --net=container:node1 centos bash
+0fc16c4a055cf0035c1241ba6cce6c5ad0c711f2ef13e0589c3254f19a96b271
+[root@docker ~]# docker-enter node2
+[root@node2 ~]# yum install -y net-tools
+[root@node2 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;    #和node1的ip一样，也和宿主机的ip一样（node1使用的是--net=host模式）
+172.17.82.185
+</code></pre><h4 id="第三种网络模式none"><a href="#第三种网络模式none" class="headerlink" title="第三种网络模式none"></a>第三种网络模式none</h4><pre><code>none模式: 使用--net=none, 这种模式下,不会配置任何网络
+
+[root@docker ~]# docker run -itd -h node3 --name node3 --net=none centos
+c1f4bd859566f11517248718a94456066d16ad66748a2c78743881e450d4ca09
+[root@docker ~]# docker-enter node3
+[root@node3 ~]# ping www.baidu.com
+ping: www.baidu.com: Name or service not known
+</code></pre><h4 id="第四种网络模式bridge"><a href="#第四种网络模式bridge" class="headerlink" title="第四种网络模式bridge"></a>第四种网络模式bridge</h4><pre><code>bridge模式: 使用--net=bridge.创建完容器默认为这种网络模式.类似与vmware的nat网络模式.
+
+[root@docker ~]# docker run -itd -h node4 --name node4 --net=bridge centos bash
+fc4f817e741f22615d0cdbab6608877d268ea15be6ba790cae5706d03871ac41
+</code></pre><h3 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h3><pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 centos bash
+27df97f0e77e745660ee7b9c8b318c64f63e6aa632db3d3b0c44c4e0f4006124
+[root@docker ~]# docker-enter node1
+[root@node1 ~]# rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+[root@node1 ~]# yum install -y nginx
+[root@docker ~]# docker commit -m &quot;nginx&quot; -a &quot;tang&quot; 27df97f0e77e nginx:v1
+    #此处仅容器做为镜像，主要是减少以后重复性的工作，不需要新建一个容器在部署nginx
+
+[root@docker ~]# docker run -itd -h nginx --name nginx -p 81:80 nginx:v1 bash      #-p 端口映射，射到宿主机81端口上
+a5dd375e829d05734a935d5f41723841568b543822a64a4ec277480f5f552e41
+[root@docker ~]# docker-enter nginx
+Last login: Mon Apr  3 07:00:51 UTC 2017
+[root@nginx ~]# /usr/sbin/nginx 
+[root@nginx ~]# echo &quot;TangXiaoyue&quot; &gt; /usr/share/nginx/html/1.html
+[root@nginx ~]# curl 127.0.0.1/1.html
+TangXiaoyue
+[root@nginx ~]# exit
+logout
+[root@docker ~]#  curl 127.0.0.1:81/1.html
+TangXiaoyue
+</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><pre><code>1.安装mysql
+[root@docker ~]# docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+fd547b535ff3af19bf36b219f542864962d60480a8d56836db30c20f079ec43f
+[root@docker ~]# docker-enter node1
+[root@node1 ~]# yum install -y wget
+[root@node1 ~]# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+[root@node1 ~]# rpm -ivh mysql-community-release-el7-5.noarch.rpm
+[root@node1 ~]# yum install mysql-community-server
+[root@node1 ~]# systemctl start mysql.service
+[root@node1 ~]# mysql -uroot
+&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
+
+2.制作mysql镜像
+[root@docker ~]# docker commit -m &quot;mysql&quot; -a &quot;tang&quot; fd547b535ff3 mysql:v1
+sha256:21af416e70b0302163e4aa279118afdd96a0c8590487268a3d26920caf6c5d1a
+[root@docker ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+mysql                v1                  21af416e70b0        4 seconds ago       797.3 MB
+
+
+[root@docker ~]# docker run --privileged -itd -h mysql --name mysql mysql:v1 /sbin/init
+8d71a34516a2c05a7ea63fde5773785360d1301509d687797eec5ead62a01d55
+
+
+3.以mysql、nginx镜像分别创建两个容器并端口映射
+[root@docker ~]# docker run -itd -h nginx --name nginx -p 10080:80 --link mysql:db nginx:v1 bash
+8aea6116f67c9760b8f4d3de08251b28af839b9e2195860ad4b24d54833c286a
+[root@docker ~]# docker-enter nginx
+Last login: Mon Apr  3 07:00:51 UTC 2017
+[root@nginx ~]# yum install -y telnet
+[root@nginx ~]# telnet db 3306
+Trying 172.18.0.3...
+Connected to db.
+Escape character is &apos;^]&apos;.
+CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConnection closed by foreign host.
+[root@nginx ~]# cat /etc/hosts
+172.18.0.3    db mysql mysql
+172.18.0.4    nginx
+</code></pre><h3 id="配置网桥-centos7"><a href="#配置网桥-centos7" class="headerlink" title="配置网桥(centos7)"></a>配置网桥(centos7)</h3>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（7）--数据管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%887%EF%BC%89--%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[root@docker_01 /]# cd /docker_01/        
+[root@docker_01 docker_01]# touch docker_01.txt
+</code></pre><a id="more"></a>
+<pre><code>[root@docker_01 docker_01]# exit
+exit
+[root@tang docker]# cd /data/docker/docker_01/
+[root@tang docker_01]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 08:03 docker_01.txt
+
+[root@tang docker_01]# cd ..
+[root@tang docker]# mkdir docker_02
+[root@tang docker]# docker run -it -h docker_02 --name docker_02 -v /data/docker/docker_02/:/docker_02 centos bash
+[root@docker_02 /]# cd /docker_02/
+[root@docker_02 docker_02]# mkdir docker_02.txt
+[root@docker_02 docker_02]# exit
+exit
+[root@tang docker]# cd docker_02/
+[root@tang docker_02]# ll
+total 4
+drwxr-xr-x 2 root root 4096 Apr  3 08:05 docker_02.txt
+
+提示：    
+      -v: 指定挂载目录
+      : : 前面的为本地目录
+      : : 后面到为容器里的目录
+      即使将删除这个容器,文件也不会丢失.
+</code></pre><h4 id="挂载数据卷-多个容器挂载宿主机的同一个目录"><a href="#挂载数据卷-多个容器挂载宿主机的同一个目录" class="headerlink" title="挂载数据卷(多个容器挂载宿主机的同一个目录)"></a>挂载数据卷(多个容器挂载宿主机的同一个目录)</h4><pre><code>[root@tang data]# docker run -it -h docker_03 --name docker_03
+--volumes-from docker_01 centos bash
+[root@docker_03 /]# cd /docker_01/
+[root@docker_03 docker_01]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 00:03 docker_01.txt
+[root@docker_03 docker_01]# df -h|grep docker_01
+/dev/vda1                           99G  5.4G   88G   6% /docker_01
+[root@docker_03 docker_01]# echo &quot;This is Doceker_3&quot; &gt; /docker_01/3.txt
+[root@docker_03 docker_01]# ll
+total 4
+-rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
+-rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
+[root@tang ~]# docker start docker_01
+docker_01
+[root@tang ~]# docker-enter docker_01
+[root@docker_01 ~]# cd /docker_01/
+[root@docker_01 docker_01]# ll
+total 4
+-rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
+-rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
+</code></pre><h4 id="自定义数据卷容器"><a href="#自定义数据卷容器" class="headerlink" title="自定义数据卷容器"></a>自定义数据卷容器</h4><pre><code>[root@tang ~]# docker run -itd -h node --name node -v /data centos bash
+056ac10e28855c3d29a94fe552711e6a712a5670e6e9c43c4b79270cbc6b0a0f
+                #这里的/data是容器node的/data目录,而不是宿主机的/data目录
+
+[root@tang ~]# docker-enter node
+[root@node ~]#  touch /data/1 /data/2 /data/3
+[root@node ~]# cd /data/
+[root@node data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+[root@node data]# exit
+logout
+[root@tang ~]# docker run -itd -h node1 --name node1 --volumes-from node centos bash
+2965a8f1184a7a1cbd26ef07e4b3d201fa17e5b68a52c619d6292da75c85d117
+[root@tang ~]# docker-enter node1
+[root@node1 ~]# cd /data/
+[root@node1 data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+[root@node1 data]# touch 4
+[root@node data]# ll
+total 0
+-rw-r--r-- 1 root root 0 Apr  3 01:00 1
+-rw-r--r-- 1 root root 0 Apr  3 01:00 2
+-rw-r--r-- 1 root root 0 Apr  3 01:00 3
+-rw-r--r-- 1 root root 0 Apr  3 01:02 4
+</code></pre><h4 id="数据卷的备份"><a href="#数据卷的备份" class="headerlink" title="数据卷的备份"></a>数据卷的备份</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
+[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
+250da7a47222e52c5a5d387ff8ce816a72b221ffb8d481739c4c68073507fe
+[root@docker ~]# docker-enter tang
+[root@tang ~]# mkdir /data
+[root@tang ~]# touch /data/{1,2,3,4}
+[root@tang ~]# tar cvf /backup/data.tar /data/
+[root@tang ~]# cd /backup/
+[root@tang backup]# ll
+total 12
+-rw-r--r-- 1 root root 10240 Apr  3 01:30 data.tar
+[root@tang backup]# exit
+logout
+[root@docker ~]# cd /docker_data_backup/
+[root@docker docker_data_backup]# ll
+total 12
+-rw-r--r-- 1 root root 10240 Apr  3 09:30 data.tar
+</code></pre><h4 id="数据卷的恢复"><a href="#数据卷的恢复" class="headerlink" title="数据卷的恢复"></a>数据卷的恢复</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
+[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
+3728f6b0a6e5b47f904de0474db7d4479f33e87740906e1539eca385c3fab04d
+[root@docker ~]# docker-enter tang
+[root@tang ~]# mkdir /tools/
+[root@tang ~]# touch /tools/{1,2,3,4}
+[root@tang ~]# tar zcvf /backup/tools.tar /tools/
+/tools/
+/tools/1
+/tools/2
+/tools/3
+/tools/4
+[root@tang ~]# ll /backup/
+total 4
+-rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
+[root@tang ~]# exit
+logout
+
+[root@docker ~]# docker run -itd -h tang1 --name tang1 -v /tang1 centos bash
+7ec371bb67f136234878771c227c4245a0ccf6c986e8c94a412d6c4111852a2b
+[root@docker ~]# docker run -itd -h tang2 --name tang2 --volumes-from tang1 -v /docker_data_backup/:/backup centos bash
+53e4cea1c45f3c081a6dd95b935f906aa037e6ed2170b6249a913ccd6fb4c119
+[root@docker ~]# docker-enter tang2
+[root@tang2 ~]# ll /backup/
+total 4
+-rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
+[root@tang2 tang1]# tar xvf /backup/tools.tar -C /tang1
+[root@tang2 tang1]# exit
+logout
+[root@docker ~]# docker-enter tang1
+[root@tang1 ~]# cd /tang1/
+[root@tang1 tang1]# ll
+total 4
+drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 基础（3）--容器登入]]></title>
       <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%883%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%99%BB%E5%85%A5/</url>
       <content type="html"><![CDATA[<h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
@@ -470,457 +844,6 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
-
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
-
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
-exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
-
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
-
-
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（7）--数据管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%887%EF%BC%89--%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[root@docker_01 /]# cd /docker_01/        
-[root@docker_01 docker_01]# touch docker_01.txt
-</code></pre><a id="more"></a>
-<pre><code>[root@docker_01 docker_01]# exit
-exit
-[root@tang docker]# cd /data/docker/docker_01/
-[root@tang docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 08:03 docker_01.txt
-
-[root@tang docker_01]# cd ..
-[root@tang docker]# mkdir docker_02
-[root@tang docker]# docker run -it -h docker_02 --name docker_02 -v /data/docker/docker_02/:/docker_02 centos bash
-[root@docker_02 /]# cd /docker_02/
-[root@docker_02 docker_02]# mkdir docker_02.txt
-[root@docker_02 docker_02]# exit
-exit
-[root@tang docker]# cd docker_02/
-[root@tang docker_02]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 08:05 docker_02.txt
-
-提示：    
-      -v: 指定挂载目录
-      : : 前面的为本地目录
-      : : 后面到为容器里的目录
-      即使将删除这个容器,文件也不会丢失.
-</code></pre><h4 id="挂载数据卷-多个容器挂载宿主机的同一个目录"><a href="#挂载数据卷-多个容器挂载宿主机的同一个目录" class="headerlink" title="挂载数据卷(多个容器挂载宿主机的同一个目录)"></a>挂载数据卷(多个容器挂载宿主机的同一个目录)</h4><pre><code>[root@tang data]# docker run -it -h docker_03 --name docker_03
---volumes-from docker_01 centos bash
-[root@docker_03 /]# cd /docker_01/
-[root@docker_03 docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 00:03 docker_01.txt
-[root@docker_03 docker_01]# df -h|grep docker_01
-/dev/vda1                           99G  5.4G   88G   6% /docker_01
-[root@docker_03 docker_01]# echo &quot;This is Doceker_3&quot; &gt; /docker_01/3.txt
-[root@docker_03 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-[root@tang ~]# docker start docker_01
-docker_01
-[root@tang ~]# docker-enter docker_01
-[root@docker_01 ~]# cd /docker_01/
-[root@docker_01 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-</code></pre><h4 id="自定义数据卷容器"><a href="#自定义数据卷容器" class="headerlink" title="自定义数据卷容器"></a>自定义数据卷容器</h4><pre><code>[root@tang ~]# docker run -itd -h node --name node -v /data centos bash
-056ac10e28855c3d29a94fe552711e6a712a5670e6e9c43c4b79270cbc6b0a0f
-                #这里的/data是容器node的/data目录,而不是宿主机的/data目录
-
-[root@tang ~]# docker-enter node
-[root@node ~]#  touch /data/1 /data/2 /data/3
-[root@node ~]# cd /data/
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node data]# exit
-logout
-[root@tang ~]# docker run -itd -h node1 --name node1 --volumes-from node centos bash
-2965a8f1184a7a1cbd26ef07e4b3d201fa17e5b68a52c619d6292da75c85d117
-[root@tang ~]# docker-enter node1
-[root@node1 ~]# cd /data/
-[root@node1 data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node1 data]# touch 4
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
--rw-r--r-- 1 root root 0 Apr  3 01:02 4
-</code></pre><h4 id="数据卷的备份"><a href="#数据卷的备份" class="headerlink" title="数据卷的备份"></a>数据卷的备份</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-250da7a47222e52c5a5d387ff8ce816a72b221ffb8d481739c4c68073507fe
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /data
-[root@tang ~]# touch /data/{1,2,3,4}
-[root@tang ~]# tar cvf /backup/data.tar /data/
-[root@tang ~]# cd /backup/
-[root@tang backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 01:30 data.tar
-[root@tang backup]# exit
-logout
-[root@docker ~]# cd /docker_data_backup/
-[root@docker docker_data_backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 09:30 data.tar
-</code></pre><h4 id="数据卷的恢复"><a href="#数据卷的恢复" class="headerlink" title="数据卷的恢复"></a>数据卷的恢复</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-3728f6b0a6e5b47f904de0474db7d4479f33e87740906e1539eca385c3fab04d
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /tools/
-[root@tang ~]# touch /tools/{1,2,3,4}
-[root@tang ~]# tar zcvf /backup/tools.tar /tools/
-/tools/
-/tools/1
-/tools/2
-/tools/3
-/tools/4
-[root@tang ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang ~]# exit
-logout
-
-[root@docker ~]# docker run -itd -h tang1 --name tang1 -v /tang1 centos bash
-7ec371bb67f136234878771c227c4245a0ccf6c986e8c94a412d6c4111852a2b
-[root@docker ~]# docker run -itd -h tang2 --name tang2 --volumes-from tang1 -v /docker_data_backup/:/backup centos bash
-53e4cea1c45f3c081a6dd95b935f906aa037e6ed2170b6249a913ccd6fb4c119
-[root@docker ~]# docker-enter tang2
-[root@tang2 ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang2 tang1]# tar xvf /backup/tools.tar -C /tang1
-[root@tang2 tang1]# exit
-logout
-[root@docker ~]# docker-enter tang1
-[root@tang1 ~]# cd /tang1/
-[root@tang1 tang1]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（8）--网络管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%888%EF%BC%89--%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre><a id="more"></a>
-<pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 --net=host centos bash
-406cdb306f3c350b6f5344048ae25426f1df3f6863162c0b3a91e3dcd48eba
-[root@docker ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-[root@docker ~]# docker-enter node1    #进去之后修改主机名，因为主机名个宿主机一样，貌似-h也指定不了主机名
-[root@node1 ~]# yum install -y net-tools
-[root@node1 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-</code></pre><h4 id="第二种网络模式container"><a href="#第二种网络模式container" class="headerlink" title="第二种网络模式container"></a>第二种网络模式container</h4><pre><code>container模式: 使用--net=container:container_id/container_name多个容器使用共同的网络,看到的ip是一样的.
-
-
-[root@docker ~]# docker run -itd -h node2 --name node2  --net=container:node1 centos bash     #此处不能指定主机名创建，否则失败
-/usr/bin/docker-current: Error response from daemon: Conflicting options: hostname and the network mode.
-See &apos;/usr/bin/docker-current run --help&apos;
-[root@docker ~]# docker run -itd  --name node2 --net=container:node1 centos bash
-0fc16c4a055cf0035c1241ba6cce6c5ad0c711f2ef13e0589c3254f19a96b271
-[root@docker ~]# docker-enter node2
-[root@node2 ~]# yum install -y net-tools
-[root@node2 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;    #和node1的ip一样，也和宿主机的ip一样（node1使用的是--net=host模式）
-172.17.82.185
-</code></pre><h4 id="第三种网络模式none"><a href="#第三种网络模式none" class="headerlink" title="第三种网络模式none"></a>第三种网络模式none</h4><pre><code>none模式: 使用--net=none, 这种模式下,不会配置任何网络
-
-[root@docker ~]# docker run -itd -h node3 --name node3 --net=none centos
-c1f4bd859566f11517248718a94456066d16ad66748a2c78743881e450d4ca09
-[root@docker ~]# docker-enter node3
-[root@node3 ~]# ping www.baidu.com
-ping: www.baidu.com: Name or service not known
-</code></pre><h4 id="第四种网络模式bridge"><a href="#第四种网络模式bridge" class="headerlink" title="第四种网络模式bridge"></a>第四种网络模式bridge</h4><pre><code>bridge模式: 使用--net=bridge.创建完容器默认为这种网络模式.类似与vmware的nat网络模式.
-
-[root@docker ~]# docker run -itd -h node4 --name node4 --net=bridge centos bash
-fc4f817e741f22615d0cdbab6608877d268ea15be6ba790cae5706d03871ac41
-</code></pre><h3 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h3><pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 centos bash
-27df97f0e77e745660ee7b9c8b318c64f63e6aa632db3d3b0c44c4e0f4006124
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-[root@node1 ~]# yum install -y nginx
-[root@docker ~]# docker commit -m &quot;nginx&quot; -a &quot;tang&quot; 27df97f0e77e nginx:v1
-    #此处仅容器做为镜像，主要是减少以后重复性的工作，不需要新建一个容器在部署nginx
-
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 81:80 nginx:v1 bash      #-p 端口映射，射到宿主机81端口上
-a5dd375e829d05734a935d5f41723841568b543822a64a4ec277480f5f552e41
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# /usr/sbin/nginx 
-[root@nginx ~]# echo &quot;TangXiaoyue&quot; &gt; /usr/share/nginx/html/1.html
-[root@nginx ~]# curl 127.0.0.1/1.html
-TangXiaoyue
-[root@nginx ~]# exit
-logout
-[root@docker ~]#  curl 127.0.0.1:81/1.html
-TangXiaoyue
-</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><pre><code>1.安装mysql
-[root@docker ~]# docker run --privileged -itd -h node1 --name node1 centos /sbin/init
-fd547b535ff3af19bf36b219f542864962d60480a8d56836db30c20f079ec43f
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# yum install -y wget
-[root@node1 ~]# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# rpm -ivh mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# yum install mysql-community-server
-[root@node1 ~]# systemctl start mysql.service
-[root@node1 ~]# mysql -uroot
-&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
-
-2.制作mysql镜像
-[root@docker ~]# docker commit -m &quot;mysql&quot; -a &quot;tang&quot; fd547b535ff3 mysql:v1
-sha256:21af416e70b0302163e4aa279118afdd96a0c8590487268a3d26920caf6c5d1a
-[root@docker ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-mysql                v1                  21af416e70b0        4 seconds ago       797.3 MB
-
-
-[root@docker ~]# docker run --privileged -itd -h mysql --name mysql mysql:v1 /sbin/init
-8d71a34516a2c05a7ea63fde5773785360d1301509d687797eec5ead62a01d55
-
-
-3.以mysql、nginx镜像分别创建两个容器并端口映射
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 10080:80 --link mysql:db nginx:v1 bash
-8aea6116f67c9760b8f4d3de08251b28af839b9e2195860ad4b24d54833c286a
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# yum install -y telnet
-[root@nginx ~]# telnet db 3306
-Trying 172.18.0.3...
-Connected to db.
-Escape character is &apos;^]&apos;.
-CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConnection closed by foreign host.
-[root@nginx ~]# cat /etc/hosts
-172.18.0.3    db mysql mysql
-172.18.0.4    nginx
-</code></pre><h3 id="配置网桥-centos7"><a href="#配置网桥-centos7" class="headerlink" title="配置网桥(centos7)"></a>配置网桥(centos7)</h3>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
-<a id="more"></a>
-<pre><code>[root@tang ~]# docker pull registry
-
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-默认占用5000端口，我们查看是否存在5000端口
-[root@tang ~]# netstat -lntup | grep 5000
-
-运行容器
-[root@tang ~]# docker run -d -p 5000:5000 registry
-f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
-
-提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（2）--命令]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
-</code></pre><a id="more"></a>
-<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
-docker pull images                                    #下载镜像
-docker    images                                    #查看镜像
-docker tag centos6  centos6_x86                                    #镜像改名
-docker save image&gt;/opt/images.tar.gz                                    #导出镜像
-docker load&lt;/opt/images.tar.gz                                    #导入镜像
-docker load --input /opt/images.tar.gz                                            #导入镜像
-docker rmi images_id                                                            #删除镜像
-docker rmi $(docker images -q)                                                    #删除所有镜像
-</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
-docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
-docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
-                                                                                    --name：指定容器名    
-                                                                                    -t：分配一个tty终端    
-                                                                                    -i：容器的标准输出保持打开状态 
-                                                                                    -h:指定主机名
-docker create -it --name centos1 centos                                            #使用create创建容器
-docekr stop ID（name）                                                            #停止容器
-docker start ID（name）                                                            #启动容器
-docker attach ID（name）                                                            #进入容器
-docker exec -it ID(name)  /bin/bash
-docker rm  ID（name）                                                            #删除容器    
-                                                                                    -f：强制删除容器，包括在运行的
-                                                                                #exec和attach总结: 
-                                                                                    attach登陆容器后,退出时容器会关闭. 
-                                                                                    推荐使用exec进入容器
-docker rm $(docker ps -a -q)                                                    #删除所有容器
-</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
-docker run --name nginx -d -p 81:80 nginx                                         #指定映射
-docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
-</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
-</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
-docekr inspect ID(name)                                                            #查看容器信息
-                                                                                    ==查看mounts模块
-docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
-docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
-                                                                                    ==rw：读写
-docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
-                                                                                ==ro：只读
-docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
-</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
-                                            -d：直接在后台执行
-docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
-docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
-                                        #test1和test2的/data数据可以共享
-</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
-</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-yum install -y nginx
-docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
-                                            ==同时打一个标签叫mynginx:v1
-                                            ==tang相当于你向github上提交的用户名
-docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
-```
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Markdown语法大全]]></title>
       <url>http://yoursite.com/2017/03/11/Markdown%E8%AF%AD%E6%B3%95%E5%A4%A7%E5%85%A8/</url>
       <content type="html"><![CDATA[<p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
@@ -987,7 +910,7 @@ docker run -it --anme nginxv1 tang/mynginx:v1                                   
 </code></pre><blockquote>
 <p>显示效果：</p>
 </blockquote>
-<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a></p>
 <h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
 <p>代码：  </p>
 </blockquote>
@@ -1203,6 +1126,83 @@ docker run -it --anme nginxv1 tang/mynginx:v1                                   
         <tags>
             
             <tag> 博客搭建 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（2）--命令]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
+</code></pre><a id="more"></a>
+<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
+docker pull images                                    #下载镜像
+docker    images                                    #查看镜像
+docker tag centos6  centos6_x86                                    #镜像改名
+docker save image&gt;/opt/images.tar.gz                                    #导出镜像
+docker load&lt;/opt/images.tar.gz                                    #导入镜像
+docker load --input /opt/images.tar.gz                                            #导入镜像
+docker rmi images_id                                                            #删除镜像
+docker rmi $(docker images -q)                                                    #删除所有镜像
+</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
+docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
+docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
+                                                                                    --name：指定容器名    
+                                                                                    -t：分配一个tty终端    
+                                                                                    -i：容器的标准输出保持打开状态 
+                                                                                    -h:指定主机名
+docker create -it --name centos1 centos                                            #使用create创建容器
+docekr stop ID（name）                                                            #停止容器
+docker start ID（name）                                                            #启动容器
+docker attach ID（name）                                                            #进入容器
+docker exec -it ID(name)  /bin/bash
+docker rm  ID（name）                                                            #删除容器    
+                                                                                    -f：强制删除容器，包括在运行的
+                                                                                #exec和attach总结: 
+                                                                                    attach登陆容器后,退出时容器会关闭. 
+                                                                                    推荐使用exec进入容器
+docker rm $(docker ps -a -q)                                                    #删除所有容器
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
+docker run --name nginx -d -p 81:80 nginx                                         #指定映射
+docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
+</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
+</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
+docekr inspect ID(name)                                                            #查看容器信息
+                                                                                    ==查看mounts模块
+docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
+docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
+                                                                                    ==rw：读写
+docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
+                                                                                ==ro：只读
+docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
+</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
+                                            -d：直接在后台执行
+docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
+docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
+                                        #test1和test2的/data数据可以共享
+</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
+</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+yum install -y nginx
+docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
+                                            ==同时打一个标签叫mynginx:v1
+                                            ==tang相当于你向github上提交的用户名
+docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
+```
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
             
         </tags>
         
