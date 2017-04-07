@@ -4,65 +4,139 @@
   
     
     <entry>
-      <title><![CDATA[Docker 基础（2）--命令]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
+      <title><![CDATA[Docker 基础（9）--Dockerfile]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%889%EF%BC%89--Dockerfile/</url>
+      <content type="html"><![CDATA[<h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
+
+
+
+Dockerfile构建步骤：
+
+[root@tang /]# mkdir /dockerfile/nginx -p
+我们要在nginx目录上自动化创建一个nginx镜像
 </code></pre><a id="more"></a>
-<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
-docker pull images                                    #下载镜像
-docker    images                                    #查看镜像
-docker tag centos6  centos6_x86                                    #镜像改名
-docker save image&gt;/opt/images.tar.gz                                    #导出镜像
-docker load&lt;/opt/images.tar.gz                                    #导入镜像
-docker load --input /opt/images.tar.gz                                            #导入镜像
-docker rmi images_id                                                            #删除镜像
-docker rmi $(docker images -q)                                                    #删除所有镜像
-</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
-docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
-docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
-                                                                                    --name：指定容器名    
-                                                                                    -t：分配一个tty终端    
-                                                                                    -i：容器的标准输出保持打开状态 
-                                                                                    -h:指定主机名
-docker create -it --name centos1 centos                                            #使用create创建容器
-docekr stop ID（name）                                                            #停止容器
-docker start ID（name）                                                            #启动容器
-docker attach ID（name）                                                            #进入容器
-docker exec -it ID(name)  /bin/bash
-docker rm  ID（name）                                                            #删除容器    
-                                                                                    -f：强制删除容器，包括在运行的
-                                                                                #exec和attach总结: 
-                                                                                    attach登陆容器后,退出时容器会关闭. 
-                                                                                    推荐使用exec进入容器
-docker rm $(docker ps -a -q)                                                    #删除所有容器
-</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
-docker run --name nginx -d -p 81:80 nginx                                         #指定映射
-docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
-</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
-</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
-docekr inspect ID(name)                                                            #查看容器信息
-                                                                                    ==查看mounts模块
-docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
-docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
-                                                                                    ==rw：读写
-docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
-                                                                                ==ro：只读
-docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
-</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
-                                            -d：直接在后台执行
-docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
-docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
-                                        #test1和test2的/data数据可以共享
-</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
-</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-yum install -y nginx
-docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
-                                            ==同时打一个标签叫mynginx:v1
-                                            ==tang相当于你向github上提交的用户名
-docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
-```
+<pre><code>注意：D需要大写，当我们构建dockerfile的时候，docker默认会在我们当前目录读取一个名为Dockerfile的文件。这时候的D必须大写
+
+[root@tang nginx]# cat Dockerfile 
+# This Dockerfile
+# My Name is TangXiaoyue
+# Base image
+FROM centos
+
+# Maintainer
+MAINTAINE tang 1060336375@qq.com
+
+#Commands
+RUN rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+RUN yum install -y nginx &amp;&amp; yum clean all
+RUN echo &quot;daemon off;&quot; &gt;&gt;/etc/nginx/nginx.conf
+ADD index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+CMD [&quot;nginx&quot;]
+
+
+#井号代表注释
+#Base image  除了注释的第一行，必须是FROM，意思就是我们需要告诉dockerfile基础镜像是什么
+#Maintainer 维护信息
+
+#Commands 命令
+
+#ADD index.html 这个文件需要我们在当前目录下有才可以，我们配置我们可以准备好，然后使用ADD命令进行添加或修改
+EXPOSE 对外端口号
+CMD [“nginx”] 它要启动的命令是nginx （就算是nginx服务）
+
+
+
+
+我们写好dockerfile还需要一个index.html
+[root@tang nginx]#  echo TangXiaoyue &gt;index.html
+[root@tang nginx]# ll
+total 8
+-rw-r--r-- 1 root root 364 Apr  2 20:50 Dockerfile
+-rw-r--r-- 1 root root  12 Apr  2 20:52 index.html
+
+使用docker build进行构建
+[root@tang ~]# docker build -t nginx_test:v1 /dockerfile/nginx/
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+nginx_test           v1                  bc69ee414a0f        17 seconds ago      280.7 MB
+
+
+启动镜像
+[root@tang ~]# docker run --name nginx_test -d -p 82:80 nginx_test:v1
+7a02c27a0a04d34eec8f858e35848416b95572dbb1f485310caee5c185d2e426
+
+[root@tang ~]# curl 127.0.0.1:82
+TangXiaoyue
+</code></pre><h2 id="Dockerfile参数解释"><a href="#Dockerfile参数解释" class="headerlink" title="Dockerfile参数解释"></a>Dockerfile参数解释</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>格式：FROM&lt;image&gt;或FROM&lt;image&gt;:&lt;tag&gt;。
+
+解释：FROM是Dockerfile里的第一条指令（必须是），后面跟有效的镜像名（如果该镜像你的本地仓库没有则会从远程仓库Pull取）。
+然后后面的其它指令FROM的镜像中执行。
+</code></pre><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><pre><code>格式：MAINTAINER &lt;name&gt;
+
+    解释：指定维护者信息。
+</code></pre><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>格式：RUN &lt;command&gt;或 RUN[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]。
+
+    解释：运行命令，命令较长使可以使用\来换行。推荐使用上面数组的格式
+</code></pre><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><pre><code>格式：
+CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；
+CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
+CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给ENTRYPOINT的默认参数；
+
+解释： 
+CMD指定容器启动是执行的命令，每个Dockerfile只能有一条CMD命令，如果指定了多条，只有最后一条会被执行。
+如果你在启动容器的时候也指定的命令，那么会覆盖Dockerfile构建的镜像里面的CMD命令。
+</code></pre><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><pre><code>格式：
+   ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;,&quot;param2&quot;]
+   ENTRYPOINT command param1 param2（shell中执行）。
+
+解释：和CMD类似都是配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。 
+
+每个 Dockerfile 中只能有一个ENTRYPOINT，当指定多个时，只有最后一个起效。
+ENTRYPOINT没有CMD的可替换特性，也就是你启动容器的时候增加运行的命令不会覆盖ENTRYPOINT指定的命令。 
+　
+所以生产实践中我们可以同时使用ENTRYPOINT和CMD， 
+
+例如：
+    ENTRYPOINT [&quot;/usr/bin/rethinkdb&quot;]
+    CMD [&quot;--help&quot;]
+</code></pre><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><pre><code>格式：USER daemon
+
+    解释：指定运行容器时的用户名和UID，后续的RUN指令也会使用这里指定的用户。
+</code></pre><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>格式：EXPOSE&lt;port&gt; [&lt;port&gt;...]
+
+解释：设置Docker容器内部暴露的端口号，如果需要外部访问，还需要启动容器时增加-p或者-P参数进行分配。
+</code></pre><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>格式：ENV&lt;key&gt; &lt;value&gt;
+ENV &lt;key&gt;=&lt;value&gt; ...
+
+    解释：设置环境变量，可以在RUN之前使用，然后RUN命令时调用，容器启动时这些环境变量都会被指定
+</code></pre><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>格式：
+   ADD &lt;src&gt;... &lt;dest&gt;
+   ADD [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
+
+    解释：
+        将指定的&lt;src&gt;复制到容器文件系统中的&lt;dest&gt; 
+           所有拷贝到container中的文件和文件夹权限为0755,uid和gid为0 
+        如果文件是可识别的压缩格式，则docker会帮忙解压缩
+</code></pre><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><pre><code>格式：VOLUME [&quot;/data&quot;]
+
+    解释：可以将本地文件夹或者其他container的文件夹挂载到container中。
+</code></pre><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>格式：WORKDIR/path/to/workdir
+
+    解释：切换目录，为后续的RUN、CMD、ENTRYPOINT 指令配置工作目录。 
+    可以多次切换(相当于cd命令)， 
+    也可以使用多个WORKDIR 指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。例如:
+
+    WORKDIR /a
+    WORKDIR b
+    WORKDIR c
+    RUN pwd
+    则最终路径为 /a/b/c。
+</code></pre><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><pre><code>ONBUILD 指定的命令在构建镜像时并不执行，而是在它的子镜像中执行
+</code></pre><h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><pre><code>格式：ARG&lt;name&gt;[=&lt;default value&gt;]
+
+    解释：ARG指定了一个变量在docker build的时候使用，
+         可以使用--build-arg &lt;varname&gt;=&lt;value&gt;来指定参数的值，不过如果构建的时候不指定就会报错。
 </code></pre>]]></content>
       
         <categories>
@@ -157,45 +231,6 @@ docker push
 The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
 9b198ff9ff5b: Mounted from library/centos 
 latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
-<a id="more"></a>
-<pre><code>[root@tang ~]# docker pull registry
-
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-默认占用5000端口，我们查看是否存在5000端口
-[root@tang ~]# netstat -lntup | grep 5000
-
-运行容器
-[root@tang ~]# docker run -d -p 5000:5000 registry
-f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
-
-提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
 </code></pre>]]></content>
       
         <categories>
@@ -417,6 +452,78 @@ e657e9214a57        centos              &quot;/bin/bash&quot;         About an h
 </code></pre><h3 id="ssh登入容器"><a href="#ssh登入容器" class="headerlink" title="ssh登入容器"></a>ssh登入容器</h3><pre><code>使用ssh登陆容器。这种方法需要在容器中启动sshd，存在开销和攻击面增大的问题。同时也违反了Docker所倡导的一个容器一个进程的原则
 
 ssh登入会专门写一篇文章介绍。这里就不叙述了
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+</code></pre>  <a id="more"></a>
+<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+
+Exited:表示该容器已经退出。没有启动
+</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
+3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
+
+[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
+[root@b5dbba42703a /]# exit
+exit
+</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+[root@tang ~]# docker start tang_run                #start启动容器
+tang_run
+
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
+
+[root@tang ~]# docker stop tang_run                 #stop停止容器
+tang_run
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
+8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
+        -d: 容器退出后不关闭容器.
+        -h:指定主机名
+</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
+[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
+[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
+</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
+[root@tang ~]# docker rm tang
+tang
+[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
+
+
+提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
 </code></pre>]]></content>
       
         <categories>
@@ -698,60 +805,27 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+<a id="more"></a>
+<pre><code>[root@tang ~]# docker pull registry
 
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
+[root@tang ~]# docker images
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
 docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
 docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
 
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
+默认占用5000端口，我们查看是否存在5000端口
+[root@tang ~]# netstat -lntup | grep 5000
 
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
-exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+运行容器
+[root@tang ~]# docker run -d -p 5000:5000 registry
+f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
 
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
-
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
-
-
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
+提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
 </code></pre>]]></content>
       
         <categories>
@@ -770,169 +844,65 @@ tang                 latest              393d449b1ed4        44 seconds ago     
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（9）--Dockerfile]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%889%EF%BC%89--Dockerfile/</url>
-      <content type="html"><![CDATA[<h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
-
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像
+      <title><![CDATA[Docker 基础（2）--命令]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
 </code></pre><a id="more"></a>
-<pre><code>注意：D需要大写，当我们构建dockerfile的时候，docker默认会在我们当前目录读取一个名为Dockerfile的文件。这时候的D必须大写
-
-[root@tang nginx]# cat Dockerfile 
-# This Dockerfile
-# My Name is TangXiaoyue
-# Base image
-FROM centos
-
-# Maintainer
-MAINTAINE tang 1060336375@qq.com
-
-#Commands
-RUN rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-RUN yum install -y nginx &amp;&amp; yum clean all
-RUN echo &quot;daemon off;&quot; &gt;&gt;/etc/nginx/nginx.conf
-ADD index.html /usr/share/nginx/html/index.html
-EXPOSE 80
-CMD [&quot;nginx&quot;]
-
-
-#井号代表注释
-#Base image  除了注释的第一行，必须是FROM，意思就是我们需要告诉dockerfile基础镜像是什么
-#Maintainer 维护信息
-
-#Commands 命令
-
-#ADD index.html 这个文件需要我们在当前目录下有才可以，我们配置我们可以准备好，然后使用ADD命令进行添加或修改
-EXPOSE 对外端口号
-CMD [“nginx”] 它要启动的命令是nginx （就算是nginx服务）
-
-
-
-
-我们写好dockerfile还需要一个index.html
-[root@tang nginx]#  echo TangXiaoyue &gt;index.html
-[root@tang nginx]# ll
-total 8
--rw-r--r-- 1 root root 364 Apr  2 20:50 Dockerfile
--rw-r--r-- 1 root root  12 Apr  2 20:52 index.html
-
-使用docker build进行构建
-[root@tang ~]# docker build -t nginx_test:v1 /dockerfile/nginx/
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-nginx_test           v1                  bc69ee414a0f        17 seconds ago      280.7 MB
-
-
-启动镜像
-[root@tang ~]# docker run --name nginx_test -d -p 82:80 nginx_test:v1
-7a02c27a0a04d34eec8f858e35848416b95572dbb1f485310caee5c185d2e426
-
-[root@tang ~]# curl 127.0.0.1:82
-TangXiaoyue
-</code></pre><h2 id="Dockerfile参数解释"><a href="#Dockerfile参数解释" class="headerlink" title="Dockerfile参数解释"></a>Dockerfile参数解释</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>格式：FROM&lt;image&gt;或FROM&lt;image&gt;:&lt;tag&gt;。
-
-解释：FROM是Dockerfile里的第一条指令（必须是），后面跟有效的镜像名（如果该镜像你的本地仓库没有则会从远程仓库Pull取）。
-然后后面的其它指令FROM的镜像中执行。
-</code></pre><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><pre><code>格式：MAINTAINER &lt;name&gt;
-
-    解释：指定维护者信息。
-</code></pre><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>格式：RUN &lt;command&gt;或 RUN[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]。
-
-    解释：运行命令，命令较长使可以使用\来换行。推荐使用上面数组的格式
-</code></pre><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><pre><code>格式：
-CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；
-CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
-CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给ENTRYPOINT的默认参数；
-
-解释： 
-CMD指定容器启动是执行的命令，每个Dockerfile只能有一条CMD命令，如果指定了多条，只有最后一条会被执行。
-如果你在启动容器的时候也指定的命令，那么会覆盖Dockerfile构建的镜像里面的CMD命令。
-</code></pre><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><pre><code>格式：
-   ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;,&quot;param2&quot;]
-   ENTRYPOINT command param1 param2（shell中执行）。
-
-解释：和CMD类似都是配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。 
-
-每个 Dockerfile 中只能有一个ENTRYPOINT，当指定多个时，只有最后一个起效。
-ENTRYPOINT没有CMD的可替换特性，也就是你启动容器的时候增加运行的命令不会覆盖ENTRYPOINT指定的命令。 
-　
-所以生产实践中我们可以同时使用ENTRYPOINT和CMD， 
-
-例如：
-    ENTRYPOINT [&quot;/usr/bin/rethinkdb&quot;]
-    CMD [&quot;--help&quot;]
-</code></pre><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><pre><code>格式：USER daemon
-
-    解释：指定运行容器时的用户名和UID，后续的RUN指令也会使用这里指定的用户。
-</code></pre><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>格式：EXPOSE&lt;port&gt; [&lt;port&gt;...]
-
-解释：设置Docker容器内部暴露的端口号，如果需要外部访问，还需要启动容器时增加-p或者-P参数进行分配。
-</code></pre><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>格式：ENV&lt;key&gt; &lt;value&gt;
-ENV &lt;key&gt;=&lt;value&gt; ...
-
-    解释：设置环境变量，可以在RUN之前使用，然后RUN命令时调用，容器启动时这些环境变量都会被指定
-</code></pre><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>格式：
-   ADD &lt;src&gt;... &lt;dest&gt;
-   ADD [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
-
-    解释：
-        将指定的&lt;src&gt;复制到容器文件系统中的&lt;dest&gt; 
-           所有拷贝到container中的文件和文件夹权限为0755,uid和gid为0 
-        如果文件是可识别的压缩格式，则docker会帮忙解压缩
-</code></pre><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><pre><code>格式：VOLUME [&quot;/data&quot;]
-
-    解释：可以将本地文件夹或者其他container的文件夹挂载到container中。
-</code></pre><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>格式：WORKDIR/path/to/workdir
-
-    解释：切换目录，为后续的RUN、CMD、ENTRYPOINT 指令配置工作目录。 
-    可以多次切换(相当于cd命令)， 
-    也可以使用多个WORKDIR 指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。例如:
-
-    WORKDIR /a
-    WORKDIR b
-    WORKDIR c
-    RUN pwd
-    则最终路径为 /a/b/c。
-</code></pre><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><pre><code>ONBUILD 指定的命令在构建镜像时并不执行，而是在它的子镜像中执行
-</code></pre><h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><pre><code>格式：ARG&lt;name&gt;[=&lt;default value&gt;]
-
-    解释：ARG指定了一个变量在docker build的时候使用，
-         可以使用--build-arg &lt;varname&gt;=&lt;value&gt;来指定参数的值，不过如果构建的时候不指定就会报错。
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker问题梳理--持续更新]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/</url>
-      <content type="html"><![CDATA[<h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
-
-使用systemctl启动服务的时候出现以下异常：
-
-Failed to get D-Bus connection: Operation not permitted 
-
-
-解决：
-
-docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
+docker pull images                                    #下载镜像
+docker    images                                    #查看镜像
+docker tag centos6  centos6_x86                                    #镜像改名
+docker save image&gt;/opt/images.tar.gz                                    #导出镜像
+docker load&lt;/opt/images.tar.gz                                    #导入镜像
+docker load --input /opt/images.tar.gz                                            #导入镜像
+docker rmi images_id                                                            #删除镜像
+docker rmi $(docker images -q)                                                    #删除所有镜像
+</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
+docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
+docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
+                                                                                    --name：指定容器名    
+                                                                                    -t：分配一个tty终端    
+                                                                                    -i：容器的标准输出保持打开状态 
+                                                                                    -h:指定主机名
+docker create -it --name centos1 centos                                            #使用create创建容器
+docekr stop ID（name）                                                            #停止容器
+docker start ID（name）                                                            #启动容器
+docker attach ID（name）                                                            #进入容器
+docker exec -it ID(name)  /bin/bash
+docker rm  ID（name）                                                            #删除容器    
+                                                                                    -f：强制删除容器，包括在运行的
+                                                                                #exec和attach总结: 
+                                                                                    attach登陆容器后,退出时容器会关闭. 
+                                                                                    推荐使用exec进入容器
+docker rm $(docker ps -a -q)                                                    #删除所有容器
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
+docker run --name nginx -d -p 81:80 nginx                                         #指定映射
+docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
+</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
+</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
+docekr inspect ID(name)                                                            #查看容器信息
+                                                                                    ==查看mounts模块
+docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
+docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
+                                                                                    ==rw：读写
+docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
+                                                                                ==ro：只读
+docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
+</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
+                                            -d：直接在后台执行
+docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
+docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
+                                        #test1和test2的/data数据可以共享
+</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
+</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+yum install -y nginx
+docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
+                                            ==同时打一个标签叫mynginx:v1
+                                            ==tang相当于你向github上提交的用户名
+docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
+```
 </code></pre>]]></content>
       
         <categories>
@@ -1017,7 +987,7 @@ docker run --privileged -itd -h node1 --name node1 centos /sbin/init
 </code></pre><blockquote>
 <p>显示效果：</p>
 </blockquote>
-<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#97;&#x64;&#100;&#114;&#101;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#109;">&#97;&#x64;&#100;&#114;&#101;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#111;&#109;</a></p>
+<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 <h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
 <p>代码：  </p>
 </blockquote>
@@ -1233,6 +1203,36 @@ docker run --privileged -itd -h node1 --name node1 centos /sbin/init
         <tags>
             
             <tag> 博客搭建 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker问题梳理--持续更新]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/</url>
+      <content type="html"><![CDATA[<h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
+
+使用systemctl启动服务的时候出现以下异常：
+
+Failed to get D-Bus connection: Operation not permitted 
+
+
+解决：
+
+docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
             
         </tags>
         
