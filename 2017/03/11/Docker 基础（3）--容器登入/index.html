@@ -57,22 +57,37 @@
 
 
 
-<meta name="description" content="安装下载yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动">
+<meta name="description" content="docker容器六种登入方法docker-enter登入容器
+强烈推荐使用此种方法：简单、方便
+
+下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
+
+[root@tang ~]# wget -P ~ https:/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（2）--命令">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker基础（2）--命令/index.html">
+<meta property="og:title" content="Docker 基础（3）--容器登入">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（3）--容器登入/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="安装下载yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动">
-<meta property="og:updated_time" content="2017-04-07T05:04:55.911Z">
+<meta property="og:description" content="docker容器六种登入方法docker-enter登入容器
+强烈推荐使用此种方法：简单、方便
+
+下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
+
+[root@tang ~]# wget -P ~ https:/">
+<meta property="og:updated_time" content="2017-04-07T05:02:50.610Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（2）--命令">
-<meta name="twitter:description" content="安装下载yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动">
+<meta name="twitter:title" content="Docker 基础（3）--容器登入">
+<meta name="twitter:description" content="docker容器六种登入方法docker-enter登入容器
+强烈推荐使用此种方法：简单、方便
+
+下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
+
+[root@tang ~]# wget -P ~ https:/">
 
 
 
@@ -90,7 +105,7 @@ systemctl enable docker                                    #自启动">
   };
 </script>
 
-  <title> Docker 基础（2）--命令 | BRUCETANG </title>
+  <title> Docker 基础（3）--容器登入 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +278,7 @@ systemctl enable docker                                    #自启动">
             
             
               
-                Docker 基础（2）--命令
+                Docker 基础（3）--容器登入
               
             
           </h1>
@@ -321,63 +336,206 @@ systemctl enable docker                                    #自启动">
       
 
       
-        <h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
-</code></pre><a id="more"></a>
-<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
-docker pull images                                    #下载镜像
-docker    images                                    #查看镜像
-docker tag centos6  centos6_x86                                    #镜像改名
-docker save image&gt;/opt/images.tar.gz                                    #导出镜像
-docker load&lt;/opt/images.tar.gz                                    #导入镜像
-docker load --input /opt/images.tar.gz                                            #导入镜像
-docker rmi images_id                                                            #删除镜像
-docker rmi $(docker images -q)                                                    #删除所有镜像
-</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
-docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
-docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
-                                                                                    --name：指定容器名    
-                                                                                    -t：分配一个tty终端    
-                                                                                    -i：容器的标准输出保持打开状态 
-                                                                                    -h:指定主机名
-docker create -it --name centos1 centos                                            #使用create创建容器
-docekr stop ID（name）                                                            #停止容器
-docker start ID（name）                                                            #启动容器
-docker attach ID（name）                                                            #进入容器
-docker exec -it ID(name)  /bin/bash
-docker rm  ID（name）                                                            #删除容器    
-                                                                                    -f：强制删除容器，包括在运行的
-                                                                                #exec和attach总结: 
-                                                                                    attach登陆容器后,退出时容器会关闭. 
-                                                                                    推荐使用exec进入容器
-docker rm $(docker ps -a -q)                                                    #删除所有容器
-</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
-docker run --name nginx -d -p 81:80 nginx                                         #指定映射
-docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
-</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
-</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
-docekr inspect ID(name)                                                            #查看容器信息
-                                                                                    ==查看mounts模块
-docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
-docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
-                                                                                    ==rw：读写
-docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
-                                                                                ==ro：只读
-docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
-</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
-                                            -d：直接在后台执行
-docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
-docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
-                                        #test1和test2的/data数据可以共享
-</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
-</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-yum install -y nginx
-docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
-                                            ==同时打一个标签叫mynginx:v1
-                                            ==tang相当于你向github上提交的用户名
-docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
-```
+        <h1 id="docker容器六种登入方法"><a href="#docker容器六种登入方法" class="headerlink" title="docker容器六种登入方法"></a>docker容器六种登入方法</h1><h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+<p>强烈推荐使用此种方法：简单、方便</p>
+</blockquote>
+<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
+
+[root@tang ~]# wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker
+
+[root@tang ~]# echo &quot;[ -f ~/.bashrc_docker ] &amp;&amp; . ~/.bashrc_docker&quot; &gt;&gt; ~/.bashrc; source ~/.bashrc
+
+
+[root@tang ~]# docker-
+docker-containerd               docker-ctr-current              docker-pid
+docker-containerd-current       docker-current                  docker-storage-setup
+docker-containerd-shim          docker-enter                    
+docker-containerd-shim-current  docker-ip 
+
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         24 minutes ago      Up 23 minutes                           tang
+
+[root@tang ~]# docker-pid tang
+19271
+
+[root@tang ~]# nsenter --target 19271  --mount --uts --ipc --net --pid  #此种方法进入容器以下会讲到
+[root@test /]# exit
+logout
+
+[root@tang ~]# docker-ip tang
+172.18.0.2
+
+直接使用docker-enter命令进入容器，非常方便！
+[root@tang ~]# docker-enter tang
+Last login: Sun Apr  2 06:38:47 UTC 2017
+
+[root@test ~]# exit
+logout
+
+[root@tang ~]# docker ps   #退出登陆窗口后，容器还在
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         26 minutes ago      Up 9 seconds                            tang
+
+注意：以在容器的上下文中运行任意命令！即在宿主机上执行容器里的命令
+
+[root@tang ~]# docker-enter tang uptime
+ 07:06:28 up 1 day, 22:44,  0 users,  load average: 0.00, 0.01, 0.05
+
+注意：在宿主机上使用docker-enter命令执行容器中的命令时，最好后面加上--符号，这样容器里的所有存在的命令都可以正常执行。
+[root@tang ~]# docker-enter tang -- uptime
+
+ 07:06:59 up 1 day, 22:45,  0 users,  load average: 0.00, 0.01, 0.05
+
+[root@tang ~]# docker-enter tang -- df -h
+Filesystem                                                                                         Size  Used Avail Use% Mounted on
+/dev/mapper/docker-253:1-2024335-661487685eb1f6a356157463d60db20caa2c1fb3ac273de680c367e3b12dabab   10G  238M  9.8G   3% /
+tmpfs                                                                                              920M     0  920M   0% /dev
+tmpfs                                                                                              920M     0  920M   0% /sys/fs/cgroup
+/dev/vda1                                                                                           99G  4.7G   89G   5% /etc/hosts
+shm                                                                                                 64M     0   64M   0% /dev/shm
+
+[root@tang ~]# cat /etc/redhat-release 
+CentOS Linux release 7.2.1511 (Core) 
+
+[root@tang ~]# docker-enter tang -- cat /etc/redhat-release 
+CentOS Linux release 7.3.1611 (Core)
+</code></pre><h3 id="nsenter登入容器"><a href="#nsenter登入容器" class="headerlink" title="nsenter登入容器"></a>nsenter登入容器</h3><pre><code>使用外部工具nsenter登陆容器，该工具和docker exec命令的效果差不多。
+
+使用nsenter或dockerexec，都可以在容器的上下文（严格地说，是命名空间）中运行任意命令！
+
+
+==nsenter安装：
+[root@tang ~]#  yum install util-linux -y 
+
+
+==nsenter使用：
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         50 minutes ago      Up 24 minutes                           tang
+
+[root@tang ~]# docker inspect -f &quot;{{ .State.Pid }}&quot; tang
+19271
+
+[root@tang ~]# nsenter -t 19271  -m -u -i -n -p
+
+解释nsenter指令中进程id之后的参数的含义：
+
+–mount参数是进去到mount namespace中 
+–uts参数是进入到uts namespace中 
+–ipc参数是进入到System V IPC namaspace中 
+–net参数是进入到network namespace中 
+–pid参数是进入到pid namespace中 
+–user参数是进入到user namespace中
+
+[root@tang ~]#  nsenter --help
+
+Usage:
+ nsenter [options] &lt;program&gt; [&lt;argument&gt;...]
+
+Run a program with namespaces of other processes.
+
+Options:
+ -t, --target &lt;pid&gt;     target process to get namespaces from
+ -m, --mount[=&lt;file&gt;]   enter mount namespace
+ -u, --uts[=&lt;file&gt;]     enter UTS namespace (hostname etc)
+ -i, --ipc[=&lt;file&gt;]     enter System V IPC namespace
+ -n, --net[=&lt;file&gt;]     enter network namespace
+ -p, --pid[=&lt;file&gt;]     enter pid namespace
+ -U, --user[=&lt;file&gt;]    enter user namespace
+ -S, --setuid &lt;uid&gt;     set uid in entered namespace
+ -G, --setgid &lt;gid&gt;     set gid in entered namespace
+     --preserve-credentials do not touch uids or gids
+ -r, --root[=&lt;dir&gt;]     set the root directory
+ -w, --wd[=&lt;dir&gt;]       set the working directory
+ -F, --no-fork          do not fork before exec ing &lt;program&gt;
+ -Z, --follow-context   set SELinux context according to --target PID
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+我们进入容器中查看进程 
+以下是以nsenter启动的进程
+[root@test /]# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  11768  1684 ?        Ss+  07:03   0:00 /bin/bash
+root        77  0.0  0.1  15200  1988 ?        S    07:31   0:00 -bash
+root        90  0.0  0.0  50872  1816 ?        R+   07:31   0:00 ps aux
+
+/bin/bash是我们运行容器产生的进程
+-bash 是我们使用nsenter产生的，这样如果我们退出容器，容器就不会退出，因为-bash还在运行
+
+[root@test /]# exit
+logout
+
+[root@tang ~]# docker ps 
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         55 minutes ago      Up 29 minutes                           tang
+
+因为每次进入容器都需要输入那两条命令，所以我们可以写一个脚本来获取。 
+
+==脚本内容如下：
+[root@tang opt]# cat docker_in.sh 
+#!/bin/bash
+# Use nsenter to access docker
+docker_in(){
+  NAME_ID=$1
+  PID=$(docker inspect -f &quot;{{ .State.Pid }}&quot; $NAME_ID)
+  nsenter -t $PID -m -u -i -n -p
+}
+docker_in $1
+
+[root@tang opt]# chmod +x docker_in.sh 
+[root@tang opt]# ./docker_in.sh tang
+[root@test /]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 07:03 ?        00:00:00 /bin/bash
+root        91     0  0 07:34 ?        00:00:00 -bash
+root       104    91  0 07:34 ?        00:00:00 ps -ef
+[root@test /]# exit
+logout
+[root@tang opt]# docker exec tang ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 07:03 ?        00:00:00 /bin/bash
+root       105     0  0 07:35 ?        00:00:00 ps -ef
+
+
+我们还可以使用exec进入docker容器中
+
+[root@tang opt]# docker exec -it tang /bin/bash
+</code></pre><h3 id="start-ai登入容器"><a href="#start-ai登入容器" class="headerlink" title="start -ai登入容器"></a>start -ai登入容器</h3><pre><code>对于一个已关闭的容器的登陆，可以使用&quot;docker start -ai container&quot;登陆。这种其实就是先启动容器，然后再进入容器内。
+
+[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Exited (0) 53 seconds ago                       tang
+
+[root@tang ~]# docker start -ai tang   #-a -i 都可以
+[root@test /]# exit
+exit
+[root@tang ~]# docker start -i tang
+[root@tang ~]# docker start -a tang
+</code></pre><h3 id="docker-exec登入容器"><a href="#docker-exec登入容器" class="headerlink" title="docker exec登入容器"></a>docker exec登入容器</h3><pre><code>使用自带命令docker exec登陆容器
+
+命令格式：docker exec -ti container_id /bin/bash
+
+[root@tang ~]# docker ps    #前提是容器已经启动
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 2 minutes                            tang
+[root@tang ~]# docker exec -it tang /bin/bash
+[root@test /]# exit
+</code></pre><h3 id="docker-attach登入容器"><a href="#docker-attach登入容器" class="headerlink" title="docker attach登入容器"></a>docker attach登入容器</h3><pre><code>使用自带命令docker attach登陆容器。
+
+命令格式：docker attach container_id
+
+[root@tang ~]# docker ps   #前提容器已经启动了
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 5 minutes                            tang
+[root@tang ~]# docker attach tang
+[root@test /]# exit
+</code></pre><h3 id="ssh登入容器"><a href="#ssh登入容器" class="headerlink" title="ssh登入容器"></a>ssh登入容器</h3><pre><code>使用ssh登陆容器。这种方法需要在容器中启动sshd，存在开销和攻击面增大的问题。同时也违反了Docker所倡导的一个容器一个进程的原则
+
+ssh登入会专门写一篇文章介绍。这里就不叙述了
 </code></pre>
       
     </div>
@@ -401,17 +559,13 @@ docker run -it --anme nginxv1 tang/mynginx:v1                                   
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Markdown语法大全/" rel="next" title="Markdown语法大全">
-                <i class="fa fa-chevron-left"></i> Markdown语法大全
+              <a href="/2017/03/11/Docker基础（2）--命令/" rel="next" title="Docker 基础（2）--命令">
+                <i class="fa fa-chevron-left"></i> Docker 基础（2）--命令
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（3）--容器登入/" rel="prev" title="Docker 基础（3）--容器登入">
-                Docker 基础（3）--容器登入 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -527,7 +681,7 @@ docker run -it --anme nginxv1 tang/mynginx:v1                                   
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装下载"><span class="nav-number">1.</span> <span class="nav-text">安装下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像操作"><span class="nav-number">2.</span> <span class="nav-text">镜像操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器操作"><span class="nav-number">3.</span> <span class="nav-text">容器操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射"><span class="nav-number">4.</span> <span class="nav-text">映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志"><span class="nav-number">5.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理"><span class="nav-number">6.</span> <span class="nav-text">数据管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据卷容器"><span class="nav-number">7.</span> <span class="nav-text">数据卷容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动制作镜像"><span class="nav-number">8.</span> <span class="nav-text">手动制作镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在mynginx容器内安装nginx"><span class="nav-number"></span> <span class="nav-text">在mynginx容器内安装nginx</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker容器六种登入方法"><span class="nav-number">1.</span> <span class="nav-text">docker容器六种登入方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-enter登入容器"><span class="nav-number">1.0.1.</span> <span class="nav-text">docker-enter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter登入容器"><span class="nav-number">1.0.2.</span> <span class="nav-text">nsenter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start-ai登入容器"><span class="nav-number">1.0.3.</span> <span class="nav-text">start -ai登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-exec登入容器"><span class="nav-number">1.0.4.</span> <span class="nav-text">docker exec登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-attach登入容器"><span class="nav-number">1.0.5.</span> <span class="nav-text">docker attach登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh登入容器"><span class="nav-number">1.0.6.</span> <span class="nav-text">ssh登入容器</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
