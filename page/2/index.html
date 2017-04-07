@@ -259,120 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（6）--仓库管理/" itemprop="url">
-                  Docker 基础（6）--仓库管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（6）--仓库管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-                  XtraBackup主从复制及备份
+                <a class="post-title-link" href="/2017/03/11/Mysql 启动慢查询日志/" itemprop="url">
+                  Mysql 启动慢查询日志（不用重启）
                 </a>
               
             
@@ -432,205 +320,12 @@
 
       
         
-          
-            <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
-###主从操作一致
-
-#查看操作系统版本：
-[root@node2 ~]# cat /etc/redhat-release
-CentOS Linux release 7.0.1406 (Core)
-
-#关闭防火墙和seLinux
-[root@node2 ~]# systemctl stop firewalld
-[root@node2 ~]# sed -i &quot;s#SELINUX=enforcing#SELINUX=disabled#g&quot; /etc/selinux/config
-[root@node2 ~]# setenforce 0
-
-#yum安装mysql
-wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-community-server
-systemctl start mysql.service
-mysql -uroot
-&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
-
-###配置主从
-主：
-vim /etc/my.cnf
-[mysqld]
-log-bin = mysql-bin
-server-id=1
-
-从：
-vim /etc/my.cnf
-[mysqld]
-log-bin = mysql-bin
-server-id=2
-
-2、安装xtrabackup备份软件（主从进行安装）
-wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.3.4/binary/redhat/6/x86_64/percona-xtrabackup-2.3.4-1.el6.x86_64.rpm
-yum install -y epel-release
-yum localinstall percona-xtrabackup-2.3.4-1.el6.x86_64.rpm
-yum install -y perl-Time-HiRes
-
-#查看版本
-&gt;select version();
-
-#查看前默认的存储引擎
-&gt;show variables like &apos;%storage_engine%&apos;;
-
-
-3、导入数据（为了模拟比较真实可以往主库导入数据）（主库操作）
-#导入bubi_api数据库
-[root@node2 opt]# mysql -uroot -ppassword &lt; bubi_api.sql #
-查看数据大小 
-&gt; use information_schema;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-&gt; select concat(round(sum(data_length/1024/1024),2),&apos;MB&apos;) as data from tables;
-+----------+
-| data |
-+----------+
-| 194.94MB |
-+----------+
-1 row in set (0.04 sec)
-
-4、数据库备份（主操作）
-###备份
-[root@node2 opt]# mkdir /extrabackup
-[root@node2 opt]# innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=bubi --parallel=4 /mnt/resource/extrabackup
-###出现completed OK! 表示备份成功
-
-语法解释：–user=数据库用户
-–password=数据库密码
-–socket=指定socket
-–default-file=指定配置文件
-- 最后面是存放位
-
-###保持事务一致（主操作）
-[root@node2 2017-02-17_14-45-11]# innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=123456 --parallel=4 --apply-log /extrabackup/2017-02-17_14-45-11/
-###出现completed OK!表示事务保持了一致，可以用于恢复
-
-
-
-
-二、mysql主从同步操作
-1、传输数据、将/extrabackup/2017-02-17_14-45-11/拷贝到从库
-[root@node2 extrabackup]# scp -r 2017-02-17_14-45-11 root@192.168.1.13:/extrabackup/
-
-2、从库恢复数据
-[root@node3 extrabackup]# ll
-总用量 0
-drwx------. 4 root root 47 2月 17 14:47 2017-02-17_14-45-11
-
-#停止mysql
-[root@node3 extrabackup]# systemctl stop mysql
-
-#清空mysql data目录
-[root@node3 extrabackup]# cd /var/lib/mysql
-[root@node3 mysql]# mv * /opt/mysqlbak/
-
-#数据恢复
-innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=123456 --copy-back /extrabackup/2017-02-17_11-49-35/
-###出现completed OK! 表示恢复成功
-
-#还原权限
-[root@node3 mysql]# cd ..
-[root@node3 lib]# chown mysql:mysql mysql -R
-
-#重启mysql并查看数据的大小
-[root@node3 lib]# systemctl start mysql
-[root@node3 lib]# ps -ef | grep mysql
-mysql 8173 1 0 14:59 ? 00:00:00 /bin/sh /usr/bin/mysqld_safe --basedir=/usr
-mysql 8338 8173 3 14:59 ? 00:00:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/lib/mysql/mysql.sock
-root 8364 5840 0 15:00 pts/0 00:00:00 grep --color=auto mysql
-
-&gt; use information_schema;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql&gt;    
-+----------+
-| data |
-+----------+
-| 194.94MB |
-+----------+
-1 row in set (0.26 sec)
-
-###数据主从大小都一样
-
-3、mysql主从同步操作
-###主库授权
-&gt; GRANT REPLICATION SLAVE ON *.* TO &apos;rep&apos;@&apos;192.168.1.13&apos; IDENTIFIED BY &apos;123456&apos;;
-&gt;FLUSH PRIVILEGES;
-
-###从库开启同步
-[root@node3 mysql]# cat /extrabackup/2017-02-17_14-45-11/xtrabackup_binlog_info
-mysql-bin.000001 171510867
-
-CHANGE MASTER TO
-MASTER_HOST=&apos;10.25.159.23&apos;,
-MASTER_USER=&apos;rep&apos;,
-MASTER_PASSWORD=&apos;db0226&apos;,
-MASTER_PORT=3306,
-MASTER_LOG_FILE=&apos;mysql-bin.000003&apos;,
-MASTER_LOG_POS=982559769;
-
-####在还没同步之前我们可以在主库继续增加入一个库，验证不锁表是否可以同步
-mysql&gt; show databases;
-+--------------------+
-| Database |
-+--------------------+
-| information_schema |
-| bubi_api |
-| mysql |
-| performance_schema |
-| tang |
-+--------------------+
-5 rows in set (0.00 sec)
-
-#####开启主从同步
-&gt;flush logs;
-&gt; start slave; ###从库操作
-&gt; show slave status\G
-Slave_IO_Running: Yes
-Slave_SQL_Running: Yes
-
-##查看从库数据
-mysql&gt; show databases;
-+--------------------+
-| Database |
-+--------------------+
-| information_schema |
-| bubi_api |
-| mysql |
-| performance_schema |
-| tang |
-+--------------------+
-5 rows in set (0.00 sec)
-
-注意：
-1、当从库停掉了（宕机还没测试）。主库继续写入数据，从库开启时，会自动同步
-
-
-
-
-##########mysql命令
-#查看binlog是否开启
-&gt;show binary logs;
-
-#查看serverid
-&gt;show variables like &apos;server_id&apos;;
-
-#查看binlog模式
-&gt;show variables like &apos;%log%&apos;;
-
-
-&gt;/dev/null 2&gt;&amp;1
-</code></pre>
-          
+          <h3 id="1-查看mysql系统参数"><a href="#1-查看mysql系统参数" class="headerlink" title="1. 查看mysql系统参数"></a>1. 查看mysql系统参数</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Mysql 启动慢查询日志/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -674,8 +369,8 @@ mysql&gt; show databases;
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-                  Docker 基础（3）--容器登入
+                <a class="post-title-link" href="/2017/03/11/Mysql的二进制日志binlog的模式说明/" itemprop="url">
+                  Mysql的二进制日志binlog的模式说明
                 </a>
               
             
@@ -702,8 +397,8 @@ mysql&gt; show databases;
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -735,16 +430,10 @@ mysql&gt; show databases;
 
       
         
-          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
+          <h3 id="1-Row"><a href="#1-Row" class="headerlink" title="1.Row"></a>1.Row</h3><pre><code>日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改，只记录要修改的数据，只有value，不会有sql多表关联的情况。
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Mysql的二进制日志binlog的模式说明/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1086,6 +775,117 @@ hexo deploy
 <p>马斯洛的理论说，人的需求像个金字塔，是有不同层次的。底层是生理和安全，往上是爱、尊重和自我实现。满足了底层，就会有高层的需求，就好像罗胖说的“等钱多到没意义了，别的意义就出来了”。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/09/精英日课--精英的见识和我们的时代/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/10/XtraBackup主从复制及备份/" itemprop="url">
+                  XtraBackup主从复制及备份
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-10T12:37:26+08:00" content="2016-03-10">
+              2016-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/10/XtraBackup主从复制及备份/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
