@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="博客搭建," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -57,34 +57,31 @@
 
 
 
-<meta name="description" content="Hexo部署步骤
-npm install    
-npm install hexo-deployer-git --save   
-hexo new &amp;quot;新页面&amp;quot;    
-hexo clean   
-hexo generate
-hexo deploy">
+<meta name="description" content="Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry
+
+[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo常用命令">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Hexo常用命令/index.html">
+<meta property="og:title" content="Docker 基础（6）--仓库管理">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（6）--仓库管理/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="Hexo部署步骤
-npm install    
-npm install hexo-deployer-git --save   
-hexo new &amp;quot;新页面&amp;quot;    
-hexo clean   
-hexo generate
-hexo deploy">
-<meta property="og:updated_time" content="2017-03-12T03:33:39.788Z">
+<meta property="og:description" content="Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry
+
+[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID">
+<meta property="og:updated_time" content="2017-04-07T05:40:50.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo常用命令">
-<meta name="twitter:description" content="Hexo部署步骤
-npm install    
-npm install hexo-deployer-git --save   
-hexo new &amp;quot;新页面&amp;quot;    
-hexo clean   
-hexo generate
-hexo deploy">
+<meta name="twitter:title" content="Docker 基础（6）--仓库管理">
+<meta name="twitter:description" content="Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry
+
+[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID">
 
 
 
@@ -102,7 +99,7 @@ hexo deploy">
   };
 </script>
 
-  <title> Hexo常用命令 | BRUCETANG </title>
+  <title> Docker 基础（6）--仓库管理 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +272,7 @@ hexo deploy">
             
             
               
-                Hexo常用命令
+                Docker 基础（6）--仓库管理
               
             
           </h1>
@@ -287,7 +284,7 @@ hexo deploy">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:12:33+08:00" content="2017-03-11">
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
               2017-03-11
             </time>
           </span>
@@ -301,8 +298,8 @@ hexo deploy">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -333,32 +330,24 @@ hexo deploy">
       
 
       
-        <p><strong><em>Hexo部署步骤</em></strong></p>
-<pre><code>npm install    
-npm install hexo-deployer-git --save   
-hexo new &quot;新页面&quot;    
-hexo clean   
-hexo generate
-hexo deploy    
-</code></pre><a id="more"></a>
-<p> <br></p>
-<p><strong><em>Hexo常用命令</em></strong></p>
-<pre><code>hexo new &quot;postName&quot;                 #新建文章     
-hexo new page &quot;pageName&quot;             #新建页面   
-hexo generate                         #生成静态页面至public目录    
-hexo server                            #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）    
-hexo deploy                         #将.deploy目录部署到GitHub       
-hexo help                             #查看帮助
-hexo version                        #查看Hexo的版本
-</code></pre><p><br></p>
-<p><strong><em>复合命令</em></strong></p>
-<pre><code>hexo deploy -g #生成加部署   
-hexo server -g #生成加预览    
-</code></pre><p>命令的简写为：</p>
-<pre><code>hexo n == hexo new    
-hexo g == hexo generate   
-hexo s == hexo server   
-hexo d == hexo deploy   
+        <blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+<pre><code>[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+默认占用5000端口，我们查看是否存在5000端口
+[root@tang ~]# netstat -lntup | grep 5000
+
+运行容器
+[root@tang ~]# docker run -d -p 5000:5000 registry
+f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
+
+提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
 </code></pre>
       
     </div>
@@ -373,7 +362,7 @@ hexo d == hexo deploy
       
         <div class="post-tags">
           
-            <a href="/tags/博客搭建/" rel="tag">#博客搭建</a>
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
           
         </div>
       
@@ -382,16 +371,16 @@ hexo d == hexo deploy
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/25/五分钟商学院--大纲/" rel="next" title="五分钟商学院--大纲">
-                <i class="fa fa-chevron-left"></i> 五分钟商学院--大纲
+              <a href="/2017/03/11/Markdown语法大全/" rel="next" title="Markdown语法大全">
+                <i class="fa fa-chevron-left"></i> Markdown语法大全
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（4）--镜像管理/" rel="prev" title="Docker 基础（4）--镜像管理">
-                Docker 基础（4）--镜像管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/11/Docker 基础（5）--容器管理/" rel="prev" title="Docker 基础（5）--容器管理">
+                Docker 基础（5）--容器管理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
