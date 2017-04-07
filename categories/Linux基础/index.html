@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,19 +57,15 @@
 
 
 
-<meta name="description" content="使用容器生成镜像[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（4）--镜像管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（4）--镜像管理/index.html">
+<meta name="description" content="勿忘初衷，方得始终">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRUCETANG">
+<meta property="og:url" content="http://yoursite.com/categories/Linux基础/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="使用容器生成镜像[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES">
-<meta property="og:updated_time" content="2017-04-07T05:30:22.083Z">
+<meta property="og:description" content="勿忘初衷，方得始终">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（4）--镜像管理">
-<meta name="twitter:description" content="使用容器生成镜像[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES">
+<meta name="twitter:title" content="BRUCETANG">
+<meta name="twitter:description" content="勿忘初衷，方得始终">
 
 
 
@@ -87,7 +83,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
   };
 </script>
 
-  <title> Docker 基础（4）--镜像管理 | BRUCETANG </title>
+  <title> 分类: Linux基础 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -108,7 +104,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,209 +235,47 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Docker 基础（4）--镜像管理
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre>  <a id="more"></a>
-<pre><code>[root@tang ~]# docker run -it -h nginx --name nginx  centos  /bin/bash
-
-[root@nginx /]# rpm -ivh
-http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-
-[root@nginx /]# yum install -y nginx
-
-[root@tang ~]# docker ps -a 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e46c71171306        centos              &quot;/bin/bash&quot;         2 minutes ago       Exited (0) 40 seconds ago                       nginx
-
-[root@tang ~]# docker commit -m &quot;my nginx&quot; -a &quot;tang&quot; e46c71171306 new_nginx:v1
-sha256:c15ceb0a6871e3a56e3b22d67254d09b2e03a8ae909719a6dea0daaf937940ef
-
-    -m: 改动信息
-    -a: 作者信息
-    e46c71171306: 这一串为容器ID
-    new_nginx:01 新镜像的名字
-
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
-new_nginx            v1                  c15ceb0a6871        About a minute ago   355 MB
-docker.io/centos     latest              98d35105a391        2 weeks ago          192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago          33.17 MB
-</code></pre><h3 id="基于本地模块创建镜像"><a href="#基于本地模块创建镜像" class="headerlink" title="基于本地模块创建镜像"></a>基于本地模块创建镜像</h3><pre><code>模版获取,直接到openva官网下载(https://openvz.org/Download/template/precreated)
-
-[root@tang opt]# wget http://download.openvz.org/template/precreated/centos-6-x86_64-minimal.tar.gz
-
-[root@tang opt]# cat centos-6-x86_64-minimal.tar.gz |docker import - centos6
-sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-
-[root@tang opt]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-centos6      
-</code></pre><h3 id="镜像导出-导入"><a href="#镜像导出-导入" class="headerlink" title="镜像导出/导入"></a>镜像导出/导入</h3><pre><code>[root@tang opt]# docker save centos6 &gt;/opt/centos6.tar.gz   #导出
-
-[root@tang opt]# ll
-total 1539880
--rw-r--r-- 1 root root 565194752 Apr  2 16:19 centos6.tar.gz
-
-[root@tang opt]# docker rmi centos6
-Untagged: centos6:latest
-Deleted: sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-Deleted: sha256:dbcc6b3893af5f0b45e06f2934f73f5dc34f2e9e54fc4d50a51cc47195f19089
-
-[root@tang opt]# docker load &lt; /opt/centos6.tar.gz              #导入
-[root@tang opt]# docker load --input /opt/centos6.tar.gz        #导入
-
-#以上两种导入方法都可以
-
-[root@tang opt]# docker tag centos6  centos6_x86                #改名
-</code></pre><h3 id="将镜像上传到dockerhub官网"><a href="#将镜像上传到dockerhub官网" class="headerlink" title="将镜像上传到dockerhub官网"></a>将镜像上传到dockerhub官网</h3><pre><code>需要提前注册dockerhub账号
-
-1. docker hub 帐号在本地验证登陆:
-
-[root@tang opt]# docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.
-Username: tangxiaoyue
-Password: 
-Login Succeeded
-
-2. docker push 镜像到docker hub 的仓库
-docker push
-&lt;hub-user&gt;/&lt;repo-name&gt;:&lt;tag&gt;
-
-[root@tang ~]# docker tag centos tangxiaoyue/centos_tang:latest
-
-[root@tang ~]# docker push tangxiaoyue/centos_tang
-The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
-9b198ff9ff5b: Mounted from library/centos 
-latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
-</code></pre>
-      
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Linux基础
+        <small>分类</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
+            <a class="post-title-link" href="/2017/03/11/iptables应用/" itemprop="url">
+              
+                <span itemprop="name">iptables应用</span>
+              
+            </a>
+        
+      </h1>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
-          
-        </div>
-      
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-11T12:37:26+08:00"
+              content="2017-03-11" >
+          03-11
+        </time>
+      </div>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（6）--仓库管理/" rel="next" title="Docker 基础（6）--仓库管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（6）--仓库管理
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/Docker基础（2）--命令/" rel="prev" title="Docker 基础（2）--命令">
-                Docker 基础（2）--命令 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+
 
 
           </div>
@@ -449,10 +283,6 @@ latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65f
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -472,17 +302,8 @@ latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65f
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -534,17 +355,6 @@ latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65f
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用容器生成镜像"><span class="nav-number">1.</span> <span class="nav-text">使用容器生成镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于本地模块创建镜像"><span class="nav-number">2.</span> <span class="nav-text">基于本地模块创建镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像导出-导入"><span class="nav-number">3.</span> <span class="nav-text">镜像导出/导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将镜像上传到dockerhub官网"><span class="nav-number">4.</span> <span class="nav-text">将镜像上传到dockerhub官网</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -629,10 +439,6 @@ latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65f
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
 
   
 
