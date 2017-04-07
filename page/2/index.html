@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
+                <a class="post-title-link" href="/2017/03/11/Docker问题梳理/" itemprop="url">
+                  Docker问题梳理--持续更新
                 </a>
               
             
@@ -287,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -320,12 +320,19 @@
 
       
         
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
+
+使用systemctl启动服务的时候出现以下异常：
+
+Failed to get D-Bus connection: Operation not permitted 
+
+
+解决：
+
+docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+</code></pre>
+          
         
       
     </div>
@@ -369,8 +376,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Mysql的二进制日志binlog的模式说明/" itemprop="url">
-                  Mysql的二进制日志binlog的模式说明
+                <a class="post-title-link" href="/2017/03/11/Mysql 启动慢查询日志/" itemprop="url">
+                  Mysql 启动慢查询日志（不用重启）
                 </a>
               
             
@@ -430,142 +437,12 @@
 
       
         
-          
-            <h3 id="1-Row"><a href="#1-Row" class="headerlink" title="1.Row"></a>1.Row</h3><pre><code>日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改，只记录要修改的数据，只有value，不会有sql多表关联的情况。
-
-优点：
-    在row模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条记录被修改了，修改成什么样了，
-    所以row的日志内容会非常清楚的记录下每一行数据修改的细节，非常容易理解。而且不会出现某些特定情况下的存储过程和function，以及trigger的调用和出发无法被正确复制问题。
-
-缺点：
-    在row模式下，所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，这样可能会产生大量的日志内容。
-
-mysql&gt; insert into username(username) select * from aa;
-
-ERROR 1146 (42S02): Table &apos;test.username&apos; doesn&apos;t exist
-
-mysql&gt; insert into user(username) select * from aa;
-
-Query OK, 1 row affected (0.01 sec)
-
-Records: 1  Duplicates: 0  Warnings: 0
-</code></pre><blockquote>
-<ul>
-<li>查看binlog</li>
-</ul>
-</blockquote>
-<pre><code>root@xuebinbin:/vobiledata/mysqllog# mysqlbinlog mysql-bin.000017
-
-BINLOG &apos;
-
-63EfUBNQAAAALgAAAA8CAAAAAA8AAAAAAAEABHRlc3QABHVzZXIAAgIPAi0AAA==
-
-63EfUBdQAAAAJgAAADUCAAAAAA8AAAAAAAEAAv/8BAAFYmFveXU=
-
-&apos;/*!*/;
-
-### INSERT INTO test.user
-
-### SET
-
-###   @1=4 /* SHORTINT meta=0 nullable=0 is_null=0 */
-
-###   @2=&apos;baoyu&apos; /* VARSTRING(45) meta=45 nullable=0 is_null=0 */
-
-# at 565
-
-#120806  0:27:39 server id 80  end_log_pos 592     Xid = 20
-
-COMMIT/*!*/;
-
-DELIMITER ;
-
-# End of log file
-
-ROLLBACK /* added by mysqlbinlog */;
-
-/*!50003 SET COMPLETION_TYPE=@OLD_COMPLETION_TYPE*/;
-
-由此可见，row模式是针对每一行的数据，而于关联表无关，它把关联中的相应数据记录在log中。这样一来会产生大量的数据。
-</code></pre><h3 id="2-statement"><a href="#2-statement" class="headerlink" title="2.statement"></a>2.statement</h3><pre><code>每一条会修改数据的sql都会记录到master的binlog中，slave在复制的时候sql进程会解析成和原来master端执行多相同的sql再执行
-。
-优点：
-    在statement模式下首先就是解决了row模式的缺点，不需要记录每一行数据的变化减少了binlog日志量，节省了I/O以及存储资源，提高性能。因为他只需要激励在master上所执行的语句的细节一届执行语句时候的上下的信息。
-缺点：
-    在statement模式下，由于他是记录的执行语句，所以，为了让这些语句在slave端也能正确执行，那么他还必须记录每条语句在执行的时候的一些相关信息，也就是上下文信息，以保证所有语句在slave端被执行的时候能够得到和在master端执行时候相同的结果。
-    另外就是，由于mysql现在发展比较快，很多的新功能不断的加入，使mysql的复制遇到了不小的挑战，自然复制的时候涉及到越复杂的内容，bug也就越容易出现。在statement中，目前已经发现不少情况会造成Mysql的复制出现问题，主要是修改数据的时候使用了某些特定的函数或者功能的时候会出现，
-    比如：sleep()函数在有些版本中就不能被正确复制，在存储过程中使用了last_insert_id()函数，可能会使slave和master上得到不一致的id等等。
-    由于row是基于每一行来记录的变化，所以不会出现，类似的问题。
-
-
-mysql&gt; insert into user(username) values(&apos;xuebinbin&apos;);
-
-ERROR 1598 (HY000): Binary logging not possible. Message: Transaction level &apos;READ-COMMITTED&apos; in InnoDB is not safe for binlog mode &apos;STATEMENT&apos;
-
-mysql&gt; SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
-
-    -&gt; ;
-
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&gt; insert into user(username) values(&apos;xuebinbin&apos;);
-
-Query OK, 1 row affected (0.00 sec)
-</code></pre><blockquote>
-<ul>
-<li>查看binlog</li>
-</ul>
-</blockquote>
-<pre><code>root@xuebinbin:/vobiledata/mysqllog# mysqlbinlog mysql-bin.000008
-
-BEGIN
-
-/*!*/;
-
-# at 174
-
-#120806 14:47:35 server id 80  end_log_pos 202     Intvar
-
-SET INSERT_ID=2/*!*/;
-
-# at 202
-
-#120806 14:47:35 server id 80  end_log_pos 311     Query    thread_id=5    exec_time=0    error_code=0
-
-use test/*!*/;
-
-SET TIMESTAMP=1344235655/*!*/;
-
-insert into user(username) values(&apos;xuebinbin&apos;)
-
-/*!*/;
-
-# at 311
-
-#120806 14:47:35 server id 80  end_log_pos 338     Xid = 20
-
-COMMIT/*!*/;
-
-# at 338
-
-#120806 14:53:18 server id 80  end_log_pos 357     Stop
-
-DELIMITER ;
-
-# End of log file
-
-ROLLBACK /* added by mysqlbinlog */;
-
-/*!50003 SET COMPLETION_TYPE=@OLD_COMPLETION_TYPE*/;
-
-结果发现statement是以sql记录形式记录的。这样的话一个sql就只记录一条，减少了大量的数据存储。
-</code></pre><h3 id="3-Mixed（该模式是STATEMENT和ROW的混合使用。）"><a href="#3-Mixed（该模式是STATEMENT和ROW的混合使用。）" class="headerlink" title="3.Mixed（该模式是STATEMENT和ROW的混合使用。）"></a>3.Mixed（该模式是STATEMENT和ROW的混合使用。）</h3><pre><code>早起的MySQL一直都只有基于statemen 的复制模式，直到5.1.5版本的MySQL才开始支持row 复制。从5.0 开始，MySQL的复制已经解决了大量老版本中出现的无法正确复制的问题。但是由于存储过程的出现，给 MySQL Replication 又带来了更大的新挑战。
-从5.1.8 版本开始，MySQL 提供了除 Statement 和 Row 之外的第三种复制模式：Mixed，实际上就是前两种模式的结合。
-在 Mixed 模式下，MySQL 会根据执行的每一条具体的 SQL 语句来区分对待记录的日志形式，也就是在 statement 和 row 之间选择一种。
-新版本中的 statment 还是和以前一样，仅仅记录执行的语句。而新版本的 MySQL 中对 row 模式也被做了优化，并不是所有的修改都会以 row 模式来记录，
-比如遇到表结构变更的时候就会以 statement 模式来记录，如果 SQL 语句确实就是 update 或者 delete 等修改数据的语句，那么还是会记录所有行的变更。
-</code></pre>
-          
+          <h3 id="1-查看mysql系统参数"><a href="#1-查看mysql系统参数" class="headerlink" title="1. 查看mysql系统参数"></a>1. 查看mysql系统参数</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Mysql 启动慢查询日志/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
