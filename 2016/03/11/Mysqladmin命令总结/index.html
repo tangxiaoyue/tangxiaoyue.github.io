@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -57,25 +57,16 @@
 
 
 
-<meta name="description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
+<meta name="description" content="mysqladmin 工具的使用格式：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（7）--数据管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（7）--数据管理/index.html">
+<meta property="og:title" content="Mysqladmin命令总结">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/Mysqladmin命令总结/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
-<meta property="og:updated_time" content="2017-04-07T05:46:17.954Z">
+<meta property="og:description" content="mysqladmin 工具的使用格式：">
+<meta property="og:updated_time" content="2017-04-07T10:27:12.042Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（7）--数据管理">
-<meta name="twitter:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
+<meta name="twitter:title" content="Mysqladmin命令总结">
+<meta name="twitter:description" content="mysqladmin 工具的使用格式：">
 
 
 
@@ -93,7 +84,7 @@ root@tang docker]# mkdir docker_01
   };
 </script>
 
-  <title> Docker 基础（7）--数据管理 | BRUCETANG </title>
+  <title> Mysqladmin命令总结 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +257,7 @@ root@tang docker]# mkdir docker_01
             
             
               
-                Docker 基础（7）--数据管理
+                Mysqladmin命令总结
               
             
           </h1>
@@ -278,8 +269,8 @@ root@tang docker]# mkdir docker_01
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
+              2016-03-11
             </time>
           </span>
 
@@ -292,8 +283,8 @@ root@tang docker]# mkdir docker_01
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -324,138 +315,84 @@ root@tang docker]# mkdir docker_01
       
 
       
-        <h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[root@docker_01 /]# cd /docker_01/        
-[root@docker_01 docker_01]# touch docker_01.txt
+        <pre><code>mysqladmin 工具的使用格式：
 </code></pre><a id="more"></a>
-<pre><code>[root@docker_01 docker_01]# exit
-exit
-[root@tang docker]# cd /data/docker/docker_01/
-[root@tang docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 08:03 docker_01.txt
+<pre><code>mysqladmin [option] command [command option] command ......
+参数选项：
+-c number 自动运行次数统计，必须和 -i 一起使用
+-i number 间隔多长时间重复执行
 
-[root@tang docker_01]# cd ..
-[root@tang docker]# mkdir docker_02
-[root@tang docker]# docker run -it -h docker_02 --name docker_02 -v /data/docker/docker_02/:/docker_02 centos bash
-[root@docker_02 /]# cd /docker_02/
-[root@docker_02 docker_02]# mkdir docker_02.txt
-[root@docker_02 docker_02]# exit
-exit
-[root@tang docker]# cd docker_02/
-[root@tang docker_02]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 08:05 docker_02.txt
+0）每个两秒查看一次服务器的状态，总共重复5次。
+[root@test-huanqiu ~]# mysqladmin -uroot -p -i 2 -c 5 status
 
-提示：    
-      -v: 指定挂载目录
-      : : 前面的为本地目录
-      : : 后面到为容器里的目录
-      即使将删除这个容器,文件也不会丢失.
-</code></pre><h4 id="挂载数据卷-多个容器挂载宿主机的同一个目录"><a href="#挂载数据卷-多个容器挂载宿主机的同一个目录" class="headerlink" title="挂载数据卷(多个容器挂载宿主机的同一个目录)"></a>挂载数据卷(多个容器挂载宿主机的同一个目录)</h4><pre><code>[root@tang data]# docker run -it -h docker_03 --name docker_03
---volumes-from docker_01 centos bash
-[root@docker_03 /]# cd /docker_01/
-[root@docker_03 docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 00:03 docker_01.txt
-[root@docker_03 docker_01]# df -h|grep docker_01
-/dev/vda1                           99G  5.4G   88G   6% /docker_01
-[root@docker_03 docker_01]# echo &quot;This is Doceker_3&quot; &gt; /docker_01/3.txt
-[root@docker_03 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-[root@tang ~]# docker start docker_01
-docker_01
-[root@tang ~]# docker-enter docker_01
-[root@docker_01 ~]# cd /docker_01/
-[root@docker_01 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-</code></pre><h4 id="自定义数据卷容器"><a href="#自定义数据卷容器" class="headerlink" title="自定义数据卷容器"></a>自定义数据卷容器</h4><pre><code>[root@tang ~]# docker run -itd -h node --name node -v /data centos bash
-056ac10e28855c3d29a94fe552711e6a712a5670e6e9c43c4b79270cbc6b0a0f
-                #这里的/data是容器node的/data目录,而不是宿主机的/data目录
 
-[root@tang ~]# docker-enter node
-[root@node ~]#  touch /data/1 /data/2 /data/3
-[root@node ~]# cd /data/
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node data]# exit
-logout
-[root@tang ~]# docker run -itd -h node1 --name node1 --volumes-from node centos bash
-2965a8f1184a7a1cbd26ef07e4b3d201fa17e5b68a52c619d6292da75c85d117
-[root@tang ~]# docker-enter node1
-[root@node1 ~]# cd /data/
-[root@node1 data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node1 data]# touch 4
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
--rw-r--r-- 1 root root 0 Apr  3 01:02 4
-</code></pre><h4 id="数据卷的备份"><a href="#数据卷的备份" class="headerlink" title="数据卷的备份"></a>数据卷的备份</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-250da7a47222e52c5a5d387ff8ce816a72b221ffb8d481739c4c68073507fe
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /data
-[root@tang ~]# touch /data/{1,2,3,4}
-[root@tang ~]# tar cvf /backup/data.tar /data/
-[root@tang ~]# cd /backup/
-[root@tang backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 01:30 data.tar
-[root@tang backup]# exit
-logout
-[root@docker ~]# cd /docker_data_backup/
-[root@docker docker_data_backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 09:30 data.tar
-</code></pre><h4 id="数据卷的恢复"><a href="#数据卷的恢复" class="headerlink" title="数据卷的恢复"></a>数据卷的恢复</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-3728f6b0a6e5b47f904de0474db7d4479f33e87740906e1539eca385c3fab04d
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /tools/
-[root@tang ~]# touch /tools/{1,2,3,4}
-[root@tang ~]# tar zcvf /backup/tools.tar /tools/
-/tools/
-/tools/1
-/tools/2
-/tools/3
-/tools/4
-[root@tang ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang ~]# exit
-logout
+1）查看服务器的状况：status
+[root@test-huanqiu ~]# mysqladmin -uroot -p status
 
-[root@docker ~]# docker run -itd -h tang1 --name tang1 -v /tang1 centos bash
-7ec371bb67f136234878771c227c4245a0ccf6c986e8c94a412d6c4111852a2b
-[root@docker ~]# docker run -itd -h tang2 --name tang2 --volumes-from tang1 -v /docker_data_backup/:/backup centos bash
-53e4cea1c45f3c081a6dd95b935f906aa037e6ed2170b6249a913ccd6fb4c119
-[root@docker ~]# docker-enter tang2
-[root@tang2 ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang2 tang1]# tar xvf /backup/tools.tar -C /tang1
-[root@tang2 tang1]# exit
-logout
-[root@docker ~]# docker-enter tang1
-[root@tang1 ~]# cd /tang1/
-[root@tang1 tang1]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
+2）修改root 密码：
+[root@test-huanqiu ~]# mysqladmin -u root -p原密码 password &apos;newpassword&apos;
+
+3）检查mysqlserver是否可用：
+[root@test-huanqiu ~]# mysqladmin -uroot -p ping
+
+4）查询服务器的版本
+[root@test-huanqiu ~]# mysqladmin -uroot -p version
+
+5）查看服务器状态的当前值：
+[root@test-huanqiu ~]# mysqladmin -uroot -p extended-status
+
+6）查询服务器系统变量值：
+[root@test-huanqiu ~]# mysqladmin -uroot -p variables
+
+7）显示服务器所有运行的进程：
+[root@test-huanqiu ~]# mysqladmin -uroot -p processlist
+[root@test-huanqiu ~]# mysqladmin -uroot -p-i 1 processlist   
+
+8）创建数据库
+[root@test-huanqiu ~]# mysqladmin -uroot -p create daba-test//每秒刷新一次
+
+9）显示服务器上的所有数据库
+[root@test-huanqiu ~]# mysqlshow -uroot -p
+
+10）显示数据库daba-test下有些什么表：
+[root@test-huanqiu ~]# mysqlshow -uroot -p daba-test
+
+11）统计daba-test 下数据库表列的汇总
+[root@test-huanqiu ~]# mysqlshow -uroot -p daba-test -v
+
+12）统计daba-test 下数据库表的列数和行数
+[root@test-huanqiu ~]# mysqlshow -uroot -p daba-test -v -v
+
+13）删除数据库 daba-test
+[root@test-huanqiu ~]# mysqladmin -uroot -p drop daba-test
+
+14）重载权限信息
+[root@test-huanqiu ~]# mysqladmin -uroot -p reload
+
+15）刷新所有表缓存，并关闭和打开log
+[root@test-huanqiu ~]# mysqladmin -uroot -p refresh
+
+16）使用安全模式关闭数据库
+[root@test-huanqiu ~]# mysqladmin -uroot -p shutdown
+
+17）刷新命令mysqladmin flush commands
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-hosts
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-logs
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-privileges
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-status
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-tables
+[root@test-huanqiu ~]# mysqladmin -u root -ptmppassword flush-threads
+
+18）mysqladmin 执行kill 进程：
+[root@test-huanqiu ~]# mysqladmin -uroot -p processlist
+[root@test-huanqiu ~]# mysqladmin -uroot -p kill idnum
+
+19）停止和启动MySQL replication on a slave server
+[root@test-huanqiu ~]# mysqladmin -u root -p stop-slave
+[root@test-huanqiu ~]# mysqladmin -u root -p start-slave
+
+20）同时执行多个命令
+[root@test-huanqiu ~]# mysqladmin -u root -p process status version
 </code></pre>
       
     </div>
@@ -470,7 +407,7 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
+            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
           
         </div>
       
@@ -479,16 +416,12 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（8）--网络管理/" rel="next" title="Docker 基础（8）--网络管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（8）--网络管理
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（6）--仓库管理/" rel="prev" title="Docker 基础（6）--仓库管理">
-                Docker 基础（6）--仓库管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/09/精英日课--精英的见识和我们的时代/" rel="prev" title="精英日课--精英的见识和我们的时代">
+                精英日课--精英的见识和我们的时代 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -605,7 +538,7 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载本地目录到容器里"><span class="nav-number">1.</span> <span class="nav-text">挂载本地目录到容器里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载数据卷-多个容器挂载宿主机的同一个目录"><span class="nav-number">2.</span> <span class="nav-text">挂载数据卷(多个容器挂载宿主机的同一个目录)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义数据卷容器"><span class="nav-number">3.</span> <span class="nav-text">自定义数据卷容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的备份"><span class="nav-number">4.</span> <span class="nav-text">数据卷的备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的恢复"><span class="nav-number">5.</span> <span class="nav-text">数据卷的恢复</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
