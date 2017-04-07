@@ -57,37 +57,34 @@
 
 
 
-<meta name="description" content="docker容器六种登入方法docker-enter登入容器
+<meta name="description" content="docker-enter登入容器
 强烈推荐使用此种方法：简单、方便
 
 下载.bashrc_docker，并将内容放到.bashrc中。
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
-
-[root@tang ~]# wget -P ~ https:/">
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 基础（3）--容器登入">
 <meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（3）--容器登入/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="docker容器六种登入方法docker-enter登入容器
+<meta property="og:description" content="docker-enter登入容器
 强烈推荐使用此种方法：简单、方便
 
 下载.bashrc_docker，并将内容放到.bashrc中。
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
-
-[root@tang ~]# wget -P ~ https:/">
-<meta property="og:updated_time" content="2017-04-07T05:02:50.610Z">
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令">
+<meta property="og:updated_time" content="2017-04-07T05:08:02.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 基础（3）--容器登入">
-<meta name="twitter:description" content="docker容器六种登入方法docker-enter登入容器
+<meta name="twitter:description" content="docker-enter登入容器
 强烈推荐使用此种方法：简单、方便
 
 下载.bashrc_docker，并将内容放到.bashrc中。
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
-
-[root@tang ~]# wget -P ~ https:/">
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令">
 
 
 
@@ -336,14 +333,15 @@
       
 
       
-        <h1 id="docker容器六种登入方法"><a href="#docker容器六种登入方法" class="headerlink" title="docker容器六种登入方法"></a>docker容器六种登入方法</h1><h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+        <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
 <p>强烈推荐使用此种方法：简单、方便</p>
 </blockquote>
 <pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
-
-[root@tang ~]# wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令
+</code></pre><a id="more"></a>
+<pre><code>[root@tang ~]# wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker
 
 [root@tang ~]# echo &quot;[ -f ~/.bashrc_docker ] &amp;&amp; . ~/.bashrc_docker&quot; &gt;&gt; ~/.bashrc; source ~/.bashrc
 
@@ -559,8 +557,8 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker基础（2）--命令/" rel="next" title="Docker 基础（2）--命令">
-                <i class="fa fa-chevron-left"></i> Docker 基础（2）--命令
+              <a href="/2017/03/11/Markdown语法大全/" rel="next" title="Markdown语法大全">
+                <i class="fa fa-chevron-left"></i> Markdown语法大全
               </a>
             
           </div>
@@ -681,7 +679,7 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker容器六种登入方法"><span class="nav-number">1.</span> <span class="nav-text">docker容器六种登入方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-enter登入容器"><span class="nav-number">1.0.1.</span> <span class="nav-text">docker-enter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter登入容器"><span class="nav-number">1.0.2.</span> <span class="nav-text">nsenter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start-ai登入容器"><span class="nav-number">1.0.3.</span> <span class="nav-text">start -ai登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-exec登入容器"><span class="nav-number">1.0.4.</span> <span class="nav-text">docker exec登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-attach登入容器"><span class="nav-number">1.0.5.</span> <span class="nav-text">docker attach登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh登入容器"><span class="nav-number">1.0.6.</span> <span class="nav-text">ssh登入容器</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-enter登入容器"><span class="nav-number">1.</span> <span class="nav-text">docker-enter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter登入容器"><span class="nav-number">2.</span> <span class="nav-text">nsenter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start-ai登入容器"><span class="nav-number">3.</span> <span class="nav-text">start -ai登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-exec登入容器"><span class="nav-number">4.</span> <span class="nav-text">docker exec登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-attach登入容器"><span class="nav-number">5.</span> <span class="nav-text">docker attach登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh登入容器"><span class="nav-number">6.</span> <span class="nav-text">ssh登入容器</span></a></li></ol></div>
             
           </div>
         </section>

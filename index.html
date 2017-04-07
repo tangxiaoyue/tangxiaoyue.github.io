@@ -320,319 +320,16 @@
 
       
         
-          
-            <h1 id="docker容器六种登入方法"><a href="#docker容器六种登入方法" class="headerlink" title="docker容器六种登入方法"></a>docker容器六种登入方法</h1><h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
 <p>强烈推荐使用此种方法：简单、方便</p>
 </blockquote>
 <pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；而 docker-enter 可以进入容器或直接在容器内执行命令！
-
-[root@tang ~]# wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker
-
-[root@tang ~]# echo &quot;[ -f ~/.bashrc_docker ] &amp;&amp; . ~/.bashrc_docker&quot; &gt;&gt; ~/.bashrc; source ~/.bashrc
-
-
-[root@tang ~]# docker-
-docker-containerd               docker-ctr-current              docker-pid
-docker-containerd-current       docker-current                  docker-storage-setup
-docker-containerd-shim          docker-enter                    
-docker-containerd-shim-current  docker-ip 
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         24 minutes ago      Up 23 minutes                           tang
-
-[root@tang ~]# docker-pid tang
-19271
-
-[root@tang ~]# nsenter --target 19271  --mount --uts --ipc --net --pid  #此种方法进入容器以下会讲到
-[root@test /]# exit
-logout
-
-[root@tang ~]# docker-ip tang
-172.18.0.2
-
-直接使用docker-enter命令进入容器，非常方便！
-[root@tang ~]# docker-enter tang
-Last login: Sun Apr  2 06:38:47 UTC 2017
-
-[root@test ~]# exit
-logout
-
-[root@tang ~]# docker ps   #退出登陆窗口后，容器还在
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         26 minutes ago      Up 9 seconds                            tang
-
-注意：以在容器的上下文中运行任意命令！即在宿主机上执行容器里的命令
-
-[root@tang ~]# docker-enter tang uptime
- 07:06:28 up 1 day, 22:44,  0 users,  load average: 0.00, 0.01, 0.05
-
-注意：在宿主机上使用docker-enter命令执行容器中的命令时，最好后面加上--符号，这样容器里的所有存在的命令都可以正常执行。
-[root@tang ~]# docker-enter tang -- uptime
-
- 07:06:59 up 1 day, 22:45,  0 users,  load average: 0.00, 0.01, 0.05
-
-[root@tang ~]# docker-enter tang -- df -h
-Filesystem                                                                                         Size  Used Avail Use% Mounted on
-/dev/mapper/docker-253:1-2024335-661487685eb1f6a356157463d60db20caa2c1fb3ac273de680c367e3b12dabab   10G  238M  9.8G   3% /
-tmpfs                                                                                              920M     0  920M   0% /dev
-tmpfs                                                                                              920M     0  920M   0% /sys/fs/cgroup
-/dev/vda1                                                                                           99G  4.7G   89G   5% /etc/hosts
-shm                                                                                                 64M     0   64M   0% /dev/shm
-
-[root@tang ~]# cat /etc/redhat-release 
-CentOS Linux release 7.2.1511 (Core) 
-
-[root@tang ~]# docker-enter tang -- cat /etc/redhat-release 
-CentOS Linux release 7.3.1611 (Core)
-</code></pre><h3 id="nsenter登入容器"><a href="#nsenter登入容器" class="headerlink" title="nsenter登入容器"></a>nsenter登入容器</h3><pre><code>使用外部工具nsenter登陆容器，该工具和docker exec命令的效果差不多。
-
-使用nsenter或dockerexec，都可以在容器的上下文（严格地说，是命名空间）中运行任意命令！
-
-
-==nsenter安装：
-[root@tang ~]#  yum install util-linux -y 
-
-
-==nsenter使用：
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         50 minutes ago      Up 24 minutes                           tang
-
-[root@tang ~]# docker inspect -f &quot;{{ .State.Pid }}&quot; tang
-19271
-
-[root@tang ~]# nsenter -t 19271  -m -u -i -n -p
-
-解释nsenter指令中进程id之后的参数的含义：
-
-–mount参数是进去到mount namespace中 
-–uts参数是进入到uts namespace中 
-–ipc参数是进入到System V IPC namaspace中 
-–net参数是进入到network namespace中 
-–pid参数是进入到pid namespace中 
-–user参数是进入到user namespace中
-
-[root@tang ~]#  nsenter --help
-
-Usage:
- nsenter [options] &lt;program&gt; [&lt;argument&gt;...]
-
-Run a program with namespaces of other processes.
-
-Options:
- -t, --target &lt;pid&gt;     target process to get namespaces from
- -m, --mount[=&lt;file&gt;]   enter mount namespace
- -u, --uts[=&lt;file&gt;]     enter UTS namespace (hostname etc)
- -i, --ipc[=&lt;file&gt;]     enter System V IPC namespace
- -n, --net[=&lt;file&gt;]     enter network namespace
- -p, --pid[=&lt;file&gt;]     enter pid namespace
- -U, --user[=&lt;file&gt;]    enter user namespace
- -S, --setuid &lt;uid&gt;     set uid in entered namespace
- -G, --setgid &lt;gid&gt;     set gid in entered namespace
-     --preserve-credentials do not touch uids or gids
- -r, --root[=&lt;dir&gt;]     set the root directory
- -w, --wd[=&lt;dir&gt;]       set the working directory
- -F, --no-fork          do not fork before exec ing &lt;program&gt;
- -Z, --follow-context   set SELinux context according to --target PID
- -h, --help     display this help and exit
- -V, --version  output version information and exit
-
-我们进入容器中查看进程 
-以下是以nsenter启动的进程
-[root@test /]# ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0  11768  1684 ?        Ss+  07:03   0:00 /bin/bash
-root        77  0.0  0.1  15200  1988 ?        S    07:31   0:00 -bash
-root        90  0.0  0.0  50872  1816 ?        R+   07:31   0:00 ps aux
-
-/bin/bash是我们运行容器产生的进程
--bash 是我们使用nsenter产生的，这样如果我们退出容器，容器就不会退出，因为-bash还在运行
-
-[root@test /]# exit
-logout
-
-[root@tang ~]# docker ps 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         55 minutes ago      Up 29 minutes                           tang
-
-因为每次进入容器都需要输入那两条命令，所以我们可以写一个脚本来获取。 
-
-==脚本内容如下：
-[root@tang opt]# cat docker_in.sh 
-#!/bin/bash
-# Use nsenter to access docker
-docker_in(){
-  NAME_ID=$1
-  PID=$(docker inspect -f &quot;{{ .State.Pid }}&quot; $NAME_ID)
-  nsenter -t $PID -m -u -i -n -p
-}
-docker_in $1
-
-[root@tang opt]# chmod +x docker_in.sh 
-[root@tang opt]# ./docker_in.sh tang
-[root@test /]# ps -ef
-UID        PID  PPID  C STIME TTY          TIME CMD
-root         1     0  0 07:03 ?        00:00:00 /bin/bash
-root        91     0  0 07:34 ?        00:00:00 -bash
-root       104    91  0 07:34 ?        00:00:00 ps -ef
-[root@test /]# exit
-logout
-[root@tang opt]# docker exec tang ps -ef
-UID        PID  PPID  C STIME TTY          TIME CMD
-root         1     0  0 07:03 ?        00:00:00 /bin/bash
-root       105     0  0 07:35 ?        00:00:00 ps -ef
-
-
-我们还可以使用exec进入docker容器中
-
-[root@tang opt]# docker exec -it tang /bin/bash
-</code></pre><h3 id="start-ai登入容器"><a href="#start-ai登入容器" class="headerlink" title="start -ai登入容器"></a>start -ai登入容器</h3><pre><code>对于一个已关闭的容器的登陆，可以使用&quot;docker start -ai container&quot;登陆。这种其实就是先启动容器，然后再进入容器内。
-
-[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Exited (0) 53 seconds ago                       tang
-
-[root@tang ~]# docker start -ai tang   #-a -i 都可以
-[root@test /]# exit
-exit
-[root@tang ~]# docker start -i tang
-[root@tang ~]# docker start -a tang
-</code></pre><h3 id="docker-exec登入容器"><a href="#docker-exec登入容器" class="headerlink" title="docker exec登入容器"></a>docker exec登入容器</h3><pre><code>使用自带命令docker exec登陆容器
-
-命令格式：docker exec -ti container_id /bin/bash
-
-[root@tang ~]# docker ps    #前提是容器已经启动
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 2 minutes                            tang
-[root@tang ~]# docker exec -it tang /bin/bash
-[root@test /]# exit
-</code></pre><h3 id="docker-attach登入容器"><a href="#docker-attach登入容器" class="headerlink" title="docker attach登入容器"></a>docker attach登入容器</h3><pre><code>使用自带命令docker attach登陆容器。
-
-命令格式：docker attach container_id
-
-[root@tang ~]# docker ps   #前提容器已经启动了
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 5 minutes                            tang
-[root@tang ~]# docker attach tang
-[root@test /]# exit
-</code></pre><h3 id="ssh登入容器"><a href="#ssh登入容器" class="headerlink" title="ssh登入容器"></a>ssh登入容器</h3><pre><code>使用ssh登陆容器。这种方法需要在容器中启动sshd，存在开销和攻击面增大的问题。同时也违反了Docker所倡导的一个容器一个进程的原则
-
-ssh登入会专门写一篇文章介绍。这里就不叙述了
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker基础（2）--命令/" itemprop="url">
-                  Docker 基础（2）--命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker基础（2）--命令/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -743,6 +440,119 @@ systemctl enable docker                                    #自启动
           <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker基础（2）--命令/" itemprop="url">
+                  Docker 基础（2）--命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker基础（2）--命令/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
