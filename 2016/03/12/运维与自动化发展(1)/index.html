@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="自动化," />
 
 
 
@@ -57,15 +57,18 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="一、运维学习和发展的一个线路1234567891011121314151.搭建服务（部署并运行起来）2.用好服务（监控、管理、优化）3.自动化（服务直接的关联和协同工作）4.产品设计（如何设计一个监控系统）云计算的核心竞争力是运维！  系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务==比较难学的开发和业务（相对于运维来说）专注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维与自动化发展(1)">
+<meta property="og:url" content="http://yoursite.com/2016/03/12/运维与自动化发展(1)/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="一、运维学习和发展的一个线路1234567891011121314151.搭建服务（部署并运行起来）2.用好服务（监控、管理、优化）3.自动化（服务直接的关联和协同工作）4.产品设计（如何设计一个监控系统）云计算的核心竞争力是运维！  系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务==比较难学的开发和业务（相对于运维来说）专注">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492912887&di=7a98f884c0ce6d774f12c86b44c38cd2&imgtype=jpg&er=1&src=http%3A%2F%2Fgroup.vsharing.com%2FUploads%2FUserDirs%2F3%2F1000%2F399697%2FITIL%2520V3%25E4%25B8%258EITIL%2520V2%25E7%259A%2584%25E4%25BB%25B7%25E5%2580%25BC%25E5%25B7%25AE%25E5%25BC%2582%25EF%25BC%2588%25E5%259B%25BE%25E4%25B8%2580%25EF%25BC%2589.jpg">
+<meta property="og:updated_time" content="2017-04-17T15:32:00.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="运维与自动化发展(1)">
+<meta name="twitter:description" content="一、运维学习和发展的一个线路1234567891011121314151.搭建服务（部署并运行起来）2.用好服务（监控、管理、优化）3.自动化（服务直接的关联和协同工作）4.产品设计（如何设计一个监控系统）云计算的核心竞争力是运维！  系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务==比较难学的开发和业务（相对于运维来说）专注">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492912887&di=7a98f884c0ce6d774f12c86b44c38cd2&imgtype=jpg&er=1&src=http%3A%2F%2Fgroup.vsharing.com%2FUploads%2FUserDirs%2F3%2F1000%2F399697%2FITIL%2520V3%25E4%25B8%258EITIL%2520V2%25E7%259A%2584%25E4%25BB%25B7%25E5%2580%25BC%25E5%25B7%25AE%25E5%25BC%2582%25EF%25BC%2588%25E5%259B%25BE%25E4%25B8%2580%25EF%25BC%2589.jpg">
 
 
 
@@ -83,7 +86,7 @@
   };
 </script>
 
-  <title> BRUCETANG </title>
+  <title> 运维与自动化发展(1) | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,9 +107,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -258,687 +259,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-                  Docker 基础（3）--容器登入
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-                  XtraBackup主从复制及备份
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Hexo常用命令/" itemprop="url">
-                  Hexo常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:12:33+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong><em>Hexo部署步骤</em></strong></p>
-<pre><code>npm install    
-npm install hexo-deployer-git --save   
-hexo new &quot;新页面&quot;    
-hexo clean   
-hexo generate
-hexo deploy    
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Hexo常用命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/25/五分钟商学院--大纲/" itemprop="url">
-                  五分钟商学院--大纲
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-25T23:23:33+08:00" content="2016-09-25">
-              2016-09-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>商业四大体系合体。</p>
-<p>1）商业，你与企业外部的关系；<br>2）管理，你与企业内部的关系；<br>3）个人，你与自己的关系；<br>4）以及提升前三者的：工具。    </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/25/五分钟商学院--大纲/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-                  MySQ binlog三种模式及设置方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
-                  Mysql优化系列--总结梳理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于一个网站来说，在运行很长一段时间后，数据库瓶颈问题会越来越暴露出来。作为运维人员，对数据库做必要的优化十分重要！<br>    下面总结以往查阅到的以及自己工作中的一些优化操作经验，并根据OSI七层模型从下往上进行优化mysql数据库记录。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/Mysql优化系列--总结梳理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/运维与自动化发展(1)/" itemprop="url">
-                  运维与自动化发展(1)
-                </a>
+                运维与自动化发展(1)
               
             
           </h1>
@@ -996,9 +317,7 @@ hexo deploy
       
 
       
-        
-          
-            <h3 id="一、运维学习和发展的一个线路"><a href="#一、运维学习和发展的一个线路" class="headerlink" title="一、运维学习和发展的一个线路"></a>一、运维学习和发展的一个线路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">1.搭建服务（部署并运行起来）</div><div class="line"></div><div class="line">2.用好服务（监控、管理、优化）</div><div class="line"></div><div class="line">3.自动化（服务直接的关联和协同工作）</div><div class="line"></div><div class="line">4.产品设计（如何设计一个监控系统）</div><div class="line"></div><div class="line">云计算的核心竞争力是运维！</div><div class="line">  </div><div class="line">系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务</div><div class="line">==比较难学的开发和业务（相对于运维来说）</div><div class="line"></div><div class="line"></div><div class="line">专注于某一领域：资深、科学家</div></pre></td></tr></table></figure>
+        <h3 id="一、运维学习和发展的一个线路"><a href="#一、运维学习和发展的一个线路" class="headerlink" title="一、运维学习和发展的一个线路"></a>一、运维学习和发展的一个线路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">1.搭建服务（部署并运行起来）</div><div class="line"></div><div class="line">2.用好服务（监控、管理、优化）</div><div class="line"></div><div class="line">3.自动化（服务直接的关联和协同工作）</div><div class="line"></div><div class="line">4.产品设计（如何设计一个监控系统）</div><div class="line"></div><div class="line">云计算的核心竞争力是运维！</div><div class="line">  </div><div class="line">系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务</div><div class="line">==比较难学的开发和业务（相对于运维来说）</div><div class="line"></div><div class="line"></div><div class="line">专注于某一领域：资深、科学家</div></pre></td></tr></table></figure>
 <h3 id="二、运维知识体系"><a href="#二、运维知识体系" class="headerlink" title="二、运维知识体系"></a>二、运维知识体系</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">赵班长运维知识体系：https://www.unixhot.com/page/ops</div><div class="line"></div><div class="line"></div><div class="line">运维工作内容分类：</div><div class="line"></div><div class="line">监控运维（7X24运维值班、故障处理）</div><div class="line">应用运维（业务熟悉、服务部署、项目上线、业务部署、版本管理、灰度发布、日志收集、应用监控）</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">安全运维（整体的安全方案、规范、漏洞检测、安全防护等）</div><div class="line"></div><div class="line"></div><div class="line">系统运维（架构层面的分布式缓存、分布式文件系统、环境规划（测试、开发、生产）、架构设计、性能优化）</div><div class="line">基础服务运维（包含运维开发）（内部DNS、负载均衡、系统监控、资产管理、运维平台）</div><div class="line"></div><div class="line"></div><div class="line">基础设施运维（系统初始化、网络维护）</div><div class="line">机房运维（负责设备上下架、巡检、保修、硬件监控）</div></pre></td></tr></table></figure>
 <h3 id="三、运维自动化发展"><a href="#三、运维自动化发展" class="headerlink" title="三、运维自动化发展"></a>三、运维自动化发展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">发展层级：</div><div class="line">    智能化</div><div class="line">    服务化、api化</div><div class="line">    Web化、平台化</div><div class="line">    标准化、工具化</div></pre></td></tr></table></figure>
 <h4 id="1-标准化"><a href="#1-标准化" class="headerlink" title="1.标准化"></a>1.标准化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">物理设备层面：</div><div class="line">    1.服务器标签化、设备负责人、设备采购详情、设备摆放标准（例如：负载均衡两台机器不能放同一机柜）。</div><div class="line">    2.网络划分、远程控制卡、网卡端口</div><div class="line">    3.服务器机型、硬盘、内存统一。根据业务分类</div><div class="line">    4.资产命名规范、编号规范、类型规范</div><div class="line">    5.监控标准</div><div class="line"></div><div class="line">操作系统层面：</div><div class="line">    1.操作系统版本</div><div class="line">    2.系统初始化（DNS、NTP、内存参数调优、rsyslog、主机名规范）</div><div class="line">    3.基础Agent配备（zabbix Agent、logstach Agent、saltstack monitor）</div><div class="line">    4.系统监控标准（cpu、内存、硬盘、网络、进程）</div><div class="line"></div><div class="line">应用服务层面：</div><div class="line">    1.Web服务器选型（apache、nginx）</div><div class="line">    2.进程启动用户、端口监听规范、日志收集规范（访问日志、错误日志、运行日志）</div><div class="line">    3.配置管理（配置文件规范、脚本规范）</div><div class="line">    4.架构规范（nginx+keepalived、lvs+keepalived等等）</div><div class="line">    5.部署规范（位置、包命名等）</div><div class="line">    </div><div class="line">运维操作层面：</div><div class="line">    1.机房巡检流程（周期、内容、报修流程）</div><div class="line">    2.业务部署流程（先测试、后生成。回滚）</div><div class="line">    3.故障处理流程（紧急处理、故障升级）</div><div class="line">    4.工作日志标准（如何编写工作日志）</div><div class="line">    5.业务上线流程（1.项目发起人 2.系统安装 3.部署nginx 4.解析域名 5.测试 6.加监控 7.备份）</div><div class="line">    6.业务下线流程（1.谁发起 2.数据如何处理 3.服务器回收 4.系统是否重装）</div><div class="line">    7.运维安全规范（密码复杂度、更改周期、vpn使用规范、服务器登入规范）</div><div class="line">    </div><div class="line">    </div><div class="line"></div><div class="line">    标准化（规范化、流程化、文档化） 目标：文档化</div></pre></td></tr></table></figure>
@@ -1061,148 +380,55 @@ hexo deploy
 减少在救火或解决重复故障方面的成本
 有助于知识库的积累
 </code></pre>
-          
-        
       
     </div>
 
     <div>
       
+        
+      
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
-                  Mysqladmin命令总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/自动化/" rel="tag">#自动化</a>
           
-
-          
-            
-          
-
-          
-
-          
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <pre><code>mysqladmin 工具的使用格式：
-mysqladmin [option] command [command option] command ......
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/11/Mysqladmin命令总结/" rel="next" title="Mysqladmin命令总结">
+                <i class="fa fa-chevron-left"></i> Mysqladmin命令总结
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/12/Mysql优化系列--总结梳理/" rel="prev" title="Mysql优化系列--总结梳理">
+                Mysql优化系列--总结梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1210,6 +436,10 @@ mysqladmin [option] command [command option] command ......
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1229,8 +459,17 @@ mysqladmin [option] command [command option] command ......
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -1282,6 +521,17 @@ mysqladmin [option] command [command option] command ......
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、运维学习和发展的一个线路"><span class="nav-number">1.</span> <span class="nav-text">一、运维学习和发展的一个线路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、运维知识体系"><span class="nav-number">2.</span> <span class="nav-text">二、运维知识体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、运维自动化发展"><span class="nav-number">3.</span> <span class="nav-text">三、运维自动化发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-标准化"><span class="nav-number">3.1.</span> <span class="nav-text">1.标准化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-工具化"><span class="nav-number">3.2.</span> <span class="nav-text">2.工具化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-基于ITIL的运维管理体系"><span class="nav-number">4.</span> <span class="nav-text">四. 基于ITIL的运维管理体系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ITIL-简介"><span class="nav-number">4.1.</span> <span class="nav-text">1. ITIL 简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-ITIL-服务运营"><span class="nav-number">5.</span> <span class="nav-text">五. ITIL 服务运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-服务运营-故障管理"><span class="nav-number">6.</span> <span class="nav-text">六. 服务运营-故障管理</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1366,6 +616,10 @@ mysqladmin [option] command [command option] command ......
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
 
   
 
