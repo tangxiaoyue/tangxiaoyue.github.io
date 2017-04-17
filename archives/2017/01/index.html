@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,25 +57,15 @@
 
 
 
-<meta name="description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（7）--数据管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（7）--数据管理/index.html">
+<meta name="description" content="勿忘初衷，方得始终">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRUCETANG">
+<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
-<meta property="og:updated_time" content="2017-04-07T05:46:17.954Z">
+<meta property="og:description" content="勿忘初衷，方得始终">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（7）--数据管理">
-<meta name="twitter:description" content="挂载本地目录到容器里[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[ro">
+<meta name="twitter:title" content="BRUCETANG">
+<meta name="twitter:description" content="勿忘初衷，方得始终">
 
 
 
@@ -93,7 +83,7 @@ root@tang docker]# mkdir docker_01
   };
 </script>
 
-  <title> Docker 基础（7）--数据管理 | BRUCETANG </title>
+  <title> 归档 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -114,7 +104,7 @@ root@tang docker]# mkdir docker_01
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,267 +235,66 @@ root@tang docker]# mkdir docker_01
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 18 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Docker 基础（7）--数据管理
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[root@docker_01 /]# cd /docker_01/        
-[root@docker_01 docker_01]# touch docker_01.txt
-</code></pre><a id="more"></a>
-<pre><code>[root@docker_01 docker_01]# exit
-exit
-[root@tang docker]# cd /data/docker/docker_01/
-[root@tang docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 08:03 docker_01.txt
-
-[root@tang docker_01]# cd ..
-[root@tang docker]# mkdir docker_02
-[root@tang docker]# docker run -it -h docker_02 --name docker_02 -v /data/docker/docker_02/:/docker_02 centos bash
-[root@docker_02 /]# cd /docker_02/
-[root@docker_02 docker_02]# mkdir docker_02.txt
-[root@docker_02 docker_02]# exit
-exit
-[root@tang docker]# cd docker_02/
-[root@tang docker_02]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 08:05 docker_02.txt
-
-提示：    
-      -v: 指定挂载目录
-      : : 前面的为本地目录
-      : : 后面到为容器里的目录
-      即使将删除这个容器,文件也不会丢失.
-</code></pre><h4 id="挂载数据卷-多个容器挂载宿主机的同一个目录"><a href="#挂载数据卷-多个容器挂载宿主机的同一个目录" class="headerlink" title="挂载数据卷(多个容器挂载宿主机的同一个目录)"></a>挂载数据卷(多个容器挂载宿主机的同一个目录)</h4><pre><code>[root@tang data]# docker run -it -h docker_03 --name docker_03
---volumes-from docker_01 centos bash
-[root@docker_03 /]# cd /docker_01/
-[root@docker_03 docker_01]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 00:03 docker_01.txt
-[root@docker_03 docker_01]# df -h|grep docker_01
-/dev/vda1                           99G  5.4G   88G   6% /docker_01
-[root@docker_03 docker_01]# echo &quot;This is Doceker_3&quot; &gt; /docker_01/3.txt
-[root@docker_03 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-[root@tang ~]# docker start docker_01
-docker_01
-[root@tang ~]# docker-enter docker_01
-[root@docker_01 ~]# cd /docker_01/
-[root@docker_01 docker_01]# ll
-total 4
--rw-r--r-- 1 root root 18 Apr  3 00:26 3.txt
--rw-r--r-- 1 root root  0 Apr  3 00:03 docker_01.txt
-</code></pre><h4 id="自定义数据卷容器"><a href="#自定义数据卷容器" class="headerlink" title="自定义数据卷容器"></a>自定义数据卷容器</h4><pre><code>[root@tang ~]# docker run -itd -h node --name node -v /data centos bash
-056ac10e28855c3d29a94fe552711e6a712a5670e6e9c43c4b79270cbc6b0a0f
-                #这里的/data是容器node的/data目录,而不是宿主机的/data目录
-
-[root@tang ~]# docker-enter node
-[root@node ~]#  touch /data/1 /data/2 /data/3
-[root@node ~]# cd /data/
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node data]# exit
-logout
-[root@tang ~]# docker run -itd -h node1 --name node1 --volumes-from node centos bash
-2965a8f1184a7a1cbd26ef07e4b3d201fa17e5b68a52c619d6292da75c85d117
-[root@tang ~]# docker-enter node1
-[root@node1 ~]# cd /data/
-[root@node1 data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
-[root@node1 data]# touch 4
-[root@node data]# ll
-total 0
--rw-r--r-- 1 root root 0 Apr  3 01:00 1
--rw-r--r-- 1 root root 0 Apr  3 01:00 2
--rw-r--r-- 1 root root 0 Apr  3 01:00 3
--rw-r--r-- 1 root root 0 Apr  3 01:02 4
-</code></pre><h4 id="数据卷的备份"><a href="#数据卷的备份" class="headerlink" title="数据卷的备份"></a>数据卷的备份</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-250da7a47222e52c5a5d387ff8ce816a72b221ffb8d481739c4c68073507fe
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /data
-[root@tang ~]# touch /data/{1,2,3,4}
-[root@tang ~]# tar cvf /backup/data.tar /data/
-[root@tang ~]# cd /backup/
-[root@tang backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 01:30 data.tar
-[root@tang backup]# exit
-logout
-[root@docker ~]# cd /docker_data_backup/
-[root@docker docker_data_backup]# ll
-total 12
--rw-r--r-- 1 root root 10240 Apr  3 09:30 data.tar
-</code></pre><h4 id="数据卷的恢复"><a href="#数据卷的恢复" class="headerlink" title="数据卷的恢复"></a>数据卷的恢复</h4><pre><code>[root@docker ~]# mkdir /docker_data_backup
-[root@docker ~]# docker run -itd -h tang --name tang -v /docker_data_backup/:/backup centos bash
-3728f6b0a6e5b47f904de0474db7d4479f33e87740906e1539eca385c3fab04d
-[root@docker ~]# docker-enter tang
-[root@tang ~]# mkdir /tools/
-[root@tang ~]# touch /tools/{1,2,3,4}
-[root@tang ~]# tar zcvf /backup/tools.tar /tools/
-/tools/
-/tools/1
-/tools/2
-/tools/3
-/tools/4
-[root@tang ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang ~]# exit
-logout
-
-[root@docker ~]# docker run -itd -h tang1 --name tang1 -v /tang1 centos bash
-7ec371bb67f136234878771c227c4245a0ccf6c986e8c94a412d6c4111852a2b
-[root@docker ~]# docker run -itd -h tang2 --name tang2 --volumes-from tang1 -v /docker_data_backup/:/backup centos bash
-53e4cea1c45f3c081a6dd95b935f906aa037e6ed2170b6249a913ccd6fb4c119
-[root@docker ~]# docker-enter tang2
-[root@tang2 ~]# ll /backup/
-total 4
--rw-r--r-- 1 root root 162 Apr  3 02:08 tools.tar
-[root@tang2 tang1]# tar xvf /backup/tools.tar -C /tang1
-[root@tang2 tang1]# exit
-logout
-[root@docker ~]# docker-enter tang1
-[root@tang1 ~]# cd /tang1/
-[root@tang1 tang1]# ll
-total 4
-drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
-</code></pre>
-      
-    </div>
-
-    <div>
       
         
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（5）--容器管理/" rel="next" title="Docker 基础（5）--容器管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（5）--容器管理
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（9）--Dockerfile/" rel="prev" title="Docker 基础（9）--Dockerfile">
-                Docker 基础（9）--Dockerfile <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/01/01/运维与自动化发展(1)/" itemprop="url">
+              
+                <span itemprop="name">运维与自动化发展(1)</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-01-01T12:37:26+08:00"
+              content="2017-01-01" >
+          01-01
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -513,10 +302,6 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -536,17 +321,8 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -598,17 +374,6 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载本地目录到容器里"><span class="nav-number">1.</span> <span class="nav-text">挂载本地目录到容器里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载数据卷-多个容器挂载宿主机的同一个目录"><span class="nav-number">2.</span> <span class="nav-text">挂载数据卷(多个容器挂载宿主机的同一个目录)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义数据卷容器"><span class="nav-number">3.</span> <span class="nav-text">自定义数据卷容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的备份"><span class="nav-number">4.</span> <span class="nav-text">数据卷的备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷的恢复"><span class="nav-number">5.</span> <span class="nav-text">数据卷的恢复</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -693,9 +458,11 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   

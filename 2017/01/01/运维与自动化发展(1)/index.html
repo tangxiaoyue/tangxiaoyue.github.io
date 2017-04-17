@@ -1,0 +1,1054 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自动化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="一、运维学习和发展的一个线路1.搭建服务（部署并运行起来）
+
+2.用好服务（监控、管理、优化）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维与自动化发展(1)">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/运维与自动化发展(1)/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="一、运维学习和发展的一个线路1.搭建服务（部署并运行起来）
+
+2.用好服务（监控、管理、优化）">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492912887&di=7a98f884c0ce6d774f12c86b44c38cd2&imgtype=jpg&er=1&src=http%3A%2F%2Fgroup.vsharing.com%2FUploads%2FUserDirs%2F3%2F1000%2F399697%2FITIL%2520V3%25E4%25B8%258EITIL%2520V2%25E7%259A%2584%25E4%25BB%25B7%25E5%2580%25BC%25E5%25B7%25AE%25E5%25BC%2582%25EF%25BC%2588%25E5%259B%25BE%25E4%25B8%2580%25EF%25BC%2589.jpg">
+<meta property="og:updated_time" content="2017-04-17T15:38:33.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维与自动化发展(1)">
+<meta name="twitter:description" content="一、运维学习和发展的一个线路1.搭建服务（部署并运行起来）
+
+2.用好服务（监控、管理、优化）">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492912887&di=7a98f884c0ce6d774f12c86b44c38cd2&imgtype=jpg&er=1&src=http%3A%2F%2Fgroup.vsharing.com%2FUploads%2FUserDirs%2F3%2F1000%2F399697%2FITIL%2520V3%25E4%25B8%258EITIL%2520V2%25E7%259A%2584%25E4%25BB%25B7%25E5%2580%25BC%25E5%25B7%25AE%25E5%25BC%2582%25EF%25BC%2588%25E5%259B%25BE%25E4%25B8%2580%25EF%25BC%2589.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 运维与自动化发展(1) | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                运维与自动化发展(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-01T12:37:26+08:00" content="2017-01-01">
+              2017-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、运维学习和发展的一个线路"><a href="#一、运维学习和发展的一个线路" class="headerlink" title="一、运维学习和发展的一个线路"></a>一、运维学习和发展的一个线路</h3><pre><code>1.搭建服务（部署并运行起来）
+
+2.用好服务（监控、管理、优化）
+</code></pre><a id="more"></a>
+<pre><code>3.自动化（服务直接的关联和协同工作）
+
+4.产品设计（如何设计一个监控系统）
+
+云计算的核心竞争力是运维！
+
+系统架构师（还有偏管理系统架构师）：网络 系统 数据库 开发 云计算 自动化 运维管理 服务管理 项目管理 测试 业务
+==比较难学的开发和业务（相对于运维来说）
+
+
+专注于某一领域：资深、科学家
+</code></pre><h3 id="二、运维知识体系"><a href="#二、运维知识体系" class="headerlink" title="二、运维知识体系"></a>二、运维知识体系</h3><pre><code>赵班长运维知识体系：https://www.unixhot.com/page/ops
+
+
+运维工作内容分类：
+
+监控运维（7X24运维值班、故障处理）
+应用运维（业务熟悉、服务部署、项目上线、业务部署、版本管理、灰度发布、日志收集、应用监控）
+
+
+
+安全运维（整体的安全方案、规范、漏洞检测、安全防护等）
+
+
+系统运维（架构层面的分布式缓存、分布式文件系统、环境规划（测试、开发、生产）、架构设计、性能优化）
+基础服务运维（包含运维开发）（内部DNS、负载均衡、系统监控、资产管理、运维平台）
+
+
+基础设施运维（系统初始化、网络维护）
+机房运维（负责设备上下架、巡检、保修、硬件监控）
+</code></pre><h3 id="三、运维自动化发展"><a href="#三、运维自动化发展" class="headerlink" title="三、运维自动化发展"></a>三、运维自动化发展</h3><pre><code>发展层级：
+    智能化
+    服务化、api化
+    Web化、平台化
+    标准化、工具化
+</code></pre><h4 id="1-标准化"><a href="#1-标准化" class="headerlink" title="1.标准化"></a>1.标准化</h4><pre><code>物理设备层面：
+    1.服务器标签化、设备负责人、设备采购详情、设备摆放标准（例如：负载均衡两台机器不能放同一机柜）。
+    2.网络划分、远程控制卡、网卡端口
+    3.服务器机型、硬盘、内存统一。根据业务分类
+    4.资产命名规范、编号规范、类型规范
+    5.监控标准
+
+操作系统层面：
+    1.操作系统版本
+    2.系统初始化（DNS、NTP、内存参数调优、rsyslog、主机名规范）
+    3.基础Agent配备（zabbix Agent、logstach Agent、saltstack monitor）
+    4.系统监控标准（cpu、内存、硬盘、网络、进程）
+
+应用服务层面：
+    1.Web服务器选型（apache、nginx）
+    2.进程启动用户、端口监听规范、日志收集规范（访问日志、错误日志、运行日志）
+    3.配置管理（配置文件规范、脚本规范）
+    4.架构规范（nginx+keepalived、lvs+keepalived等等）
+    5.部署规范（位置、包命名等）
+
+运维操作层面：
+    1.机房巡检流程（周期、内容、报修流程）
+    2.业务部署流程（先测试、后生成。回滚）
+    3.故障处理流程（紧急处理、故障升级）
+    4.工作日志标准（如何编写工作日志）
+    5.业务上线流程（1.项目发起人 2.系统安装 3.部署nginx 4.解析域名 5.测试 6.加监控 7.备份）
+    6.业务下线流程（1.谁发起 2.数据如何处理 3.服务器回收 4.系统是否重装）
+    7.运维安全规范（密码复杂度、更改周期、vpn使用规范、服务器登入规范）
+
+
+
+    标准化（规范化、流程化、文档化） 目标：文档化
+</code></pre><h4 id="2-工具化"><a href="#2-工具化" class="headerlink" title="2.工具化"></a>2.工具化</h4><pre><code>1.shell脚本（功能性（流程）、坚持性、报表性）
+2.开源工具：Zabbix ELKstack SaltStack  cobbler
+
+目标：
+    1.促进标准化的实施
+    2.将重复的操作，简单化
+    3.将多次操作，流程化
+    4.减少人为操作的低效和降低故障率
+
+工具化和标准化是好基友！！！
+
+痛点：
+    1.你至少要ssh到服务器执行，可能犯错
+    2.多个脚本有执行顺序的时候，可能犯错
+    3.权限不好管理，日志没法统计。
+    4.无法避免手工操作
+
+    例子：比如某天我们要对一台数据库从库进行版本升级。那么要求进行评估：
+
+        停机的影响：3:00晚上有定时任务链接该数据库，做数据报表统计。
+
+        1.凌晨3:00我们所有系统的定时任务有哪些 crontab
+        2.这些croneab哪些连接我们要停止的从库
+        3.哪些可以停，哪些不能停（修改到主库），哪些可以后补
+        4.这些需要后补的脚本哪个业务，谁加的，什么时候加的
+</code></pre><h4 id="3-Web化（运维操作平台）"><a href="#3-Web化（运维操作平台）" class="headerlink" title="3.Web化（运维操作平台）"></a>3.Web化（运维操作平台）</h4><pre><code>1.做成Web界面
+2.权限控制
+3.日志记录
+4.弱化流程
+5.不用ssh到服务器，减少人为操作造成的故障
+</code></pre><h4 id="4-服务化（API化）"><a href="#4-服务化（API化）" class="headerlink" title="4.服务化（API化）"></a>4.服务化（API化）</h4><pre><code>DNS Web管理             bind-DLZ   dns-api
+负载均衡Web管理         slb-api
+Job管理平台             job-api
+监控Web管理  zabbix     zabbix-api
+操作系统安装平台        cobbler-api
+部署平台                deploy-api
+配置管理平台            saltstack-api
+自动化测试平台          test-api
+
+
+1.调用cobbler-api安装操作系统
+2.调用saltstack-api进行系统初始化
+3.调用dns-api解析主机名
+4.调用zabbix-api将新上线机器加上监控
+5.再次调用saltstack-api部署软件（安装Nginx+php）
+6.调用deploy-api     将当前版本的代码部署到服务器上
+7.调用test-api 测试当前服务器运行十分正常
+8.调用slb-api 将该节点加入集群
+</code></pre><h4 id="5-智能化"><a href="#5-智能化" class="headerlink" title="5.智能化"></a>5.智能化</h4><blockquote>
+<p>智能化的自动化扩容、缩容、服务降级、故障自愈</p>
+</blockquote>
+<pre><code>触发机制--&gt;决策系统（决策树）
+
+
+一、自动化扩容
+
+1.zabbix触发Action
+触发：
+    1.当某个集群的访问量超过最大的支撑量，比如10000
+        1.1.cpu使用率达到多少
+    2.并持续5分钟
+    3.不是攻击
+    4.资源池有可用资源
+        4.1.当前网络带宽使用率
+        4.2.如果公有云-钱够不够
+    5.当前后端服务支撑量是否超过阈值，如果超过应该后端先扩容
+    6.数据库是否可以支撑当前并发
+    7.当前自动化扩展队列，是否有正在扩容的节点
+    8.其它业务相关的
+
+决策之前：先判断buffer是否有最近X小时，已经移除的之前创建的虚拟机。并查询软件版本是否和当前一致，如果一致，跳过2 3 4步骤。如果不一致，跳过2 3步骤
+
+
+2.Openstack 创建虚拟机
+
+3.Saltstack配置环境---监控
+
+4.部署系统当前代码
+
+5.测试服务是否可用（注意间隔和次数）
+
+6.加入集群
+
+7.通知（短信、邮件、花费时间）
+
+
+二、自动化缩容
+
+1.触发条件和决策
+2.从集群中移除节点---先关闭监控--移除
+3.通知
+4.移除的节点存放在buffer里面
+5.buffer里面超过一天的虚拟机，自动关闭，存放于某去
+6.某区的虚拟机，每7天清理删除
+
+
+1.部署openstack
+2.在openstack上创建虚拟机
+3.在虚拟机上部署Mesos+docker+Marathon
+4.自动化创建Docker容器进行自动化扩容
+</code></pre><h3 id="四-基于ITIL的运维管理体系"><a href="#四-基于ITIL的运维管理体系" class="headerlink" title="四. 基于ITIL的运维管理体系"></a>四. 基于ITIL的运维管理体系</h3><h4 id="1-ITIL-简介"><a href="#1-ITIL-简介" class="headerlink" title="1. ITIL 简介"></a>1. ITIL 简介</h4><pre><code>什么是服务：
+    服务是向客户提供的一种手段，使客户不用承担特定的成本和风险就可以获得所期望的结果。
+
+什么是服务管理：
+    服务管理是一套特定的组织能力，以服务的形式为客户提供价值
+
+ITSM 和ITIL 的关系：
+    1.现有ITSM，后有ITIL。
+    2.因为ITIL，ITSM得到关注和发扬
+    3.ITIL是ITIM的最佳时间.ITIL为ITSM创建了一组核心流程和专有名词
+    4.ITIL并不是ITSM的全部，ITIL只是告诉我们，什么该做，但没有说具体该怎么做。而对ITSM而言，这些都是ITSM的范围。
+
+ITIL是：
+    ITIL即IT基础架构库（Information Technology Infrastructure Library）。
+
+    英国商务办公司从20世纪80年代开始开发的一套IT管理方法。
+
+    已成为事实上的行业标准，并以其为中心在全球形成了完整的产业。
+
+    任何单位和个人都可以免费试用的“公共框架”。
+
+    实际上是一系由所谓“最佳实践”形成图书。
+
+    一个可以直接使用的标准。
+
+ITIL的目的：
+    1.将IT管理工作标准化，模式化，减少人为误操作带来的隐患
+    2.通过服务目录，服务报告，告诉业务部门，我们可以做什么，做了什么
+    3.通过系列流程，只是库减轻对英雄式工程师的以来，把经验积累下来。
+    4.通过对流程的管控，减少成本，降低风险，提供客户满意度
+
+ITIL和ISO 20000
+    ITIL自发布以来，一直被业界认为是IT服务管理领域事实上的管理标准，直到2000年11月，英国标准协会（BSI）正式发布了以ITIL为核心的国家标准BS15000；
+    随后，2005年5月，国际标准化组织（ISO）快速通道的方式批准通过了ISO2000的标准协议，并于12月15日正式发布了ISO20000标准。
+
+ITIL和ISO20000区别
+
+ITIL                                                ISO2000
+提供最佳实践指导                                提供衡量ITSM的指标
+没有固定的能力衡量指标                          全球统一
+对人员进行认证                                  对机构进行认证
+咨询机构提供他们眼中的ITSM成熟度结果              关注于服务提供的独立认证，从IT服务管理体系的角度出发
+
+ITSM内容
+    管什么（管理对象）
+    怎么管（管理方法）
+    管得咋样（成熟度）
+
+IT service CMM
+
+初始级：
+    被动相应，没有文档记录，几乎没有过程，是经过定义的 ；
+    各项目经验无法重用，以来与个人的努力和永雄主义
+
+可重复级：
+    建立了基本的服务管理过程；
+    所有项目有默认的规则，但未文档化，系统化；
+    产品或服务化无清晰的目标和策略；
+
+定义级：
+    已将IT服务过程文档化，标准化，并综合成标准服务过程；
+    根据客户需求调整服务产品和服务战略；
+    适当的工具和信息报告；
+
+管理级：
+    受监督、测量的IT服务体系；
+    根据业务战略调整服务体系；
+
+优化级（PDCA）：
+    持续改进的IT服务体系；
+    IT与业务指标建立关系；
+    IT与业务协作改进流程；
+
+
+成为运维经理：
+    1.技术，运维只是体系
+    2.服务管理ITIL
+      项目管理PMP
+    3.做人
+</code></pre><h3 id="五-ITIL-服务运营"><a href="#五-ITIL-服务运营" class="headerlink" title="五. ITIL 服务运营"></a>五. ITIL 服务运营</h3><pre><code>ITIL v3 将ITIL理论分成五部分：
+    1.服务战略
+    2.服务设计
+    3.服务转换
+    4.服务运营
+    5.持续服务改进
+</code></pre><p>ITIL v3 核心模块<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1492912887&amp;di=7a98f884c0ce6d774f12c86b44c38cd2&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fgroup.vsharing.com%2FUploads%2FUserDirs%2F3%2F1000%2F399697%2FITIL%2520V3%25E4%25B8%258EITIL%2520V2%25E7%259A%2584%25E4%25BB%25B7%25E5%2580%25BC%25E5%25B7%25AE%25E5%25BC%2582%25EF%25BC%2588%25E5%259B%25BE%25E4%25B8%2580%25EF%25BC%2589.jpg" alt="image"></p>
+<pre><code>服务运营：
+SLA：服务级别协议
+OLA：运营水平协议
+CSF：关键成功因素
+KPI：关键绩效指标
+
+客户要求——SLA——OLA——CSF——KPI——月报
+
+服务台：
+
+    作为IT服务支持团队的一线支持，其首要目标是为用户和IT组织之间建立沟通的纽带；
+    确保用户的故障请求和服务请求能够以最快的速度得到满足，并确保用户满意。
+
+服务台作用：
+    1.路由器
+    2.监视器
+    3.单一联系点
+    4.客服窗口
+    5.广播台
+    6.过滤器
+</code></pre><h3 id="六-服务运营-故障管理"><a href="#六-服务运营-故障管理" class="headerlink" title="六. 服务运营-故障管理"></a>六. 服务运营-故障管理</h3><pre><code>1.故障管理的目标：
+
+    故障管理的目标是尽可能快的恢复正常的服务运营，将故障对业务运营的负面影响减少到最低。
+    并确保到达最好的服务质量和可用性水平。
+
+2.故障优先级：
+--紧急度
+--影响度
+
+
+
+3.故障输入输出：
+
+    故障管理流程输入
+        故障请求提交
+        故障单记录模板
+        故障单填写模板
+        故障分类规则
+        故障优先级确定规则
+        故障升级规则
+        故障处理时间规则
+        故障关闭规则
+
+    故障管理流程输出：
+        故障历史记录
+        故障分类汇总统计表
+        故障处理用户满意度
+
+4.故障管理的绩效指标（KPI）
+
+    一线支持解决的事故百分比
+    无升级的平均呼叫时长
+    分配错误的事故百分比
+    在目标时间之内，按照优先级解决的事故百分比
+    二线支持平均响应时间
+    事故平均解决时间
+    重新分配的事故百分比
+    归类错误的事故百分比
+    绕过一线支持的呼叫百分比
+    客户满意度
+    服务请求呼叫百分比
+    一次解决正确的事故百分比
+    主动解决的事故百分比
+
+5.服务运营-问题管理
+
+问题管理的目标：
+    问题管理的主要目标是预防问题产生及由此引发的故障，消除重复的出现故障，并对不能预防的故障尽量减低其对业务的影响
+
+问题管理对业务的价值：
+
+    提供IT服务的可用性
+    提高业务和IT人员的生成效率
+    减少无效的规避措施或修补措施的开支
+    减少在救火或解决重复故障方面的成本
+    有助于知识库的积累
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自动化/" rel="tag">#自动化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/25/五分钟商学院--大纲/" rel="next" title="五分钟商学院--大纲">
+                <i class="fa fa-chevron-left"></i> 五分钟商学院--大纲
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/Hexo常用命令/" rel="prev" title="Hexo常用命令">
+                Hexo常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、运维学习和发展的一个线路"><span class="nav-number">1.</span> <span class="nav-text">一、运维学习和发展的一个线路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、运维知识体系"><span class="nav-number">2.</span> <span class="nav-text">二、运维知识体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、运维自动化发展"><span class="nav-number">3.</span> <span class="nav-text">三、运维自动化发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-标准化"><span class="nav-number">3.1.</span> <span class="nav-text">1.标准化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-工具化"><span class="nav-number">3.2.</span> <span class="nav-text">2.工具化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Web化（运维操作平台）"><span class="nav-number">3.3.</span> <span class="nav-text">3.Web化（运维操作平台）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-服务化（API化）"><span class="nav-number">3.4.</span> <span class="nav-text">4.服务化（API化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-智能化"><span class="nav-number">3.5.</span> <span class="nav-text">5.智能化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-基于ITIL的运维管理体系"><span class="nav-number">4.</span> <span class="nav-text">四. 基于ITIL的运维管理体系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ITIL-简介"><span class="nav-number">4.1.</span> <span class="nav-text">1. ITIL 简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-ITIL-服务运营"><span class="nav-number">5.</span> <span class="nav-text">五. ITIL 服务运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-服务运营-故障管理"><span class="nav-number">6.</span> <span class="nav-text">六. 服务运营-故障管理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
