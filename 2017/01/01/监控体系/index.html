@@ -60,14 +60,22 @@
 <meta name="description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监控体系">
-<meta property="og:url" content="http://yoursite.com/2017/01/02/监控体系/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/监控体系/index.html">
 <meta property="og:site_name" content="BRUCETANG">
 <meta property="og:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/p24aj4t6lb0iizva85uk8pct/2.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/r7hrbhcj5ixjsxqi7qxcgvko/3.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/hecq3ii0fy0pq8cahuhxblun/4.png">
-<meta property="og:updated_time" content="2017-04-23T09:37:20.704Z">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/uqklmvh78n4k51q8cuukn4rb/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/qa2kribzw85j1w7hdt2zcs0n/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/rdwly3nsqifomp378oitvmfe/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/zi2fr7i0glig9ad4r9qaz15i/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/rx2i4p0yakya27f2aodjfa93/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/d4rown1bnx8bgk8wgu2rfu4f/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/g1ob74tdxdnbo5p71x95ot35/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/z1m3apomvrg8k1y3li8wpmcy/8.png">
+<meta property="og:updated_time" content="2017-04-23T13:17:32.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监控体系">
 <meta name="twitter:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
@@ -274,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-02T11:37:26+08:00" content="2017-01-02">
-              2017-01-02
+            <time itemprop="dateCreated" datetime="2017-01-01T12:37:26+08:00" content="2017-01-01">
+              2017-01-01
             </time>
           </span>
 
@@ -362,7 +370,7 @@ total 8
 </code></pre><p>修改配置文件，备份修改：</p>
 <pre><code>[root@tang snmp]# mv snmpd.conf snmpd.conf.org
 [root@tang snmp]# cat snmpd.conf.org 
-rocommunity tang 172.18.0.1   #第二个为团体名，IP是要监控的服务端
+rocommunity tang 172.18.0.1   第二个为团体名，IP是要监控的服务端
 </code></pre><p>我们被发采集的服务器需要开启snmp<br>被采集的服务器要允许snmp访问</p>
 <p>开启服务</p>
 <pre><code>[root@tang snmp]#  systemctl start snmpd
@@ -558,7 +566,7 @@ Linux 3.10.0-514.10.2.el7.x86_64 (tang)     04/23/2017     _x86_64_    (1 CPU)
 04:46:30 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
 Average:     all    1.01    0.00    0.81    0.00    0.00    0.00    0.00    0.00    0.00   98.19
 </code></pre><p>上述是CPU监控，CPU监控主要靠经验。因为业务不同指标不同，指标越低越好是不变的道理</p>
-<h4 id="内存监控："><a href="#内存监控：" class="headerlink" title="内存监控："></a>内存监控：</h4><p>硬盘格式化后分成块（blog）<br>内存默认是页（大小4kb）读取按照页来进行读取<br>内存： <code>free</code> <code>vmstat</code></p>
+<h4 id="内存监控"><a href="#内存监控" class="headerlink" title="内存监控"></a>内存监控</h4><p>硬盘格式化后分成块（blog）<br>内存默认是页（大小4kb）读取按照页来进行读取<br>内存： <code>free</code> <code>vmstat</code></p>
 <pre><code>[root@www ~]# free -m
              total       used       free     shared    buffers     cached
 Mem:          1875       1338        537          0        173        523
@@ -577,10 +585,18 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 <p>内存达到多少报警呢？ <code>80%</code><br>正常是一个进程启动后会一直往上升，最后到达一个平稳期</p>
 <h4 id="硬盘监控"><a href="#硬盘监控" class="headerlink" title="硬盘监控"></a>硬盘监控</h4><p>硬盘：IOPS IO’s Per Second iotop df -h iostat<br>　　顺序IO（快）<br>　　随机IO（慢） </p>
 <blockquote>
-<p>查看磁盘剩余空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@tang ~]# df -h</div><div class="line">Filesystem      Size  Used Avail Use% Mounted on</div><div class="line">/dev/xvda1       40G  4.1G   34G  11% /</div><div class="line">tmpfs           938M     0  938M   0% /dev/shm</div></pre></td></tr></table></figure></p>
+<p>查看磁盘剩余空间</p>
+</blockquote>
+<pre><code>[root@tang ~]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       40G  4.1G   34G  11% /
+tmpfs           938M     0  938M   0% /dev/shm
+</code></pre><p>```</p>
+<blockquote>
 <p>监控磁盘IO iotop</p>
 </blockquote>
-<p>![此处输入图片的描述][1]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@www ~]# yum install iotop -y</div><div class="line">iotop </div><div class="line">1.png-57.2kB</div></pre></td></tr></table></figure></p>
+<pre><code>[root@www ~]# yum install iotop -y
+</code></pre><p>iotop<br><img src="http://static.zybuluo.com/abcdocker/uqklmvh78n4k51q8cuukn4rb/1.png" alt="http://static.zybuluo.com/abcdocker/uqklmvh78n4k51q8cuukn4rb/1.png">  </p>
 <p>可以使用dd命令生成一个文件夹进行测试<br>生成命令如下：</p>
 <pre><code>[root@www ~]# dd if=/dev/zero of=/tmp/1.txt bs=1M count=1000
 1000+0 records in
@@ -588,7 +604,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 1048576000 bytes (1.0 GB) copied, 20.509 s, 51.1 MB/s
 [root@www ~]# ls -lh /tmp/1.txt 
 -rw-r--r-- 1 root root 1000M Aug 30 19:48 /tmp/1.txt
-</code></pre><p>此时IO写入如下图<br>![此处输入图片的描述][2]</p>
+</code></pre><p>此时IO写入如下图<br><img src="http://static.zybuluo.com/abcdocker/qa2kribzw85j1w7hdt2zcs0n/2.png" alt="http://static.zybuluo.com/abcdocker/qa2kribzw85j1w7hdt2zcs0n/2.png"></p>
 <p><code>iostat命令，可以看到那块磁盘，比iotop更加细致</code></p>
 <pre><code>[root@tang ~]# iostat 1 2
 Linux 2.6.32-431.23.3.el6.x86_64 (www)  08/30/2016  _x86_64_    (1 CPU)
@@ -601,13 +617,13 @@ avg-cpu:  %user   %nice %system %iowait  %steal   %idle
 Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
 xvda              0.00         0.00         0.00          0   
 </code></pre><p><code>tps</code> 设备每秒的传输次数（每秒多少的io请求）<br><code>Blk_read/s</code> 每秒从设备读取的数据量<br><code>Blk_wrtn/s</code> 每秒像设备写入的数据量<br><code>Blk_read</code>写入数据的总数<br><code>Blk_wrtn</code> 读取数据的总数</p>
-<h4 id="网络监控："><a href="#网络监控：" class="headerlink" title="网络监控："></a>网络监控：</h4><h5 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h5><pre><code>[root@www ~]# yum install iftop -y
+<h4 id="网络监控："><a href="#网络监控：" class="headerlink" title="网络监控："></a>网络监控：</h4><h5 id="iftop说明"><a href="#iftop说明" class="headerlink" title="iftop说明"></a>iftop说明</h5><pre><code>[root@www ~]# yum install iftop -y
 [root@www ~]# iftop -n    #-n不做域名解析
-</code></pre><p>![此处输入图片的描述][3]<br>正常监控只需要监控网卡带宽即可<br>其中网络监控是最复杂的，ping监控网络延迟网络丢包等。但是此类的网络监控只是监控自己到客户端是否丢包，并不能保证客户端到服务器这边不丢包<br>　其中就产生了如：<code>阿里测、奇云测、站长工具</code>等一系列多节点的监控工具</p>
+</code></pre><p><img src="http://static.zybuluo.com/abcdocker/rdwly3nsqifomp378oitvmfe/3.png" alt="http://static.zybuluo.com/abcdocker/rdwly3nsqifomp378oitvmfe/3.png"><br>正常监控只需要监控网卡带宽即可<br>其中网络监控是最复杂的，ping监控网络延迟网络丢包等。但是此类的网络监控只是监控自己到客户端是否丢包，并不能保证客户端到服务器这边不丢包<br>　其中就产生了如：<code>阿里测、奇云测、站长工具</code>等一系列多节点的监控工具</p>
 <p>性能测试常用工具：<code>IBM nmon （nmon analyser---生成AIX性能报告的免费工具）</code><br><a href="http://nmon.sourceforge.net/pmwiki.php" target="_blank" rel="external">http://nmon.sourceforge.net/pmwiki.php</a> #下载地址（需要翻墙工具）<br>所以我们提供了百度云下载<br>链接：<a href="http://pan.baidu.com/s/1boXV6R9" target="_blank" rel="external">http://pan.baidu.com/s/1boXV6R9</a> 密码：sblf<br>只需要下载对应的版本，给执行权限。执行即可</p>
 <pre><code>[root@tang tmp]# chmod +x nmon16e_x86_rhel72 
 [root@tang tmp]# ./nmon16e_x86_rhel72
-</code></pre><p>![此处输入图片的描述][4]<br>我们可以直接输入一个c 一个m一个d。这个是实时的一个状态<br>![此处输入图片的描述][5]</p>
+</code></pre><p><img src="http://static.zybuluo.com/abcdocker/zi2fr7i0glig9ad4r9qaz15i/4.png" alt="http://static.zybuluo.com/abcdocker/zi2fr7i0glig9ad4r9qaz15i/4.png"><br>我们可以直接输入一个c 一个m一个d。这个是实时的一个状态<br><img src="http://static.zybuluo.com/abcdocker/rx2i4p0yakya27f2aodjfa93/5.png" alt="http://static.zybuluo.com/abcdocker/rx2i4p0yakya27f2aodjfa93/5.png"></p>
 <p>我们可以查看帮助</p>
 <pre><code>[root@localhost tmp]# ./nmon16e_x86_rhel72 --help
 ./nmon16e_x86_rhel72: invalid option -- &apos;-&apos;
@@ -635,10 +651,10 @@ For Data-Collect-Mode
 localhost_160831_0435.nmon  nmon16e_x86_rhel72
 </code></pre><p>前面为主机名后面是日期（年月日时分）<br>因为测试可能需要，我们要制作成表格，所以现在将文件上传到桌面上</p>
 <pre><code>[root@localhost tmp]# sz localhost_160831_0435.nmon 
-</code></pre><p>我们打开下载的工具<br>![此处输入图片的描述][6]</p>
-<p>解压文件夹，打开nmon analyser v34a.xls<br>![7.png-66.7kB][7]</p>
-<p>点击Analyse nmon data找到我们刚刚复制出来的文件，就可以看到了。<br>![此处输入图片的描述][8]</p>
-<h3 id="应用服务监控"><a href="#应用服务监控" class="headerlink" title="应用服务监控"></a>应用服务监控</h3><p>举例：Nginx<br>安装nginx</p>
+</code></pre><p>我们打开下载的工具<br><img src="http://static.zybuluo.com/abcdocker/d4rown1bnx8bgk8wgu2rfu4f/6.png" alt="http://static.zybuluo.com/abcdocker/d4rown1bnx8bgk8wgu2rfu4f/6.png"></p>
+<p>解压文件夹，打开nmon analyser v34a.xls<br><img src="http://static.zybuluo.com/abcdocker/g1ob74tdxdnbo5p71x95ot35/7.png" alt="http://static.zybuluo.com/abcdocker/g1ob74tdxdnbo5p71x95ot35/7.png"></p>
+<p>点击Analyse nmon data找到我们刚刚复制出来的文件，就可以看到了。<br><img src="http://static.zybuluo.com/abcdocker/z1m3apomvrg8k1y3li8wpmcy/8.png" alt="http://static.zybuluo.com/abcdocker/z1m3apomvrg8k1y3li8wpmcy/8.png"></p>
+<h3 id="应用服务监控："><a href="#应用服务监控：" class="headerlink" title="应用服务监控："></a>应用服务监控：</h3><p>举例：Nginx<br>安装nginx</p>
 <pre><code>[root@localhost ~]# yum install -y gcc glibc gcc-c++ prce-devel openssl-devel
 </code></pre><p>提示：nginx可以使用稳定版的最新版，因为安全性会不断的提高。如果是特别老的版本会有一些漏洞和功能<br>　　要想监控nginx需要在编译时添加如下参数</p>
 <p><code>--with-http_stub_status_module</code></p>
@@ -707,7 +723,7 @@ Active connections: 当前活跃的连接数
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/01/运维与自动化发展(1)/" rel="next" title="运维与自动化发展(1)">
+              <a href="/2017/01/01/运维与自动化发展/" rel="next" title="运维与自动化发展(1)">
                 <i class="fa fa-chevron-left"></i> 运维与自动化发展(1)
               </a>
             
@@ -833,7 +849,7 @@ Active connections: 当前活跃的连接数
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控对象"><span class="nav-number">1.</span> <span class="nav-text">监控对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控范围"><span class="nav-number">2.</span> <span class="nav-text">监控范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件监控"><span class="nav-number">3.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP监控"><span class="nav-number">4.</span> <span class="nav-text">SNMP监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP相关知识"><span class="nav-number">5.</span> <span class="nav-text">SNMP相关知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统监控"><span class="nav-number">6.</span> <span class="nav-text">系统监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU监控"><span class="nav-number">6.1.</span> <span class="nav-text">CPU监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见CPU监控工具"><span class="nav-number">6.2.</span> <span class="nav-text">常见CPU监控工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top说明"><span class="nav-number">6.2.1.</span> <span class="nav-text">top说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sysstat-说明"><span class="nav-number">6.2.2.</span> <span class="nav-text">sysstat 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mpstat说明"><span class="nav-number">6.2.3.</span> <span class="nav-text">mpstat说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存监控："><span class="nav-number">6.3.</span> <span class="nav-text">内存监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vmstat命令"><span class="nav-number">6.3.1.</span> <span class="nav-text">vmstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘监控"><span class="nav-number">6.4.</span> <span class="nav-text">硬盘监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控："><span class="nav-number">6.5.</span> <span class="nav-text">网络监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iftop"><span class="nav-number">6.5.1.</span> <span class="nav-text">iftop</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用服务监控"><span class="nav-number">7.</span> <span class="nav-text">应用服务监控</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控对象"><span class="nav-number">1.</span> <span class="nav-text">监控对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控范围"><span class="nav-number">2.</span> <span class="nav-text">监控范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件监控"><span class="nav-number">3.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP监控"><span class="nav-number">4.</span> <span class="nav-text">SNMP监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP相关知识"><span class="nav-number">5.</span> <span class="nav-text">SNMP相关知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统监控"><span class="nav-number">6.</span> <span class="nav-text">系统监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU监控"><span class="nav-number">6.1.</span> <span class="nav-text">CPU监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见CPU监控工具"><span class="nav-number">6.2.</span> <span class="nav-text">常见CPU监控工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top说明"><span class="nav-number">6.2.1.</span> <span class="nav-text">top说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sysstat-说明"><span class="nav-number">6.2.2.</span> <span class="nav-text">sysstat 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mpstat说明"><span class="nav-number">6.2.3.</span> <span class="nav-text">mpstat说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存监控"><span class="nav-number">6.3.</span> <span class="nav-text">内存监控</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vmstat命令"><span class="nav-number">6.3.1.</span> <span class="nav-text">vmstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘监控"><span class="nav-number">6.4.</span> <span class="nav-text">硬盘监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控："><span class="nav-number">6.5.</span> <span class="nav-text">网络监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iftop说明"><span class="nav-number">6.5.1.</span> <span class="nav-text">iftop说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用服务监控："><span class="nav-number">7.</span> <span class="nav-text">应用服务监控：</span></a></li></ol></div>
             
           </div>
         </section>
