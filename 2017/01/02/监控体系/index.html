@@ -59,17 +59,17 @@
 
 <meta name="description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
 <meta property="og:type" content="article">
-<meta property="og:title" content="全面监控体系">
-<meta property="og:url" content="http://yoursite.com/2017/01/01/监控体系/index.html">
+<meta property="og:title" content="监控体系">
+<meta property="og:url" content="http://yoursite.com/2017/01/02/监控体系/index.html">
 <meta property="og:site_name" content="BRUCETANG">
 <meta property="og:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/p24aj4t6lb0iizva85uk8pct/2.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/r7hrbhcj5ixjsxqi7qxcgvko/3.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/hecq3ii0fy0pq8cahuhxblun/4.png">
-<meta property="og:updated_time" content="2017-04-23T09:31:08.437Z">
+<meta property="og:updated_time" content="2017-04-23T09:37:20.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全面监控体系">
+<meta name="twitter:title" content="监控体系">
 <meta name="twitter:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高">
 <meta name="twitter:image" content="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png">
 
@@ -89,7 +89,7 @@
   };
 </script>
 
-  <title> 全面监控体系 | BRUCETANG </title>
+  <title> 监控体系 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                全面监控体系
+                监控体系
               
             
           </h1>
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T12:37:26+08:00" content="2017-01-01">
-              2017-01-01
+            <time itemprop="dateCreated" datetime="2017-01-02T11:37:26+08:00" content="2017-01-02">
+              2017-01-02
             </time>
           </span>
 
@@ -348,8 +348,40 @@ ipmitool-1.8.15-7.el7.x86_64
 </blockquote>
 <pre><code>1.ipmi over lan（大体意识是通过网络来进行连接）
 2.独立（给服务器单独查一根网线）Dell服务器可以在小面板中设置IPMI（云主机不需要考虑IPMI）
-</code></pre><h3 id="SNMP监控"><a href="#SNMP监控" class="headerlink" title="SNMP监控"></a>SNMP监控</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">对于路由器和交换机:SNMP（简单网络管理协议）监控</div><div class="line">配置SNMP：（可以参考监控宝来进行监控）</div><div class="line"></div><div class="line">[root@tang ~]# yum -y install net-snmp net-snmp-utils</div><div class="line">[root@tang ~]# rpm -qa net-snmp net-snmp-utils</div><div class="line">net-snmp-5.7.2-24.el7_3.2.x86_64</div><div class="line">net-snmp-utils-5.7.2-24.el7_3.2.x86_64</div><div class="line">#如果不知道要安装什么软件包，可以使用yum list|grep snmp</div><div class="line"></div><div class="line">SNMP配置文件路径：</div><div class="line">[root@tang ~]# ll /etc/snmp/</div><div class="line">total 8</div><div class="line">-rw-r--r-- 1 root root  28 Apr 18 21:45 snmpd.conf</div><div class="line">-rw------- 1 root root 220 Apr 13 02:34 snmptrapd.conf</div><div class="line"></div><div class="line"></div><div class="line">修改配置文件，备份修改：</div><div class="line">[root@tang snmp]# mv snmpd.conf snmpd.conf.org</div><div class="line">[root@tang snmp]# cat snmpd.conf.org </div><div class="line">rocommunity tang 172.18.0.1   #第二个为团体名，IP是要监控的服务端</div><div class="line"></div><div class="line">我们被发采集的服务器需要开启snmp</div><div class="line">被采集的服务器要允许snmp访问</div><div class="line"></div><div class="line"></div><div class="line">开启服务</div><div class="line">[root@tang snmp]#  systemctl start snmpd</div><div class="line">[root@tang snmp]# netstat -lntup    #snmp默认监听的是udp161端口</div><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </div><div class="line">tcp        0      0 0.0.0.0:9133            0.0.0.0:*               LISTEN      2478/bubi           </div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      771/sshd            </div><div class="line">tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1594/postmaster     </div><div class="line">tcp        0      0 0.0.0.0:19333           0.0.0.0:*               LISTEN      2478/bubi           </div><div class="line">tcp        0      0 127.0.0.1:199           0.0.0.0:*               LISTEN      19346/snmpd         </div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      2383/mysqld         </div><div class="line">udp        0      0 172.18.0.1:123          0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 172.17.82.185:123       0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 127.0.0.1:123           0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 0.0.0.0:123             0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 0.0.0.0:161             0.0.0.0:*                           19346/snmpd         </div><div class="line">udp6       0      0 :::123                  :::*                                760/ntpd</div></pre></td></tr></table></figure>
-<h3 id="SNMP相关知识"><a href="#SNMP相关知识" class="headerlink" title="SNMP相关知识"></a>SNMP相关知识</h3><ul>
+</code></pre><h3 id="SNMP监控"><a href="#SNMP监控" class="headerlink" title="SNMP监控"></a>SNMP监控</h3><p>对于路由器和交换机:SNMP（简单网络管理协议）监控<br>配置SNMP：（可以参考监控宝来进行监控）</p>
+<pre><code>[root@tang ~]# yum -y install net-snmp net-snmp-utils
+[root@tang ~]# rpm -qa net-snmp net-snmp-utils
+net-snmp-5.7.2-24.el7_3.2.x86_64
+net-snmp-utils-5.7.2-24.el7_3.2.x86_64
+</code></pre><p>如果不知道要安装什么软件包，可以使用yum list|grep snmp</p>
+<p>SNMP配置文件路径：</p>
+<pre><code>[root@tang ~]# ll /etc/snmp/
+total 8
+-rw-r--r-- 1 root root  28 Apr 18 21:45 snmpd.conf
+-rw------- 1 root root 220 Apr 13 02:34 snmptrapd.conf
+</code></pre><p>修改配置文件，备份修改：</p>
+<pre><code>[root@tang snmp]# mv snmpd.conf snmpd.conf.org
+[root@tang snmp]# cat snmpd.conf.org 
+rocommunity tang 172.18.0.1   #第二个为团体名，IP是要监控的服务端
+</code></pre><p>我们被发采集的服务器需要开启snmp<br>被采集的服务器要允许snmp访问</p>
+<p>开启服务</p>
+<pre><code>[root@tang snmp]#  systemctl start snmpd
+[root@tang snmp]# netstat -lntup    #snmp默认监听的是udp161端口
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:9133            0.0.0.0:*               LISTEN      2478/bubi           
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      771/sshd            
+tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1594/postmaster     
+tcp        0      0 0.0.0.0:19333           0.0.0.0:*               LISTEN      2478/bubi           
+tcp        0      0 127.0.0.1:199           0.0.0.0:*               LISTEN      19346/snmpd         
+tcp6       0      0 :::3306                 :::*                    LISTEN      2383/mysqld         
+udp        0      0 172.18.0.1:123          0.0.0.0:*                           760/ntpd            
+udp        0      0 172.17.82.185:123       0.0.0.0:*                           760/ntpd            
+udp        0      0 127.0.0.1:123           0.0.0.0:*                           760/ntpd            
+udp        0      0 0.0.0.0:123             0.0.0.0:*                           760/ntpd            
+udp        0      0 0.0.0.0:161             0.0.0.0:*                           19346/snmpd         
+udp6       0      0 :::123                  :::*                                760/ntpd            
+</code></pre><h3 id="SNMP相关知识"><a href="#SNMP相关知识" class="headerlink" title="SNMP相关知识"></a>SNMP相关知识</h3><ul>
 <li>snmp原理图</li>
 </ul>
 <p><img src="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png" alt="image"></p>
@@ -569,7 +601,7 @@ avg-cpu:  %user   %nice %system %iowait  %steal   %idle
 Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
 xvda              0.00         0.00         0.00          0   
 </code></pre><p><code>tps</code> 设备每秒的传输次数（每秒多少的io请求）<br><code>Blk_read/s</code> 每秒从设备读取的数据量<br><code>Blk_wrtn/s</code> 每秒像设备写入的数据量<br><code>Blk_read</code>写入数据的总数<br><code>Blk_wrtn</code> 读取数据的总数</p>
-<h4 id="网络监控：iftop"><a href="#网络监控：iftop" class="headerlink" title="网络监控：iftop"></a>网络监控：iftop</h4><pre><code>[root@www ~]# yum install iftop -y
+<h4 id="网络监控："><a href="#网络监控：" class="headerlink" title="网络监控："></a>网络监控：</h4><h5 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h5><pre><code>[root@www ~]# yum install iftop -y
 [root@www ~]# iftop -n    #-n不做域名解析
 </code></pre><p>![此处输入图片的描述][3]<br>正常监控只需要监控网卡带宽即可<br>其中网络监控是最复杂的，ping监控网络延迟网络丢包等。但是此类的网络监控只是监控自己到客户端是否丢包，并不能保证客户端到服务器这边不丢包<br>　其中就产生了如：<code>阿里测、奇云测、站长工具</code>等一系列多节点的监控工具</p>
 <p>性能测试常用工具：<code>IBM nmon （nmon analyser---生成AIX性能报告的免费工具）</code><br><a href="http://nmon.sourceforge.net/pmwiki.php" target="_blank" rel="external">http://nmon.sourceforge.net/pmwiki.php</a> #下载地址（需要翻墙工具）<br>所以我们提供了百度云下载<br>链接：<a href="http://pan.baidu.com/s/1boXV6R9" target="_blank" rel="external">http://pan.baidu.com/s/1boXV6R9</a> 密码：sblf<br>只需要下载对应的版本，给执行权限。执行即可</p>
@@ -606,7 +638,7 @@ localhost_160831_0435.nmon  nmon16e_x86_rhel72
 </code></pre><p>我们打开下载的工具<br>![此处输入图片的描述][6]</p>
 <p>解压文件夹，打开nmon analyser v34a.xls<br>![7.png-66.7kB][7]</p>
 <p>点击Analyse nmon data找到我们刚刚复制出来的文件，就可以看到了。<br>![此处输入图片的描述][8]</p>
-<h3 id="应用服务监控："><a href="#应用服务监控：" class="headerlink" title="应用服务监控："></a>应用服务监控：</h3><p>举例：Nginx<br>安装nginx</p>
+<h3 id="应用服务监控"><a href="#应用服务监控" class="headerlink" title="应用服务监控"></a>应用服务监控</h3><p>举例：Nginx<br>安装nginx</p>
 <pre><code>[root@localhost ~]# yum install -y gcc glibc gcc-c++ prce-devel openssl-devel
 </code></pre><p>提示：nginx可以使用稳定版的最新版，因为安全性会不断的提高。如果是特别老的版本会有一些漏洞和功能<br>　　要想监控nginx需要在编译时添加如下参数</p>
 <p><code>--with-http_stub_status_module</code></p>
@@ -801,7 +833,7 @@ Active connections: 当前活跃的连接数
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控对象"><span class="nav-number">1.</span> <span class="nav-text">监控对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控范围"><span class="nav-number">2.</span> <span class="nav-text">监控范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件监控"><span class="nav-number">3.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP监控"><span class="nav-number">4.</span> <span class="nav-text">SNMP监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP相关知识"><span class="nav-number">5.</span> <span class="nav-text">SNMP相关知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统监控"><span class="nav-number">6.</span> <span class="nav-text">系统监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU监控"><span class="nav-number">6.1.</span> <span class="nav-text">CPU监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见CPU监控工具"><span class="nav-number">6.2.</span> <span class="nav-text">常见CPU监控工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top说明"><span class="nav-number">6.2.1.</span> <span class="nav-text">top说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sysstat-说明"><span class="nav-number">6.2.2.</span> <span class="nav-text">sysstat 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mpstat说明"><span class="nav-number">6.2.3.</span> <span class="nav-text">mpstat说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存监控："><span class="nav-number">6.3.</span> <span class="nav-text">内存监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vmstat命令"><span class="nav-number">6.3.1.</span> <span class="nav-text">vmstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘监控"><span class="nav-number">6.4.</span> <span class="nav-text">硬盘监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控：iftop"><span class="nav-number">6.5.</span> <span class="nav-text">网络监控：iftop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用服务监控："><span class="nav-number">7.</span> <span class="nav-text">应用服务监控：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控对象"><span class="nav-number">1.</span> <span class="nav-text">监控对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控范围"><span class="nav-number">2.</span> <span class="nav-text">监控范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件监控"><span class="nav-number">3.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP监控"><span class="nav-number">4.</span> <span class="nav-text">SNMP监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP相关知识"><span class="nav-number">5.</span> <span class="nav-text">SNMP相关知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统监控"><span class="nav-number">6.</span> <span class="nav-text">系统监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU监控"><span class="nav-number">6.1.</span> <span class="nav-text">CPU监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见CPU监控工具"><span class="nav-number">6.2.</span> <span class="nav-text">常见CPU监控工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top说明"><span class="nav-number">6.2.1.</span> <span class="nav-text">top说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sysstat-说明"><span class="nav-number">6.2.2.</span> <span class="nav-text">sysstat 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mpstat说明"><span class="nav-number">6.2.3.</span> <span class="nav-text">mpstat说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存监控："><span class="nav-number">6.3.</span> <span class="nav-text">内存监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vmstat命令"><span class="nav-number">6.3.1.</span> <span class="nav-text">vmstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘监控"><span class="nav-number">6.4.</span> <span class="nav-text">硬盘监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控："><span class="nav-number">6.5.</span> <span class="nav-text">网络监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iftop"><span class="nav-number">6.5.1.</span> <span class="nav-text">iftop</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用服务监控"><span class="nav-number">7.</span> <span class="nav-text">应用服务监控</span></a></li></ol></div>
             
           </div>
         </section>
