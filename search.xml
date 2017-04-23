@@ -1901,6 +1901,357 @@ KPI：关键绩效指标
     </entry>
     
     <entry>
+      <title><![CDATA[全面监控体系]]></title>
+      <url>http://yoursite.com/2017/01/01/%E7%9B%91%E6%8E%A7%E4%BD%93%E7%B3%BB/</url>
+      <content type="html"><![CDATA[<h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
+<h3 id="监控范围"><a href="#监控范围" class="headerlink" title="监控范围"></a>监控范围</h3><p>1.硬件监控服务器的硬件故障<br>2.操作系统监控CPU、内存、硬盘、IO、进程<br>3.应用服务监控nginx、mysql等服务<br>4.业务监控</p>
+<h3 id="硬件监控"><a href="#硬件监控" class="headerlink" title="硬件监控"></a>硬件监控</h3><p>1.使用IPMI<br>2.机房巡检</p>
+<p>远程控制卡：<br>DELL服务器：<code>IDRAC</code><br>HP服务器：<code>ILO</code>—-Linux就可以使用IPMI（依赖于BMC控制器）<br>IBM服务器：<code>IMM</code></p>
+<p>Linux是管理<code>IPMI</code>工具<br><code>ipmitools</code>（监控和控制）</p>
+<blockquote>
+<p>1.硬件要支持<br>2.操作系统Linux IPMI</p>
+</blockquote>
+<p>ipmitool安装</p>
+<pre><code>[root@tang ~]# yum install OpenIPMI ipmitool -y
+[root@tang ~]# rpm -qa OpenIPMI ipmitool
+OpenIPMI-2.0.19-15.el7.x86_64
+ipmitool-1.8.15-7.el7.x86_64
+</code></pre><p>使用IPMI有两种方式</p>
+<pre><code>1.本地进行调用
+2.远程调用（IP地址 用户名和密码）
+
+[root@tang ~]# systemctl start ipmi    启动（以centos7为例）
+</code></pre><blockquote>
+<p>IPMI相关命令</p>
+</blockquote>
+<pre><code>[root@tang ~]# ipmitool --help
+</code></pre><blockquote>
+<p>IPMI配置网络，有两种方式：</p>
+</blockquote>
+<pre><code>1.ipmi over lan（大体意识是通过网络来进行连接）
+2.独立（给服务器单独查一根网线）Dell服务器可以在小面板中设置IPMI（云主机不需要考虑IPMI）
+</code></pre><h3 id="SNMP监控"><a href="#SNMP监控" class="headerlink" title="SNMP监控"></a>SNMP监控</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">对于路由器和交换机:SNMP（简单网络管理协议）监控</div><div class="line">配置SNMP：（可以参考监控宝来进行监控）</div><div class="line"></div><div class="line">[root@tang ~]# yum -y install net-snmp net-snmp-utils</div><div class="line">[root@tang ~]# rpm -qa net-snmp net-snmp-utils</div><div class="line">net-snmp-5.7.2-24.el7_3.2.x86_64</div><div class="line">net-snmp-utils-5.7.2-24.el7_3.2.x86_64</div><div class="line">#如果不知道要安装什么软件包，可以使用yum list|grep snmp</div><div class="line"></div><div class="line">SNMP配置文件路径：</div><div class="line">[root@tang ~]# ll /etc/snmp/</div><div class="line">total 8</div><div class="line">-rw-r--r-- 1 root root  28 Apr 18 21:45 snmpd.conf</div><div class="line">-rw------- 1 root root 220 Apr 13 02:34 snmptrapd.conf</div><div class="line"></div><div class="line"></div><div class="line">修改配置文件，备份修改：</div><div class="line">[root@tang snmp]# mv snmpd.conf snmpd.conf.org</div><div class="line">[root@tang snmp]# cat snmpd.conf.org </div><div class="line">rocommunity tang 172.18.0.1   #第二个为团体名，IP是要监控的服务端</div><div class="line"></div><div class="line">我们被发采集的服务器需要开启snmp</div><div class="line">被采集的服务器要允许snmp访问</div><div class="line"></div><div class="line"></div><div class="line">开启服务</div><div class="line">[root@tang snmp]#  systemctl start snmpd</div><div class="line">[root@tang snmp]# netstat -lntup    #snmp默认监听的是udp161端口</div><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </div><div class="line">tcp        0      0 0.0.0.0:9133            0.0.0.0:*               LISTEN      2478/bubi           </div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      771/sshd            </div><div class="line">tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1594/postmaster     </div><div class="line">tcp        0      0 0.0.0.0:19333           0.0.0.0:*               LISTEN      2478/bubi           </div><div class="line">tcp        0      0 127.0.0.1:199           0.0.0.0:*               LISTEN      19346/snmpd         </div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      2383/mysqld         </div><div class="line">udp        0      0 172.18.0.1:123          0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 172.17.82.185:123       0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 127.0.0.1:123           0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 0.0.0.0:123             0.0.0.0:*                           760/ntpd            </div><div class="line">udp        0      0 0.0.0.0:161             0.0.0.0:*                           19346/snmpd         </div><div class="line">udp6       0      0 :::123                  :::*                                760/ntpd</div></pre></td></tr></table></figure>
+<h3 id="SNMP相关知识"><a href="#SNMP相关知识" class="headerlink" title="SNMP相关知识"></a>SNMP相关知识</h3><ul>
+<li>snmp原理图</li>
+</ul>
+<p><img src="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png" alt="image"></p>
+<blockquote>
+<p>什么是MIB？</p>
+</blockquote>
+<p>MIB是描述被管理设备商的参数的数据结构。如前所述管理一个设备，就是利用snmp协议，通过网络对被管理的设备上的参数进行get和get操作。<br>    那么如何组织被管理设备上的参数呢？多数情况下，可以get和set的参数实在多得惊人，假如仅仅简单地线性罗列它们，操作会十分不便。<br>    想象一下把1000个参数列成一张表，需要使用的时候查询这样一张表会有多么困难啊？比如您打算在地球上找一个城市，”Ithaca”，如果没有归类和分级，则需要查找一张巨大的表格。<br>    但如果告诉您城市”Ithaca”是：南美洲国家圭亚那的北部城市”Ithaca”，那么就容易些了吧？<br>    被管理的设备相当复杂，拥有很多可以被管理的参数，需要对它们进行归类，分级。<br>    管理信息库(MIB)是一个具有分层特性的信息的集合，我们可以通过 SNMP 去存取它。<br>    MIB 的成员是一些被管理的对象(ManagedObject)，以对象标示符(ObjectIdentifiers)来区分它们。被管理的对象由一个或多个对象实例(ObjectInstances)组成，本质上，这些对象实例就是变量。<br>    在 MIB 的层次结构中，一个对象标示符唯一标识了被管理对象。MIB的层次结构可以被描述成无根名的树，树的级别被不同的组织所划分。如下图所示： </p>
+<p>   <img src="http://static.zybuluo.com/abcdocker/p24aj4t6lb0iizva85uk8pct/2.png" alt="image"></p>
+<p> 相应的数字表示（对象标识符OID，唯一标识一个MIB对象）<br> 很多能够被 SNMP 管理的对象都是由标准组织定义好的。比如系统磁盘的信息，用 OID ”1.3.6.1.4.1.2021.9” 表示。这串数字是国际标准化组织协商定义好的，大家都要去遵循它。<br> 当然，国际组织不可能预知未来，如果您要开发的设备有一些管理需求没有任何 RFC 定义过，那么您也可以编写自己的 MIB 文件来定义私有的 MIB 对象。<br> NET-SNMP 是一种开放源代码的 SNMP 协议实现。它支持 SNMP v1, SNMP v2c 与 SNMP v3，并可以使用 IPV4 及 IPV6 。也包含 SNMP Trap 的所有相关实现。<br> Net-snmp 包含了 snmp 实用程序集和完整的 snmp 开发库。<br>用户使用 net-snmp 提供的工具，可以完成很多关于 SNMP 的操作，具体说来，包括以下一些命令行应用程序：<br>一些应用程序可以用来从支持 SNMP 的设备获得数据。其中 snmpget, snmpgetnext 可以支持独立请求，比如：</p>
+<p> <img src="http://static.zybuluo.com/abcdocker/r7hrbhcj5ixjsxqi7qxcgvko/3.png" alt="image"></p>
+<blockquote>
+<p>NET-SNMP 简介</p>
+</blockquote>
+<p> 在 Linux 系统中，我们可以选择 net-snmp 来处理绝大多数和 SNMP 相关的工作。<br>NET-SNMP 是一种开放源代码的 SNMP 协议实现。它支持 SNMP v1, SNMP v2c 与 SNMP v3，并可以使用 IPV4 及 IPV6 。也包含 SNMP Trap 的所有相关实现。Net-snmp 包含了 snmp 实用程序集和完整的 snmp 开发库。<br>用户使用 net-snmp 提供的工具，可以完成很多关于 SNMP 的操作，具体说来，包括以下一些命令行应用程序：<br>一些应用程序可以用来从支持 SNMP 的设备获得数据。其中 snmpget, snmpgetnext 可以支持独立请求，比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">% snmpget -v 1 -c demopublic test.net-snmp.org system.sysUpTime.0 </div><div class="line">system.sysUpTime.0 = Timeticks: (586731977) 67 days, 21:48:39.77</div></pre></td></tr></table></figure></p>
+<p>该命令获得单个独立的 MIB 对象 system.sysUpTime.0 的值。</p>
+<p>而 snmpwalk, snmptable, snmpdelta 则用来支持重复请求。</p>
+<pre><code>% snmpwalk -v 2c -c demopublic test.net-snmp.org system 
+SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715 
+SNMPv2-MIB::sysObjectID.0 = OID: enterprises.ucdavis.ucdSnmpAgent.hpux10 
+SNMPv2-MIB::sysUpTime.0 = Timeticks: (586998396) 67 days, 22:33:03.96 
+SNMPv2-MIB::sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu 
+SNMPv2-MIB::sysName.0 = net-snmp
+</code></pre><p>上面的命令返回所有 system 节点以下的 MIB 对象的值。<br>命令 snmpset 对支持 SNMP 的设备配置属性。如下例所示</p>
+<pre><code>$ snmpget -v 1 -c demopublic test.net-snmp.org ucdDemoPublicString.0 
+UCD-DEMO-MIB::ucdDemoPublicString.0 = &quot;hi there!&quot; 
+$ snmpset -v 1 -c demopublic test.net-snmp.org ucdDemoPublicString.0 s &quot;Hello, world!&quot; 
+UCD-DEMO-MIB::ucdDemoPublicString.0 = &quot;Hello, world!&quot; 
+$ snmpget -v 1 -c demopublic test.net-snmp.org ucdDemoPublicString.0 
+UCD-DEMO-MIB::ucdDemoPublicString.0 = &quot;Hello, world!&quot;
+</code></pre><p>命令snmpdf, snmpnetstat, snmpstatus 可以从支持 SNMP 的设备获取特定的信息。比如下面的命令从目标系统上获得类似 netstat 的信息：</p>
+<pre><code>% snmpnetstat -v 2c -c public -a testhost 
+Active Internet (tcp) Connections (including servers) 
+Proto Local Address Foreign Address (state) 
+tcp *.echo *.* LISTEN 
+tcp *.discard *.* LISTEN 
+tcp *.daytime *.* LISTEN 
+tcp *.chargen *.* LISTEN 
+tcp *.ftp *.* LISTEN
+tcp *.telnet *.* LISTEN 
+tcp *.smtp *.* LISTEN 
+Active Internet (udp) Connections 
+Proto Local Address 
+udp *.echo 
+udp *.discard 
+udp *.daytime 
+udp *.chargen 
+udp *.time
+</code></pre><p>snmptranslate 命令将 MIB OIDs 的两种表现形式 ( 数字及文字 ) 相互转换。并显示 MIB 的内容与结构，如下所示：</p>
+<pre><code>% snmptranslate .1.3.6.1.2.1.1.3.0 
+    SNMPv2-MIB::sysUpTime.0 
+% snmptranslate -On SNMPv2-MIB::sysUpTime.0 
+    .1.3.6.1.2.1.1.3.0
+</code></pre><p>Net-snmp还提供了一个基于 Tk/perl 的，图形化的 MIB 浏览器 tkmib。<br>首先调用函数 snmp_pdu_create 创建一个 SNMPv2 的 Trap PDU。然后调用 snmp_add_var 向该 PDU 中添加图三所示的三个部分。<br>sysUpTime 在 SNMPv2-MIB中定义，其OID为”1.3.6.1.2.1.1.3.0”。我们只需要通过 get_uptime() 函数获得该值，然后调用snmp_add_var将该变量加入刚才创建的 PDU中。</p>
+<p>SNMP例子：查看系统第一分钟的负载</p>
+<pre><code>[root@tang snmp]#  snmpget -v2c -c tang 172.17.82.185  1.3.6.1.4.1.2021.10.1.3.1
+</code></pre><ul>
+<li><p>-c是团体名，在配置文件中定义的，还有ip地址       </p>
+<pre><code>UCD-SNMP-MIB::laLoad.1 = STRING: 0.00
+[root@tang snmp]# cat /etc/snmp/snmpd.conf
+rocommunity tang 172.17.82.185
+</code></pre></li>
+</ul>
+<p>提示：我们cpu所有指标都有一个oid 后面我们定义的数字就是oid<br>例如cacti就是通过snmp来获取性能指标，在使用RRDTool来进行画图</p>
+<blockquote>
+<p>SNMP 2种常用模式</p>
+</blockquote>
+<p>1.GerRequest PDU<br>2.GetNextRequest PDU</p>
+<pre><code>[root@localhost snmp]# snmpwalk -v2c -c tang 172.17.82.185 1.3.6.1.4.1.2021.10.1.3
+UCD-SNMP-MIB::laLoad.1 = STRING: 0.00
+UCD-SNMP-MIB::laLoad.2 = STRING: 0.01
+UCD-SNMP-MIB::laLoad.3 = STRING: 0.05
+[root@localhost snmp]# uptime 
+ 13:16:08 up  6:35,  2 users,  load average: 0.00, 0.01, 0.05
+</code></pre><p>linux下常用Oid<br><a href="http://linux.chinaunix.net/techdoc/net/2008/08/21/1026818.shtml" target="_blank" rel="external">http://linux.chinaunix.net/techdoc/net/2008/08/21/1026818.shtml</a><br><a href="http://www.2cto.com/os/201211/170730.html" target="_blank" rel="external">http://www.2cto.com/os/201211/170730.html</a><br>提示：只需要在IP地址后面输入相对应的oid即可</p>
+<h3 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h3><blockquote>
+<p>CPU<br>内存<br>IO Input/Output(网络、磁盘)</p>
+</blockquote>
+<pre><code>企业面试题：如果系统负载达到200了，SSH连接不上，如何让SSH连接上
+      解答：改变SSH的优先级
+</code></pre><h4 id="CPU监控"><a href="#CPU监控" class="headerlink" title="CPU监控"></a>CPU监控</h4><pre><code>cpu三个重要概念：
+1.上下文切换：CPU调度器实施的进程的切换过程，上下文切换
+2.运行队列（负载）：运行队列，排队可以参考 我是一个进程文章（http://blog.csdn.net/nylx/article/details/51058389）
+3.使用率
+
+监控CPU需要确定服务类型：
+1.IO密集型（数据库）
+2.CPU密集型（web/mail）
+
+确定性能的基准线：
+1.运行队列：1-3个线程    基准：1CPU 4核 负载不超过12
+2.CPU使用：65%-70%用户态利用率
+           30%-35%内核态利用率
+           0%-5%空闲
+3.上下文切换：越少越好
+
+所有的监控都要根据业务来考虑
+</code></pre><h4 id="常见CPU监控工具"><a href="#常见CPU监控工具" class="headerlink" title="常见CPU监控工具"></a>常见CPU监控工具</h4><p><code>top sysstat mpstat</code></p>
+<h5 id="top说明"><a href="#top说明" class="headerlink" title="top说明"></a>top说明</h5><p><img src="http://static.zybuluo.com/abcdocker/hecq3ii0fy0pq8cahuhxblun/4.png" alt="image"></p>
+<p><strong>第一行</strong> <code>分别显示：系统当前时间 系统运行时间 当前用户登陆数 系统负载</code>。<br>　　系统负载（loadaverage），这里有三个数值，分别是系统最近<code>1分钟</code>，<code>5分钟</code>，<code>15分钟</code>的平均负载。<br>　　一般对于单个处理器来说，负载在0—1.00之间是正常的，超过1.00就要引起注意了。在多核处理器中，你的系统均值不应该高于处理器核心的总数。</p>
+<p><strong>第二行</strong> 分别显示：<code>total</code>进程总数、 <code>running</code>正在运行的进程数、 <code>sleeping</code>睡眠的进程数、<code>stopped</code>停止的进程数、 <code>zombie</code>僵尸进程数。</p>
+<p><strong>第三行</strong><br>    分别显示：<br>   <code>%us</code>用户空间占用CPU百分比、<br>    <code>%sy</code>内核空间占用CPU百分比、<br>    <code>%ni</code>用户进程空间内改变过优先级的进程占用CPU百分比、<br>    <code>%id</code>空闲CPU百分比、<br>    <code>%wa</code>等待输入输出（I/O）的CPU时间百分比 、<br>    <code>%hi</code>指的是cpu处理硬件中断的时间、%si指的是cpu处理软中断的时间 、<br>    <code>%st</code>用于有虚拟cpu的情况，用来指示被虚拟机偷掉的cpu时间。<br>    通常<code>id%</code>值可以反映一个系统cpu的闲忙程度。</p>
+<p><strong>第四行</strong> MEM ：<code>total</code> 物理内存总量、 <code>used</code> 使用的物理内存总量、<code>free</code> 空闲内存总量、 <code>buffers</code> 用作内核缓存的内存量。</p>
+<p><strong>第五行</strong> SWAP：<code>total</code> 交换区总量、 <code>used</code>使用的交换区总量、<code>free</code> 空闲交换区总量、 <code>cached</code>缓冲的交换区总量。<br><code>buffers</code>和<code>cached</code>的区别需要说明一下，<code>buffers</code>指的是块设备的读写缓冲区，cached指的是文件系统本身的页面缓存。它们都是linux操作系统底层的机制，目的就是为了加速对磁盘的访问</p>
+<p><strong>第六行</strong> PID(进程号)、 <code>USER</code>（运行用户）、<code>PR</code>（优先级）、<code>NI</code>（任务nice值）、<code>VIRT</code>（虚拟内存用量）<code>VIRT=SWAP+RES</code> 、<code>RES</code>（物理内存用量）、<code>SHR</code>（共享内存用量）、<code>S（进程状态）、%CPU</code>（CPU占用比）、<code>%MEM</code>（物理内存占用比）、<code>TIME+</code>（累计CPU占 用时间)、　<code>COMMAND</code> 命令名/命令行。</p>
+<p><strong>top命令的使用方法</strong>：<br>top [-] [d]</p>
+<p>[q] [c] [C] [S]  [n]<br>运维必会！<br>参数说明<br>d指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。<br>p通过指定监控进程ID来仅仅监控某个进程的状态。<br>q该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。<br>S指定累计模式。<br>s使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。<br>i使top不显示任何闲置或者僵死进程。<br>c显示整个命令行而不只是显示命令名。</p>
+<p>下面介绍在top命令执行过程中可以使用的一些交互命令<br>　　从使用角度来看，熟练的掌握这些命令比掌握选项还重要一些。<br>　　这些命令都是单字母的，如果在命令行选项中使用了s选项，则可能其中一些命令会被屏蔽掉。<br>Ctrl+L 擦除并且重写屏幕。<br>h或者? 显示帮助画面，给出一些简短的命令总结说明。<br>k 终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。<br>i 忽略闲置和僵死进程。这是一个开关式命令。<br>q 退出程序。<br>r 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。<br>s 改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。<br>f或者F 从当前显示中添加或者删除项目。<br>o或者O 改变显示项目的顺序。<br>l 切换显示平均负载和启动时间信息。<br>m 切换显示内存信息。<br>t 切换显示进程和CPU状态信息。<br>c 切换显示命令名称和完整命令行。<br>M 根据驻留内存大小进行排序。<br>P 根据CPU使用百分比大小进行排序。<br>T 根据时间/累计时间进行排序。<br>W 将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。<br>Shift+M 可按内存占用情况进行排序。</p>
+<h5 id="sysstat-说明"><a href="#sysstat-说明" class="headerlink" title="sysstat 说明"></a>sysstat 说明</h5><pre><code>[root@tang ~]# yum install sysstat -y
+[root@tang ~]# vmstat --help
+usage: vmstat [-V] [-n] [delay [count]]
+              -V prints version.
+              -n causes the headers not to be reprinted regularly.
+              -a print inactive/active page stats.
+              -d prints disk statistics
+              -D prints disk table
+              -p prints disk partition statistics
+              -s prints vm table
+              -m prints slabinfo
+              -t add timestamp to output
+              -S unit size
+              delay is the delay between updates in seconds. 
+              unit size k:1000 K:1024 m:1000000 M:1048576 (default is K)
+              count is the number of updates.
+</code></pre><blockquote>
+<p>例子：每隔1秒获取1次，次数不限</p>
+</blockquote>
+<pre><code>[root@tang snmp]# vmstat 1
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 4  0      0 926348 124344 624748    0    0     2     6  124  150  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1252 2559  0  1 99  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1260 2562  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1256 2569  1  0 99  0  0
+
+r表示CPU排队的情况，b代表 进程堵塞，等待io 
+每隔1秒获取1次，次数10次
+
+[root@tang snmp]# vmstat 1 10
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 4  0      0 926332 124344 624748    0    0     2     6  125  150  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1260 2574  1  0 99  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1253 2558  0  1 99  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1279 2589  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1272 2577  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1272 2575  1  0 99  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1267 2574  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1269 2571  0  1 99  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1289 2597  1  1 98  0  0
+ 0  0      0 926332 124344 624748    0    0     0     0 1279 2600  0  1 99  0  0
+</code></pre><h5 id="mpstat说明"><a href="#mpstat说明" class="headerlink" title="mpstat说明"></a>mpstat说明</h5><p>查看所有CPU的平均值</p>
+<pre><code>[root@tang snmp]# mpstat 1
+Linux 3.10.0-514.10.2.el7.x86_64 (tang)     04/23/2017     _x86_64_    (1 CPU)
+
+04:45:51 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+04:45:52 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:45:53 PM  all    1.01    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   98.99
+04:45:54 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:45:55 PM  all    0.00    0.00    1.02    0.00    0.00    0.00    0.00    0.00    0.00   98.98
+
+[root@tang snmp]# mpstat 1 10
+Linux 3.10.0-514.10.2.el7.x86_64 (tang)     04/23/2017     _x86_64_    (1 CPU)
+
+04:46:20 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+04:46:21 PM  all    1.02    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   98.98
+04:46:22 PM  all    0.00    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   98.99
+04:46:23 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:46:24 PM  all    1.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00    0.00   98.00
+04:46:25 PM  all    2.02    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:46:26 PM  all    1.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00    0.00   98.00
+04:46:27 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:46:28 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+04:46:29 PM  all    1.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00    0.00   98.00
+04:46:30 PM  all    1.01    0.00    1.01    0.00    0.00    0.00    0.00    0.00    0.00   97.98
+Average:     all    1.01    0.00    0.81    0.00    0.00    0.00    0.00    0.00    0.00   98.19
+</code></pre><p>上述是CPU监控，CPU监控主要靠经验。因为业务不同指标不同，指标越低越好是不变的道理</p>
+<h4 id="内存监控："><a href="#内存监控：" class="headerlink" title="内存监控："></a>内存监控：</h4><p>硬盘格式化后分成块（blog）<br>内存默认是页（大小4kb）读取按照页来进行读取<br>内存： <code>free</code> <code>vmstat</code></p>
+<pre><code>[root@www ~]# free -m
+             total       used       free     shared    buffers     cached
+Mem:          1875       1338        537          0        173        523
+-/+ buffers/cache:        640       1234
+Swap:            0          0          0
+</code></pre><p>提示：云主机是没有Swap分区的<br><code>total</code> 总内存<br><code>used</code> 已使用内存<br><code>free</code> 空闲内存<br><code>shared</code> 共享内存（进程间相互通信使用共享内存）<br><code>buffers</code> 缓冲<br><code>cached</code>缓存<br>Centos7 会有一个<code>available</code>，活动内存 </p>
+<p>云服务器一般不分配swap分区，物理机能不使用交换分区就不使用交换分区</p>
+<h5 id="vmstat命令"><a href="#vmstat命令" class="headerlink" title="vmstat命令"></a>vmstat命令</h5><pre><code>[root@www ~]# vmstat 1
+procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0      0 550628 177684 536324    0    0     1     6    7   46  1  0 98  0  0    
+ 0  0      0 550620 177684 536324    0    0     0    40  187  429  0  0 100  0  0
+ 0  0      0 550620 177684 536324    0    0     0     0  183  427  1  0 99  0  0    
+ 0  0      0 550620 177684 536324    0    0     0     0  197  436  0  1 99  0  0
+</code></pre><p><code>swpd</code>交换分区的大小<br><code>free</code>可用的物理内存大小<br><code>buff</code> 缓冲区的大小<br><code>cache</code> 缓存区的大小<br><code>si</code> 数据从交换分区读取到内存的大小<br><code>so</code> 数据从内存到交换分区<br><code>bi</code> 从交换分区读到内存（block）<br><code>bo</code>内存写到硬盘的</p>
+<p>内存达到多少报警呢？ <code>80%</code><br>正常是一个进程启动后会一直往上升，最后到达一个平稳期</p>
+<h4 id="硬盘监控"><a href="#硬盘监控" class="headerlink" title="硬盘监控"></a>硬盘监控</h4><p>硬盘：IOPS IO’s Per Second iotop df -h iostat<br>　　顺序IO（快）<br>　　随机IO（慢） </p>
+<blockquote>
+<p>查看磁盘剩余空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@tang ~]# df -h</div><div class="line">Filesystem      Size  Used Avail Use% Mounted on</div><div class="line">/dev/xvda1       40G  4.1G   34G  11% /</div><div class="line">tmpfs           938M     0  938M   0% /dev/shm</div></pre></td></tr></table></figure></p>
+<p>监控磁盘IO iotop</p>
+</blockquote>
+<p>![此处输入图片的描述][1]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@www ~]# yum install iotop -y</div><div class="line">iotop </div><div class="line">1.png-57.2kB</div></pre></td></tr></table></figure></p>
+<p>可以使用dd命令生成一个文件夹进行测试<br>生成命令如下：</p>
+<pre><code>[root@www ~]# dd if=/dev/zero of=/tmp/1.txt bs=1M count=1000
+1000+0 records in
+1000+0 records out
+1048576000 bytes (1.0 GB) copied, 20.509 s, 51.1 MB/s
+[root@www ~]# ls -lh /tmp/1.txt 
+-rw-r--r-- 1 root root 1000M Aug 30 19:48 /tmp/1.txt
+</code></pre><p>此时IO写入如下图<br>![此处输入图片的描述][2]</p>
+<p><code>iostat命令，可以看到那块磁盘，比iotop更加细致</code></p>
+<pre><code>[root@tang ~]# iostat 1 2
+Linux 2.6.32-431.23.3.el6.x86_64 (www)  08/30/2016  _x86_64_    (1 CPU)
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.10    0.00    0.27    0.16    0.00   98.46
+Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+xvda              1.51         2.26        17.09     986748    7467560
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           1.02    0.00    0.00    0.00    0.00   98.98
+Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+xvda              0.00         0.00         0.00          0   
+</code></pre><p><code>tps</code> 设备每秒的传输次数（每秒多少的io请求）<br><code>Blk_read/s</code> 每秒从设备读取的数据量<br><code>Blk_wrtn/s</code> 每秒像设备写入的数据量<br><code>Blk_read</code>写入数据的总数<br><code>Blk_wrtn</code> 读取数据的总数</p>
+<h4 id="网络监控：iftop"><a href="#网络监控：iftop" class="headerlink" title="网络监控：iftop"></a>网络监控：iftop</h4><pre><code>[root@www ~]# yum install iftop -y
+[root@www ~]# iftop -n    #-n不做域名解析
+</code></pre><p>![此处输入图片的描述][3]<br>正常监控只需要监控网卡带宽即可<br>其中网络监控是最复杂的，ping监控网络延迟网络丢包等。但是此类的网络监控只是监控自己到客户端是否丢包，并不能保证客户端到服务器这边不丢包<br>　其中就产生了如：<code>阿里测、奇云测、站长工具</code>等一系列多节点的监控工具</p>
+<p>性能测试常用工具：<code>IBM nmon （nmon analyser---生成AIX性能报告的免费工具）</code><br><a href="http://nmon.sourceforge.net/pmwiki.php" target="_blank" rel="external">http://nmon.sourceforge.net/pmwiki.php</a> #下载地址（需要翻墙工具）<br>所以我们提供了百度云下载<br>链接：<a href="http://pan.baidu.com/s/1boXV6R9" target="_blank" rel="external">http://pan.baidu.com/s/1boXV6R9</a> 密码：sblf<br>只需要下载对应的版本，给执行权限。执行即可</p>
+<pre><code>[root@tang tmp]# chmod +x nmon16e_x86_rhel72 
+[root@tang tmp]# ./nmon16e_x86_rhel72
+</code></pre><p>![此处输入图片的描述][4]<br>我们可以直接输入一个c 一个m一个d。这个是实时的一个状态<br>![此处输入图片的描述][5]</p>
+<p>我们可以查看帮助</p>
+<pre><code>[root@localhost tmp]# ./nmon16e_x86_rhel72 --help
+./nmon16e_x86_rhel72: invalid option -- &apos;-&apos;
+Hint for nmon16e_x86_rhel72 version 16e
+    Full Help Info : nmon16e_x86_rhel72 -h
+    On-screen Stats: nmon16e_x86_rhel72
+    Data Collection: nmon16e_x86_rhel72 -f [-s &lt;seconds&gt;] [-c &lt;count&gt;] [-t|-T]
+    Capacity Plan  : nmon16e_x86_rhel72 -x
+Interactive-Mode:
+    Read the Welcome screen &amp; at any time type: &quot;h&quot; for more help
+    Type &quot;q&quot; to exit nmon
+For Data-Collect-Mode
+    -f            Must be the first option on the line (switches off interactive mode)
+                  Saves data to a CSV Spreadsheet format .nmon file in then local directory
+                  Note: -f sets a defaults -s300 -c288    which you can then modify
+    Further Data Collection Options:
+    -s &lt;seconds&gt;  time between data snapshots
+    -c &lt;count&gt;    of snapshots before exiting
+    -t            Includes Top Processes stats (-T also collects command arguments)
+    -x            Capacity Planning=15 min snapshots for 1 day. (nmon -ft -s 900 -c 96)
+---- End of Hints
+</code></pre><p><code>-c</code>  采集的次数<br><code>-s</code>  采集的间隔时间<br><code>-f</code> 生成一个文件<br><code>-m</code>  指定生成文件位置<br>采集10次 间隔10秒</p>
+<pre><code>[root@localhost tmp]# ./nmon16e_x86_rhel72 -c 10 -s 10 -f -m /tmp/
+[root@localhost tmp]# ls
+localhost_160831_0435.nmon  nmon16e_x86_rhel72
+</code></pre><p>前面为主机名后面是日期（年月日时分）<br>因为测试可能需要，我们要制作成表格，所以现在将文件上传到桌面上</p>
+<pre><code>[root@localhost tmp]# sz localhost_160831_0435.nmon 
+</code></pre><p>我们打开下载的工具<br>![此处输入图片的描述][6]</p>
+<p>解压文件夹，打开nmon analyser v34a.xls<br>![7.png-66.7kB][7]</p>
+<p>点击Analyse nmon data找到我们刚刚复制出来的文件，就可以看到了。<br>![此处输入图片的描述][8]</p>
+<h3 id="应用服务监控："><a href="#应用服务监控：" class="headerlink" title="应用服务监控："></a>应用服务监控：</h3><p>举例：Nginx<br>安装nginx</p>
+<pre><code>[root@localhost ~]# yum install -y gcc glibc gcc-c++ prce-devel openssl-devel
+</code></pre><p>提示：nginx可以使用稳定版的最新版，因为安全性会不断的提高。如果是特别老的版本会有一些漏洞和功能<br>　　要想监控nginx需要在编译时添加如下参数</p>
+<p><code>--with-http_stub_status_module</code></p>
+<p>下载Nginx</p>
+<pre><code>[root@localhost src]# wget http://nginx.org/download/nginx-1.10.1.tar.gz
+</code></pre><p>解压，后面步骤太简单不说了<br>安装</p>
+<pre><code>[root@localhost nginx-1.10.1]# useradd -s /sbin/nologin www
+[root@localhost nginx-1.10.1]# ./configure --prefix=/usr/local/nginx-1.10.1 --user=www --group=www --with-http_ssl_module --with-http_stub_status_module
+</code></pre><p><code>configure</code> 是一个shell脚本，执行它的作用是生成MAKEFILE（编译make需要）</p>
+<pre><code>[root@localhost nginx-1.10.1]# make &amp;&amp; make install
+[root@localhost nginx-1.10.1]# ll
+total 676
+drwxr-xr-x 6 1001 1001   4096 Aug 31 06:02 auto
+-rw-r--r-- 1 1001 1001 262898 May 31 09:47 CHANGES
+-rw-r--r-- 1 1001 1001 400701 May 31 09:47 CHANGES.ru
+drwxr-xr-x 2 1001 1001   4096 Aug 31 06:02 conf
+-rwxr-xr-x 1 1001 1001   2481 May 31 09:47 configure
+drwxr-xr-x 4 1001 1001     68 Aug 31 06:02 contrib
+drwxr-xr-x 2 1001 1001     38 Aug 31 06:02 html
+-rw-r--r-- 1 1001 1001   1397 May 31 09:47 LICENSE
+-rw-r--r-- 1 root root    404 Aug 31 07:46 Makefile
+drwxr-xr-x 2 1001 1001     20 Aug 31 06:02 man
+drwxr-xr-x 3 root root    119 Aug 31 07:46 objs
+-rw-r--r-- 1 1001 1001     49 May 31 09:47 README
+drwxr-xr-x 9 1001 1001     84 Aug 31 06:02 src
+</code></pre><p><code>make是生成文件</code>，<code>make install</code>是将生成的文件拷贝到不同的地方<br>make install 完成之后可以直接将当前目录拷贝到其他服务器上，安装相同的依赖就可以进行使用。</p>
+<pre><code>[root@localhost nginx-1.10.1]# ln -s /usr/local/nginx-1.10.1/ /usr/local/nginx
+[root@localhost nginx-1.10.1]# netstat -lntp|grep nginx
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      7058/nginx: master  
+</code></pre><p>修改nginx.conf配置文件</p>
+<pre><code>location /status {
+stub_status on;
+access_log off;
+    allow 192.168.56.0/24;
+deny all;
+}
+</code></pre><p>设置只允许56网段访问，并开启日志和状态模块<br>这个比较基础，如果不知道怎么添加。可以参考www.nginx.org 状态模块<br>浏览器访问：<a href="http://192.168.56.11/status" target="_blank" rel="external">http://192.168.56.11/status</a></p>
+<pre><code>Active connections: 1 
+server accepts handled requests
+ 3 3 163 
+Reading: 0 Writing: 1 Waiting: 0 
+Active connections: 当前活跃的连接数 
+</code></pre><p>3—-&gt; 一共处理了多少个链接（请求）<br>3—-&gt; 成功创建多少次握手<br>163–&gt; 总共创建了多少个请求<br>Reading:当前读取客户端heardr的数量<br>Writing:当前返回给客户端heardr的数量 　#如果这个指标飙升，说明是后面的节点挂掉了，例如数据库等。<br>Waiting:大体意思是已经处理完，等待下次请求的数量<br>提示：我们只需要关注活动链接即可</p>
+<p><strong>监控最基础的功能</strong><br><strong><code>采集 存储 展示 告警</code></strong></p>
+<p>　<strong>几款监控软件说明：</strong><br>    <code>Nagios+Cacti</code>Nagios报警功能比较强，但是画图比较弱（有插件） Cacti 画图比较强，报警比较弱（有插件）<br><code>Zabbix</code>可以直接监控IPMI、SNMP、JVM 这些监控项目别的软件本身干不了，插件除外 Zabbix分为Server—-&gt;Agent 有主动和被动模式<br><code>Gangla</code>　根本没听说过！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 运维监控 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 运维监控 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[五分钟商学院--大纲]]></title>
       <url>http://yoursite.com/2016/09/25/%E4%BA%94%E5%88%86%E9%92%9F%E5%95%86%E5%AD%A6%E9%99%A2--%E5%A4%A7%E7%BA%B2/</url>
       <content type="html"><![CDATA[<p>商业四大体系合体。</p>

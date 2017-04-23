@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="运维监控," />
 
 
 
@@ -57,15 +57,30 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高
+监控范围1.硬件监控服务器的硬件故障2.操作系统监控CPU、内存、硬盘、IO、进程3.应用服务监控nginx、mysql等服务4.业务监控
+硬件监控1.使用IPMI2.机房巡检
+远程控制卡：DELL服务器：IDRACHP服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全面监控体系">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/监控体系/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高
+监控范围1.硬件监控服务器的硬件故障2.操作系统监控CPU、内存、硬盘、IO、进程3.应用服务监控nginx、mysql等服务4.业务监控
+硬件监控1.使用IPMI2.机房巡检
+远程控制卡：DELL服务器：IDRACHP服务">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/p24aj4t6lb0iizva85uk8pct/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/r7hrbhcj5ixjsxqi7qxcgvko/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/abcdocker/hecq3ii0fy0pq8cahuhxblun/4.png">
+<meta property="og:updated_time" content="2017-04-23T09:29:49.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="全面监控体系">
+<meta name="twitter:description" content="监控对象1.监控对象的理解：CPU是怎么工作的,原理2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换3.确定性能基准线：怎样才算故障？CPU负载多少才算高
+监控范围1.硬件监控服务器的硬件故障2.操作系统监控CPU、内存、硬盘、IO、进程3.应用服务监控nginx、mysql等服务4.业务监控
+硬件监控1.使用IPMI2.机房巡检
+远程控制卡：DELL服务器：IDRACHP服务">
+<meta name="twitter:image" content="http://static.zybuluo.com/abcdocker/2imo9lugq26ugfjcqi7aaxhg/1.png">
 
 
 
@@ -83,7 +98,7 @@
   };
 </script>
 
-  <title> BRUCETANG </title>
+  <title> 全面监控体系 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,9 +119,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +249,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -258,461 +271,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-                  XtraBackup主从复制及备份
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Hexo常用命令/" itemprop="url">
-                  Hexo常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:12:33+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong><em>Hexo部署步骤</em></strong></p>
-<pre><code>npm install    
-npm install hexo-deployer-git --save   
-hexo new &quot;新页面&quot;    
-hexo clean   
-hexo generate
-hexo deploy    
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Hexo常用命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/01/运维与自动化发展(1)/" itemprop="url">
-                  运维与自动化发展(1)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T12:37:26+08:00" content="2017-01-01">
-              2017-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">运维自动化</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="一、运维学习和发展的一个线路"><a href="#一、运维学习和发展的一个线路" class="headerlink" title="一、运维学习和发展的一个线路"></a>一、运维学习和发展的一个线路</h3><pre><code>1.搭建服务（部署并运行起来）
-
-2.用好服务（监控、管理、优化）
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/01/运维与自动化发展(1)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/01/监控体系/" itemprop="url">
-                  全面监控体系
-                </a>
+                全面监控体系
               
             
           </h1>
@@ -770,9 +329,7 @@ hexo deploy
       
 
       
-        
-          
-            <h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
+        <h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
 <h3 id="监控范围"><a href="#监控范围" class="headerlink" title="监控范围"></a>监控范围</h3><p>1.硬件监控服务器的硬件故障<br>2.操作系统监控CPU、内存、硬盘、IO、进程<br>3.应用服务监控nginx、mysql等服务<br>4.业务监控</p>
 <h3 id="硬件监控"><a href="#硬件监控" class="headerlink" title="硬件监控"></a>硬件监控</h3><p>1.使用IPMI<br>2.机房巡检</p>
 <p>远程控制卡：<br>DELL服务器：<code>IDRAC</code><br>HP服务器：<code>ILO</code>—-Linux就可以使用IPMI（依赖于BMC控制器）<br>IBM服务器：<code>IMM</code></p>
@@ -1104,480 +661,55 @@ Active connections: 当前活跃的连接数
 <p><strong>监控最基础的功能</strong><br><strong><code>采集 存储 展示 告警</code></strong></p>
 <p>　<strong>几款监控软件说明：</strong><br>    <code>Nagios+Cacti</code>Nagios报警功能比较强，但是画图比较弱（有插件） Cacti 画图比较强，报警比较弱（有插件）<br><code>Zabbix</code>可以直接监控IPMI、SNMP、JVM 这些监控项目别的软件本身干不了，插件除外 Zabbix分为Server—-&gt;Agent 有主动和被动模式<br><code>Gangla</code>　根本没听说过！</p>
 
-          
-        
       
     </div>
 
     <div>
       
+        
+      
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/25/五分钟商学院--大纲/" itemprop="url">
-                  五分钟商学院--大纲
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-25T23:23:33+08:00" content="2016-09-25">
-              2016-09-25
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/运维监控/" rel="tag">#运维监控</a>
           
-
-          
-            
-          
-
-          
-
-          
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>商业四大体系合体。</p>
-<p>1）商业，你与企业外部的关系；<br>2）管理，你与企业内部的关系；<br>3）个人，你与自己的关系；<br>4）以及提升前三者的：工具。    </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/25/五分钟商学院--大纲/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/25/五分钟商学院--大纲/" rel="next" title="五分钟商学院--大纲">
+                <i class="fa fa-chevron-left"></i> 五分钟商学院--大纲
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/01/01/运维与自动化发展(1)/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-                  MySQ binlog三种模式及设置方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
-                  Mysql优化系列--总结梳理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于一个网站来说，在运行很长一段时间后，数据库瓶颈问题会越来越暴露出来。作为运维人员，对数据库做必要的优化十分重要！<br>    下面总结以往查阅到的以及自己工作中的一些优化操作经验，并根据OSI七层模型从下往上进行优化mysql数据库记录。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/Mysql优化系列--总结梳理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
-                  Mysqladmin命令总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <pre><code>mysqladmin 工具的使用格式：
-mysqladmin [option] command [command option] command ......
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -1585,6 +717,10 @@ mysqladmin [option] command [command option] command ......
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1604,8 +740,17 @@ mysqladmin [option] command [command option] command ......
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -1657,6 +802,17 @@ mysqladmin [option] command [command option] command ......
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控对象"><span class="nav-number">1.</span> <span class="nav-text">监控对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控范围"><span class="nav-number">2.</span> <span class="nav-text">监控范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件监控"><span class="nav-number">3.</span> <span class="nav-text">硬件监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP监控"><span class="nav-number">4.</span> <span class="nav-text">SNMP监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP相关知识"><span class="nav-number">5.</span> <span class="nav-text">SNMP相关知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统监控"><span class="nav-number">6.</span> <span class="nav-text">系统监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU监控"><span class="nav-number">6.1.</span> <span class="nav-text">CPU监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见CPU监控工具"><span class="nav-number">6.2.</span> <span class="nav-text">常见CPU监控工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top说明"><span class="nav-number">6.2.1.</span> <span class="nav-text">top说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sysstat-说明"><span class="nav-number">6.2.2.</span> <span class="nav-text">sysstat 说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mpstat说明"><span class="nav-number">6.2.3.</span> <span class="nav-text">mpstat说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存监控："><span class="nav-number">6.3.</span> <span class="nav-text">内存监控：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vmstat命令"><span class="nav-number">6.3.1.</span> <span class="nav-text">vmstat命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘监控"><span class="nav-number">6.4.</span> <span class="nav-text">硬盘监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络监控：iftop"><span class="nav-number">6.5.</span> <span class="nav-text">网络监控：iftop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用服务监控："><span class="nav-number">7.</span> <span class="nav-text">应用服务监控：</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1741,6 +897,10 @@ mysqladmin [option] command [command option] command ......
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
 
   
 
