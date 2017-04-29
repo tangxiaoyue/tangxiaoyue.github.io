@@ -371,8 +371,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-                  XtraBackup主从复制及备份
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
+                  Docker 基础（3）--容器登入
                 </a>
               
             
@@ -399,8 +399,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -432,10 +432,16 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
       
         
-          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
+          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+<p>强烈推荐使用此种方法：简单、方便</p>
+</blockquote>
+<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -599,116 +605,6 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2017/01/01/监控体系/" itemprop="url">
-                  监控体系
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T12:37:26+08:00" content="2017-01-01">
-              2017-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/01/监控体系/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/01/01/运维与自动化发展/" itemprop="url">
                   运维与自动化发展(1)
                 </a>
@@ -822,8 +718,118 @@ hexo deploy
             
               
                 
+                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--nginx/" itemprop="url">
+                  zabbix 3.0 服务监控--nginx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
+              2016-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./configure &amp;&amp; make就可以了，不用make install。不过，一般情况下都是安装了的。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--nginx/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/" itemprop="url">
-                  zabbix 3.0 基础介绍 [一]
+                  zabbix 3.0 基础介绍
                 </a>
               
             
@@ -886,6 +892,116 @@ hexo deploy
           <h2 id="Zabbix介绍"><a href="#Zabbix介绍" class="headerlink" title="Zabbix介绍"></a>Zabbix介绍</h2><h3 id="zabbix-简介"><a href="#zabbix-简介" class="headerlink" title="zabbix 简介"></a>zabbix 简介</h3><p>　　Zabbix是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案，由一个国外的团队持续维护更新，软件可以自由下载使用，运作团队靠提供收费的技术支持赢利<br>　　zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。<br>　　zabbix能监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题<br>　　zabbix主要由2部分构成zabbixserver和zabbixagent，可选组建zabbix proxyzabbix。　　<br>　　server可以通过SNMP，zabbixagent，fping端口监视等方法对远程服务器或网络状态完成监视，数据收集等功能。同时支持Linux以及Unix平台，Windows平台只能安装客户端<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/01/监控体系/" itemprop="url">
+                  监控体系
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-01T12:37:26+08:00" content="2016-10-01">
+              2016-10-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/01/监控体系/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1243,123 +1359,11 @@ hexo deploy
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
-                  Mysqladmin命令总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <pre><code>mysqladmin 工具的使用格式：
-mysqladmin [option] command [command option] command ......
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1400,7 +1404,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

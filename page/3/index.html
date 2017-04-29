@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,16 +57,15 @@
 
 
 
-<meta name="description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（8）--网络管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（8）--网络管理/index.html">
+<meta name="description" content="勿忘初衷，方得始终">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRUCETANG">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
-<meta property="og:updated_time" content="2017-04-07T05:56:08.644Z">
+<meta property="og:description" content="勿忘初衷，方得始终">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（8）--网络管理">
-<meta name="twitter:description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
+<meta name="twitter:title" content="BRUCETANG">
+<meta name="twitter:description" content="勿忘初衷，方得始终">
 
 
 
@@ -84,7 +83,7 @@
   };
 </script>
 
-  <title> Docker 基础（8）--网络管理 | BRUCETANG </title>
+  <title> BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -105,7 +104,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,9 +236,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
   
@@ -257,7 +258,10 @@
             
             
               
-                Docker 基础（8）--网络管理
+                
+                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
+                  Mysqladmin命令总结
+                </a>
               
             
           </h1>
@@ -269,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
+              2016-03-11
             </time>
           </span>
 
@@ -283,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -315,147 +319,44 @@
       
 
       
-        <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre><a id="more"></a>
-<pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 --net=host centos bash
-406cdb306f3c350b6f5344048ae25426f1df3f6863162c0b3a91e3dcd48eba
-[root@docker ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-[root@docker ~]# docker-enter node1    #进去之后修改主机名，因为主机名个宿主机一样，貌似-h也指定不了主机名
-[root@node1 ~]# yum install -y net-tools
-[root@node1 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-</code></pre><h4 id="第二种网络模式container"><a href="#第二种网络模式container" class="headerlink" title="第二种网络模式container"></a>第二种网络模式container</h4><pre><code>container模式: 使用--net=container:container_id/container_name多个容器使用共同的网络,看到的ip是一样的.
-
-
-[root@docker ~]# docker run -itd -h node2 --name node2  --net=container:node1 centos bash     #此处不能指定主机名创建，否则失败
-/usr/bin/docker-current: Error response from daemon: Conflicting options: hostname and the network mode.
-See &apos;/usr/bin/docker-current run --help&apos;
-[root@docker ~]# docker run -itd  --name node2 --net=container:node1 centos bash
-0fc16c4a055cf0035c1241ba6cce6c5ad0c711f2ef13e0589c3254f19a96b271
-[root@docker ~]# docker-enter node2
-[root@node2 ~]# yum install -y net-tools
-[root@node2 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;    #和node1的ip一样，也和宿主机的ip一样（node1使用的是--net=host模式）
-172.17.82.185
-</code></pre><h4 id="第三种网络模式none"><a href="#第三种网络模式none" class="headerlink" title="第三种网络模式none"></a>第三种网络模式none</h4><pre><code>none模式: 使用--net=none, 这种模式下,不会配置任何网络
-
-[root@docker ~]# docker run -itd -h node3 --name node3 --net=none centos
-c1f4bd859566f11517248718a94456066d16ad66748a2c78743881e450d4ca09
-[root@docker ~]# docker-enter node3
-[root@node3 ~]# ping www.baidu.com
-ping: www.baidu.com: Name or service not known
-</code></pre><h4 id="第四种网络模式bridge"><a href="#第四种网络模式bridge" class="headerlink" title="第四种网络模式bridge"></a>第四种网络模式bridge</h4><pre><code>bridge模式: 使用--net=bridge.创建完容器默认为这种网络模式.类似与vmware的nat网络模式.
-
-[root@docker ~]# docker run -itd -h node4 --name node4 --net=bridge centos bash
-fc4f817e741f22615d0cdbab6608877d268ea15be6ba790cae5706d03871ac41
-</code></pre><h3 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h3><pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 centos bash
-27df97f0e77e745660ee7b9c8b318c64f63e6aa632db3d3b0c44c4e0f4006124
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-[root@node1 ~]# yum install -y nginx
-[root@docker ~]# docker commit -m &quot;nginx&quot; -a &quot;tang&quot; 27df97f0e77e nginx:v1
-    #此处仅容器做为镜像，主要是减少以后重复性的工作，不需要新建一个容器在部署nginx
-
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 81:80 nginx:v1 bash      #-p 端口映射，射到宿主机81端口上
-a5dd375e829d05734a935d5f41723841568b543822a64a4ec277480f5f552e41
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# /usr/sbin/nginx 
-[root@nginx ~]# echo &quot;TangXiaoyue&quot; &gt; /usr/share/nginx/html/1.html
-[root@nginx ~]# curl 127.0.0.1/1.html
-TangXiaoyue
-[root@nginx ~]# exit
-logout
-[root@docker ~]#  curl 127.0.0.1:81/1.html
-TangXiaoyue
-</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><pre><code>1.安装mysql
-[root@docker ~]# docker run --privileged -itd -h node1 --name node1 centos /sbin/init
-fd547b535ff3af19bf36b219f542864962d60480a8d56836db30c20f079ec43f
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# yum install -y wget
-[root@node1 ~]# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# rpm -ivh mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# yum install mysql-community-server
-[root@node1 ~]# systemctl start mysql.service
-[root@node1 ~]# mysql -uroot
-&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
-
-2.制作mysql镜像
-[root@docker ~]# docker commit -m &quot;mysql&quot; -a &quot;tang&quot; fd547b535ff3 mysql:v1
-sha256:21af416e70b0302163e4aa279118afdd96a0c8590487268a3d26920caf6c5d1a
-[root@docker ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-mysql                v1                  21af416e70b0        4 seconds ago       797.3 MB
-
-
-[root@docker ~]# docker run --privileged -itd -h mysql --name mysql mysql:v1 /sbin/init
-8d71a34516a2c05a7ea63fde5773785360d1301509d687797eec5ead62a01d55
-
-
-3.以mysql、nginx镜像分别创建两个容器并端口映射
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 10080:80 --link mysql:db nginx:v1 bash
-8aea6116f67c9760b8f4d3de08251b28af839b9e2195860ad4b24d54833c286a
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# yum install -y telnet
-[root@nginx ~]# telnet db 3306
-Trying 172.18.0.3...
-Connected to db.
-Escape character is &apos;^]&apos;.
-CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConnection closed by foreign host.
-[root@nginx ~]# cat /etc/hosts
-172.18.0.3    db mysql mysql
-172.18.0.4    nginx
-</code></pre><h3 id="配置网桥-centos7"><a href="#配置网桥-centos7" class="headerlink" title="配置网桥(centos7)"></a>配置网桥(centos7)</h3>
+        
+          <pre><code>mysqladmin 工具的使用格式：
+mysqladmin [option] command [command option] command ......
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
       
     </div>
 
     <div>
       
-        
-      
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（7）--数据管理/" rel="next" title="Docker 基础（7）--数据管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（7）--数据管理
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（6）--仓库管理/" rel="prev" title="Docker 基础（6）--仓库管理">
-                Docker 基础（6）--仓库管理 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -463,10 +364,6 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -486,17 +383,8 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -548,17 +436,6 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker四种网络模式"><span class="nav-number">1.</span> <span class="nav-text">Docker四种网络模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种网络模式host"><span class="nav-number">1.1.</span> <span class="nav-text">第一种网络模式host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种网络模式container"><span class="nav-number">1.2.</span> <span class="nav-text">第二种网络模式container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三种网络模式none"><span class="nav-number">1.3.</span> <span class="nav-text">第三种网络模式none</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四种网络模式bridge"><span class="nav-number">1.4.</span> <span class="nav-text">第四种网络模式bridge</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部访问容器"><span class="nav-number">2.</span> <span class="nav-text">外部访问容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器互联"><span class="nav-number">3.</span> <span class="nav-text">容器互联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网桥-centos7"><span class="nav-number">4.</span> <span class="nav-text">配置网桥(centos7)</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -643,10 +520,6 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
 
   
 

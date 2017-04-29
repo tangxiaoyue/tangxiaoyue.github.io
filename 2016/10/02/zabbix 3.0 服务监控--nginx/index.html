@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="zabbix3.0," />
 
 
 
@@ -57,16 +57,26 @@
 
 
 
-<meta name="description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
+<meta name="description" content="在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./confi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（8）--网络管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（8）--网络管理/index.html">
+<meta property="og:title" content="zabbix 3.0 服务监控--nginx">
+<meta property="og:url" content="http://yoursite.com/2016/10/02/zabbix 3.0 服务监控--nginx/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
-<meta property="og:updated_time" content="2017-04-07T05:56:08.644Z">
+<meta property="og:description" content="在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./confi">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/22kbpb7sl7qtsvzwjm9surq7/image_1besj334d1sod120dhjk8q5nrm52.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/e7hxc6s39weeads3rnpnzq2p/image_1besjpivc17rmeqg121v1lb21q045f.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/em6kqvgwt3ycbbgigflho70t/image_1besjsftu15mt11up99dr5m113e69.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/ir2ngoxqvxbprxxfwqq23mq1/image_1besjtqfo2njidk1piq1savdkv73.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/wwx083y7bc6b66voaog1hka3/image_1besk0m01aus19m3a514ol1t5c7g.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/wm6mxp9j2qu4gvvuesjlsfkz/image_1besk2evb1cu71sjrilt3fc15vn8a.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/jxnf3b5cyl3xrtg5zsmrrxr3/image_1besk3o6c13dc1ugi1j931uul1sj38n.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/7ba752fts15h1m2elwtcbdyk/image_1besk4i0m17n01nct16co4lm1u3l94.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/n1vu0z9kg8sq298hjovfrnzh/image_1besk67081san1sh61u961uqv11ub9h.png">
+<meta property="og:updated_time" content="2017-04-29T10:37:46.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（8）--网络管理">
-<meta name="twitter:description" content="Docker四种网络模式第一种网络模式hosthost模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.">
+<meta name="twitter:title" content="zabbix 3.0 服务监控--nginx">
+<meta name="twitter:description" content="在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./confi">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/22kbpb7sl7qtsvzwjm9surq7/image_1besj334d1sod120dhjk8q5nrm52.png">
 
 
 
@@ -84,7 +94,7 @@
   };
 </script>
 
-  <title> Docker 基础（8）--网络管理 | BRUCETANG </title>
+  <title> zabbix 3.0 服务监控--nginx | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +267,7 @@
             
             
               
-                Docker 基础（8）--网络管理
+                zabbix 3.0 服务监控--nginx
               
             
           </h1>
@@ -269,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
+              2016-10-02
             </time>
           </span>
 
@@ -283,8 +293,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
                   </a>
                 </span>
 
@@ -315,98 +325,22 @@
       
 
       
-        <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre><a id="more"></a>
-<pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 --net=host centos bash
-406cdb306f3c350b6f5344048ae25426f1df3f6863162c0b3a91e3dcd48eba
-[root@docker ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-[root@docker ~]# docker-enter node1    #进去之后修改主机名，因为主机名个宿主机一样，貌似-h也指定不了主机名
-[root@node1 ~]# yum install -y net-tools
-[root@node1 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;
-172.17.82.185
-</code></pre><h4 id="第二种网络模式container"><a href="#第二种网络模式container" class="headerlink" title="第二种网络模式container"></a>第二种网络模式container</h4><pre><code>container模式: 使用--net=container:container_id/container_name多个容器使用共同的网络,看到的ip是一样的.
+        <p>在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./configure &amp;&amp; make就可以了，不用make install。不过，一般情况下都是安装了的。<br><a id="more"></a></p>
+<h2 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# yum install -y nginx</div></pre></td></tr></table></figure>
+<h2 id="添加nginx-status模块"><a href="#添加nginx-status模块" class="headerlink" title="添加nginx_status模块"></a>添加nginx_status模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root@node-11 ~]# cd /etc/nginx/conf.d/</div><div class="line">[root@node-11 conf.d]# vim nginx_status.conf </div><div class="line">server &#123;</div><div class="line">    listen    80;</div><div class="line">    location /nginx_status &#123;</div><div class="line">    stub_status on;</div><div class="line">        allow 127.0.0.1;   </div><div class="line">        allow 192.168.1.10;  </div><div class="line">    access_log off;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">提示：nginx必须要有--with-http_stub_status_module模块</div></pre></td></tr></table></figure>
+<h2 id="nginx状态测试"><a href="#nginx状态测试" class="headerlink" title="nginx状态测试"></a>nginx状态测试</h2><p>测试：<a href="http://192.168.1.11/nginx_status" target="_blank" rel="external">http://192.168.1.11/nginx_status</a><br><img src="http://static.zybuluo.com/BruceTang/22kbpb7sl7qtsvzwjm9surq7/image_1besj334d1sod120dhjk8q5nrm52.png" alt="image_1besj334d1sod120dhjk8q5nrm52.png-97.9kB"></p>
+<p>解释说明：使用zabbix来监控nginx状态，通过status状态模块为前提<br>我们现在命令取出我们想要的值，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@node-11 conf.d]# curl -s http://192.168.1.11/nginx_status|grep Active|awk -F &quot;[ ]&quot; &apos;&#123;print $3&#125;&apos;</div><div class="line">1</div><div class="line">这里我们现在只是监控了nginx的一种最大连接数的状态，其实我们可以监控其他的状态</div></pre></td></tr></table></figure></p>
+<h2 id="nginx自定义文件"><a href="#nginx自定义文件" class="headerlink" title="nginx自定义文件"></a>nginx自定义文件</h2><blockquote>
+<p>自己编写一个nginx文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# cd /etc/zabbix/zabbix_agentd.d/</div><div class="line">[root@node-11 zabbix_agentd.d]# ll</div><div class="line">总用量 12</div><div class="line">-rw-r--r--. 1 root root  469 4月  29 17:04 nginx_status.conf</div><div class="line">[root@node-11 zabbix_agentd.d]# cat nginx_status.conf </div><div class="line">UserParameter=nginx.active,/usr/local/src/nginx_status.sh active</div><div class="line">UserParameter=nginx.accepts,/usr/local/src/nginx_status.sh accepts</div><div class="line">UserParameter=nginx.handled,/usr/local/src/nginx_status.sh handled</div><div class="line">UserParameter=nginx.requests,/usr/local/src/nginx_status.sh requests</div><div class="line">UserParameter=nginx.reading,/usr/local/src/nginx_status.sh reading</div><div class="line">UserParameter=nginx.writing,/usr/local/src/nginx_status.sh writing</div><div class="line">UserParameter=nginx.waiting,/usr/local/src/nginx_status.sh waiting</div></pre></td></tr></table></figure></p>
+<p>添加nginx监控脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@node-11 zabbix_agentd.d]# cd /usr/local/src/</div><div class="line">[root@node-11 src]# ll</div><div class="line">总用量 8</div><div class="line">-rwxr-xr-x. 1 root root  759 4月  29 17:05 nginx_status.sh</div><div class="line">[root@node-11 src]# cat nginx_status.sh</div><div class="line">#!/bin/bash</div><div class="line">case $1 in</div><div class="line">    active)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;/Active/ &#123;print $3&#125;&apos; ;;</div><div class="line">    accepts)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;NR==3 &#123;print $1&#125;&apos; ;;</div><div class="line">    handled)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;NR==3 &#123;print $2&#125;&apos; ;;</div><div class="line">    requests)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;NR==3 &#123;print $3&#125;&apos; ;;</div><div class="line">    reading)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;/Reading/ &#123;print $2&#125;&apos; ;;</div><div class="line">    writing)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;/Writing/ &#123;print $4&#125;&apos; ;;</div><div class="line">    waiting)</div><div class="line">        curl -s http://127.0.0.1/nginx_status | awk &apos;/Waiting/ &#123;print $6&#125;&apos; ;;</div><div class="line">    *)</div><div class="line">        echo &quot;Usage: $0 &#123; active | accepts | handled | requests | reading | writing | waiting &#125;&quot; ;;</div><div class="line">esa</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>修改完配置文件都要重启zabbix-agent</strong></p>
+<h2 id="在server端对nginx进行测试"><a href="#在server端对nginx进行测试" class="headerlink" title="在server端对nginx进行测试"></a>在server端对nginx进行测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# yum install -y zabbix-get</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.active&quot;</div><div class="line">1</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.accepts&quot;</div><div class="line">4839</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.requests&quot;</div><div class="line">4841</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.reading&quot;</div><div class="line">0</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.writing&quot;</div><div class="line">1</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -p 10050 -k &quot;nginx.waiting&quot;</div><div class="line">0</div></pre></td></tr></table></figure>
+<p>以上测试正确，我们还需要在zabbix-web页面上进行设置</p>
+<h2 id="监控项添加"><a href="#监控项添加" class="headerlink" title="监控项添加"></a>监控项添加</h2><p>在主机模板上新添一个监控项：<br><img src="http://static.zybuluo.com/BruceTang/e7hxc6s39weeads3rnpnzq2p/image_1besjpivc17rmeqg121v1lb21q045f.png" alt="image_1besjpivc17rmeqg121v1lb21q045f.png-202.6kB"><br><img src="http://static.zybuluo.com/BruceTang/em6kqvgwt3ycbbgigflho70t/image_1besjsftu15mt11up99dr5m113e69.png" alt="image_1besjsftu15mt11up99dr5m113e69.png-178.7kB"><br><img src="http://static.zybuluo.com/BruceTang/ir2ngoxqvxbprxxfwqq23mq1/image_1besjtqfo2njidk1piq1savdkv73.png" alt="image_1besjtqfo2njidk1piq1savdkv73.png-139.1kB"><br>现在一个监控项已经添加好，剩余的直接克隆模板，修改就行<br>最终监控项结果<br><img src="http://static.zybuluo.com/BruceTang/wwx083y7bc6b66voaog1hka3/image_1besk0m01aus19m3a514ol1t5c7g.png" alt="image_1besk0m01aus19m3a514ol1t5c7g.png-266.7kB"></p>
+<h3 id="图形添加"><a href="#图形添加" class="headerlink" title="图形添加"></a>图形添加</h3><p><img src="http://static.zybuluo.com/BruceTang/wm6mxp9j2qu4gvvuesjlsfkz/image_1besk2evb1cu71sjrilt3fc15vn8a.png" alt="image_1besk1ce41cdl1oast6p1i9t13687t.png-190.3kB"><br><img src="http://static.zybuluo.com/BruceTang/jxnf3b5cyl3xrtg5zsmrrxr3/image_1besk3o6c13dc1ugi1j931uul1sj38n.png" alt="image_1besk3o6c13dc1ugi1j931uul1sj38n.png-154.6kB"><br><img src="http://static.zybuluo.com/BruceTang/7ba752fts15h1m2elwtcbdyk/image_1besk4i0m17n01nct16co4lm1u3l94.png" alt="image_1besk4i0m17n01nct16co4lm1u3l94.png-312.6kB"><br>最终结果：<br><img src="http://static.zybuluo.com/BruceTang/n1vu0z9kg8sq298hjovfrnzh/image_1besk67081san1sh61u961uqv11ub9h.png" alt="image_1besk67081san1sh61u961uqv11ub9h.png-321.9kB"></p>
+<p><strong>添加自定义监控项小结： *</strong><br>　　　1、添加用户自定义参数（在/etc/zabbix/zabbix.agent.d/定义了一个nginx_status.conf步骤如上）,<br>　　　2.添加用户自定义获取nginx状态的脚本（/usr/local/src/nginx_status.sh）<br>　　　2、重启zabbix-agent<br>　　　3、在Server端使用zabbix_get测试获取（命令如上）<br>　　　4、在web界面创建item（监控项）<br>　　　5、在web界面创建图形</p>
 
-
-[root@docker ~]# docker run -itd -h node2 --name node2  --net=container:node1 centos bash     #此处不能指定主机名创建，否则失败
-/usr/bin/docker-current: Error response from daemon: Conflicting options: hostname and the network mode.
-See &apos;/usr/bin/docker-current run --help&apos;
-[root@docker ~]# docker run -itd  --name node2 --net=container:node1 centos bash
-0fc16c4a055cf0035c1241ba6cce6c5ad0c711f2ef13e0589c3254f19a96b271
-[root@docker ~]# docker-enter node2
-[root@node2 ~]# yum install -y net-tools
-[root@node2 ~]# ifconfig |awk -F &apos; &apos;  &apos;NR==10{print$2}&apos;    #和node1的ip一样，也和宿主机的ip一样（node1使用的是--net=host模式）
-172.17.82.185
-</code></pre><h4 id="第三种网络模式none"><a href="#第三种网络模式none" class="headerlink" title="第三种网络模式none"></a>第三种网络模式none</h4><pre><code>none模式: 使用--net=none, 这种模式下,不会配置任何网络
-
-[root@docker ~]# docker run -itd -h node3 --name node3 --net=none centos
-c1f4bd859566f11517248718a94456066d16ad66748a2c78743881e450d4ca09
-[root@docker ~]# docker-enter node3
-[root@node3 ~]# ping www.baidu.com
-ping: www.baidu.com: Name or service not known
-</code></pre><h4 id="第四种网络模式bridge"><a href="#第四种网络模式bridge" class="headerlink" title="第四种网络模式bridge"></a>第四种网络模式bridge</h4><pre><code>bridge模式: 使用--net=bridge.创建完容器默认为这种网络模式.类似与vmware的nat网络模式.
-
-[root@docker ~]# docker run -itd -h node4 --name node4 --net=bridge centos bash
-fc4f817e741f22615d0cdbab6608877d268ea15be6ba790cae5706d03871ac41
-</code></pre><h3 id="外部访问容器"><a href="#外部访问容器" class="headerlink" title="外部访问容器"></a>外部访问容器</h3><pre><code>[root@docker ~]# docker run -itd -h node1 --name node1 centos bash
-27df97f0e77e745660ee7b9c8b318c64f63e6aa632db3d3b0c44c4e0f4006124
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-[root@node1 ~]# yum install -y nginx
-[root@docker ~]# docker commit -m &quot;nginx&quot; -a &quot;tang&quot; 27df97f0e77e nginx:v1
-    #此处仅容器做为镜像，主要是减少以后重复性的工作，不需要新建一个容器在部署nginx
-
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 81:80 nginx:v1 bash      #-p 端口映射，射到宿主机81端口上
-a5dd375e829d05734a935d5f41723841568b543822a64a4ec277480f5f552e41
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# /usr/sbin/nginx 
-[root@nginx ~]# echo &quot;TangXiaoyue&quot; &gt; /usr/share/nginx/html/1.html
-[root@nginx ~]# curl 127.0.0.1/1.html
-TangXiaoyue
-[root@nginx ~]# exit
-logout
-[root@docker ~]#  curl 127.0.0.1:81/1.html
-TangXiaoyue
-</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><pre><code>1.安装mysql
-[root@docker ~]# docker run --privileged -itd -h node1 --name node1 centos /sbin/init
-fd547b535ff3af19bf36b219f542864962d60480a8d56836db30c20f079ec43f
-[root@docker ~]# docker-enter node1
-[root@node1 ~]# yum install -y wget
-[root@node1 ~]# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# rpm -ivh mysql-community-release-el7-5.noarch.rpm
-[root@node1 ~]# yum install mysql-community-server
-[root@node1 ~]# systemctl start mysql.service
-[root@node1 ~]# mysql -uroot
-&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
-
-2.制作mysql镜像
-[root@docker ~]# docker commit -m &quot;mysql&quot; -a &quot;tang&quot; fd547b535ff3 mysql:v1
-sha256:21af416e70b0302163e4aa279118afdd96a0c8590487268a3d26920caf6c5d1a
-[root@docker ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-mysql                v1                  21af416e70b0        4 seconds ago       797.3 MB
-
-
-[root@docker ~]# docker run --privileged -itd -h mysql --name mysql mysql:v1 /sbin/init
-8d71a34516a2c05a7ea63fde5773785360d1301509d687797eec5ead62a01d55
-
-
-3.以mysql、nginx镜像分别创建两个容器并端口映射
-[root@docker ~]# docker run -itd -h nginx --name nginx -p 10080:80 --link mysql:db nginx:v1 bash
-8aea6116f67c9760b8f4d3de08251b28af839b9e2195860ad4b24d54833c286a
-[root@docker ~]# docker-enter nginx
-Last login: Mon Apr  3 07:00:51 UTC 2017
-[root@nginx ~]# yum install -y telnet
-[root@nginx ~]# telnet db 3306
-Trying 172.18.0.3...
-Connected to db.
-Escape character is &apos;^]&apos;.
-CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConnection closed by foreign host.
-[root@nginx ~]# cat /etc/hosts
-172.18.0.3    db mysql mysql
-172.18.0.4    nginx
-</code></pre><h3 id="配置网桥-centos7"><a href="#配置网桥-centos7" class="headerlink" title="配置网桥(centos7)"></a>配置网桥(centos7)</h3>
       
     </div>
 
@@ -420,7 +354,7 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
+            <a href="/tags/zabbix3-0/" rel="tag">#zabbix3.0</a>
           
         </div>
       
@@ -429,16 +363,16 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（7）--数据管理/" rel="next" title="Docker 基础（7）--数据管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（7）--数据管理
+              <a href="/2016/10/01/zabbix 3.0 基础介绍 [一]/" rel="next" title="zabbix 3.0 基础介绍">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 基础介绍
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（6）--仓库管理/" rel="prev" title="Docker 基础（6）--仓库管理">
-                Docker 基础（6）--仓库管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -555,7 +489,7 @@ CHost &apos;172.18.0.4&apos; is not allowed to connect to this MySQL serverConn
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker四种网络模式"><span class="nav-number">1.</span> <span class="nav-text">Docker四种网络模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种网络模式host"><span class="nav-number">1.1.</span> <span class="nav-text">第一种网络模式host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种网络模式container"><span class="nav-number">1.2.</span> <span class="nav-text">第二种网络模式container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三种网络模式none"><span class="nav-number">1.3.</span> <span class="nav-text">第三种网络模式none</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四种网络模式bridge"><span class="nav-number">1.4.</span> <span class="nav-text">第四种网络模式bridge</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部访问容器"><span class="nav-number">2.</span> <span class="nav-text">外部访问容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器互联"><span class="nav-number">3.</span> <span class="nav-text">容器互联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网桥-centos7"><span class="nav-number">4.</span> <span class="nav-text">配置网桥(centos7)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx安装"><span class="nav-number">1.</span> <span class="nav-text">nginx安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加nginx-status模块"><span class="nav-number">2.</span> <span class="nav-text">添加nginx_status模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx状态测试"><span class="nav-number">3.</span> <span class="nav-text">nginx状态测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx自定义文件"><span class="nav-number">4.</span> <span class="nav-text">nginx自定义文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在server端对nginx进行测试"><span class="nav-number">5.</span> <span class="nav-text">在server端对nginx进行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控项添加"><span class="nav-number">6.</span> <span class="nav-text">监控项添加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图形添加"><span class="nav-number">6.1.</span> <span class="nav-text">图形添加</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
