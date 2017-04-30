@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="zabbix3.0," />
 
 
 
@@ -57,37 +57,25 @@
 
 
 
-<meta name="description" content="使用Dockerfile构建nginxDockerfile是由一行命令和语句组成的
-
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像">
+<meta name="description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（9）--Dockerfile">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（9）--Dockerfile/index.html">
+<meta property="og:title" content="zabbix 3.0 服务监控--MySQL">
+<meta property="og:url" content="http://yoursite.com/2016/10/02/zabbix 3.0 服务监控--MySQL/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="使用Dockerfile构建nginxDockerfile是由一行命令和语句组成的
-
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像">
-<meta property="og:updated_time" content="2017-04-07T06:01:38.791Z">
+<meta property="og:description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/u8mn9wzijy535kmttzlpnlrc/image_1beu2f5lrcf2lvqdp51q0p1pimm.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/h8tfadwpsgo4m806yy9ywhcu/image_1beu2fgf51av097h1t6n24a1s8l13.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/w1ab39zccz0tljsfzvs4i1na/image_1bev53r7edua1em5bfv1c7j1jbu9.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/myvivvv31aix0kpu5pdnu8w0/image_1bev55cfl1a4g1o699b102i13sdm.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/duenq36yvf99cpe6y6lwnmj9/image_1bev56ate29m1kcm57s9fheak13.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/plbsp2l5642bwycd9luig2t6/image_1bev585u0i29hev4tl27v177t1g.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/huc2e0r9zzuw7kvhcuywibgz/image_1bev59nho1k071dvrbs3rn89621t.png">
+<meta property="og:updated_time" content="2017-04-30T10:10:39.516Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（9）--Dockerfile">
-<meta name="twitter:description" content="使用Dockerfile构建nginxDockerfile是由一行命令和语句组成的
-
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像">
+<meta name="twitter:title" content="zabbix 3.0 服务监控--MySQL">
+<meta name="twitter:description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png">
 
 
 
@@ -105,7 +93,7 @@ Dockerfile构建步骤：
   };
 </script>
 
-  <title> Docker 基础（9）--Dockerfile | BRUCETANG </title>
+  <title> zabbix 3.0 服务监控--MySQL | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +266,7 @@ Dockerfile构建步骤：
             
             
               
-                Docker 基础（9）--Dockerfile
+                zabbix 3.0 服务监控--MySQL
               
             
           </h1>
@@ -290,8 +278,8 @@ Dockerfile构建步骤：
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
+              2016-10-02
             </time>
           </span>
 
@@ -304,8 +292,8 @@ Dockerfile构建步骤：
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
                   </a>
                 </span>
 
@@ -336,138 +324,24 @@ Dockerfile构建步骤：
       
 
       
-        <h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
+        <p>Mysql监控<br>zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板<br>　<em> percona官网： www.percona.com<br><a id="more"></a><br><em>*Percona组成介绍</em></em></p>
+<pre><code>1、php脚本    用来数据采集
+2、shell脚本  用来调用采集信息
+3、zabbix配置文件
+4、zabbix模板文件
+</code></pre><p>安装文档：<a href="https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html" target="_blank" rel="external">https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html</a><br>　　percona 利用的是php来获取mysql的相关信息，所以如果我们想使用percona插件监控mysql就需要在agent端安装php。在安装文档上有写哦~<br><img src="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png" alt="image_1beu2alu21fr713i5d2e1t577kj9.png-171.9kB"><br>安装步骤： 查看上面的链接也可以进行安装<br>我们安装在zabbix-agent上，因为上面有一个MySQL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm</div><div class="line">[root@node-11 web]# yum install percona-zabbix-templates php php-mysql -y</div><div class="line">#percona插件是通过php去获取mysql的参数，所以我们要安装php和php-mysql</div><div class="line"></div><div class="line">我们可以查看它都安装了那些软件</div><div class="line">[root@node-11 web]# rpm -ql percona-zabbix-templates</div><div class="line">/var/lib/zabbix/percona</div><div class="line">/var/lib/zabbix/percona/scripts</div><div class="line">/var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh  #shell脚本</div><div class="line">/var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php      #php获取mysql信息</div><div class="line">/var/lib/zabbix/percona/templates</div><div class="line">/var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf #zabbix配置文件</div><div class="line">/var/lib/zabbix/percona/templates/zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.6.xml  </div><div class="line">#zabbix模板文件在percona组成我们已经说过了，此处只是略微介绍</div></pre></td></tr></table></figure></p>
+<p>我们将zabbix模板下载下来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# sz /var/lib/zabbix/percona/templates/zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.6.xml</div></pre></td></tr></table></figure></p>
+<p>然后我们需要将模板通过web界面导入到zabbix中<br><img src="http://static.zybuluo.com/BruceTang/u8mn9wzijy535kmttzlpnlrc/image_1beu2f5lrcf2lvqdp51q0p1pimm.png" alt="image_1beu2f5lrcf2lvqdp51q0p1pimm.png-349.1kB"><br><img src="http://static.zybuluo.com/BruceTang/h8tfadwpsgo4m806yy9ywhcu/image_1beu2fgf51av097h1t6n24a1s8l13.png" alt="image_1beu2fgf51av097h1t6n24a1s8l13.png-101.8kB"></p>
+<p><strong>提示</strong>：如果出现错误，可能是zabbix 3.0版本的问题。我们这里提供了一个生产的模板<br>下载链接：<a href="http://pan.baidu.com/s/1pLjKvxh" target="_blank" rel="external">http://pan.baidu.com/s/1pLjKvxh</a> 密码：75g0<br>然后从新上传之后导入即可</p>
+<p>复制配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# cp /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf /etc/zabbix/zabbix_agentd.d/</div><div class="line">[root@node-11 web]# ls /etc/zabbix/zabbix_agentd.d/</div><div class="line">#安装完软件包后会在/var/lib/zabbix/percona/templates/目录下产生一个配置文件，我们将它拷贝，因为在前面的博文中，我们已经修改过zabbix的配置文件[Include=/etc/abbix/zabbix_agentd.d/</div><div class="line">] 所以将配置文件放在这个目录下，zabbix就会自己在这个目录下查找相关信息</div><div class="line">[root@node-11 web]# systemctl restart zabbix-agent.service </div><div class="line">重启一下！</div></pre></td></tr></table></figure></p>
+<p>下面就应该配置与MySQL的连接<br>在<code>/var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php.cnf</code>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@linux-node1 ~]# cat /var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php.cnf</div><div class="line">&lt;?php</div><div class="line">$mysql_user = &apos;root&apos;;</div><div class="line">$mysql_pass = &apos;&apos;;</div><div class="line">#用户名密码可以自己创建，有密码写密码，没密码为空就好了</div></pre></td></tr></table></figure></p>
+<p>提示： 正常这里的用户我们应该创建一个专门用来监控的，由于我这里是测试环境。就不浪费时间了</p>
+<p><strong>测试</strong><br>查看是否可以获取到值，随便找一个测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# cat /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf</div><div class="line">选择一个肯定有值的key</div><div class="line">[root@node-11 ~]# cat /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf|grep gm</div><div class="line">UserParameter=MySQL.read-views,/var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh gm</div><div class="line">测试结果如下：</div><div class="line">[root@node-11 ~]# cd /var/lib/zabbix/percona/scripts/</div><div class="line">[root@node-11 scripts]# ./get_mysql_stats_wrapper.sh gm</div><div class="line">1</div><div class="line">[root@node-11 scripts]# ./get_mysql_stats_wrapper.sh gw</div><div class="line">468</div><div class="line">可以获取到值，说明没有问题</div></pre></td></tr></table></figure></p>
+<p>温馨提示： shell脚本中数据库的路径是localhost，如果我们没有授权localhost会获取不到值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-11 scripts]# cat get_mysql_stats_wrapper.sh </div><div class="line">HOST=localhost</div><div class="line">    RES=`HOME=~zabbix mysql -e &apos;SHOW SLAVE STATUS\G&apos; | egrep &apos;(Slave_IO_Running|Slave_SQL_Running):&apos; | awk -F: &apos;&#123;print $2&#125;&apos; | tr &apos;\n&apos; &apos;,&apos;`</div><div class="line">#mysql是通过命令来获取的，如果环境变量不一样 也可能造成影响</div></pre></td></tr></table></figure></p>
+<p><strong>Zabbix_Web界面配置</strong><br>添加mysql监控模板（之前上传的模板）<br><img src="http://static.zybuluo.com/BruceTang/w1ab39zccz0tljsfzvs4i1na/image_1bev53r7edua1em5bfv1c7j1jbu9.png" alt="image_1bev53r7edua1em5bfv1c7j1jbu9.png-177.8kB"><br><img src="http://static.zybuluo.com/BruceTang/myvivvv31aix0kpu5pdnu8w0/image_1bev55cfl1a4g1o699b102i13sdm.png" alt="image_1bev55cfl1a4g1o699b102i13sdm.png-143.5kB"><br><img src="http://static.zybuluo.com/BruceTang/duenq36yvf99cpe6y6lwnmj9/image_1bev56ate29m1kcm57s9fheak13.png" alt="image_1bev56ate29m1kcm57s9fheak13.png-180.5kB"></p>
+<p>结果如下图<br><img src="http://static.zybuluo.com/BruceTang/plbsp2l5642bwycd9luig2t6/image_1bev585u0i29hev4tl27v177t1g.png" alt="image_1bev585u0i29hev4tl27v177t1g.png-401.9kB"><br><img src="http://static.zybuluo.com/BruceTang/huc2e0r9zzuw7kvhcuywibgz/image_1bev59nho1k071dvrbs3rn89621t.png" alt="image_1bev59nho1k071dvrbs3rn89621t.png-335.5kB"></p>
+<p><strong>思想：</strong><br>　　如果出现错误我们需要先查看shell的脚本，因为shell是去调用php。 错误的因素有很多，最简单的方法就是用shell 后面加上key 看看是否可以有值。<br>　　其中报错最多的地方就是php和mysql连接的问题，还有我们mysql授权的一些问题。</p>
 
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像
-</code></pre><a id="more"></a>
-<pre><code>注意：D需要大写，当我们构建dockerfile的时候，docker默认会在我们当前目录读取一个名为Dockerfile的文件。这时候的D必须大写
-
-[root@tang nginx]# cat Dockerfile 
-# This Dockerfile
-# My Name is TangXiaoyue
-# Base image
-FROM centos
-
-# Maintainer
-MAINTAINE tang 1060336375@qq.com
-
-#Commands
-RUN rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-RUN yum install -y nginx &amp;&amp; yum clean all
-RUN echo &quot;daemon off;&quot; &gt;&gt;/etc/nginx/nginx.conf
-ADD index.html /usr/share/nginx/html/index.html
-EXPOSE 80
-CMD [&quot;nginx&quot;]
-
-
-#井号代表注释
-#Base image  除了注释的第一行，必须是FROM，意思就是我们需要告诉dockerfile基础镜像是什么
-#Maintainer 维护信息
-
-#Commands 命令
-
-#ADD index.html 这个文件需要我们在当前目录下有才可以，我们配置我们可以准备好，然后使用ADD命令进行添加或修改
-EXPOSE 对外端口号
-CMD [“nginx”] 它要启动的命令是nginx （就算是nginx服务）
-
-
-
-
-我们写好dockerfile还需要一个index.html
-[root@tang nginx]#  echo TangXiaoyue &gt;index.html
-[root@tang nginx]# ll
-total 8
--rw-r--r-- 1 root root 364 Apr  2 20:50 Dockerfile
--rw-r--r-- 1 root root  12 Apr  2 20:52 index.html
-
-使用docker build进行构建
-[root@tang ~]# docker build -t nginx_test:v1 /dockerfile/nginx/
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-nginx_test           v1                  bc69ee414a0f        17 seconds ago      280.7 MB
-
-
-启动镜像
-[root@tang ~]# docker run --name nginx_test -d -p 82:80 nginx_test:v1
-7a02c27a0a04d34eec8f858e35848416b95572dbb1f485310caee5c185d2e426
-
-[root@tang ~]# curl 127.0.0.1:82
-TangXiaoyue
-</code></pre><h2 id="Dockerfile参数解释"><a href="#Dockerfile参数解释" class="headerlink" title="Dockerfile参数解释"></a>Dockerfile参数解释</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>格式：FROM&lt;image&gt;或FROM&lt;image&gt;:&lt;tag&gt;。
-
-解释：FROM是Dockerfile里的第一条指令（必须是），后面跟有效的镜像名（如果该镜像你的本地仓库没有则会从远程仓库Pull取）。
-然后后面的其它指令FROM的镜像中执行。
-</code></pre><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><pre><code>格式：MAINTAINER &lt;name&gt;
-
-    解释：指定维护者信息。
-</code></pre><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>格式：RUN &lt;command&gt;或 RUN[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]。
-
-    解释：运行命令，命令较长使可以使用\来换行。推荐使用上面数组的格式
-</code></pre><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><pre><code>格式：
-CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；
-CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
-CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给ENTRYPOINT的默认参数；
-
-解释： 
-CMD指定容器启动是执行的命令，每个Dockerfile只能有一条CMD命令，如果指定了多条，只有最后一条会被执行。
-如果你在启动容器的时候也指定的命令，那么会覆盖Dockerfile构建的镜像里面的CMD命令。
-</code></pre><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><pre><code>格式：
-   ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;,&quot;param2&quot;]
-   ENTRYPOINT command param1 param2（shell中执行）。
-
-解释：和CMD类似都是配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。 
-
-每个 Dockerfile 中只能有一个ENTRYPOINT，当指定多个时，只有最后一个起效。
-ENTRYPOINT没有CMD的可替换特性，也就是你启动容器的时候增加运行的命令不会覆盖ENTRYPOINT指定的命令。 
-　
-所以生产实践中我们可以同时使用ENTRYPOINT和CMD， 
-
-例如：
-    ENTRYPOINT [&quot;/usr/bin/rethinkdb&quot;]
-    CMD [&quot;--help&quot;]
-</code></pre><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><pre><code>格式：USER daemon
-
-    解释：指定运行容器时的用户名和UID，后续的RUN指令也会使用这里指定的用户。
-</code></pre><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>格式：EXPOSE&lt;port&gt; [&lt;port&gt;...]
-
-解释：设置Docker容器内部暴露的端口号，如果需要外部访问，还需要启动容器时增加-p或者-P参数进行分配。
-</code></pre><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>格式：ENV&lt;key&gt; &lt;value&gt;
-ENV &lt;key&gt;=&lt;value&gt; ...
-
-    解释：设置环境变量，可以在RUN之前使用，然后RUN命令时调用，容器启动时这些环境变量都会被指定
-</code></pre><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>格式：
-   ADD &lt;src&gt;... &lt;dest&gt;
-   ADD [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
-
-    解释：
-        将指定的&lt;src&gt;复制到容器文件系统中的&lt;dest&gt; 
-           所有拷贝到container中的文件和文件夹权限为0755,uid和gid为0 
-        如果文件是可识别的压缩格式，则docker会帮忙解压缩
-</code></pre><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><pre><code>格式：VOLUME [&quot;/data&quot;]
-
-    解释：可以将本地文件夹或者其他container的文件夹挂载到container中。
-</code></pre><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>格式：WORKDIR/path/to/workdir
-
-    解释：切换目录，为后续的RUN、CMD、ENTRYPOINT 指令配置工作目录。 
-    可以多次切换(相当于cd命令)， 
-    也可以使用多个WORKDIR 指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。例如:
-
-    WORKDIR /a
-    WORKDIR b
-    WORKDIR c
-    RUN pwd
-    则最终路径为 /a/b/c。
-</code></pre><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><pre><code>ONBUILD 指定的命令在构建镜像时并不执行，而是在它的子镜像中执行
-</code></pre><h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><pre><code>格式：ARG&lt;name&gt;[=&lt;default value&gt;]
-
-    解释：ARG指定了一个变量在docker build的时候使用，
-         可以使用--build-arg &lt;varname&gt;=&lt;value&gt;来指定参数的值，不过如果构建的时候不指定就会报错。
-</code></pre>
       
     </div>
 
@@ -481,7 +355,7 @@ ENV &lt;key&gt;=&lt;value&gt; ...
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
+            <a href="/tags/zabbix3-0/" rel="tag">#zabbix3.0</a>
           
         </div>
       
@@ -490,16 +364,16 @@ ENV &lt;key&gt;=&lt;value&gt; ...
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/XtraBackup主从复制及备份/" rel="next" title="XtraBackup主从复制及备份">
-                <i class="fa fa-chevron-left"></i> XtraBackup主从复制及备份
+              <a href="/2016/10/02/zabbix 3.0 服务监控--nginx/" rel="next" title="zabbix 3.0 服务监控--nginx">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 服务监控--nginx
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（5）--容器管理/" rel="prev" title="Docker 基础（5）--容器管理">
-                Docker 基础（5）--容器管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +490,7 @@ ENV &lt;key&gt;=&lt;value&gt; ...
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Dockerfile构建nginx"><span class="nav-number">1.</span> <span class="nav-text">使用Dockerfile构建nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile参数解释"><span class="nav-number">2.</span> <span class="nav-text">Dockerfile参数解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.5.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.6.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.7.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.8.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.9.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.10.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.11.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.12.</span> <span class="nav-text">ONBUILD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARG"><span class="nav-number">2.13.</span> <span class="nav-text">ARG</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
