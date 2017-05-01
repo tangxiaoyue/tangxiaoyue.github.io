@@ -57,21 +57,20 @@
 
 
 
-<meta name="description" content="磁盘监控脚本本次zabbix监控磁盘测试。只监控磁盘的/目录和mount挂载的home两个目录使用率情况。">
+<meta name="description" content="zabbix 客户端修改zabbix_agentd.conf文件在zabbix_agentd.conf最后添加以下内容1234[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.confUserParameter=check_disk_status,mount | awk &amp;apos;&amp;#123;print $NF&amp;#125;&amp;apos;|cut -c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zabbix 3.0 自定义监控--磁盘使用率">
-<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 自定义监控--磁盘使用率/index.html">
+<meta property="og:title" content="zabbix 3.0 自定义监控--磁盘读写">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 自定义监控--磁盘读写/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="磁盘监控脚本本次zabbix监控磁盘测试。只监控磁盘的/目录和mount挂载的home两个目录使用率情况。">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/9thfbdrtdsuurehwb62iaom8/image_1bf1i5u5gcpvsld18jfh9u1oajbb.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/tf9zqh0g4hbnt4d7t64unmk6/image_1bf1i797s186l15hg6qd1sj7181ibo.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/t80lcbk2s8mwbuk76ckm4xps/image_1bf1i8ka04ri1i7m1qbqb131ia5c5.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/uiozu46wxau944h673qiy2zw/image_1bf1ihld31irk102ummb1a4a11lkci.png">
-<meta property="og:updated_time" content="2017-05-01T08:39:22.836Z">
+<meta property="og:description" content="zabbix 客户端修改zabbix_agentd.conf文件在zabbix_agentd.conf最后添加以下内容1234[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.confUserParameter=check_disk_status,mount | awk &amp;apos;&amp;#123;print $NF&amp;#125;&amp;apos;|cut -c">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/gcauptcv5r5nky2cnww2x8yg/image_1bf22nn2l7t7udk1kjqd2l1t3dej.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/e8ounaz18lziyz6xeb7ggqgl/image_1bf22oou51ip4sia13te1dl2cshf0.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/7vxhvytul7r9ry8bkjwd06u9/image_1bf22pf941si614nr3401jetb6kfd.png">
+<meta property="og:updated_time" content="2017-05-01T13:23:12.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zabbix 3.0 自定义监控--磁盘使用率">
-<meta name="twitter:description" content="磁盘监控脚本本次zabbix监控磁盘测试。只监控磁盘的/目录和mount挂载的home两个目录使用率情况。">
-<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/9thfbdrtdsuurehwb62iaom8/image_1bf1i5u5gcpvsld18jfh9u1oajbb.png">
+<meta name="twitter:title" content="zabbix 3.0 自定义监控--磁盘读写">
+<meta name="twitter:description" content="zabbix 客户端修改zabbix_agentd.conf文件在zabbix_agentd.conf最后添加以下内容1234[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.confUserParameter=check_disk_status,mount | awk &amp;apos;&amp;#123;print $NF&amp;#125;&amp;apos;|cut -c">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/gcauptcv5r5nky2cnww2x8yg/image_1bf22nn2l7t7udk1kjqd2l1t3dej.png">
 
 
 
@@ -89,7 +88,7 @@
   };
 </script>
 
-  <title> zabbix 3.0 自定义监控--磁盘使用率 | BRUCETANG </title>
+  <title> zabbix 3.0 自定义监控--磁盘读写 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +261,7 @@
             
             
               
-                zabbix 3.0 自定义监控--磁盘使用率
+                zabbix 3.0 自定义监控--磁盘读写
               
             
           </h1>
@@ -274,7 +273,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T15:09:26+08:00" content="2016-10-03">
+            <time itemprop="dateCreated" datetime="2016-10-03T22:09:26+08:00" content="2016-10-03">
               2016-10-03
             </time>
           </span>
@@ -320,11 +319,10 @@
       
 
       
-        <h2 id="磁盘监控脚本"><a href="#磁盘监控脚本" class="headerlink" title="磁盘监控脚本"></a>磁盘监控脚本</h2><p>本次zabbix监控磁盘测试。只监控磁盘的/目录和mount挂载的home两个目录使用率情况。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">磁盘情况</div><div class="line">[root@node-11 ~]# df -h</div><div class="line">文件系统                 容量  已用  可用 已用% 挂载点</div><div class="line">/dev/mapper/centos-root   50G  2.1G   48G    5% /</div><div class="line">devtmpfs                 911M     0  911M    0% /dev</div><div class="line">tmpfs                    918M     0  918M    0% /dev/shm</div><div class="line">tmpfs                    918M  8.6M  909M    1% /run</div><div class="line">tmpfs                    918M     0  918M    0% /sys/fs/cgroup</div><div class="line">/dev/mapper/centos-home   42G   33M   42G    1% /home</div><div class="line">/dev/sda1                497M   97M  400M   20% /boot</div><div class="line">tmpfs                    184M     0  184M    0% /run/user/0</div></pre></td></tr></table></figure></p>
-<p>磁盘监控脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">[root@node-11 script]# pwd</div><div class="line">/etc/zabbix/script</div><div class="line">[root@node-11 script]# vim  disk_use.sh</div><div class="line">#!/bin/bash</div><div class="line">system()&#123;</div><div class="line">    df -m |awk &apos;&#123;if($1~&quot;/dev&quot;) print $2,$3,$4,$5,$NF&#125;&apos;|grep &quot;/$&quot;</div><div class="line">&#125;</div><div class="line">mount()&#123;</div><div class="line">    df -m | awk &apos;&#123;if($1~&quot;/dev&quot;) print $2,$3,$4,$5,$NF&#125;&apos;|grep &quot;/home$&quot;</div><div class="line">&#125;</div><div class="line">system_inode()&#123;</div><div class="line">    df -i | awk &apos;&#123;if($1~&quot;/dev&quot;) print $2,$3,$4,$5,$NF&#125;&apos;|grep &quot;/$&quot;</div><div class="line">&#125;</div><div class="line">mount_inode()&#123;</div><div class="line">    df -i | awk &apos;&#123;if($1~&quot;/dev&quot;) print $2,$3,$4,$5,$NF&#125;&apos;|grep &quot;/home$&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">    system_size)</div><div class="line">        #system | awk &apos;&#123;print$1&apos;&#125; | awk &apos;&#123;sub(/.$/,&quot;&quot;)&#125;1&apos;</div><div class="line">        system | awk &apos;&#123;print$1&apos;&#125;</div><div class="line">        ;;</div><div class="line">    system_used)</div><div class="line">        system | awk &apos;&#123;print$2&apos;&#125;</div><div class="line">        ;;</div><div class="line">    system_avail)</div><div class="line">        system | awk &apos;&#123;print$3&apos;&#125;</div><div class="line">        ;;</div><div class="line">    system_use)</div><div class="line">        system | awk &apos;&#123;print$4&apos;&#125; | awk &apos;&#123;sub(/.$/,&quot;&quot;)&#125;1&apos;</div><div class="line">        ;;</div><div class="line">    mount_size)</div><div class="line">        mount | awk  &apos;&#123;print $1&#125;&apos;</div><div class="line">        ;;</div><div class="line">        mount_used)</div><div class="line">        mount | awk  &apos;&#123;print $2&#125;&apos;</div><div class="line">        ;;</div><div class="line">    mount_avail)</div><div class="line">        mount | awk  &apos;&#123;print $3&#125;&apos;</div><div class="line">        ;;</div><div class="line">    mount_use)</div><div class="line">        mount | awk  &apos;&#123;print $4&#125;&apos; | awk &apos;&#123;sub(/.$/,&quot;&quot;)&#125;1&apos;</div><div class="line">        ;;</div><div class="line">    system_inode_use)</div><div class="line">        system_inode | awk &apos;&#123;print$4&apos;&#125; | awk &apos;&#123;sub(/.$/,&quot;&quot;)&#125;1&apos;</div><div class="line">        ;;</div><div class="line">    mount_inode_use)</div><div class="line">        mount_inode | awk  &apos;&#123;print $4&#125;&apos; |awk &apos;&#123;sub(/.$/,&quot;&quot;)&#125;1&apos;</div><div class="line">        ;;</div><div class="line">esac</div><div class="line"></div><div class="line">[root@node-11 script]# chmod +x disk_use.sh</div></pre></td></tr></table></figure></p>
-<h2 id="添加磁盘自定义键值"><a href="#添加磁盘自定义键值" class="headerlink" title="添加磁盘自定义键值"></a>添加磁盘自定义键值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@node-11 script]# vim /etc/zabbix/zabbix_agentd.conf </div><div class="line">##在末尾添加以下内容</div><div class="line">##disk_use</div><div class="line">UserParameter=system.size,/etc/zabbix/script/disk_use.sh system_size</div><div class="line">UserParameter=system.used,/etc/zabbix/script/disk_use.sh system_used</div><div class="line">UserParameter=system.avail,/etc/zabbix/script/disk_use.sh system_avail</div><div class="line">UserParameter=system.use,/etc/zabbix/script/disk_use.sh system_use</div><div class="line">UserParameter=mount.size,/etc/zabbix/script/disk_use.sh mount_size</div><div class="line">UserParameter=mount.used,/etc/zabbix/script/disk_use.sh mount_used</div><div class="line">UserParameter=mount.avail,/etc/zabbix/script/disk_use.sh mount_avail</div><div class="line">UserParameter=mount.use,/etc/zabbix/script/disk_use.sh mount_use</div><div class="line">UserParameter=system.inode.use,/etc/zabbix/script/disk_use.sh system_inode_use</div><div class="line">UserParameter=mount.inode.use,/etc/zabbix/script/disk_use.sh mount_inode_use</div></pre></td></tr></table></figure>
-<h2 id="在zabbix-server端测试"><a href="#在zabbix-server端测试" class="headerlink" title="在zabbix-server端测试"></a>在zabbix-server端测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  system.avail</div><div class="line">49049</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  system.use</div><div class="line">5</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.inode.use</div><div class="line">1</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.size</div><div class="line">42596</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.used</div><div class="line">33</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.avail</div><div class="line"></div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.avail</div><div class="line">42564</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.use</div><div class="line">1</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  system.inode.use</div><div class="line">1</div><div class="line">[root@node-10 ~]# zabbix_get -s 192.168.1.11 -k  mount.inode.use</div><div class="line">1</div></pre></td></tr></table></figure>
-<h2 id="zabbix-web端配置"><a href="#zabbix-web端配置" class="headerlink" title="zabbix web端配置"></a>zabbix web端配置</h2><p>添加监控项<br><img src="http://static.zybuluo.com/BruceTang/9thfbdrtdsuurehwb62iaom8/image_1bf1i5u5gcpvsld18jfh9u1oajbb.png" alt="image_1bf1i5u5gcpvsld18jfh9u1oajbb.png-194.4kB"><br><img src="http://static.zybuluo.com/BruceTang/tf9zqh0g4hbnt4d7t64unmk6/image_1bf1i797s186l15hg6qd1sj7181ibo.png" alt="image_1bf1i797s186l15hg6qd1sj7181ibo.png-189.4kB"><br>添加图形<br><img src="http://static.zybuluo.com/BruceTang/t80lcbk2s8mwbuk76ckm4xps/image_1bf1i8ka04ri1i7m1qbqb131ia5c5.png" alt="image_1bf1i8ka04ri1i7m1qbqb131ia5c5.png-179.8kB"><br>最终结果<br><img src="http://static.zybuluo.com/BruceTang/uiozu46wxau944h673qiy2zw/image_1bf1ihld31irk102ummb1a4a11lkci.png" alt="image_1bf1ihld31irk102ummb1a4a11lkci.png-336.6kB"></p>
+        <a id="more"></a>
+<h2 id="zabbix-客户端"><a href="#zabbix-客户端" class="headerlink" title="zabbix 客户端"></a>zabbix 客户端</h2><p>修改zabbix_agentd.conf文件<br>在zabbix_agentd.conf最后添加以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf</div><div class="line">UserParameter=check_disk_status,mount | awk &apos;&#123;print $NF&#125;&apos;|cut -c 2-3|awk &apos;&#123;if($1~/ro/) &#123;print 1&#125;&#125;&apos;|wc -l|awk &apos;&#123;if($1&lt;=0) &#123;print 0 &#125; else &#123;print 1&#125;&#125;&apos;</div><div class="line"></div><div class="line">[root@node-11 ~]# systemctl restart zabbix-agent</div></pre></td></tr></table></figure></p>
+<h2 id="zabbix-服务端"><a href="#zabbix-服务端" class="headerlink" title="zabbix 服务端"></a>zabbix 服务端</h2><h3 id="新增监控项"><a href="#新增监控项" class="headerlink" title="新增监控项"></a>新增监控项</h3><p><img src="http://static.zybuluo.com/BruceTang/gcauptcv5r5nky2cnww2x8yg/image_1bf22nn2l7t7udk1kjqd2l1t3dej.png" alt="image_1bf22nn2l7t7udk1kjqd2l1t3dej.png-187.3kB"></p>
+<h3 id="新增图形"><a href="#新增图形" class="headerlink" title="新增图形"></a>新增图形</h3><p><img src="http://static.zybuluo.com/BruceTang/e8ounaz18lziyz6xeb7ggqgl/image_1bf22oou51ip4sia13te1dl2cshf0.png" alt="image_1bf22oou51ip4sia13te1dl2cshf0.png-169.3kB"><br>结果<br><img src="http://static.zybuluo.com/BruceTang/7vxhvytul7r9ry8bkjwd06u9/image_1bf22pf941si614nr3401jetb6kfd.png" alt="image_1bf22pf941si614nr3401jetb6kfd.png-203.4kB"><br>如果返回值0代表磁盘都是rw状态可以正常读写，返回值1的话，代表磁盘是ro状态</p>
 
       
     </div>
@@ -348,16 +346,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 自定义监控--内存、cpu、负载/" rel="next" title="zabbix 3.0 自定义监控--内存、cpu、负载">
-                <i class="fa fa-chevron-left"></i> zabbix 3.0 自定义监控--内存、cpu、负载
+              <a href="/2016/10/03/zabbix 3.0 自定义监控--磁盘IO/" rel="next" title="zabbix 3.0 自定义监控--磁盘IO">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 自定义监控--磁盘IO
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 自定义监控--磁盘IO/" rel="prev" title="zabbix 3.0 自定义监控--磁盘IO">
-                zabbix 3.0 自定义监控--磁盘IO <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +472,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘监控脚本"><span class="nav-number">1.</span> <span class="nav-text">磁盘监控脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加磁盘自定义键值"><span class="nav-number">2.</span> <span class="nav-text">添加磁盘自定义键值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在zabbix-server端测试"><span class="nav-number">3.</span> <span class="nav-text">在zabbix-server端测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix-web端配置"><span class="nav-number">4.</span> <span class="nav-text">zabbix web端配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix-客户端"><span class="nav-number">1.</span> <span class="nav-text">zabbix 客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix-服务端"><span class="nav-number">2.</span> <span class="nav-text">zabbix 服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增监控项"><span class="nav-number">2.1.</span> <span class="nav-text">新增监控项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增图形"><span class="nav-number">2.2.</span> <span class="nav-text">新增图形</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

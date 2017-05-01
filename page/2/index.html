@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
+                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
+                  XtraBackup主从复制及备份
                 </a>
               
             
@@ -287,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -320,9 +320,10 @@
 
       
         
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
+          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -369,8 +370,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
-                  Docker 基础（4）--镜像管理
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
+                  Docker 基础（3）--容器登入
                 </a>
               
             
@@ -430,11 +431,16 @@
 
       
         
-          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
+<p>强烈推荐使用此种方法：简单、方便</p>
+</blockquote>
+<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+
+这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
+而 docker-enter 可以进入容器或直接在容器内执行命令
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -668,6 +674,117 @@ hexo deploy
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/03/zabbix 3.0 自定义监控--磁盘读写/" itemprop="url">
+                  zabbix 3.0 自定义监控--磁盘读写
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T22:09:26+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h2 id="zabbix-客户端"><a href="#zabbix-客户端" class="headerlink" title="zabbix 客户端"></a>zabbix 客户端</h2><p>修改zabbix_agentd.conf文件<br>在zabbix_agentd.conf最后添加以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf</div><div class="line">UserParameter=check_disk_status,mount | awk &apos;&#123;print $NF&#125;&apos;|cut -c 2-3|awk &apos;&#123;if($1~/ro/) &#123;print 1&#125;&#125;&apos;|wc -l|awk &apos;&#123;if($1&lt;=0) &#123;print 0 &#125; else &#123;print 1&#125;&#125;&apos;</div><div class="line"></div><div class="line">[root@node-11 ~]# systemctl restart zabbix-agent</div></pre></td></tr></table></figure></p>
+<h2 id="zabbix-服务端"><a href="#zabbix-服务端" class="headerlink" title="zabbix 服务端"></a>zabbix 服务端</h2><h3 id="新增监控项"><a href="#新增监控项" class="headerlink" title="新增监控项"></a>新增监控项</h3><p><img src="http://static.zybuluo.com/BruceTang/gcauptcv5r5nky2cnww2x8yg/image_1bf22nn2l7t7udk1kjqd2l1t3dej.png" alt="image_1bf22nn2l7t7udk1kjqd2l1t3dej.png-187.3kB"></p>
+<h3 id="新增图形"><a href="#新增图形" class="headerlink" title="新增图形"></a>新增图形</h3><p><img src="http://static.zybuluo.com/BruceTang/e8ounaz18lziyz6xeb7ggqgl/image_1bf22oou51ip4sia13te1dl2cshf0.png" alt="image_1bf22oou51ip4sia13te1dl2cshf0.png-169.3kB"><br>结果<br><img src="http://static.zybuluo.com/BruceTang/7vxhvytul7r9ry8bkjwd06u9/image_1bf22pf941si614nr3401jetb6kfd.png" alt="image_1bf22pf941si614nr3401jetb6kfd.png-203.4kB"><br>如果返回值0代表磁盘都是rw状态可以正常读写，返回值1的话，代表磁盘是ro状态</p>
+
+          
         
       
     </div>
@@ -1240,116 +1357,6 @@ hexo deploy
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/" itemprop="url">
-                  zabbix 3.0 服务监控--MySQL
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T11:39:26+08:00" content="2016-10-02">
-              2016-10-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Mysql监控<br>zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板<br>　<em> percona官网： www.percona.com<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1395,7 +1402,7 @@ hexo deploy
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
