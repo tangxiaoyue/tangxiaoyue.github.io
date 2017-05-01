@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
-                  Docker 基础（4）--镜像管理
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
+                  Docker 基础（8）--网络管理
                 </a>
               
             
@@ -320,11 +320,122 @@
 
       
         
-          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（6）--仓库管理/" itemprop="url">
+                  Docker 基础（6）--仓库管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker 基础（6）--仓库管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -436,117 +547,6 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
-                  Docker 基础（8）--网络管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -823,6 +823,116 @@ hexo deploy
             
               
                 
+                <a class="post-title-link" href="/2016/10/03/zabbix 3.0 自定义监控/" itemprop="url">
+                  zabbix 3.0 自定义监控
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T13:37:26+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么要自定义KEY"><a href="#为什么要自定义KEY" class="headerlink" title="为什么要自定义KEY"></a>为什么要自定义KEY</h2><p>有时候我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端配置文件zabbix_angentd.conf里面配置UserParameter.<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/03/zabbix 3.0 自定义监控/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/03/zabbix 3.0 服务监控--Web监控/" itemprop="url">
                   zabbix 3.0 服务监控--Web监控
                 </a>
@@ -933,116 +1043,6 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--nginx/" itemprop="url">
-                  zabbix 3.0 服务监控--nginx
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
-              2016-10-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./configure &amp;&amp; make就可以了，不用make install。不过，一般情况下都是安装了的。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--nginx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/" itemprop="url">
                   zabbix 3.0 服务监控--MySQL
                 </a>
@@ -1057,7 +1057,7 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
+            <time itemprop="dateCreated" datetime="2016-10-02T11:39:26+08:00" content="2016-10-02">
               2016-10-02
             </time>
           </span>
@@ -1153,8 +1153,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/10/01/监控体系/" itemprop="url">
-                  监控体系
+                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--nginx/" itemprop="url">
+                  zabbix 3.0 服务监控--nginx
                 </a>
               
             
@@ -1167,8 +1167,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T12:37:26+08:00" content="2016-10-01">
-              2016-10-01
+            <time itemprop="dateCreated" datetime="2016-10-02T09:37:26+08:00" content="2016-10-02">
+              2016-10-02
             </time>
           </span>
 
@@ -1214,9 +1214,9 @@ hexo deploy
 
       
         
-          <h3 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h3><p>1.监控对象的理解：CPU是怎么工作的,原理<br>2.监控对象的指标：CPU使用率，CPU负载，CPU个数，上下文切换<br>3.确定性能基准线：怎样才算故障？CPU负载多少才算高</p>
+          <p>在zabbix agentd客户端上，查看nginx是否加载了–with-http_stub_status_module。因为zabbix监控nginx是根据nginx的Stub Status模块，抓取Status模块所提供的数据。假如以前没开启，现在想启用StubStatus 模块，在编译nginx 的时候要加上参数 –with-http_stub_status_module，执行./configure &amp;&amp; make就可以了，不用make install。不过，一般情况下都是安装了的。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/01/监控体系/#more" rel="contents">
+            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--nginx/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1277,7 +1277,7 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T12:37:26+08:00" content="2016-10-01">
+            <time itemprop="dateCreated" datetime="2016-10-01T20:30:26+08:00" content="2016-10-01">
               2016-10-01
             </time>
           </span>
@@ -1397,7 +1397,7 @@ hexo deploy
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
