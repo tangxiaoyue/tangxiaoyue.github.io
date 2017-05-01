@@ -57,23 +57,26 @@
 
 
 
-<meta name="description" content="为什么要自定义KEY有时候我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端配置文件zabbix_angentd.conf里面配置UserParameter.">
+<meta name="description" content="客户端编写监控内存脚本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zabbix 3.0 自定义监控">
-<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 自定义监控/index.html">
+<meta property="og:title" content="zabbix 3.0 自定义监控--内存、cpu、负载">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 自定义监控--内存、cpu、负载/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="为什么要自定义KEY有时候我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端配置文件zabbix_angentd.conf里面配置UserParameter.">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/xxdnr0n7ked9ttoyvp6rcled/image_1bf11tv32rcf1338aa21r7s3gf34.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/20idxm2qwyz78nsh7cpqn639/image_1bf1378rr1k7s9konmfocfpfk5v.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/y4phc4t4211tfwy5s8i02rqe/image_1bf126nn6grtm59o9e1d4l1dpf3u.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/ptbgpu9iqzq2ncn6ceocy9mz/image_1bf127c7p1m8q1grs8o21j541k0p4b.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/pzqmhcv7nirpdgnfpa8md61k/image_1bf129hon18sq1r571j9h64n4qm4o.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/91gedw8aeav65kg20t70hxrr/image_1bf1386ai1odb7801d0mrbeimf6c.png">
-<meta property="og:updated_time" content="2017-05-01T04:12:14.808Z">
+<meta property="og:description" content="客户端编写监控内存脚本">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/32i8iq8t3o9abswhjb0p2j2l/image_1bf1d4vsr6bj137v178017691hfs76.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/f3uecktt07o5t4fqm4449ej9/image_1bf1d58ma11a8s2r151j1fmi1mbe7j.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/emkzzliwpjt51g4s7nouh7r6/image_1bf1d5o1j1rk81vr51orjstdg7880.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/49hyikugt8oafhcajx6wclty/image_1bf1d6jjn8iu135g1os1t4f1d3m8t.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/qv5lkan78z0nitewqm5xu0cn/image_1bf1d6uq1novqcj1ru2t6k1crs9a.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/umcff896jjffl0u2lxdsj3cu/image_1bf1d791h5nec6ae8q1u851d289n.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/v2puisqc1adw197xox19bc4f/image_1bf1d7h4r1cs3l731f7c4pg14kpa4.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/vm3dy667vow4blaf7hle46ig/image_1bf1d8jih1kkl148revntge17k3ah.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/3lib1rpxmq7m58us2mq77jc0/image_1bf1d8sbp1t85162mm41nvlkhtau.png">
+<meta property="og:updated_time" content="2017-05-01T07:06:57.219Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zabbix 3.0 自定义监控">
-<meta name="twitter:description" content="为什么要自定义KEY有时候我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端配置文件zabbix_angentd.conf里面配置UserParameter.">
-<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/xxdnr0n7ked9ttoyvp6rcled/image_1bf11tv32rcf1338aa21r7s3gf34.png">
+<meta name="twitter:title" content="zabbix 3.0 自定义监控--内存、cpu、负载">
+<meta name="twitter:description" content="客户端编写监控内存脚本">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/32i8iq8t3o9abswhjb0p2j2l/image_1bf1d4vsr6bj137v178017691hfs76.png">
 
 
 
@@ -91,7 +94,7 @@
   };
 </script>
 
-  <title> zabbix 3.0 自定义监控 | BRUCETANG </title>
+  <title> zabbix 3.0 自定义监控--内存、cpu、负载 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +267,7 @@
             
             
               
-                zabbix 3.0 自定义监控
+                zabbix 3.0 自定义监控--内存、cpu、负载
               
             
           </h1>
@@ -276,7 +279,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T13:37:26+08:00" content="2016-10-03">
+            <time itemprop="dateCreated" datetime="2016-10-03T14:09:26+08:00" content="2016-10-03">
               2016-10-03
             </time>
           </span>
@@ -322,17 +325,11 @@
       
 
       
-        <h2 id="为什么要自定义KEY"><a href="#为什么要自定义KEY" class="headerlink" title="为什么要自定义KEY"></a>为什么要自定义KEY</h2><p>有时候我们想让被监控端执行一个zabbix没有预定义的检测，zabbix的用户自定义参数功能提供了这个方法。我们可以在客户端配置文件zabbix_angentd.conf里面配置UserParameter.<br><a id="more"></a><br>语法如下:</p>
-<blockquote>
-<p>UserParameter=key,command</p>
-</blockquote>
-<p>用户自定义参数包含一个key和一个命令，key必须整个系统唯一，配置好之后，重启客户端。</p>
-<p>然后配置item,在key的位置填上我们自定义的key即可。</p>
-<p>用户自定义参数里指定的脚本由zabbix agent来执行，最大可以返回512KB的数据.</p>
-<p>实例（以监控memory free为例）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf</div><div class="line">UserParameter=memory.free,/usr/bin/free | awk &apos;/^Mem:/&#123;print $4&#125;&apos;</div></pre></td></tr></table></figure></p>
-<p><code>说明</code>：UserParameter为语法，memory.free为key值， /usr/bin/free为free的全路径，awk ‘/^Men:/{print $4}’为用awk所执行的命令，同时这里也可以把脚本路径填写到这里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# systemctl restart  zabbix-agent</div></pre></td></tr></table></figure></p>
-<p>在服务器端模拟获取数据（如获取不到数据，仔细查看你的key或Ip是否对，等等）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# /usr/bin/free </div><div class="line">             total       used       free     shared    buffers     cached</div><div class="line">Mem:       1878212    1779704      98508       8908         64    1205268</div><div class="line">-/+ buffers/cache:     574372    1303840</div><div class="line">Swap:      8273916          0    8273916</div><div class="line">[root@node-10 ~]#  zabbix_get -s 192.168.1.11  -k &quot;memory.free&quot;</div><div class="line">98360</div><div class="line"></div><div class="line">提示：因为内存正在使用，所以获取的值有一点相差，不影响</div></pre></td></tr></table></figure></p>
-<h2 id="在服务端添加到监控项"><a href="#在服务端添加到监控项" class="headerlink" title="在服务端添加到监控项"></a>在服务端添加到监控项</h2><p>配置—–主机—–你的主机—–监控项<br><img src="http://static.zybuluo.com/BruceTang/xxdnr0n7ked9ttoyvp6rcled/image_1bf11tv32rcf1338aa21r7s3gf34.png" alt="image_1bf11tv32rcf1338aa21r7s3gf34.png-159.5kB"><br>监控项—-创建监控项—–添加<br><img src="http://static.zybuluo.com/BruceTang/20idxm2qwyz78nsh7cpqn639/image_1bf1378rr1k7s9konmfocfpfk5v.png" alt="image_1bf122m8j1jvnj93dlfrja1go43h.png-182.6kB"><br>配置–主机–图形–创建图形<br><img src="http://static.zybuluo.com/BruceTang/y4phc4t4211tfwy5s8i02rqe/image_1bf126nn6grtm59o9e1d4l1dpf3u.png" alt="image_1bf126nn6grtm59o9e1d4l1dpf3u.png-174.5kB"><br><img src="http://static.zybuluo.com/BruceTang/ptbgpu9iqzq2ncn6ceocy9mz/image_1bf127c7p1m8q1grs8o21j541k0p4b.png" alt="image_1bf127c7p1m8q1grs8o21j541k0p4b.png-192.5kB"><br><img src="http://static.zybuluo.com/BruceTang/pzqmhcv7nirpdgnfpa8md61k/image_1bf129hon18sq1r571j9h64n4qm4o.png" alt="image_1bf129hon18sq1r571j9h64n4qm4o.png-346.9kB"><br>查看图形结果<br><img src="http://static.zybuluo.com/BruceTang/91gedw8aeav65kg20t70hxrr/image_1bf1386ai1odb7801d0mrbeimf6c.png" alt="image_1bf1386ai1odb7801d0mrbeimf6c.png-322.6kB"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# free -m</div><div class="line">             total       used       free     shared    buffers     cached</div><div class="line">Mem:          1834       1735         98          8          0       1177</div><div class="line">-/+ buffers/cache:        558       1275</div><div class="line">Swap:         8079          0       8079</div></pre></td></tr></table></figure></p>
+        <h2 id="客户端编写监控内存脚本"><a href="#客户端编写监控内存脚本" class="headerlink" title="客户端编写监控内存脚本"></a>客户端编写监控内存脚本</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">bash-3.2# yum install -y zabbix zabbix-agent</div><div class="line">bash-3.2# cd /etc/zabbix</div><div class="line">bash-3.2 zabbix# mkdir script</div><div class="line">bash-3.2 zabbix# vim script/mem.sh</div><div class="line">#!/bin/bash</div><div class="line">MEMTotal()&#123;</div><div class="line">free -m | awk &apos;/Mem:/&#123;print $2&#125;&apos;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">MEMuser()&#123;</div><div class="line">free -m | awk &apos;/buffers\/cache:/&#123;print $3&#125;&apos;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">MEMfree()&#123;</div><div class="line">free -m | awk &apos;/buffers\/cache:/&#123;print $4&#125;&apos;</div><div class="line">&#125;</div><div class="line">$1</div><div class="line">bash-3.2 zabbix# vim zabbix_agentd.conf     #末尾新增如下</div><div class="line">UnsafeUserParameters=1</div><div class="line">UserParameter=memtotal,/etc/zabbix/script/mem.sh MEMTotal</div><div class="line">UserParameter=memuse,/etc/zabbix/script/mem.sh MEMuser</div><div class="line">UserParameter=memfree,/etc/zabbix/script/mem.sh MEMfree</div><div class="line">bash-3.2 zabbix# /etc/init.d/zabbix-agent start</div><div class="line">bash-3.2 ~# zabbix_get -s zabbix_agent_ip -k memfree        #zabbix服务端执行</div><div class="line">718</div></pre></td></tr></table></figure>
+<p><img src="http://static.zybuluo.com/BruceTang/32i8iq8t3o9abswhjb0p2j2l/image_1bf1d4vsr6bj137v178017691hfs76.png" alt="image_1bf1d4vsr6bj137v178017691hfs76.png-39.4kB"><br><img src="http://static.zybuluo.com/BruceTang/f3uecktt07o5t4fqm4449ej9/image_1bf1d58ma11a8s2r151j1fmi1mbe7j.png" alt="image_1bf1d58ma11a8s2r151j1fmi1mbe7j.png-95kB"><br><img src="http://static.zybuluo.com/BruceTang/emkzzliwpjt51g4s7nouh7r6/image_1bf1d5o1j1rk81vr51orjstdg7880.png" alt="image_1bf1d5o1j1rk81vr51orjstdg7880.png-71.2kB"><br><img src="http://static.zybuluo.com/BruceTang/49hyikugt8oafhcajx6wclty/image_1bf1d6jjn8iu135g1os1t4f1d3m8t.png" alt="image_1bf1d6jjn8iu135g1os1t4f1d3m8t.png-118.4kB"><br><img src="http://static.zybuluo.com/BruceTang/qv5lkan78z0nitewqm5xu0cn/image_1bf1d6uq1novqcj1ru2t6k1crs9a.png" alt="image_1bf1d6uq1novqcj1ru2t6k1crs9a.png-114.4kB"><br><img src="http://static.zybuluo.com/BruceTang/umcff896jjffl0u2lxdsj3cu/image_1bf1d791h5nec6ae8q1u851d289n.png" alt="image_1bf1d791h5nec6ae8q1u851d289n.png-111.9kB"><br><img src="http://static.zybuluo.com/BruceTang/v2puisqc1adw197xox19bc4f/image_1bf1d7h4r1cs3l731f7c4pg14kpa4.png" alt="image_1bf1d7h4r1cs3l731f7c4pg14kpa4.png-112.2kB"></p>
+<p><strong>这里的键值是根据客户端脚本所定义的.</strong></p>
+<p>##监控cpu使用率<br><img src="http://static.zybuluo.com/BruceTang/vm3dy667vow4blaf7hle46ig/image_1bf1d8jih1kkl148revntge17k3ah.png" alt="image_1bf1d8jih1kkl148revntge17k3ah.png-195.1kB"><br><img src="http://static.zybuluo.com/BruceTang/3lib1rpxmq7m58us2mq77jc0/image_1bf1d8sbp1t85162mm41nvlkhtau.png" alt="image_1bf1d8sbp1t85162mm41nvlkhtau.png-155.2kB"></p>
 
       
     </div>
@@ -356,16 +353,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 服务监控--Web监控/" rel="next" title="zabbix 3.0 服务监控--Web监控">
-                <i class="fa fa-chevron-left"></i> zabbix 3.0 服务监控--Web监控
+              <a href="/2016/10/03/zabbix 3.0 自定义监控/" rel="next" title="zabbix 3.0 自定义监控">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 自定义监控
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 自定义监控--内存、cpu、负载/" rel="prev" title="zabbix 3.0 自定义监控--内存、cpu、负载">
-                zabbix 3.0 自定义监控--内存、cpu、负载 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -482,7 +479,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要自定义KEY"><span class="nav-number">1.</span> <span class="nav-text">为什么要自定义KEY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在服务端添加到监控项"><span class="nav-number">2.</span> <span class="nav-text">在服务端添加到监控项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端编写监控内存脚本"><span class="nav-number">1.</span> <span class="nav-text">客户端编写监控内存脚本</span></a></li></ol></div>
             
           </div>
         </section>
