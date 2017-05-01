@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="zabbix3.0," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -57,25 +57,16 @@
 
 
 
-<meta name="description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zabbix 3.0 服务监控--MySQL">
-<meta property="og:url" content="http://yoursite.com/2016/10/02/zabbix 3.0 服务监控--MySQL/index.html">
+<meta property="og:title" content="Nginx配置文件nginx.conf中文详解">
+<meta property="og:url" content="http://yoursite.com/2017/04/30/Nginx配置文件nginx.conf中文详解/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/u8mn9wzijy535kmttzlpnlrc/image_1beu2f5lrcf2lvqdp51q0p1pimm.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/h8tfadwpsgo4m806yy9ywhcu/image_1beu2fgf51av097h1t6n24a1s8l13.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/w1ab39zccz0tljsfzvs4i1na/image_1bev53r7edua1em5bfv1c7j1jbu9.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/myvivvv31aix0kpu5pdnu8w0/image_1bev55cfl1a4g1o699b102i13sdm.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/duenq36yvf99cpe6y6lwnmj9/image_1bev56ate29m1kcm57s9fheak13.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/plbsp2l5642bwycd9luig2t6/image_1bev585u0i29hev4tl27v177t1g.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/huc2e0r9zzuw7kvhcuywibgz/image_1bev59nho1k071dvrbs3rn89621t.png">
-<meta property="og:updated_time" content="2017-04-30T10:10:39.516Z">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2017-04-30T13:02:09.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zabbix 3.0 服务监控--MySQL">
-<meta name="twitter:description" content="Mysql监控zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板　 percona官网： www.percona.com">
-<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png">
+<meta name="twitter:title" content="Nginx配置文件nginx.conf中文详解">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
 
 
 
@@ -93,7 +84,7 @@
   };
 </script>
 
-  <title> zabbix 3.0 服务监控--MySQL | BRUCETANG </title>
+  <title> Nginx配置文件nginx.conf中文详解 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +257,7 @@
             
             
               
-                zabbix 3.0 服务监控--MySQL
+                Nginx配置文件nginx.conf中文详解
               
             
           </h1>
@@ -278,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
-              2016-10-02
+            <time itemprop="dateCreated" datetime="2017-04-30T21:02:08+08:00" content="2017-04-30">
+              2017-04-30
             </time>
           </span>
 
@@ -292,8 +283,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -324,24 +315,7 @@
       
 
       
-        <p>Mysql监控<br>zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板<br>　<em> percona官网： www.percona.com<br><a id="more"></a><br><em>*Percona组成介绍</em></em></p>
-<pre><code>1、php脚本    用来数据采集
-2、shell脚本  用来调用采集信息
-3、zabbix配置文件
-4、zabbix模板文件
-</code></pre><p>安装文档：<a href="https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html" target="_blank" rel="external">https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html</a><br>　　percona 利用的是php来获取mysql的相关信息，所以如果我们想使用percona插件监控mysql就需要在agent端安装php。在安装文档上有写哦~<br><img src="http://static.zybuluo.com/BruceTang/dy8905qhs5ziio5o3ul25au8/image_1beu2alu21fr713i5d2e1t577kj9.png" alt="image_1beu2alu21fr713i5d2e1t577kj9.png-171.9kB"><br>安装步骤： 查看上面的链接也可以进行安装<br>我们安装在zabbix-agent上，因为上面有一个MySQL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm</div><div class="line">[root@node-11 web]# yum install percona-zabbix-templates php php-mysql -y</div><div class="line">#percona插件是通过php去获取mysql的参数，所以我们要安装php和php-mysql</div><div class="line"></div><div class="line">我们可以查看它都安装了那些软件</div><div class="line">[root@node-11 web]# rpm -ql percona-zabbix-templates</div><div class="line">/var/lib/zabbix/percona</div><div class="line">/var/lib/zabbix/percona/scripts</div><div class="line">/var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh  #shell脚本</div><div class="line">/var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php      #php获取mysql信息</div><div class="line">/var/lib/zabbix/percona/templates</div><div class="line">/var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf #zabbix配置文件</div><div class="line">/var/lib/zabbix/percona/templates/zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.6.xml  </div><div class="line">#zabbix模板文件在percona组成我们已经说过了，此处只是略微介绍</div></pre></td></tr></table></figure></p>
-<p>我们将zabbix模板下载下来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# sz /var/lib/zabbix/percona/templates/zabbix_agent_template_percona_mysql_server_ht_2.0.9-sver1.1.6.xml</div></pre></td></tr></table></figure></p>
-<p>然后我们需要将模板通过web界面导入到zabbix中<br><img src="http://static.zybuluo.com/BruceTang/u8mn9wzijy535kmttzlpnlrc/image_1beu2f5lrcf2lvqdp51q0p1pimm.png" alt="image_1beu2f5lrcf2lvqdp51q0p1pimm.png-349.1kB"><br><img src="http://static.zybuluo.com/BruceTang/h8tfadwpsgo4m806yy9ywhcu/image_1beu2fgf51av097h1t6n24a1s8l13.png" alt="image_1beu2fgf51av097h1t6n24a1s8l13.png-101.8kB"></p>
-<p><strong>提示</strong>：如果出现错误，可能是zabbix 3.0版本的问题。我们这里提供了一个生产的模板<br>下载链接：<a href="http://pan.baidu.com/s/1pLjKvxh" target="_blank" rel="external">http://pan.baidu.com/s/1pLjKvxh</a> 密码：75g0<br>然后从新上传之后导入即可</p>
-<p>复制配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-11 web]# cp /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf /etc/zabbix/zabbix_agentd.d/</div><div class="line">[root@node-11 web]# ls /etc/zabbix/zabbix_agentd.d/</div><div class="line">#安装完软件包后会在/var/lib/zabbix/percona/templates/目录下产生一个配置文件，我们将它拷贝，因为在前面的博文中，我们已经修改过zabbix的配置文件[Include=/etc/abbix/zabbix_agentd.d/</div><div class="line">] 所以将配置文件放在这个目录下，zabbix就会自己在这个目录下查找相关信息</div><div class="line">[root@node-11 web]# systemctl restart zabbix-agent.service </div><div class="line">重启一下！</div></pre></td></tr></table></figure></p>
-<p>下面就应该配置与MySQL的连接<br>在<code>/var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php.cnf</code>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@linux-node1 ~]# cat /var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php.cnf</div><div class="line">&lt;?php</div><div class="line">$mysql_user = &apos;root&apos;;</div><div class="line">$mysql_pass = &apos;&apos;;</div><div class="line">#用户名密码可以自己创建，有密码写密码，没密码为空就好了</div></pre></td></tr></table></figure></p>
-<p>提示： 正常这里的用户我们应该创建一个专门用来监控的，由于我这里是测试环境。就不浪费时间了</p>
-<p><strong>测试</strong><br>查看是否可以获取到值，随便找一个测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# cat /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf</div><div class="line">选择一个肯定有值的key</div><div class="line">[root@node-11 ~]# cat /var/lib/zabbix/percona/templates/userparameter_percona_mysql.conf|grep gm</div><div class="line">UserParameter=MySQL.read-views,/var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh gm</div><div class="line">测试结果如下：</div><div class="line">[root@node-11 ~]# cd /var/lib/zabbix/percona/scripts/</div><div class="line">[root@node-11 scripts]# ./get_mysql_stats_wrapper.sh gm</div><div class="line">1</div><div class="line">[root@node-11 scripts]# ./get_mysql_stats_wrapper.sh gw</div><div class="line">468</div><div class="line">可以获取到值，说明没有问题</div></pre></td></tr></table></figure></p>
-<p>温馨提示： shell脚本中数据库的路径是localhost，如果我们没有授权localhost会获取不到值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-11 scripts]# cat get_mysql_stats_wrapper.sh </div><div class="line">HOST=localhost</div><div class="line">    RES=`HOME=~zabbix mysql -e &apos;SHOW SLAVE STATUS\G&apos; | egrep &apos;(Slave_IO_Running|Slave_SQL_Running):&apos; | awk -F: &apos;&#123;print $2&#125;&apos; | tr &apos;\n&apos; &apos;,&apos;`</div><div class="line">#mysql是通过命令来获取的，如果环境变量不一样 也可能造成影响</div></pre></td></tr></table></figure></p>
-<p><strong>Zabbix_Web界面配置</strong><br>添加mysql监控模板（之前上传的模板）<br><img src="http://static.zybuluo.com/BruceTang/w1ab39zccz0tljsfzvs4i1na/image_1bev53r7edua1em5bfv1c7j1jbu9.png" alt="image_1bev53r7edua1em5bfv1c7j1jbu9.png-177.8kB"><br><img src="http://static.zybuluo.com/BruceTang/myvivvv31aix0kpu5pdnu8w0/image_1bev55cfl1a4g1o699b102i13sdm.png" alt="image_1bev55cfl1a4g1o699b102i13sdm.png-143.5kB"><br><img src="http://static.zybuluo.com/BruceTang/duenq36yvf99cpe6y6lwnmj9/image_1bev56ate29m1kcm57s9fheak13.png" alt="image_1bev56ate29m1kcm57s9fheak13.png-180.5kB"></p>
-<p>结果如下图<br><img src="http://static.zybuluo.com/BruceTang/plbsp2l5642bwycd9luig2t6/image_1bev585u0i29hev4tl27v177t1g.png" alt="image_1bev585u0i29hev4tl27v177t1g.png-401.9kB"><br><img src="http://static.zybuluo.com/BruceTang/huc2e0r9zzuw7kvhcuywibgz/image_1bev59nho1k071dvrbs3rn89621t.png" alt="image_1bev59nho1k071dvrbs3rn89621t.png-335.5kB"></p>
-<p><strong>思想：</strong><br>　　如果出现错误我们需要先查看shell的脚本，因为shell是去调用php。 错误的因素有很多，最简单的方法就是用shell 后面加上key 看看是否可以有值。<br>　　其中报错最多的地方就是php和mysql连接的问题，还有我们mysql授权的一些问题。</p>
-
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div></pre></td><td class="code"><pre><div class="line">#定义Nginx运行的用户和用户组</div><div class="line">user www www;</div><div class="line"></div><div class="line">#nginx进程数，建议设置为等于CPU总核心数。</div><div class="line">worker_processes 8;</div><div class="line"></div><div class="line">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</div><div class="line">error_log /var/log/nginx/error.log info;</div><div class="line">&lt;!-- more --&gt;</div><div class="line"></div><div class="line">#进程文件</div><div class="line">pid /var/run/nginx.pid;</div><div class="line"></div><div class="line">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。</div><div class="line">worker_rlimit_nofile 65535;</div><div class="line"></div><div class="line">#工作模式与连接数上限</div><div class="line">events</div><div class="line">&#123;</div><div class="line">#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</div><div class="line">use epoll;</div><div class="line">#单个进程最大连接数（最大连接数=连接数*进程数）</div><div class="line">worker_connections 65535;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#设定http服务器</div><div class="line">http</div><div class="line">&#123;</div><div class="line">include mime.types; #文件扩展名与文件类型映射表</div><div class="line">default_type application/octet-stream; #默认文件类型</div><div class="line">#charset utf-8; #默认编码</div><div class="line">server_names_hash_bucket_size 128; #服务器名字的hash表大小</div><div class="line">client_header_buffer_size 32k; #上传文件大小限制</div><div class="line">large_client_header_buffers 4 64k; #设定请求缓</div><div class="line">client_max_body_size 8m; #设定请求缓</div><div class="line">sendfile on; #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</div><div class="line">autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。</div><div class="line">tcp_nopush on; #防止网络阻塞</div><div class="line">tcp_nodelay on; #防止网络阻塞</div><div class="line">keepalive_timeout 120; #长连接超时时间，单位是秒</div><div class="line"></div><div class="line">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</div><div class="line">fastcgi_connect_timeout 300;</div><div class="line">fastcgi_send_timeout 300;</div><div class="line">fastcgi_read_timeout 300;</div><div class="line">fastcgi_buffer_size 64k;</div><div class="line">fastcgi_buffers 4 64k;</div><div class="line">fastcgi_busy_buffers_size 128k;</div><div class="line">fastcgi_temp_file_write_size 128k;</div><div class="line"></div><div class="line">#gzip模块设置</div><div class="line">gzip on; #开启gzip压缩输出</div><div class="line">gzip_min_length 1k; #最小压缩文件大小</div><div class="line">gzip_buffers 4 16k; #压缩缓冲区</div><div class="line">gzip_http_version 1.0; #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</div><div class="line">gzip_comp_level 2; #压缩等级</div><div class="line">gzip_types text/plain application/x-javascript text/css application/xml;</div><div class="line">#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</div><div class="line">gzip_vary on;</div><div class="line">#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用</div><div class="line"></div><div class="line">upstream blog.ha97.com &#123;</div><div class="line">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</div><div class="line">server 192.168.80.121:80 weight=3;</div><div class="line">server 192.168.80.122:80 weight=2;</div><div class="line">server 192.168.80.123:80 weight=3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#虚拟主机的配置</div><div class="line">server</div><div class="line">&#123;</div><div class="line">#监听端口</div><div class="line">listen 80;</div><div class="line">#域名可以有多个，用空格隔开</div><div class="line">server_name www.ha97.com ha97.com;</div><div class="line">index index.html index.htm index.php;</div><div class="line">root /data/www/ha97;</div><div class="line">location ~ .*\.(php|php5)?$</div><div class="line">&#123;</div><div class="line">fastcgi_pass 127.0.0.1:9000;</div><div class="line">fastcgi_index index.php;</div><div class="line">include fastcgi.conf;</div><div class="line">&#125;</div><div class="line">#图片缓存时间设置</div><div class="line">location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</div><div class="line">&#123;</div><div class="line">expires 10d;</div><div class="line">&#125;</div><div class="line">#JS和CSS缓存时间设置</div><div class="line">location ~ .*\.(js|css)?$</div><div class="line">&#123;</div><div class="line">expires 1h;</div><div class="line">&#125;</div><div class="line">#日志格式设定</div><div class="line">log_format access &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">&apos;&quot;$http_user_agent&quot; $http_x_forwarded_for&apos;;</div><div class="line">#定义本虚拟主机的访问日志</div><div class="line">access_log /var/log/nginx/ha97access.log access;</div><div class="line"></div><div class="line">#对 &quot;/&quot; 启用反向代理</div><div class="line">location / &#123;</div><div class="line">proxy_pass http://127.0.0.1:88;</div><div class="line">proxy_redirect off;</div><div class="line">proxy_set_header X-Real-IP $remote_addr;</div><div class="line">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</div><div class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">#以下是一些反向代理的配置，可选。</div><div class="line">proxy_set_header Host $host;</div><div class="line">client_max_body_size 10m; #允许客户端请求的最大单文件字节数</div><div class="line">client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，</div><div class="line">proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)</div><div class="line">proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)</div><div class="line">proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)</div><div class="line">proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小</div><div class="line">proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置</div><div class="line">proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）</div><div class="line">proxy_temp_file_write_size 64k;</div><div class="line">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</div><div class="line">&#125;</div><div class="line"></div><div class="line">#设定查看Nginx状态的地址</div><div class="line">location /NginxStatus &#123;</div><div class="line">stub_status on;</div><div class="line">access_log on;</div><div class="line">auth_basic &quot;NginxStatus&quot;;</div><div class="line">auth_basic_user_file conf/htpasswd;</div><div class="line">#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。</div><div class="line">&#125;</div><div class="line"></div><div class="line">#本地动静分离反向代理配置</div><div class="line">#所有jsp的页面均交由tomcat或resin处理</div><div class="line">location ~ .(jsp|jspx|do)?$ &#123;</div><div class="line">proxy_set_header Host $host;</div><div class="line">proxy_set_header X-Real-IP $remote_addr;</div><div class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">proxy_pass http://127.0.0.1:8080;</div><div class="line">&#125;</div><div class="line">#所有静态文件由nginx直接读取不经过tomcat或resin</div><div class="line">location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$</div><div class="line">&#123; expires 15d; &#125;</div><div class="line">location ~ .*.(js|css)?$</div><div class="line">&#123; expires 1h; &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -355,7 +329,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/zabbix3-0/" rel="tag">#zabbix3.0</a>
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
           
         </div>
       
@@ -364,17 +338,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/01/监控体系/" rel="next" title="监控体系">
-                <i class="fa fa-chevron-left"></i> 监控体系
+              <a href="/2017/03/12/Docker高级（1）--架构总览/" rel="next" title="Docker高级（1）--架构总览">
+                <i class="fa fa-chevron-left"></i> Docker高级（1）--架构总览
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/02/zabbix 3.0 服务监控--nginx/" rel="prev" title="zabbix 3.0 服务监控--nginx">
-                zabbix 3.0 服务监控--nginx <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

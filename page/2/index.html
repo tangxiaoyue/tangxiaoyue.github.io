@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker问题梳理/" itemprop="url">
-                  Docker问题梳理--持续更新
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
+                  Docker 基础（4）--镜像管理
                 </a>
               
             
@@ -320,19 +320,14 @@
 
       
         
-          
-            <h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
-
-使用systemctl启动服务的时候出现以下异常：
-
-Failed to get D-Bus connection: Operation not permitted 
-
-
-解决：
-
-docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </code></pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -376,8 +371,119 @@ docker run --privileged -itd -h node1 --name node1 centos /sbin/init
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-                  Docker 基础（3）--容器登入
+                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
+                  XtraBackup主从复制及备份
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
+                  Docker 基础（8）--网络管理
                 </a>
               
             
@@ -437,16 +543,10 @@ docker run --privileged -itd -h node1 --name node1 centos /sbin/init
 
       
         
-          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
+          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -723,8 +823,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/" itemprop="url">
-                  zabbix 3.0 服务监控--MySQL
+                <a class="post-title-link" href="/2016/10/03/zabbix 3.0 服务监控--Web监控/" itemprop="url">
+                  zabbix 3.0 服务监控--Web监控
                 </a>
               
             
@@ -737,8 +837,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
-              2016-10-02
+            <time itemprop="dateCreated" datetime="2016-10-03T10:37:26+08:00" content="2016-10-03">
+              2016-10-03
             </time>
           </span>
 
@@ -784,9 +884,9 @@ hexo deploy
 
       
         
-          <p>Mysql监控<br>zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板<br>　<em> percona官网： www.percona.com<br>
+          <h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><p>1.查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# ps -ef | grep java</div><div class="line">root     27297     1  3 18:43 pts/1    00:00:04 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/apache-tomcat-8.0.9/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/apache-tomcat-8.0.9/endorsed -classpath /usr/local/apache-tomcat-8.0.9/bin/bootstrap.jar:/usr/local/apache-tomcat-8.0.9/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/apache-tomcat-8.0.9 -Dcatalina.home=/usr/local/apache-tomcat-8.0.9 -Djava.io.tmpdir=/usr/local/apache-tomcat-8.0.9/temp org.apache.catalina.startup.Bootstrap start</div><div class="line">root     27993  2730  0 18:45 pts/1    00:00:00 grep --color=auto java</div></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/#more" rel="contents">
+            <a class="btn" href="/2016/10/03/zabbix 3.0 服务监控--Web监控/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -943,8 +1043,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/" itemprop="url">
-                  zabbix 3.0 基础介绍
+                <a class="post-title-link" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/" itemprop="url">
+                  zabbix 3.0 服务监控--MySQL
                 </a>
               
             
@@ -957,8 +1057,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T12:37:26+08:00" content="2016-10-01">
-              2016-10-01
+            <time itemprop="dateCreated" datetime="2016-10-02T12:37:26+08:00" content="2016-10-02">
+              2016-10-02
             </time>
           </span>
 
@@ -1004,9 +1104,9 @@ hexo deploy
 
       
         
-          <h2 id="Zabbix介绍"><a href="#Zabbix介绍" class="headerlink" title="Zabbix介绍"></a>Zabbix介绍</h2><h3 id="zabbix-简介"><a href="#zabbix-简介" class="headerlink" title="zabbix 简介"></a>zabbix 简介</h3><p>　　Zabbix是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案，由一个国外的团队持续维护更新，软件可以自由下载使用，运作团队靠提供收费的技术支持赢利<br>　　zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。<br>　　zabbix能监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题<br>　　zabbix主要由2部分构成zabbixserver和zabbixagent，可选组建zabbix proxyzabbix。　　<br>　　server可以通过SNMP，zabbixagent，fping端口监视等方法对远程服务器或网络状态完成监视，数据收集等功能。同时支持Linux以及Unix平台，Windows平台只能安装客户端<br>
+          <p>Mysql监控<br>zabbix自带了一个监控mysql的模板，但是真正监控mysql的并不是zabbix自带的模板。而是percona公司的一个监控mysql模板<br>　<em> percona官网： www.percona.com<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/#more" rel="contents">
+            <a class="btn" href="/2016/10/02/zabbix 3.0 服务监控--MySQL/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1163,8 +1263,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/09/25/五分钟商学院--大纲/" itemprop="url">
-                  五分钟商学院--大纲
+                <a class="post-title-link" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/" itemprop="url">
+                  zabbix 3.0 基础介绍
                 </a>
               
             
@@ -1177,8 +1277,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-25T23:23:33+08:00" content="2016-09-25">
-              2016-09-25
+            <time itemprop="dateCreated" datetime="2016-10-01T12:37:26+08:00" content="2016-10-01">
+              2016-10-01
             </time>
           </span>
 
@@ -1191,8 +1291,8 @@ hexo deploy
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
                   </a>
                 </span>
 
@@ -1224,121 +1324,9 @@ hexo deploy
 
       
         
-          <p>商业四大体系合体。</p>
-<p>1）商业，你与企业外部的关系；<br>2）管理，你与企业内部的关系；<br>3）个人，你与自己的关系；<br>4）以及提升前三者的：工具。    </p>
+          <h2 id="Zabbix介绍"><a href="#Zabbix介绍" class="headerlink" title="Zabbix介绍"></a>Zabbix介绍</h2><h3 id="zabbix-简介"><a href="#zabbix-简介" class="headerlink" title="zabbix 简介"></a>zabbix 简介</h3><p>　　Zabbix是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案，由一个国外的团队持续维护更新，软件可以自由下载使用，运作团队靠提供收费的技术支持赢利<br>　　zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。<br>　　zabbix能监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题<br>　　zabbix主要由2部分构成zabbixserver和zabbixagent，可选组建zabbix proxyzabbix。　　<br>　　server可以通过SNMP，zabbixagent，fping端口监视等方法对远程服务器或网络状态完成监视，数据收集等功能。同时支持Linux以及Unix平台，Windows平台只能安装客户端<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/25/五分钟商学院--大纲/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-                  MySQ binlog三种模式及设置方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
+            <a class="btn" href="/2016/10/01/zabbix 3.0 基础介绍 [一]/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1409,7 +1397,7 @@ hexo deploy
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1417,7 +1405,7 @@ hexo deploy
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1426,7 +1414,7 @@ hexo deploy
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
