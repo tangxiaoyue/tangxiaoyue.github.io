@@ -57,27 +57,20 @@
 
 
 
-<meta name="description" content="检查1.查看进程123[root@node-11 ~]# ps -ef | grep javaroot     27297     1  3 18:43 pts/1    00:00:04 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/apache-tomcat-8.0.9/conf/logging.prop">
+<meta name="description" content="对于我们的服务器来说，性能瓶颈往往就是磁盘，针对这种情况，我觉得我们有必要监控磁盘的IO情况，这里我们使用iostat命令取得的结果，然后图形化的展示到zabbix中。zabbix的安装配置叫简单这么不做过多的描述">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zabbix 3.0 服务监控--Web监控">
-<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 服务监控--Web监控/index.html">
+<meta property="og:title" content="zabbix 3.0 自定义监控--磁盘IO">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/zabbix 3.0 自定义监控--磁盘IO/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="检查1.查看进程123[root@node-11 ~]# ps -ef | grep javaroot     27297     1  3 18:43 pts/1    00:00:04 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/apache-tomcat-8.0.9/conf/logging.prop">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/kz17dvimywbelx57br72cps5/image_1bev6qnjf1lb91rb81suj1vj7u42a.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/lptove1xf8s4v27ybf5p5fbt/image_1bev6s8p7p2lui8lka37ghnf2n.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/5x8mg0w8a6ynealfn3504dgh/image_1bev73jns1doj9kf1nefefr1i6v34.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/g3ikswqp3ldtrs2xw4qwt0en/image_1bev75c4cito938ac4fp91arn3h.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/vimeqk9yl563j3kwzd4u4hbw/image_1bf0r8ctjsrs1c4s1amd18lb7759.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/oae0fg901d0s0xx45j6ef1vn/image_1bf0ran3pa4u1o14u8ibr6op2m.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/des9cftvyz2o8ugoblormytq/image_1bf0rcmro1a9f1osa1ti41rhu1n6h13.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/ny633o9e2c7wp5ucqeap5y8i/image_1bf0rf8sgo96a0s1vm113j31j8e1g.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/2rn27e3311bvjxdinfyb22ds/image_1bf0rgn8u1pf6c6u1sl39v97mv1t.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/tsmijy5us0zkrstlg12b03lh/image_1bf0rjbr1rt1misgnbfod1dvu2a.png">
-<meta property="og:updated_time" content="2017-05-01T01:57:47.982Z">
+<meta property="og:description" content="对于我们的服务器来说，性能瓶颈往往就是磁盘，针对这种情况，我觉得我们有必要监控磁盘的IO情况，这里我们使用iostat命令取得的结果，然后图形化的展示到zabbix中。zabbix的安装配置叫简单这么不做过多的描述">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/qvlwkrpuff58wsahhgsdmxix/image_1bf1u1po91g81195d12ut1d23ctidp.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/n6amyy2rhqws0iksoini81la/image_1bf1tdfc2166m10tm1j5d1anv1ciedc.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/2jujgugo6tdgjeiq206tm331/image_1bf1ug87iedn1qu61ib1157ok35e6.png">
+<meta property="og:updated_time" content="2017-05-01T12:07:21.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zabbix 3.0 服务监控--Web监控">
-<meta name="twitter:description" content="检查1.查看进程123[root@node-11 ~]# ps -ef | grep javaroot     27297     1  3 18:43 pts/1    00:00:04 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/apache-tomcat-8.0.9/conf/logging.prop">
-<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/kz17dvimywbelx57br72cps5/image_1bev6qnjf1lb91rb81suj1vj7u42a.png">
+<meta name="twitter:title" content="zabbix 3.0 自定义监控--磁盘IO">
+<meta name="twitter:description" content="对于我们的服务器来说，性能瓶颈往往就是磁盘，针对这种情况，我觉得我们有必要监控磁盘的IO情况，这里我们使用iostat命令取得的结果，然后图形化的展示到zabbix中。zabbix的安装配置叫简单这么不做过多的描述">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/qvlwkrpuff58wsahhgsdmxix/image_1bf1u1po91g81195d12ut1d23ctidp.png">
 
 
 
@@ -95,7 +88,7 @@
   };
 </script>
 
-  <title> zabbix 3.0 服务监控--Web监控 | BRUCETANG </title>
+  <title> zabbix 3.0 自定义监控--磁盘IO | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +261,7 @@
             
             
               
-                zabbix 3.0 服务监控--Web监控
+                zabbix 3.0 自定义监控--磁盘IO
               
             
           </h1>
@@ -280,7 +273,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T10:37:26+08:00" content="2016-10-03">
+            <time itemprop="dateCreated" datetime="2016-10-03T19:09:26+08:00" content="2016-10-03">
               2016-10-03
             </time>
           </span>
@@ -326,14 +319,9 @@
       
 
       
-        <h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><p>1.查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# ps -ef | grep java</div><div class="line">root     27297     1  3 18:43 pts/1    00:00:04 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/apache-tomcat-8.0.9/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/apache-tomcat-8.0.9/endorsed -classpath /usr/local/apache-tomcat-8.0.9/bin/bootstrap.jar:/usr/local/apache-tomcat-8.0.9/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/apache-tomcat-8.0.9 -Dcatalina.home=/usr/local/apache-tomcat-8.0.9 -Djava.io.tmpdir=/usr/local/apache-tomcat-8.0.9/temp org.apache.catalina.startup.Bootstrap start</div><div class="line">root     27993  2730  0 18:45 pts/1    00:00:00 grep --color=auto java</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>2.查看端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# lsof -i:8080</div><div class="line">COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</div><div class="line">java    27297 root   49u  IPv6 148863      0t0  TCP *:webcache (LISTEN)</div></pre></td></tr></table></figure></p>
-<p>3.测试是否可以访问8080端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]#  curl  -I 192.168.1.11:8080</div><div class="line">HTTP/1.1 200 OK</div><div class="line">Server: Apache-Coyote/1.1</div><div class="line">Content-Type: text/html;charset=UTF-8</div><div class="line">Transfer-Encoding: chunked</div><div class="line">Date: Sat, 29 Apr 2017 10:46:51 GMT</div></pre></td></tr></table></figure></p>
-<h2 id="Zabbix-Web界面配置"><a href="#Zabbix-Web界面配置" class="headerlink" title="Zabbix Web界面配置"></a>Zabbix Web界面配置</h2><p><img src="http://static.zybuluo.com/BruceTang/kz17dvimywbelx57br72cps5/image_1bev6qnjf1lb91rb81suj1vj7u42a.png" alt="image_1bev6qnjf1lb91rb81suj1vj7u42a.png-188.4kB"><br><strong>提示： 监控Web 不依赖于agent，是server直接发送请求的</strong><br><img src="http://static.zybuluo.com/BruceTang/lptove1xf8s4v27ybf5p5fbt/image_1bev6s8p7p2lui8lka37ghnf2n.png" alt="image_1bev6s8p7p2lui8lka37ghnf2n.png-153kB"><br>提示： 这里名字叫做Web场景，因为我们可以设置触发上面3个选项后，才进行报警<br><img src="http://static.zybuluo.com/BruceTang/5x8mg0w8a6ynealfn3504dgh/image_1bev73jns1doj9kf1nefefr1i6v34.png" alt="image_1bev73jns1doj9kf1nefefr1i6v34.png-162.2kB"><br>提示： 字符串里面可以添加一些字符串，当请求下来有这个字符串就是正常，没有就是不正常。但是最常用的还是状态<br><img src="http://static.zybuluo.com/BruceTang/g3ikswqp3ldtrs2xw4qwt0en/image_1bev75c4cito938ac4fp91arn3h.png" alt="image_1bev75c4cito938ac4fp91arn3h.png-166.1kB"></p>
-<p><strong>新添加web监控，zabbix默认是没有给我们设置触发器的，需要我们自己设置</strong><br><img src="http://static.zybuluo.com/BruceTang/vimeqk9yl563j3kwzd4u4hbw/image_1bf0r8ctjsrs1c4s1amd18lb7759.png" alt="image_1bf0r8ctjsrs1c4s1amd18lb7759.png-378.3kB"></p>
-<h2 id="触发器添加"><a href="#触发器添加" class="headerlink" title="触发器添加"></a>触发器添加</h2><p><img src="http://static.zybuluo.com/BruceTang/oae0fg901d0s0xx45j6ef1vn/image_1bf0ran3pa4u1o14u8ibr6op2m.png" alt="image_1bf0ran3pa4u1o14u8ibr6op2m.png-175.7kB"></p>
-<p>Web监控中默认不含有触发器，所以需要手动添加<br><img src="http://static.zybuluo.com/BruceTang/des9cftvyz2o8ugoblormytq/image_1bf0rcmro1a9f1osa1ti41rhu1n6h13.png" alt="image_1bf0rcmro1a9f1osa1ti41rhu1n6h13.png-291.9kB"><br><img src="http://static.zybuluo.com/BruceTang/ny633o9e2c7wp5ucqeap5y8i/image_1bf0rf8sgo96a0s1vm113j31j8e1g.png" alt="image_1bf0rf8sgo96a0s1vm113j31j8e1g.png-183.1kB"><br><img src="http://static.zybuluo.com/BruceTang/2rn27e3311bvjxdinfyb22ds/image_1bf0rgn8u1pf6c6u1sl39v97mv1t.png" alt="image_1bf0rgn8u1pf6c6u1sl39v97mv1t.png-351.9kB"><br>最终结果：<br><img src="http://static.zybuluo.com/BruceTang/tsmijy5us0zkrstlg12b03lh/image_1bf0rjbr1rt1misgnbfod1dvu2a.png" alt="image_1bf0rjbr1rt1misgnbfod1dvu2a.png-159.6kB"></p>
+        <p>对于我们的服务器来说，性能瓶颈往往就是磁盘，针对这种情况，我觉得我们有必要监控磁盘的IO情况，这里我们使用iostat命令取得的结果，然后图形化的展示到zabbix中。<br>zabbix的安装配置叫简单这么不做过多的描述<br><a id="more"></a></p>
+<h2 id="zabbix中自定义监控的key"><a href="#zabbix中自定义监控的key" class="headerlink" title="zabbix中自定义监控的key"></a>zabbix中自定义监控的key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# yum install -y sysstat</div><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf </div><div class="line">##disk_io</div><div class="line">UserParameter=io_sda_idle,iostat -x /dev/mapper/centos-root  | sed -n &apos;4p&apos; | awk &apos;&#123;print $NF&#125;&apos;</div><div class="line">UserParameter=io_sda_iowait,iostat -x /dev/mapper/centos-root  | sed -n &apos;4p&apos; | awk &apos;&#123;print $4&#125;&apos;</div><div class="line">UserParameter=io_sda_tps,iostat -d /dev/mapper/centos-root  | sed -n &apos;4p&apos; | awk &apos;&#123;print $2&#125;&apos;</div><div class="line"></div><div class="line">[root@node-11 ~]# systemctl restart zabbix-agent</div></pre></td></tr></table></figure>
+<h2 id="添加监控项"><a href="#添加监控项" class="headerlink" title="添加监控项"></a>添加监控项</h2><p>添加监控项<br><img src="http://static.zybuluo.com/BruceTang/qvlwkrpuff58wsahhgsdmxix/image_1bf1u1po91g81195d12ut1d23ctidp.png" alt="image_1bf1tb05v1dcmgcmp391r98e9tcv.png-189kB"><br>添加图形<br><img src="http://static.zybuluo.com/BruceTang/n6amyy2rhqws0iksoini81la/image_1bf1tdfc2166m10tm1j5d1anv1ciedc.png" alt="image_1bf1tdfc2166m10tm1j5d1anv1ciedc.png-193.2kB"><br>最终结果<br><img src="http://static.zybuluo.com/BruceTang/2jujgugo6tdgjeiq206tm331/image_1bf1ug87iedn1qu61ib1157ok35e6.png" alt="image_1bf1ug87iedn1qu61ib1157ok35e6.png-206.5kB"></p>
 
       
     </div>
@@ -357,16 +345,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/02/zabbix 3.0 服务监控--MySQL/" rel="next" title="zabbix 3.0 服务监控--MySQL">
-                <i class="fa fa-chevron-left"></i> zabbix 3.0 服务监控--MySQL
+              <a href="/2016/10/03/zabbix 3.0 自定义监控--磁盘使用率/" rel="next" title="zabbix 3.0 自定义监控--磁盘使用率">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 自定义监控--磁盘使用率
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 自定义监控/" rel="prev" title="zabbix 3.0 自定义监控">
-                zabbix 3.0 自定义监控 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -483,7 +471,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#检查"><span class="nav-number">1.</span> <span class="nav-text">检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zabbix-Web界面配置"><span class="nav-number">2.</span> <span class="nav-text">Zabbix Web界面配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发器添加"><span class="nav-number">3.</span> <span class="nav-text">触发器添加</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix中自定义监控的key"><span class="nav-number">1.</span> <span class="nav-text">zabbix中自定义监控的key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加监控项"><span class="nav-number">2.</span> <span class="nav-text">添加监控项</span></a></li></ol></div>
             
           </div>
         </section>
