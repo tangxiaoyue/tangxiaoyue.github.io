@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="zabbix3.0," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Zabbix Proxy是一个类似于代理的服务，可以代替Zabbix-server获取 zabbix-agent信息。其中数据存到本地（Proxy有自己的数据库）然后在发送给Server，这样可以保证数据不丢失">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix 3.0 分布式监控">
+<meta property="og:url" content="http://yoursite.com/2016/10/04/zabbix 3.0 分布式监控/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="Zabbix Proxy是一个类似于代理的服务，可以代替Zabbix-server获取 zabbix-agent信息。其中数据存到本地（Proxy有自己的数据库）然后在发送给Server，这样可以保证数据不丢失">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/61a8i6ptqxvqq9jt8rz08u4r/image_1bf5l7am9187gaosmifsuebqs9.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/fk76r97vk45wrb63f4b7borw/image_1bf5l9b69uc81pum12eg17cm1o2tm.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/05cl1r3e7k20m58nfyf9kj77/image_1bf79pmp0154n9l11i0e6oi1h6613.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/59qn9ugnygfm97vjhlmdbflo/image_1bf7cnf1h1dasr391grh1vj02bi9.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/u5uivrm6a15q9jz0v345w5rt/image_1bf79sfc71gotd92lianj919a81t.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/1lsab5jzw89u55g8urvicns3/image_1bf79t1vv1s5sc2f17hckkvr232a.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/k9og1jxtydejrf7anq8zfwt6/image_1bf79ugsd3ru8mu1ct71pao4ta2n.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/mylylk75c5533bzsybqno5kk/image_1bf7a6hvoek0lndvir12rhedv34.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/o36z39h959h4sdm774ujmxpp/image_1bf7arfluk05lk1ug719dd2cd3h.png">
+<meta property="og:updated_time" content="2017-05-03T14:52:39.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zabbix 3.0 分布式监控">
+<meta name="twitter:description" content="Zabbix Proxy是一个类似于代理的服务，可以代替Zabbix-server获取 zabbix-agent信息。其中数据存到本地（Proxy有自己的数据库）然后在发送给Server，这样可以保证数据不丢失">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/61a8i6ptqxvqq9jt8rz08u4r/image_1bf5l7am9187gaosmifsuebqs9.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> zabbix 3.0 分布式监控 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                zabbix 3.0 分布式监控
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T21:09:26+08:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维监控/" itemprop="url" rel="index">
+                    <span itemprop="name">运维监控</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Zabbix Proxy是一个类似于代理的服务，可以代替Zabbix-server获取 zabbix-agent信息。其中数据存到本地（Proxy有自己的数据库）然后在发送给Server，这样可以保证数据不丢失 </p>
+<a id="more"></a>
+<p>　　Zabbix-server —–&gt;Zabbix-Proxy —–&gt;Zabbix-agent<br><img src="http://static.zybuluo.com/BruceTang/61a8i6ptqxvqq9jt8rz08u4r/image_1bf5l7am9187gaosmifsuebqs9.png" alt="image_1bf5l7am9187gaosmifsuebqs9.png-105.7kB"></p>
+<p>地址：<a href="https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring/proxies" target="_blank" rel="external">https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring/proxies</a></p>
+<h2 id="Zabbix-Proxy-使用场景"><a href="#Zabbix-Proxy-使用场景" class="headerlink" title="Zabbix Proxy 使用场景"></a>Zabbix Proxy 使用场景</h2><p>常用于多机房情况或者监控主机特别多，几千台左右。这时候使用Zabbix Proxy 可以减轻服务器server的压力，还可以减轻Zabbix的维护。<br>　　最常用的特点是适用于多机房、网络不稳定的时候，因为如果直接由Zabbix-server发送信息可能agent没有收到，但是直接使用Zabbix-Proxy就不会遇到这个问题。 </p>
+<p><strong>Zabbix官方说明（分布式监控）</strong><br><img src="http://static.zybuluo.com/BruceTang/fk76r97vk45wrb63f4b7borw/image_1bf5l9b69uc81pum12eg17cm1o2tm.png" alt="image_1bf5l9b69uc81pum12eg17cm1o2tm.png-141.7kB"><br>地址： <a href="https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring" target="_blank" rel="external">https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring</a><br><strong>NO - 中文解释</strong><br>1.没有Web界面<br>2.本身不做任何告警通知（告警通知都是Server做）</p>
+<p><strong>小结：</strong><br>　　Zabbix Proxy 可以有多个，用来代理Zabbix server来运行。Proxy会将所有数据暂存于本地,然后同一转发到Zabbix Server上<br>　　Proxy只需要一条TCP链接，可以连接到Zabbix-server上即可。所以防火墙只需要添加一条Zabbix Proxy即可 我们可以参考上面的Zabbix Proxy图<br>　　Proxy是需要使用单独的数据库，所以不能将Server和Agent放在一起<br>Proxy说明：<a href="https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring/proxies" target="_blank" rel="external">https://www.zabbix.com/documentation/3.0/manual/distributed_monitoring/proxies</a><br>安装文档：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install" target="_blank" rel="external">https://www.zabbix.com/documentation/3.0/manual/installation/install</a><br>　官方文档使用的是源码安装，因为方便我们使用yum安装，因为我们只有2台，所以就用agent当做Proxy</p>
+<h2 id="zabbix-proxy安装"><a href="#zabbix-proxy安装" class="headerlink" title="zabbix-proxy安装"></a>zabbix-proxy安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-12 ~]#  rpm -ivh http://mirrors.aliyun.com/zabbix/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm</div><div class="line"></div><div class="line">[root@node-12 ~]# yum install -y zabbix-proxy zabbix-proxy-mysql mariadb-server</div><div class="line"></div><div class="line">我们需要启动MySQL</div><div class="line">[root@node-12 ~]# systemctl start mariadb.service</div></pre></td></tr></table></figure>
+<p>我们还需要创建一个库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;create database zabbix_proxy character set utf8;</div><div class="line">&gt;grant all on zabbix_proxy.* to zabbix_proxy@localhost identified by &apos;zabbix_proxy&apos;;</div></pre></td></tr></table></figure></p>
+<p>我们需要导入数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@node-12 ~]# cd /usr/share/doc/zabbix-proxy-mysql-3.0.9/</div><div class="line">[root@node-12 zabbix-proxy-mysql-3.0.9]# zcat schema.sql.gz | mysql -uzabbix_proxy -p zabbix_proxy</div><div class="line">Enter password: </div><div class="line"></div><div class="line">#密码是：zabbix_proxy 是我们数据库授权的密码</div></pre></td></tr></table></figure></p>
+<p>检查数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;show databases;</div><div class="line">&gt;use zabbix_proxy;</div><div class="line">&gt;show tables;</div><div class="line"></div><div class="line">#查看是否含有数据</div></pre></td></tr></table></figure></p>
+<p>我们需要修改proxy的配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">[root@node-12 ~]# vim /etc/zabbix/zabbix_proxy.conf</div><div class="line">Server=192.168.10.10（zabbixserver端IP）</div><div class="line">Hostname=Zabbix proxy</div><div class="line">DBName=zabbix_proxy</div><div class="line">#数据库名称</div><div class="line"></div><div class="line">DBUser=zabbix_proxy</div><div class="line">#用户名</div><div class="line"></div><div class="line">DBPassword=zabbix_proxy</div><div class="line">#用户密码</div><div class="line">配置文件中没有配置的内容如下：（有需要可以配置）</div><div class="line"></div><div class="line"># ProxyLocalBuffer=0</div><div class="line">#数据保留的时间（小时为单位）</div><div class="line"></div><div class="line"># ProxyOfflineBuffer=1</div><div class="line">#连不上Server，数据要保留多久（小时为单位，默认1小时）</div><div class="line"></div><div class="line"># DataSenderFrequency=1</div><div class="line">#数据的发送时间间隔（默认是1秒）</div><div class="line"></div><div class="line"># StartPollers=5</div><div class="line">#启动的线程数</div><div class="line"></div><div class="line"># StartIPMIPollers=0</div><div class="line">#启动IPMI的线程数</div><div class="line">从这往下都是性能的监控，就不一次说明了。 上面都有中文注释</div></pre></td></tr></table></figure></p>
+<p>过滤修改过的配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@node-12 ~]# grep &apos;^[a-Z]&apos; /etc/zabbix/zabbix_proxy.conf</div><div class="line">Server=192.168.10.10</div><div class="line">Hostname=Zabbix proxy</div><div class="line">LogFile=/var/log/zabbix/zabbix_proxy.log</div><div class="line">LogFileSize=0</div><div class="line">PidFile=/var/run/zabbix/zabbix_proxy.pid</div><div class="line">DBName=zabbix_proxy</div><div class="line">DBUser=zabbix_proxy</div><div class="line">SNMPTrapperFile=/var/log/snmptrap/snmptrap.log</div><div class="line">Timeout=4</div><div class="line">ExternalScripts=/usr/lib/zabbix/externalscripts</div><div class="line">LogSlowQueries=3000</div></pre></td></tr></table></figure></p>
+<p>启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">[root@node-12 ~]# systemctl start zabbix-proxy (坑：需要被seLinux关闭，不然起不来)</div><div class="line">[root@node-12 ~]# netstat -lntup</div><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </div><div class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2558/master         </div><div class="line">tcp        0      0 0.0.0.0:5050            0.0.0.0:*               LISTEN      1483/mesos-master   </div><div class="line">tcp        0      0 0.0.0.0:5051            0.0.0.0:*               LISTEN      2997/mesos-slave    </div><div class="line">tcp        0      0 0.0.0.0:10051           0.0.0.0:*               LISTEN      7992/zabbix_proxy   </div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1501/sshd           </div><div class="line">tcp6       0      0 ::1:25                  :::*                    LISTEN      2558/master         </div><div class="line">tcp6       0      0 :::10051                :::*                    LISTEN      7992/zabbix_proxy   </div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      2949/mysqld         </div><div class="line">tcp6       0      0 :::22                   :::*                    LISTEN      1501/sshd           </div><div class="line">udp        0      0 192.168.10.12:123       0.0.0.0:*                           823/ntpd            </div><div class="line">udp        0      0 172.17.0.1:123          0.0.0.0:*                           823/ntpd            </div><div class="line">udp        0      0 127.0.0.1:123           0.0.0.0:*                           823/ntpd            </div><div class="line">udp        0      0 0.0.0.0:123             0.0.0.0:*                           823/ntpd            </div><div class="line">udp        0      0 0.0.0.0:33999           0.0.0.0:*                           780/avahi-daemon: r </div><div class="line">udp        0      0 0.0.0.0:5353            0.0.0.0:*                           780/avahi-daemon: r </div><div class="line">udp6       0      0 fe80::20c:29ff:fe81:123 :::*                                823/ntpd            </div><div class="line">udp6       0      0 ::1:123                 :::*                                823/ntpd            </div><div class="line">udp6       0      0 :::123                  :::*                                823/ntpd</div></pre></td></tr></table></figure></p>
+<p>Zabbix-proxy 监控10051端口，因为是代理就必须跟Server的端口相同，对于Agent Proxy就是Server</p>
+<p>##Zabbix Web 添加##<br><img src="http://static.zybuluo.com/BruceTang/05cl1r3e7k20m58nfyf9kj77/image_1bf79pmp0154n9l11i0e6oi1h6613.png" alt="image_1bf79pmp0154n9l11i0e6oi1h6613.png-135.8kB"><br><img src="http://static.zybuluo.com/BruceTang/59qn9ugnygfm97vjhlmdbflo/image_1bf7cnf1h1dasr391grh1vj02bi9.png" alt="!image_1bf79rsj1q5ro691a9eo331sc21g.png-142.4kB"><br><img src="http://static.zybuluo.com/BruceTang/u5uivrm6a15q9jz0v345w5rt/image_1bf79sfc71gotd92lianj919a81t.png" alt="image_1bf79sfc71gotd92lianj919a81t.png-144.8kB"></p>
+<p>修改agent主机<br><img src="http://static.zybuluo.com/BruceTang/1lsab5jzw89u55g8urvicns3/image_1bf79t1vv1s5sc2f17hckkvr232a.png" alt="image_1bf79t1vv1s5sc2f17hckkvr232a.png-191.8kB"><br><img src="http://static.zybuluo.com/BruceTang/k9og1jxtydejrf7anq8zfwt6/image_1bf79ugsd3ru8mu1ct71pao4ta2n.png" alt="image_1bf79ugsd3ru8mu1ct71pao4ta2n.png-130.5kB"></p>
+<p>我们需要将这代理端的数据发送给给Proxy<br>编辑agent端（192.168.10.11）这台主机，需要将Server的IP地址修改成自己的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf </div><div class="line">ServerActive=192.168.10.11</div><div class="line">#配置文件修改完需要重启</div><div class="line">[root@node-11 ~]# systemctl restart zabbix-agent</div></pre></td></tr></table></figure></p>
+<p>这时候我们就可以看到那个proxy都管理了那些机器,做到方便管理的机制<br><img src="http://static.zybuluo.com/BruceTang/mylylk75c5533bzsybqno5kk/image_1bf7a6hvoek0lndvir12rhedv34.png" alt="image_1bf7a6hvoek0lndvir12rhedv34.png-201.6kB"><br><img src="http://static.zybuluo.com/BruceTang/o36z39h959h4sdm774ujmxpp/image_1bf7arfluk05lk1ug719dd2cd3h.png" alt="image_1bf7arfluk05lk1ug719dd2cd3h.png-225.7kB"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zabbix3-0/" rel="tag">#zabbix3.0</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/04/zabbix 3.0 主动式监控/" rel="next" title="zabbix 3.0 主动式监控">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 主动式监控
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zabbix-Proxy-使用场景"><span class="nav-number">1.</span> <span class="nav-text">Zabbix Proxy 使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix-proxy安装"><span class="nav-number">2.</span> <span class="nav-text">zabbix-proxy安装</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
