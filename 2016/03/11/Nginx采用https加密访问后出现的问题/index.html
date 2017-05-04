@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -57,15 +57,19 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/tags/mysql/index.html">
+<meta name="description" content="线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。更改为https后，网站访问正常，但网站注册功能不能正常使用了！
+经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx采用https加密访问后出现的问题">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/Nginx采用https加密访问后出现的问题/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。更改为https后，网站访问正常，但网站注册功能不能正常使用了！
+经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。">
+<meta property="og:updated_time" content="2017-05-04T23:01:23.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="Nginx采用https加密访问后出现的问题">
+<meta name="twitter:description" content="线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。更改为https后，网站访问正常，但网站注册功能不能正常使用了！
+经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。">
 
 
 
@@ -83,7 +87,7 @@
   };
 </script>
 
-  <title> 标签: mysql | BRUCETANG </title>
+  <title> Nginx采用https加密访问后出现的问题 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,7 +108,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,130 +239,146 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        mysql
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-              
-                <span itemprop="name">XtraBackup主从复制及备份</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-              
-                <span itemprop="name">MySQ binlog三种模式及设置方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-12T12:37:26+08:00"
-              content="2016-03-12" >
-          03-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
-              
-                <span itemprop="name">Mysql优化系列--总结梳理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-12T12:37:26+08:00"
-              content="2016-03-12" >
-          03-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
-              
-                <span itemprop="name">Mysqladmin命令总结</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-11T12:37:26+08:00"
-              content="2016-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nginx采用https加密访问后出现的问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">location ~ \.php$ &#123;</div><div class="line">root /var/www/vhosts/fff/main;</div><div class="line">fastcgi_pass 127.0.0.1:9000;</div><div class="line">fastcgi_read_timeout 30;</div><div class="line">fastcgi_index fff.php;</div><div class="line">fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;</div><div class="line">#include fastcgi_params;</div><div class="line">include fastcgi.conf;</div><div class="line">fastcgi_param HTTPS on;                        【或者fastcgi_param HTTPS     $https if_not_empty; 】</div><div class="line">&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如何开启 Nginx 的 SSL 或者 HTTPS呢？</p>
+<p>大家有没有试过使用HTTPS登陆 phpmyadmin 的时候会自动返回“The plain HTTP request was sent to HTTPS port”？<br>这是个 fastcgi 的配置问题！</p>
+<p><strong>解决方法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">location ~ .*\.(php|php5)?$</div><div class="line">&#123;</div><div class="line">try_files $uri =404;</div><div class="line">fastcgi_pass unix:/tmp/php-cgi.sock;</div><div class="line">fastcgi_param HTTPS     $https if_not_empty;</div><div class="line">fastcgi_index index.php;</div><div class="line">include fcgi.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解释：</strong></p>
+<p>很多人认为使用 fastcgi_param HTTPS on;，这样是没错啦，不过强迫使用这个参数，可能不太有效！</p>
+<p>最好的答案是上面的配置（参考下面 nginx 官方的链接）<br><code>fastcgi_param HTTPS $https if_not_empty;</code><br>有 https 协议时才自动使用 https on，否则忽略这个参数。<br>内嵌的变量：<br><code>$https</code> – 如果链接是 SSL 就返回 “ON”，否则返回空字符串。<br><code>if_not_empty</code>; – 当参数有值时才传递到服务器</p>
+<p>注意：这个 if_not_empty 额外参数只适合 Nginx 1.1.11 之后的版本</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/" rel="next" title="Nginx配置SSL证书部署HTTPS网站">
+                <i class="fa fa-chevron-left"></i> Nginx配置SSL证书部署HTTPS网站
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/12/Mysql优化系列--总结梳理/" rel="prev" title="Mysql优化系列--总结梳理">
+                Mysql优化系列--总结梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -366,6 +386,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -385,8 +409,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -438,6 +471,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -522,6 +566,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
 
   
 
