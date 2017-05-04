@@ -1,0 +1,744 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="DDOS介绍DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。
+DDOS攻击的本质是：利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。
+可以参考下面的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下防御DDOS攻击的操作梳理">
+<meta property="og:url" content="http://yoursite.com/2016/12/11/Linux下防御DDOS攻击的操作梳理/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="DDOS介绍DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。
+DDOS攻击的本质是：利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。
+可以参考下面的">
+<meta property="og:updated_time" content="2017-05-04T23:23:19.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下防御DDOS攻击的操作梳理">
+<meta name="twitter:description" content="DDOS介绍DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。
+DDOS攻击的本质是：利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。
+可以参考下面的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Linux下防御DDOS攻击的操作梳理 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux下防御DDOS攻击的操作梳理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-11T09:38:27+08:00" content="2016-12-11">
+              2016-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="DDOS介绍"><a href="#DDOS介绍" class="headerlink" title="DDOS介绍"></a>DDOS介绍</h3><p>DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。</p>
+<p>DDOS攻击的本质是：<br>利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。</p>
+<p>可以参考下面的例子理解下DDOS攻击。<br>1）某饭店可以容纳100人同时就餐，某日有个商家恶意竞争，雇佣了200人来这个饭店坐着不吃不喝，导致饭店满满当当无法正常营业。（DDOS攻击成功）<br>2）老板当即大怒，派人把不吃不喝影响正常营业的人全都轰了出去，且不再让他们进来捣乱，饭店恢复了正常营业。（添加规则和黑名单进行DDOS防御，防御成功）<br>3）主动攻击的商家心存不满，这次请了五千人逐批次来捣乱，导致该饭店再次无法正常营业。（增加DDOS流量，改变攻击方式）<br>4）饭店把那些捣乱的人轰出去只后，另一批接踵而来。此时老板将饭店营业规模扩大，该饭店可同时容纳1万人就餐，5000人同时来捣乱饭店营业也不会受到影响。（增加硬防与其抗衡）</p>
+<p>DDOS攻击只不过是一个概称，其下有各种攻击方式，比如:”CC攻击、SYN攻击、NTP攻击、TCP攻击、DNS攻击等等”，现在DDOS发展变得越来越可怕，NTP服务放大攻击渐渐成为主流了，这意味着可以将每秒的攻击流量放大几百倍，比如每秒1G的SYN碎片攻击换成NTP放大攻击，就成为了200G或者更多。</p>
+<a id="more"></a>
+<h4 id="NTP放大攻击"><a href="#NTP放大攻击" class="headerlink" title="NTP放大攻击"></a>NTP放大攻击</h4><p>什么是NTP服务？<br>网络时间协议NTP（Network Time Protocol）是用于互联网中时间同步的标准互联网协议。NTP服务器通过NTP服务向网络上的计算机或其他设备提供标准的授时服务，以保证这些服务系统的时钟能够同步。通常NTP服务使用UDP 123端口提供标准服务。</p>
+<p>什么是NTP服务放大攻击？<br>标准NTP 服务提供了一个 monlist查询功能，也被称为MON_GETLIST，该功能主要用于监控 NTP 服务器的服务状况，当用户端向NTP服务提交monlist查询时，NTP 服务器会向查询端返回与NTP 服务器进行过时间同步的最后 600 个客户端的 IP，响应包按照每 6 个 IP 进行分割，最多有 100 个响应包。由于NTP服务使用UDP协议，攻击者可以伪造源发地址向NTP服务进行monlist查询，这将导致NTP服务器向被伪造的目标发送大量的UDP数据包，理论上这种恶意导向的攻击流量可以放大到伪造查询流量的100倍。</p>
+<p>NTP是用UDP传输的，所以可以伪造源地址。NTP协议中有一类查询指令，用短小的指令即可令服务器返回很长的信息，放大攻击就是基于这类指令的。<br>比如：<br>小明以吴一帆的名义问李雷”我们班有哪些人？” ,李雷就回答吴一帆说”有谁谁谁和谁谁谁……”””(几百字),那么小明就以8个字的成本，令吴一帆收到了几百字的信息，所以叫做放大攻击。<br>(也就是说：对方服务器是个话唠，你以小明的身份问他一个问题，他回答小明一千句，结果小明崩溃了）</p>
+<p>网络上一般NTP服务器都有很大的带宽，攻击者可能只需要1Mbps的上传带宽欺骗NTP服务器，即可给目标服务器带来几百上千Mbps的攻击流量，达到借刀杀人的效果。<br>所以现在新的ntpd已经可以通过配置文件，关掉除时间同步以外的查询功能。而时间同步的查询和返回大小相同(没记错的话)，所以没办法用作放大攻击。</p>
+<p>如何查看是否遭受NTP放大攻击？<br>如果网络上检测到大流量的UDP 123端口的数据，就可以确认正在遭受此类攻击。</p>
+<p>如何防范NTP放大攻击？<br>1)升级服务程序版本<br>将系统中的NTP服务升级到 ntpd 4.2.7p26 或之后的版本，因为 ntpd 4.2.7p26 版本后，服务默认是关闭monlist查询功能的。</p>
+<p>2)关闭服务的monlist查询功能：<br>首先查询问题主机的REQ_MON_GETLIST和REQ_MON_GETLIST_1请求是否可用。具体操作方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># ntpq -c rv&lt;localhost/remotehost&gt;</div><div class="line"># ntpdc -c sysinfo&lt;localhost/remotehost&gt;</div><div class="line"># ntpdc -n -c monlist&lt;localhost/remotehost&gt;</div></pre></td></tr></table></figure></p>
+<p>如果上述功能可用，可尝试通过修改ntp.conf文件解决问题，具体操作建议是在上述配置文件中增加下面的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">IPV4: restrict default kod nomodify notrap nopeer noquery</div><div class="line">IPv6: restrict -6 default kod nomodify notrap nopeer noquery</div></pre></td></tr></table></figure></p>
+<p>允许发起时间同步的IP，与本服务器进行时间同步，但是不允许修改ntp服务信息，也不允许查询服务器的状态信息（如monlist）*/</p>
+<p>另外，还可以配置限制访问命令，如：</p>
+<p><code>restrict default noquery</code>   #允许普通的请求者进行时间同步，但是不允许查询ntp服务信息*/</p>
+<p>修改并保存配置文件之后，请重启ntpd服务。</p>
+<h3 id="重大的DDOS攻击案例"><a href="#重大的DDOS攻击案例" class="headerlink" title="重大的DDOS攻击案例"></a>重大的DDOS攻击案例</h3><p>）2000年2月，包括雅虎、CNN、亚马逊、eBay、<a href="http://Buy.com、ZDNet，以及E*Trade和Datek等网站均遭受到了DDOS攻击，并致使部分网站瘫痪。" target="_blank" rel="external">http://Buy.com、ZDNet，以及E*Trade和Datek等网站均遭受到了DDOS攻击，并致使部分网站瘫痪。</a><br>2）2007年5月，爱沙尼亚三周内遭遇三轮DDOS攻击,总统府、议会、几乎全部政府部门、主要政党、主要媒体和2家大银行和通讯公司的网站均陷入瘫痪，为此北约顶级反网络恐怖主义专家前往该国救援。<br>3）2009年519断网事件导致南方六省运营商服务器全部崩溃，电信在南方六省的网络基本瘫痪。2009年7月，韩国主要网站三天内遭遇三轮猛烈的DDOS攻击，韩国宣布提前成立网络司令部。<br>4）比较著名的案例还有有：<br>  全球三大游戏平台：暴雪战网、Valve Steam和EA Origin遭到大规模DDoS攻击，致使大批玩家无法登录与进行游戏。随后名为DERP的黑客组织声称对此次大规模的DDoS攻击行动负责。</p>
+<h3 id="DDOS攻击的简单防护措施"><a href="#DDOS攻击的简单防护措施" class="headerlink" title="DDOS攻击的简单防护措施"></a>DDOS攻击的简单防护措施</h3><p>1）关闭不必要的服务和端口；<br>2）限制同一时间内打开的syn半连接数目；<br>3）缩短syn半连接的超时时间；<br>4）及时安装系统补丁；<br>5）禁止对主机非开放服务的访问；<br>6）启用防火墙防DDOS属性。硬件防火墙价格比较昂贵，可以考虑利用Linux系统本身提供的防火墙功能来防御。<br>7）另外也可以安装相应的防护软件，这里强烈建议安装安全狗软件,防护性能不错，并且免费。<br>8）购买DDOS防御产品，比如阿里云盾的DDOS防御中的高防IP，这个使用起来，效果也很给力。</p>
+<h3 id="linux下预防DDOS攻击的操作"><a href="#linux下预防DDOS攻击的操作" class="headerlink" title="linux下预防DDOS攻击的操作"></a>linux下预防DDOS攻击的操作</h3><p>Linux服务器在运行过程中可能会受到黑客攻击，常见的攻击方式有SYN，DDOS等。<br>通过更换IP，查找被攻击的站点可能避开攻击，但是中断服务的时间比较长。比较彻底的解决方法是添置硬件防火墙，但是硬件防火墙价格比较昂贵。可以考虑利用Linux系统本身提供的防火墙功能来防御。<br>SYN攻击是利用TCP/IP协议3次握手的原理，发送大量的建立连接的网络包，但不实际建立连接，最终导致被攻击服务器的网络队列被占满，无法被正常用户访问。<br>Linux内核提供了若干SYN相关的配置，加大SYN队列长度可以容纳更多等待连接的网络连接数，打开SYN Cookie功能可以阻止部分SYN攻击，降低重试次数也有一定效果。<br>而DDOS则是通过使网络过载来干扰甚至阻断正常的网络通讯，通过向服务器提交大量请求，使服务器超负荷，阻断某一用户访问服务器阻断某服务与特定系统或个人的通讯。可以通过配置防火墙或者使用脚本工具来防范DDOS攻击；</p>
+<h4 id="优化sysctl内核参数"><a href="#优化sysctl内核参数" class="headerlink" title="优化sysctl内核参数"></a>优化sysctl内核参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@test3-237 ~]# vim /etc/sysctl.conf</div><div class="line">......</div><div class="line">net.ipv4.tcp_max_syn_backlog = 4096      #表示SYN队列的长度，加大队列长度可以容纳更多等待连接的网络连接数</div><div class="line">net.ipv4.tcp_syncookies = 1              #表示开启SYN Cookies功能。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭，1表示打开；</div><div class="line">net.ipv4.tcp_synack_retries = 2          #下面这两行表示定义SYN重试次数</div><div class="line">net.ipv4.tcp_syn_retries = 2      </div><div class="line"> </div><div class="line">#提高TCP连接能力</div><div class="line">net.ipv4.tcp_rmem = 32768</div><div class="line">net.ipv4.tcp_wmem = 32768</div><div class="line">net.ipv4.tcp_sack = 0     #打开tcp_sack功能，1表示&quot;关闭&quot;，0表示&quot;打开&quot;</div><div class="line"> </div><div class="line">......</div><div class="line"> </div><div class="line"> </div><div class="line">[root@test3-237 ~]# sysctl -p    #使上面配置生效</div></pre></td></tr></table></figure>
+<h4 id="iptables防火墙预防"><a href="#iptables防火墙预防" class="headerlink" title="iptables防火墙预防"></a>iptables防火墙预防</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">先查看服务器上连接web端口（比如80端口）的哪个ip是最多的，如果发现可疑ip，就果断将其断开与服务器连接</div><div class="line"> </div><div class="line">查看80端口的连接情况</div><div class="line">[root@test3-237 ~]# netstat -an | grep &quot;:80&quot; | grep ESTABLISHED</div><div class="line"> </div><div class="line">下面的命令表示获取服务器上ESTABLISHED连接数最多的前10个ip，排除了内部ip段192.168|127.0开头的。</div><div class="line">[root@test3-237 ~]# /bin/netstat -na|grep ESTABLISHED|awk &apos;&#123;print $5&#125;&apos;|awk -F: &apos;&#123;print $1&#125;&apos;|sort|uniq -c|sort -rn|head -10|grep -v -E &apos;192.168|127.0&apos;</div><div class="line">      4001 140.205.140.205</div><div class="line">      2388 124.65.197.154</div><div class="line">      1807 111.205.224.15</div><div class="line">      18 10.51.58.16</div><div class="line">      .......</div><div class="line"> </div><div class="line">将上面140.205.140.205、124.65.197.154、111.205.224.15的这三个ip的包丢弃</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -s 140.205.140.205 -p tcp -j DROP</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -s 124.65.197.154 -p tcp -j DROP</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -s 111.205.224.15 -p tcp -j DROP</div><div class="line">[root@test3-237 ~]# service iptables save</div><div class="line">[root@test3-237 ~]# service iptables restart</div><div class="line"> </div><div class="line">不过上面的方法对于伪造源IP地址的SYN FLOOD攻击就无效了！</div><div class="line"> </div><div class="line">-------------------------------------其他预防攻击的设置-------------------------------------</div><div class="line">防止同步包洪水（Sync Flood），缩短SYN-Timeout时间：</div><div class="line">[root@test3-237 ~]# iptables -A FORWARD -p tcp --syn -m limit --limit 1/s -j ACCEPT</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -i eth0 -m limit --limit 1/sec --limit-burst 5 -j ACCEPT</div><div class="line"> </div><div class="line">其中：</div><div class="line">--limit 1/s 限制syn并发数每秒1次，可以根据自己的需要修改防止各种端口扫描</div><div class="line">[root@test3-237 ~]# iptables -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s -j ACCEPT</div><div class="line"> </div><div class="line">Ping洪水攻击（Ping of Death）</div><div class="line">[root@test3-237 ~]# iptables -A FORWARD -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT</div><div class="line"> </div><div class="line"> </div><div class="line">控制单个IP的最大并发连接数。</div><div class="line">如下设置表示：允许单个IP的最大连接数为 30</div><div class="line">[root@test3-237 ~]# iptables -I INPUT -p tcp --dport 80 -m connlimit --connlimit-above 30 -j REJECT</div><div class="line"> </div><div class="line">控制单个IP在一定的时间（比如60秒）内允许新建立的连接数。</div><div class="line">如下设置表示：单个IP在60秒内只允许最多新建30个连接</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -p tcp --dport 80 -m recent --name BAD_HTTP_ACCESS --update --seconds 60 --hitcount 30 -j REJECT</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -p tcp --dport 80 -m recent --name BAD_HTTP_ACCESS --set -j ACCEPT</div><div class="line">---------------------------------------------------------------------------------------------------</div><div class="line">如果出现报错：</div><div class="line">iptables: Invalid argument. Run `dmesg&apos; for more information.</div><div class="line"> </div><div class="line">解决办法：</div><div class="line">增加 xt_recent模块的参数值即可，默认是20</div><div class="line">[root@test3-237 ~]# cat /sys/module/xt_recent/parameters/ip_pkt_list_tot</div><div class="line">20</div><div class="line">[root@test3-237 ~]# echo 50 &gt; /sys/module/xt_recent/parameters/ip_pkt_list_tot</div><div class="line">[root@test3-237 ~]# cat /sys/module/xt_recent/parameters/ip_pkt_list_tot</div><div class="line">50</div><div class="line">---------------------------------------------------------------------------------------------------</div><div class="line"> </div><div class="line">禁止ping（即禁止从外部ping这台服务器）：</div><div class="line">[root@test3-237 ~]# echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all</div><div class="line"> </div><div class="line">用iptables屏蔽IP（如下禁止213.8.166.237连接本机的80端口）</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -s 213.8.166.227 -p tcp -m tcp -m state --state NEW --dport 80 --syn -j REJECT</div><div class="line"> </div><div class="line">允许某ip连接（如下允许13.78.66.27连接本机的80端口）</div><div class="line">[root@test3-237 ~]# iptables -A INPUT -s 13.78.66.27 -p tcp -m tcp -m state --state NEW --dport 80 --syn -j ACCEPT</div></pre></td></tr></table></figure>
+<h4 id="使用DDoS-deflate脚本自动屏蔽攻击ip"><a href="#使用DDoS-deflate脚本自动屏蔽攻击ip" class="headerlink" title="使用DDoS deflate脚本自动屏蔽攻击ip"></a>使用DDoS deflate脚本自动屏蔽攻击ip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line">DDoS deflate是一款免费的用来防御和减轻DDoS攻击的脚本。它通过netstat监测跟踪创建大量网络连接的IP地址，在检测到某个结点超过预设的限制时，该程序会通过APF或IPTABLES禁止或阻挡这些IP.</div><div class="line">DDoS deflate其实是一个Shell脚本，使用netstat和iptables工具，对那些链接数过多的IP进行封锁，能有效防止通用的恶意扫描器，但它并不是真正有效的DDoS防御工具。</div><div class="line"> </div><div class="line">DDoS deflate工作过程描述：</div><div class="line">同一个IP链接到服务器的连接数到达设置的伐值后，所有超过伐值的IP将被屏蔽，同时把屏蔽的IP写入ignore.ip.list文件中，与此同时会在tmp中生成一个脚本文件，这个脚本文件马上被执行，但是一</div><div class="line">运行就遇到sleep预设的秒，当睡眠了这么多的时间后，解除被屏蔽的IP，同时把之前写入ignore.ip.list文件中的这个被封锁的IP删除，然后删除临时生成的文件。</div><div class="line">一个事实：如果被屏蔽的IP手工解屏蔽，那么如果这个IP继续产生攻击，那么脚本将不会再次屏蔽它（因为加入到了ignore.ip.list），直到在预设的时间之后才能起作用，加入到了ignore.ip.list中的</div><div class="line">IP是检测的时候忽略的IP。可以把IP写入到这个文件以避免这些IP被堵塞，已经堵塞了的IP也会加入到ignore.ip.list中，但堵塞了预定时间后会从它之中删除。</div><div class="line"> </div><div class="line">如何确认是否受到DDOS攻击？</div><div class="line">[root@test3-237 ~]# netstat -ntu | awk &apos;&#123;print $5&#125;&apos; | cut -d: -f1 | sort | uniq -c | sort -n</div><div class="line">      1 Address</div><div class="line">      1 servers)</div><div class="line">      2 103.10.86.5</div><div class="line">      4 117.36.231.253</div><div class="line">      4 19.62.46.24</div><div class="line">      6 29.140.22.18</div><div class="line">      8 220.181.161.131   </div><div class="line">      2911 167.215.42.88</div><div class="line"> </div><div class="line">每个IP几个、十几个或几十个连接数都还算比较正常，如果像上面成百上千肯定就不正常了。比如上面的167.215.42.88，这个ip的连接有2911个！这个看起来就很像是被攻击了！</div><div class="line"> </div><div class="line">下面就说下通过DDoS deflate脚本来自动屏蔽DDOS攻击的ip</div><div class="line">1）下载DDoS deflate安装脚本，并执行安装。</div><div class="line">[root@test3-237 ~]# wget http://www.inetbase.com/scripts/ddos/install.sh</div><div class="line">[root@test3-237 ~]# chmod 0700 install.sh</div><div class="line">[root@test3-237 ~]# ./install.sh</div><div class="line"> </div><div class="line">--------------------------------------------------------------------------</div><div class="line">卸载DDos default的操作如下：</div><div class="line"># wget http://www.inetbase.com/scripts/ddos/uninstall.ddos</div><div class="line"># chmod 0700 uninstall.ddos</div><div class="line"># ./uninstall.ddos</div><div class="line">--------------------------------------------------------------------------</div><div class="line"> </div><div class="line">2）配置DDoS deflate下面是DDoS deflate的默认配置位于/usr/local/ddos/ddos.conf ，内容如下：</div><div class="line">[root@test3-237 ~]# cat /usr/local/ddos/ddos.conf</div><div class="line">##### Paths of the script and other files</div><div class="line">PROGDIR=&quot;/usr/local/ddos&quot;</div><div class="line">PROG=&quot;/usr/local/ddos/ddos.sh&quot;</div><div class="line">IGNORE_IP_LIST=&quot;/usr/local/ddos/ignore.ip.list&quot;         //IP地址白名单</div><div class="line">CRON=&quot;/etc/cron.d/ddos.cron&quot;                            //定时执行程序</div><div class="line">APF=&quot;/etc/apf/apf&quot;</div><div class="line">IPT=&quot;/sbin/iptables&quot;</div><div class="line"> </div><div class="line">##### frequency in minutes for running the script</div><div class="line">##### Caution: Every time this setting is changed, run the script with --cron</div><div class="line">#####          option so that the new frequency takes effect</div><div class="line">FREQ=1                        //检查时间间隔，默认1分钟。设置检测时间间隔，默认是分钟，由于系统使用crontab功能，最小单位是分钟</div><div class="line"> </div><div class="line">##### How many connections define a bad IP? Indicate that below.</div><div class="line">NO_OF_CONNECTIONS=150             //最大连接数，超过这个数IP就会被屏蔽，一般默认即可。默认是150，这是一个经验值，如果服务器性能比较高，可以设置200以上，以避免误杀</div><div class="line"> </div><div class="line">##### APF_BAN=1 (Make sure your APF version is atleast 0.96)</div><div class="line">##### APF_BAN=0 (Uses iptables for banning ips instead of APF)</div><div class="line">APF_BAN=0                      //使用APF还是iptables屏蔽IP。推荐使用iptables,将APF_BAN的值改为0即可。设置为1表示使用APF，如果使用APF则需要先安装，centos中默认就没有安装</div><div class="line"> </div><div class="line">##### KILL=0 (Bad IPs are&apos;nt banned, good for interactive execution of script)</div><div class="line">##### KILL=1 (Recommended setting)</div><div class="line">KILL=1                        //是否屏蔽IP，默认即可</div><div class="line"> </div><div class="line">##### An email is sent to the following address when an IP is banned.</div><div class="line">##### Blank would suppress sending of mails</div><div class="line">EMAIL_TO=&quot;root&quot;              //当IP被屏蔽时给指定邮箱发送邮件，推荐使用，换成自己的邮箱即可。如果不希望发送邮件，设置为空，即EMAIL_TO=&quot;&quot;</div><div class="line"> </div><div class="line">##### Number of seconds the banned ip should remain in blacklist.</div><div class="line">BAN_PERIOD=600              //禁用IP时间（锁定ip的时间），默认600秒，可根据情况调整</div><div class="line"> </div><div class="line"> </div><div class="line">需要注意的是：</div><div class="line">DDos default安装完成后在/usr/local/ddos目录下产生了ddos.conf、ddos.sh、ignore.ip.list和LICENSE这四个文件，其中：</div><div class="line">ddos.conf是配置文件，ddos.sh是一个Shell文件，ignore.ip.list是存放忽略IP的文件，LICENSE是版权声明文件，安装完成后还在/etc/cron.d/下生产了ddos.cron文件，内容如下：</div><div class="line"> </div><div class="line">[root@test3-237 ~]# cat /etc/cron.d/ddos.cron</div><div class="line">SHELL=/bin/sh</div><div class="line">0-59/1 * * * * root /usr/local/ddos/ddos.sh &gt;/dev/null 2&gt;&amp;1</div><div class="line"> </div><div class="line">意思是每隔一分钟执行一下/usr/local/ddos/ddos.sh，这个脚本是关键！</div><div class="line">这个cron任务是依赖ddos.conf文件中的NO_OF_CONNECTIONS变量产生的，如果修改了此值，可以通过运行如下命令更新（实际也是在安装是运行了如下命令）：</div><div class="line">[root@test3-237 ~]# /usr/local/ddos/ddos.sh -c</div><div class="line">Stopping crond:                                            [  OK  ]</div><div class="line">Starting crond:                                            [  OK  ]</div><div class="line">Stopping crond:                                            [  OK  ]</div><div class="line">Starting crond:                                            [  OK  ]</div><div class="line"> </div><div class="line">或者</div><div class="line">[root@test3-237 ~]# /usr/local/ddos/ddos.sh --cron</div><div class="line">Stopping crond:                                            [  OK  ]</div><div class="line">Starting crond:                                            [  OK  ]</div><div class="line">Stopping crond:                                            [  OK  ]</div><div class="line">Starting crond:                                            [  OK  ]</div><div class="line"> </div><div class="line"> </div><div class="line">3）DDos default选项</div><div class="line"># /usr/local/ddos/ddos.sh -h       #查看选项</div><div class="line"># /usr/local/ddos/ddos.sh -k n     #杀掉连接数大于n的连接。n默认为配置文件的NO_OF_CONNECTIONS</div><div class="line">  比如：</div><div class="line">  [root@test3-237 ~]# /usr/local/ddos/ddos.sh -k 150</div><div class="line">      2 103.110.186.75</div><div class="line">      1 servers)</div><div class="line">      1 Address</div><div class="line"># /usr/local/ddos/ddos.sh -c       #按照配置文件创建一个执行计划。使得ddos.conf文件配置后生效</div></pre></td></tr></table></figure>
+<h4 id="防御DDOS攻击的shell脚本"><a href="#防御DDOS攻击的shell脚本" class="headerlink" title="防御DDOS攻击的shell脚本"></a>防御DDOS攻击的shell脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Linux服务器中一旦受到DDOS的攻击（比如IDC机房服务器被攻击了，关机，拔网线，降流量），目前只能通过封IP来源来暂时解决。</div><div class="line">然而IP来源变化多端，光靠手工来添加简直是恶梦，所以还是想办法写个shell脚本来定时处理，这才是比较靠谱的办法。</div><div class="line"> </div><div class="line">[root@test3-237 ~]# mkdir /root/bin</div><div class="line">[root@test1-237 ~]# cat /root/bin/dropip.sh    //此脚本自动提取攻击ip，然后自动屏蔽</div><div class="line">#!/bin/bash</div><div class="line">/bin/netstat -na|grep ESTABLISHED|awk &apos;&#123;print $5&#125;&apos;|awk -F: &apos;&#123;print $1&#125;&apos;|sort|uniq -c|sort -rn|head -10|grep -v -E &apos;192.168|127.0&apos;|awk &apos;&#123;if ($2!=null &amp;&amp; $1&gt;4) &#123;print $2&#125;&#125;&apos;&gt;/tmp/dropip</div><div class="line">for i in $(cat /tmp/dropip)</div><div class="line">do</div><div class="line">/sbin/iptables -A INPUT -s $i -j DROP</div><div class="line">echo “$i kill at `date`”&gt;&gt;/var/log/ddos</div><div class="line">done</div><div class="line"> </div><div class="line">以上脚本中最重要的是第二行，即：</div><div class="line">获取ESTABLISHED连接数最多的前10个ip并写入临时文件/tmp/dropip,排除了内部ip段192.168|127.0开头的.通过for循环将dropip里面的ip通过iptables全部drop掉，然后写到日志文件/var/log/ddos。</div><div class="line"> </div><div class="line"> </div><div class="line">给脚本添加执行权限</div><div class="line">[root@test1-237 ~]# chmod +x /root/bin/dropip.sh</div><div class="line"> </div><div class="line">添加到计划任务，每分钟执行一次</div><div class="line">[root@test1-237 ~]#crontab -e</div><div class="line">*/1 * * * * /root/bin/dropip.sh</div><div class="line"> </div><div class="line">----------------------------------------------------------------------------------------</div><div class="line">下面是针对连接数屏蔽IP</div><div class="line">#!/bin/sh </div><div class="line">/bin/netstat -ant |grep 80 |awk &apos;&#123;print $5&#125;&apos; |awk -F&quot;:&quot; &apos;&#123;print $1&#125;&apos; |sort |uniq -c |sort -rn |grep -v -E &apos;192.168|127.0&apos; |awk &apos;&#123;if ($2!=null &amp;&amp; $1&gt;50)&#125;&apos; &gt; /root/drop_ip.txt </div><div class="line">for i in `cat /root/drop_ip.txt` </div><div class="line">do </div><div class="line">/sbin/iptables -I INPUT -s $i -j DROP; </div><div class="line">done</div></pre></td></tr></table></figure>
+<h4 id="使用safedog（安全狗）软件防御DDOS攻击"><a href="#使用safedog（安全狗）软件防御DDOS攻击" class="headerlink" title="使用safedog（安全狗）软件防御DDOS攻击"></a>使用safedog（安全狗）软件防御DDOS攻击</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">[root@test3-237 ~]# setenforce 0     //关闭selinux，否则不能安装成功</div><div class="line">[root@test3-237 ~]# getenforce       //永久关闭selinux需要配置/etc/sysconfig/selinux文件，并重启机器生效！！</div><div class="line">Permissive</div><div class="line"> </div><div class="line">安装（nginx版）安全狗（safedog）</div><div class="line">[root@test3-237 ~]# wget http://safedog.cn/safedogwz_linux_Nginx64.tar.gz</div><div class="line">[root@test3-237 ~]# tar -zvxf safedogwz_linux_Nginx64.tar.gz</div><div class="line">[root@test3-237 ~]# cd safedogwz_linux_Nginx64</div><div class="line">[root@test3-237 safedogwz_linux_Nginx64]# chmod 755 install.py</div><div class="line">[root@bastion-IDC safedogwz_linux_Nginx64]# ls</div><div class="line">install_files  install.py  uninstall.py</div><div class="line">[root@test3-237 safedogwz_linux_Nginx64]# ./install.py -A          //卸载安全狗就用uninstall.py</div><div class="line">.......</div><div class="line">  step 3.5, start service...                                                                      [ok]</div><div class="line">  step 3.6, save safedog install info...                                                          [ok]</div><div class="line">   Tips:</div><div class="line">  (1)Run the command to setup Server Defense Module: sdui</div><div class="line">  (2)Explore more features by tapping the command to join Cloud Management Center (fuyun.safedog.cn) with your account:  sdcloud -h</div><div class="line"> </div><div class="line">If you need any help about installation,please tap the command: ./install.py -h</div><div class="line">Install Completely!</div><div class="line"> </div><div class="line"> </div><div class="line">温馨提示：</div><div class="line">1）安装完成后，记得一定要重新启动Nginx服务，网站安全狗软件即可生效。</div><div class="line">2）运行时,安装脚本默认将自动获取Nginx服务的安装路径；若自动获取失败则将提示输入Nginx服务的安装路径（绝对路径），需要根据所安装的Nginx的目录，填写真实的安装路径。</div><div class="line">3）当出现提示：Are you sure to uninstall?[y/n]时，输入y</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux基础/" rel="tag">#Linux基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/11/Nginx域名访问的白名单配置梳理/" rel="next" title="Nginx域名访问的白名单配置梳理">
+                <i class="fa fa-chevron-left"></i> Nginx域名访问的白名单配置梳理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DDOS介绍"><span class="nav-number">1.</span> <span class="nav-text">DDOS介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NTP放大攻击"><span class="nav-number">1.1.</span> <span class="nav-text">NTP放大攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重大的DDOS攻击案例"><span class="nav-number">2.</span> <span class="nav-text">重大的DDOS攻击案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDOS攻击的简单防护措施"><span class="nav-number">3.</span> <span class="nav-text">DDOS攻击的简单防护措施</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux下预防DDOS攻击的操作"><span class="nav-number">4.</span> <span class="nav-text">linux下预防DDOS攻击的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优化sysctl内核参数"><span class="nav-number">4.1.</span> <span class="nav-text">优化sysctl内核参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iptables防火墙预防"><span class="nav-number">4.2.</span> <span class="nav-text">iptables防火墙预防</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用DDoS-deflate脚本自动屏蔽攻击ip"><span class="nav-number">4.3.</span> <span class="nav-text">使用DDoS deflate脚本自动屏蔽攻击ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防御DDOS攻击的shell脚本"><span class="nav-number">4.4.</span> <span class="nav-text">防御DDOS攻击的shell脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用safedog（安全狗）软件防御DDOS攻击"><span class="nav-number">4.5.</span> <span class="nav-text">使用safedog（安全狗）软件防御DDOS攻击</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
