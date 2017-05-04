@@ -1,0 +1,732 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="基本介绍Linux用户安装Linux 操作系统时遇到的一个最常见的难以决定的问题就是如何正确地给评估各分区大小，以分配合适的硬盘空间。随着 Linux的逻辑盘卷管理功能的出现，这些问题都迎刃而解，lvm是逻辑盘卷管理（Logical Volume Manager）的简称，它是 Linux环境下对磁盘分区进行管理的一种机制， LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LVM常规操作记录梳理">
+<meta property="og:url" content="http://yoursite.com/2015/05/11/LVM常规操作记录梳理/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="基本介绍Linux用户安装Linux 操作系统时遇到的一个最常见的难以决定的问题就是如何正确地给评估各分区大小，以分配合适的硬盘空间。随着 Linux的逻辑盘卷管理功能的出现，这些问题都迎刃而解，lvm是逻辑盘卷管理（Logical Volume Manager）的简称，它是 Linux环境下对磁盘分区进行管理的一种机制， LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。">
+<meta property="og:updated_time" content="2017-05-04T23:35:01.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LVM常规操作记录梳理">
+<meta name="twitter:description" content="基本介绍Linux用户安装Linux 操作系统时遇到的一个最常见的难以决定的问题就是如何正确地给评估各分区大小，以分配合适的硬盘空间。随着 Linux的逻辑盘卷管理功能的出现，这些问题都迎刃而解，lvm是逻辑盘卷管理（Logical Volume Manager）的简称，它是 Linux环境下对磁盘分区进行管理的一种机制， LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LVM常规操作记录梳理 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LVM常规操作记录梳理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-11T09:38:27+08:00" content="2015-05-11">
+              2015-05-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>Linux用户安装Linux 操作系统时遇到的一个最常见的难以决定的问题就是如何正确地给评估各分区大小，以分配合适的硬盘空间。随着 Linux的逻辑盘卷管理功能的出现，这些问题都迎刃而解，<br>lvm是逻辑盘卷管理（Logical Volume Manager）的简称，它是 Linux环境下对磁盘分区进行管理的一种机制， LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。</p>
+<a id="more"></a>
+<h3 id="LVM基本术语"><a href="#LVM基本术语" class="headerlink" title="LVM基本术语"></a>LVM基本术语</h3><p>1）物理存储介质：这里指系统的存储设备：硬盘，如： /dev/hda、/dev/sda等等，是存储系统最低层的存储单元。<br>2）物理卷physical volume （PV ）<br>物理卷就是指硬盘分区或从逻辑上与磁盘分区具有同样功能的设备(如 RAID)，是 LVM的基本存储逻辑块<br>3）卷组Volume Group （VG ）<br>LVM卷组由一个或多个物理卷组成，但是更确切的说，它包含由这些物理卷提供的许多PE。<br>4）逻辑卷logical volume （LV ）<br>这里是我们存储信息的地方，在逻辑卷之上可以建立文件系统 (比如/home或者 /usr等)。<br>5）PE（physical extent ）<br>每一个物理卷被划分为称为 PE的基本单元，具有唯一编号的 PE是可以被 LVM寻址的最小单元。 PE的大小是可配置的，默认为 4MB。</p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="创建一个分区"><a href="#创建一个分区" class="headerlink" title="创建一个分区"></a>创建一个分区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# fdisk -l             // 查看磁盘情况 </div><div class="line">[root@test-server ~]# fdisk /dev/sda            // 进入磁盘（可以依次按键p-&gt;n-&gt;e-&gt;回车-&gt;回车-&gt;w，即用此磁盘所有空闲空间创建分区）</div><div class="line">Command (m for help): n                        //n 为添加一个分区， p查看分区 </div><div class="line">First cylinder (2898-10443, default 2898):         // 按Enter 键决定</div><div class="line">Using default value 2898                               // 起始柱面选择默认值 </div><div class="line">Last cylinder or +size or +sizeM or +sizeK (289810443, default 10443): +2G             // 给2G的大小 </div><div class="line">Command (m for help): t       // 更改分区类型</div><div class="line">Partition number (1-5): 5        // 选着分区</div><div class="line">Hex code (type L to list codes): l       // 分区类型列表</div><div class="line"></div><div class="line">Hex code (type L to list codes):8e        //将新添加的分区标注成 lvm </div><div class="line">Command (m for help): p              // 查看分区表</div><div class="line">/dev/sda5 2756 2999 1959898+ 8e Linux LVM </div><div class="line">Command (m for help): w        // 保存</div><div class="line">[root@test-server ~]# partprobe /dev/sda            // 系统识别分区（代替重启） </div><div class="line">[root@test-server ~]# mkfs.ext4 /dev/sda5           // 格式化新添加的分区</div></pre></td></tr></table></figure>
+<h4 id="PV的创建"><a href="#PV的创建" class="headerlink" title="PV的创建"></a>PV的创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# pvcreate /dev/sda5 // 创建pv </div><div class="line">Writing physical volume data to disk &quot;/dev/sda5&quot; </div><div class="line">Physical volume &quot;/dev/sda5&quot; successfully created </div><div class="line">[root@test-server ~]# pvs                    //或pvdisplay,查看当前pv的信息 </div><div class="line">PV VG Fmt Attr PSize PFree </div><div class="line">/dev/sda5 lvm2 a-- 1.87G 1.87G</div></pre></td></tr></table></figure>
+<h4 id="VG的创建"><a href="#VG的创建" class="headerlink" title="VG的创建"></a>VG的创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# vgcreate vg0 /dev/sda5           //vg0 为当前vg的名 </div><div class="line">Volume group &quot;vg0&quot; successfully created </div><div class="line">[root@test-server ~]# vgs              //或vgdispaly,查看vg 的信息</div><div class="line">VG #PV #LV #SN Attr VSize VFree </div><div class="line">vg0 1 0 0 wz--n- 1.87G 1.87G</div></pre></td></tr></table></figure>
+<h4 id="lvm的创建"><a href="#lvm的创建" class="headerlink" title="lvm的创建"></a>lvm的创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#lvcreate -L 大小 -n 名字 隶属哪一个巻组</div><div class="line">#lvcreate -l PE个数 -n 名字 隶属哪一个巻组 </div><div class="line">[root@test-server ~]# lvcreate -L +500M -n lv01 vg0 </div><div class="line">Logical volume &quot;lv01&quot; created </div><div class="line">[root@test-server ~]# lvs                              //或lvdispaly,查看lv 的信息</div><div class="line">LV VG Attr LSize Origin Snap% Move Log Copy% Convert </div><div class="line">lv01 vg0 -wi-a- 500.00M </div><div class="line">You have mail in /var/spool/mail/root</div><div class="line">[root@test-server ~]# mkfs.ext4 /dev/vg0/lv01 //格式化</div></pre></td></tr></table></figure>
+<h4 id="lvm的使用"><a href="#lvm的使用" class="headerlink" title="lvm的使用"></a>lvm的使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# mkdir /mnt/lv01      //建立挂在目录 </div><div class="line">[root@test-server ~]# mount /dev/vg0/lv01 /mnt/lv01          //将制作的lvm挂载起来 </div><div class="line">[root@test-server ~]# df -h</div><div class="line">[root@test-server ~]# touch /mnt/lv01/lv.file </div><div class="line">[root@test-server ~]#ls /mnt/lv01</div></pre></td></tr></table></figure>
+<h3 id="lvm的增大"><a href="#lvm的增大" class="headerlink" title="lvm的增大"></a>lvm的增大</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# lvextend -L +300M /dev/vg0/lv01      //原来lv大小500M ，拉伸分区到 800M。前提是vg0里面还有剩余空间（vgdispaly查看Free PE）。如没有剩余，需要vgextend扩建。</div><div class="line">Logical volume lv01 successfully resized </div><div class="line">[root@test-server ~]# resize2fs /dev/vg0/lv01           //拉伸文件系统</div><div class="line">[root@test-server ~]# lvs</div><div class="line">LV VG Attr LSize Origin Snap% Move Log Copy% Convert </div><div class="line">lv01 vg0 -wi-ao 800.00M                   //大小变成了 800M</div></pre></td></tr></table></figure>
+<h3 id="lvm的减小"><a href="#lvm的减小" class="headerlink" title="lvm的减小"></a>lvm的减小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# umount /dev/vg0/lv01               //卸载逻辑卷 /dev/vg0/lv01，或者卸载/mnt/lv01目录也可以</div><div class="line">[root@test-server ~]# df -h              //查看 </div><div class="line">[root@test-server ~]# e2fsck -f /dev/vg0/lv01                // 磁盘校验 </div><div class="line">[root@test-server ~]# resize2fs /dev/vg0/lv01 500M              //回缩文件系统到 500M </div><div class="line">[root@test-server ~]# lvreduce -L 500M /dev/vg0/lv01           //回缩分区到 500M </div><div class="line">WARNING: Reducing active logical volume to 500.00 MB </div><div class="line">THIS MAY DESTROY YOUR DATA (filesystem etc.) </div><div class="line">Do you really want to reduce lv01? [y/n]: y </div><div class="line">[root@test-server ~]# lvs </div><div class="line">LV VG Attr LSize Origin Snap% Move Log Copy% Convert </div><div class="line">lv01 vg0 -wi-a- 500.00M           //此时已变成500M大小</div><div class="line">[root@test-server ~]# mount /dev/vg0/lv01 /mnt/lv01        //重新挂载分区 </div><div class="line">[root@test-server ~]# df -h           //查看 </div><div class="line">[root@test-server ~]# ls /mnt/lv01         //查看文件</div><div class="line"></div><div class="line"></div><div class="line">特别注意的是：</div><div class="line">resize2fs命令         针对的是ext2、ext3、ext4文件系统。</div><div class="line">xfs_growfs命令      针对的是xfs文件系统</div></pre></td></tr></table></figure>
+<h3 id="lvm的系统快照"><a href="#lvm的系统快照" class="headerlink" title="lvm的系统快照"></a>lvm的系统快照</h3><p>原理：系统快照（snapshot）是 lvm的另外一种重要的功能，快照就是将当时的数据记录下来，就好像照相记录一样，以后数据有任何改动，原数据会被移动到快照区，没有被改变的区域则由快照区与文件系统共享。<br>由于快照区和原本的 LV共享很多 PE，所以快照区与被快照的区域必须在同一个 VG上<br>操作：<br>以上面创建的 lv01为例 </p>
+<h4 id="挂载lvm"><a href="#挂载lvm" class="headerlink" title="挂载lvm"></a>挂载lvm</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# mount /dev/vg0/lv01 /mnt/lv01 </div><div class="line">[root@test-server ~]# cd /mnt/lv01</div><div class="line">[root@test-server lv01]# touch &#123;a,b,c&#125;&#123;a,b,c&#125;</div><div class="line">[root@test-server lv01]# ls</div><div class="line">aa ab ac ba bb bc ca cb cc lost+found lv.file restoresymtable</div></pre></td></tr></table></figure>
+<h4 id="为lvm创建快照"><a href="#为lvm创建快照" class="headerlink" title="为lvm创建快照"></a>为lvm创建快照</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@test-server lv01]# lvcreate -L 64M -s -n lv-backup /dev/vg0/lv01 </div><div class="line">Logical volume &quot;lv-backup&quot; create</div></pre></td></tr></table></figure>
+<h4 id="挂载快照"><a href="#挂载快照" class="headerlink" title="挂载快照"></a>挂载快照</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@test-server lv01]# mkdir /mnt/lv-backup</div><div class="line">[root@test-server mnt]# mount -o ro /dev/vg0/lv-backup /mnt/lv-backup/</div></pre></td></tr></table></figure>
+<h4 id="备份快照"><a href="#备份快照" class="headerlink" title="备份快照"></a>备份快照</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@test-server tmp]# dump -0u -f /tmp/lv-backup.dump /mnt/lv-backup/                  //备份</div><div class="line">DUMP: Date of this level 0 dump: Sun Nov 11 14:53:31 2012 </div><div class="line">DUMP: Dumping /dev/mapper/vg0-lv--backup (/mnt/lv-backup) to /tmp/lv-backup.dump</div></pre></td></tr></table></figure>
+<h4 id="删除快照"><a href="#删除快照" class="headerlink" title="删除快照"></a>删除快照</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@test-server tmp]# umount /mnt/lv-backup/ </div><div class="line">[root@test-server tmp]# lvremove /dev/vg0/lv-backup </div><div class="line">Do you really want to remove active logical volume lv-backup? [y/n]: y </div><div class="line">Logical volume &quot;lv-backup&quot; successfully removed</div></pre></td></tr></table></figure>
+<h4 id="清空-dev-vg0-lv01下内容"><a href="#清空-dev-vg0-lv01下内容" class="headerlink" title="清空/dev/vg0/lv01下内容"></a>清空/dev/vg0/lv01下内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@test-server tmp]# umount /mnt/lv01</div><div class="line">[root@test-server tmp]# mkfs.ext3 /dev/vg0/lv01 </div><div class="line">mke2fs 1.39 (29-May-2006)</div><div class="line">Filesystem label=</div><div class="line">OS type: Linux</div></pre></td></tr></table></figure>
+<h4 id="恢复数据"><a href="#恢复数据" class="headerlink" title="恢复数据"></a>恢复数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@test-server tmp]# mount /dev/vg0/lv01 /mnt/lv01 </div><div class="line">[root@test-server tmp]# cd /mnt/lv01</div><div class="line">[root@test-server lv01]# ls</div><div class="line">lost+found</div><div class="line">[root@test-server lv01]# restore -rf /tmp/lv-backup.dump           //恢复</div><div class="line">restore: ./lost+found: File exists</div><div class="line">[root@test-server lv01]# ls               //由于之前都删除了，所以这些都是改变的部分 </div><div class="line">aa ab ac ba bb bc ca cb cc lost+found lv.file restoresymtable</div></pre></td></tr></table></figure>
+<h3 id="lvm的关闭"><a href="#lvm的关闭" class="headerlink" title="lvm的关闭"></a>lvm的关闭</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@test-server ~]# umount /mnt/lv01</div><div class="line">[root@test-server ~]# lvremove /dev/vg0/lv01        //删除lv </div><div class="line">Do you really want to remove active logical volume lv01? [y/n]: y </div><div class="line">Logical volume &quot;lv01&quot; successfully removed </div><div class="line">[root@test-server ~]# vgchange -a n vg0             //使vg0不具有 active标志 </div><div class="line">0 logical volume(s) in volume group &quot;vg0&quot; now active </div><div class="line">[root@test-server ~]# vgremove vg0            //删除vg </div><div class="line">Volume group &quot;vg0&quot; successfully removed </div><div class="line">[root@test-server ~]# pvremove /dev/sda5           //删除pv </div><div class="line">Labels on physical volume &quot;/dev/sda5&quot; successfully wiped</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux基础/" rel="tag">#Linux基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/11/Nginx 伪静态设置/" rel="next" title="Nginx 伪静态设置">
+                <i class="fa fa-chevron-left"></i> Nginx 伪静态设置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/11/Nginx配置文件nginx.conf中文详解/" rel="prev" title="Nginx配置文件nginx.conf中文详解">
+                Nginx配置文件nginx.conf中文详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVM基本术语"><span class="nav-number">2.</span> <span class="nav-text">LVM基本术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体操作"><span class="nav-number">3.</span> <span class="nav-text">具体操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个分区"><span class="nav-number">3.1.</span> <span class="nav-text">创建一个分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PV的创建"><span class="nav-number">3.2.</span> <span class="nav-text">PV的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VG的创建"><span class="nav-number">3.3.</span> <span class="nav-text">VG的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lvm的创建"><span class="nav-number">3.4.</span> <span class="nav-text">lvm的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lvm的使用"><span class="nav-number">3.5.</span> <span class="nav-text">lvm的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvm的增大"><span class="nav-number">4.</span> <span class="nav-text">lvm的增大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvm的减小"><span class="nav-number">5.</span> <span class="nav-text">lvm的减小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvm的系统快照"><span class="nav-number">6.</span> <span class="nav-text">lvm的系统快照</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载lvm"><span class="nav-number">6.1.</span> <span class="nav-text">挂载lvm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为lvm创建快照"><span class="nav-number">6.2.</span> <span class="nav-text">为lvm创建快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载快照"><span class="nav-number">6.3.</span> <span class="nav-text">挂载快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份快照"><span class="nav-number">6.4.</span> <span class="nav-text">备份快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除快照"><span class="nav-number">6.5.</span> <span class="nav-text">删除快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空-dev-vg0-lv01下内容"><span class="nav-number">6.6.</span> <span class="nav-text">清空/dev/vg0/lv01下内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#恢复数据"><span class="nav-number">6.7.</span> <span class="nav-text">恢复数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvm的关闭"><span class="nav-number">7.</span> <span class="nav-text">lvm的关闭</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
