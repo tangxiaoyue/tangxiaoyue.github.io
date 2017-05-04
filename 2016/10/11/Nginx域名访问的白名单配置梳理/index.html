@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nginx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="在日常运维工作中，会碰到这样的需求：设置网站访问只对某些ip开放，其他ip的客户端都不能访问。可以通过下面四种方法来达到这种效果：1）针对nginx域名配置所启用的端口(比如80端口)在iptables里做白名单，比如只允许100.110.15.16、100.110.15.17、100.110.15.18访问.但是这样就把nginx的所有80端口的域名访问都做了限制，范围比较大！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx域名访问的白名单配置梳理">
+<meta property="og:url" content="http://yoursite.com/2016/10/11/Nginx域名访问的白名单配置梳理/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="在日常运维工作中，会碰到这样的需求：设置网站访问只对某些ip开放，其他ip的客户端都不能访问。可以通过下面四种方法来达到这种效果：1）针对nginx域名配置所启用的端口(比如80端口)在iptables里做白名单，比如只允许100.110.15.16、100.110.15.17、100.110.15.18访问.但是这样就把nginx的所有80端口的域名访问都做了限制，范围比较大！">
+<meta property="og:updated_time" content="2017-05-04T23:10:42.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx域名访问的白名单配置梳理">
+<meta name="twitter:description" content="在日常运维工作中，会碰到这样的需求：设置网站访问只对某些ip开放，其他ip的客户端都不能访问。可以通过下面四种方法来达到这种效果：1）针对nginx域名配置所启用的端口(比如80端口)在iptables里做白名单，比如只允许100.110.15.16、100.110.15.17、100.110.15.18访问.但是这样就把nginx的所有80端口的域名访问都做了限制，范围比较大！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Nginx域名访问的白名单配置梳理 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nginx域名访问的白名单配置梳理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T12:38:26+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在日常运维工作中，会碰到这样的需求：设置网站访问只对某些ip开放，其他ip的客户端都不能访问。可以通过下面四种方法来达到这种效果：<br>1）针对nginx域名配置所启用的端口(比如80端口)在iptables里做白名单，比如只允许100.110.15.16、100.110.15.17、100.110.15.18访问.但是这样就把nginx的所有80端口的域名访问都做了限制，范围比较大！</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@china ~]# vim /etc/sysconfig/iptables</div><div class="line">......</div><div class="line">-A INPUT -s 100.110.15.16 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT</div><div class="line">-A INPUT -s 100.110.15.17 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT</div><div class="line">-A INPUT -s 100.110.15.18 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT</div></pre></td></tr></table></figure>
+<p>2）如果只是针对nginx下的某一个域名进行访问的白名单限制，那么可以在nginx的配置文件里进行设置，利用$remote_addr参数进行访问的分发限制，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">[root@china vhosts]# cat testwww.wangshibo.com.conf</div><div class="line">server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  testwww.wangshibo.com;</div><div class="line">        root /var/www/vhosts/testwww.wangshibo.com/httpdocs/main;</div><div class="line"> </div><div class="line"> </div><div class="line">        access_log  /var/www/vhosts/testwww.wangshibo.com/logs/access.log  main;</div><div class="line">        error_log  /var/www/vhosts/testwww.wangshibo.com/logs/error.log;</div><div class="line"> </div><div class="line"> </div><div class="line">        ##白名单设置，只允许下面三个来源ip的客户端以及本地能访问该站。主要是下面这三行</div><div class="line">        if ($remote_addr !~ ^(100.110.15.16|100.110.15.17|100.110.15.18|127.0.0.1)) &#123;</div><div class="line">         rewrite ^.*$ /maintence.php last;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        location / &#123;</div><div class="line">            try_files $uri $uri/ @router;</div><div class="line">            index  index.php;</div><div class="line">        &#125;</div><div class="line">     </div><div class="line"> </div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line"> </div><div class="line">        location @router &#123;</div><div class="line">            rewrite ^.*$ /index.php last;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line"> </div><div class="line">        location ~ \.php$ &#123;</div><div class="line">            fastcgi_pass   127.0.0.1:9001;</div><div class="line">            fastcgi_read_timeout 30;</div><div class="line">            fastcgi_index  index.php;</div><div class="line">            fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</div><div class="line">            #include        fastcgi_params;</div><div class="line">            include        fastcgi.conf;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">    &#125;</div><div class="line"> </div><div class="line"> </div><div class="line">错误页面内容设置：</div><div class="line">[root@china vhosts]# cat /var/www/vhosts/testwww.wangshibo.com/main/maintence.html</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</div><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">网站临时维护中，请稍后访问...</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>3）也可以使用$http_x_forwarded_for参数进行访问的分发限制，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  testwww.wangshibo.com;</div><div class="line">        root /var/www/vhosts/testwww.wangshibo.com/httpdocs/main;</div><div class="line"> </div><div class="line"> </div><div class="line">        access_log  /var/www/vhosts/testwww.wangshibo.com/logs/access.log  main;</div><div class="line">        error_log  /var/www/vhosts/testwww.wangshibo.com/logs/error.log;</div><div class="line"> </div><div class="line"> </div><div class="line">  ##白名单设置，只允许下面三个来源ip的客户端以及本地能访问该站。</div><div class="line">       if ($http_x_forwarded_for !~ ^(100.110.15.16|100.110.15.17|100.110.15.18|127.0.0.1)) &#123;</div><div class="line">           rewrite ^.*$  /maintence.php last;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">         </div><div class="line">        location / &#123;</div><div class="line">            try_files $uri $uri/ @router;</div><div class="line">            index  index.php;</div><div class="line">        &#125;</div><div class="line">     </div><div class="line"> </div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line"> </div><div class="line">        location @router &#123;</div><div class="line">            rewrite ^.*$ /index.php last;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line"> </div><div class="line">        location ~ \.php$ &#123;</div><div class="line">            fastcgi_pass   127.0.0.1:9001;</div><div class="line">            fastcgi_read_timeout 30;</div><div class="line">            fastcgi_index  index.php;</div><div class="line">            fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</div><div class="line">            #include        fastcgi_params;</div><div class="line">            include        fastcgi.conf;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>4）还可以利用nginx的allow、deny参数进行访问限制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">[root@china vhosts]# cat testwww.wangshibo.com.conf</div><div class="line">server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  testwww.wangshibo.com;</div><div class="line">        root /var/www/vhosts/testwww.wangshibo.com/httpdocs/main;</div><div class="line"> </div><div class="line"> </div><div class="line">        access_log  /var/www/vhosts/testwww.wangshibo.com/logs/access.log  main;</div><div class="line">        error_log  /var/www/vhosts/testwww.wangshibo.com/logs/error.log;</div><div class="line"> </div><div class="line">        ##白名单设置，只允许下面三个来源ip的客户端以及本地能访问该站。</div><div class="line">        allow 100.110.15.16;</div><div class="line">        allow 100.110.15.17;</div><div class="line">        allow 100.110.15.18;</div><div class="line">        allow 127.0.0.1;</div><div class="line">        deny all;</div><div class="line"> </div><div class="line">        location / &#123;</div><div class="line">            try_files $uri $uri/ @router;</div><div class="line">            index  index.php;</div><div class="line">        &#125;</div><div class="line">     </div><div class="line"> </div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line"> </div><div class="line">        location @router &#123;</div><div class="line">            rewrite ^.*$ /index.php last;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line"> </div><div class="line">        location ~ \.php$ &#123;</div><div class="line">            fastcgi_pass   127.0.0.1:9001;</div><div class="line">            fastcgi_read_timeout 30;</div><div class="line">            fastcgi_index  index.php;</div><div class="line">            fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</div><div class="line">            #include        fastcgi_params;</div><div class="line">            include        fastcgi.conf;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><strong>nginx中remote_addr和x_forwarded_for参数使用说明</strong><br>做网站时经常会用到remote_addr和x_forwarded_for这两个头信息来获取客户端的IP，然而当有反向代理或者CDN的情况下，这两个值就不够准确了，需要调整一些配置。<br>1）什么是remote_addr<br>remote_addr代表客户端的IP，但它的值不是由客户端提供的，而是服务端根据客户端的ip指定的，当你的浏览器访问某个网站时，假设中间没有任何代理，那么网站的<br>web服务器（Nginx，Apache等）就会把remote_addr设为你的机器IP，如果你用了某个代理，那么你的浏览器会先访问这个代理，然后再由这个代理转发到网站，这样web<br>服务器就会把remote_addr设为这台代理机器的IP。</p>
+<p>2）什么是x_forwarded_for<br>正如上面所述，当你使用了代理时，web服务器就不知道你的真实IP了，为了避免这个情况，代理服务器通常会增加一个叫做x_forwarded_for的头信息，把连接它的客户<br>端IP（即你的上网机器IP）加到这个头信息里，这样就能保证网站的web服务器能获取到真实IP</p>
+<p><strong>使用HAProxy做反向代理</strong><br>通常网站为了支撑更大的访问量，会增加很多web服务器，并在这些服务器前面增加一个反向代理（如HAProxy），它可以把负载均匀的分布到这些机器上。你的浏览器访<br>问的首先是这台反向代理，它再把你的请求转发到后面的web服务器，这就使得web服务器会把remote_addr设为这台反向代理的IP，为了能让你的程序获取到真实的客户端<br>IP，你需要给HAProxy增加以下配置：</p>
+<p>option forwardfor<br>它的作用就像上面说的，增加一个x_forwarded_for的头信息，把你上网机器的ip添加进去</p>
+<p><strong>使用Nginx的realip模块</strong><br>当Nginx处在HAProxy后面时，就会把remote_addr设为HAProxy的IP，这个值其实是毫无意义的，你可以通过nginx的realip模块，让它使用x_forwarded_for里的值。使用这<br>个模块需要重新编译Nginx，增加–with-http_realip_module参数</p>
+<p>set_real_ip_from   10.1.10.0/24;<br>real_ip_header     X-Forwarded-For;<br>上面的配置就是把从10.1.10这一网段过来的请求全部使用X-Forwarded-For里的头信息作为remote_addr</p>
+<p><strong>将Nginx架在HAProxy前面做HTTPS代理</strong><br>网站为了安全考虑通常会使用https连接来传输敏感信息，https使用了ssl加密，HAProxy没法直接解析，所以要在HAProxy前面先架台Nginx解密，再转发到HAProxy做负载均<br>衡。这样在Web服务器前面就存在了两个代理，为了能让它获取到真实的客户端IP，需要做以下配置。</p>
+<p>首先要在Nginx的代理规则里设定：<br>proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;<br>这样会让Nginx的https代理增加x_forwarded_for头信息，保存客户的真实IP。</p>
+<p>其次修改HAProxy的配置：<br>option     forwardfor except 10.1.10.0/24<br>这个配置和之前设定的差不多，只是多了个内网的IP段，表示如果HAProxy收到的请求是由内网传过来的话（https代理机器），就不会设定x_forwarded_for的值，保证后面的<br>web服务器拿到的就是前面https代理传过来的。</p>
+<p><strong>为什么PHP里的HTTP_X_FORWARDED_FOR和Nginx的不一样</strong><br>当你的网站使用了CDN后，用户会先访问CDN，如果CDN没有缓存，则回源站（即你的反向代理）取数据。CDN在回源站时，会先添加x_forwarded_for头信息，保存用户的真实IP，<br>而你的反向代理也会设定这个值，不过它不会覆盖，而是把CDN服务器的IP（即当前remote_addr）添加到x_forwarded_for的后面，这样x_forwarded_for里就会存在两个值。<br>Nginx会使用这些值里的第一个，即客户的真实IP，而PHP则会使用第二个，即CDN的地址。为了能让PHP也使用第一个值，你需要添加以下fastcgi的配置。</p>
+<p>fastcgi_param HTTP_X_FORWARDED_FOR $http_x_forwarded_for;<br>它会把nginx使用的值（即第一个IP）传给PHP，这样PHP拿到的x_forwarded_for里其实就只有一个值了，也就不会用第二个CDN的IP了。</p>
+<p>忽略x_forwarded_for</p>
+<p>其实，当你使用了Nginx的realip模块后，就已经保证了remote_addr里设定的就是客户端的真实IP，再看下这个配置</p>
+<p>set_real_ip_from   10.1.10.0/24;<br>real_ip_header     X-Forwarded-For;<br>它就是把x_forwarded_for设为remote_addr，而nginx里的x_forwarded_for取的就是其中第一个IP。</p>
+<p>使用这些设置就能保证你的remote_addr里设定的一直都是客户端的真实IP，而x_forwarded_for则可以忽略了:)</p>
+<p><strong>nginx location匹配规则</strong><br><code>location</code>匹配命令<br><code>~</code>  表示执行一个正则匹配，区分大小写<br><code>~*</code> 表示执行一个正则匹配，不区分大小写<br><code>^~</code>表示普通字符匹配，如果该选项匹配，只匹配该选项，不匹配别的选项，一般用来匹配目录<br><code>=</code> 进行普通字符精确匹配<br><code>@</code> 定义一个命名的 location，使用在内部定向时，例如 <code>error_page, try_files</code></p>
+<p><code>=</code>前缀的指令严格匹配这个查询。如果找到，停止搜索。<br>所有剩下的常规字符串，最长的匹配。如果这个匹配使用^〜前缀，搜索停止。<br>正则表达式，在配置文件中定义的顺序。<br>如果第3条规则产生匹配的话，结果被使用。否则，如同从第2条规则被使用。</p>
+<p><code>location</code> 匹配的优先级(与location在配置文件中的顺序无关)<br><code>= 精确匹配会第一个被处理。如果发现精确匹配，nginx停止搜索其他匹配。
+普通字符匹配，正则表达式规则和长的块规则将被优先和查询匹配，也就是说如果该项匹配还需去看有没有正则表达式匹配和更长的匹配。</code>^~` 则只匹配该规则，nginx停止搜索其他匹配，否则nginx会继续处理其他location指令。<br>最后匹配理带有”~”和”~*”的指令，如果找到相应的匹配，则nginx停止搜索其他匹配；当没有正则表达式或者没有正则表达式被匹配的情况下，那么匹配程度最高的逐字匹配指令会被使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">location = / &#123;                     # 只匹配&quot;/&quot;.</div><div class="line">[ configuration A ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">location / &#123;                        # 匹配任何请求，因为所有请求都是以&quot;/&quot;开始，但是更长字符匹配或者正则表达式匹配会优先匹配</div><div class="line">[ configuration B ]</div><div class="line">&#125;</div><div class="line"> </div><div class="line">location ^~ /images/ &#123;           # 匹配任何以 /images/ 开始的请求，并停止匹配 其它location</div><div class="line">[ configuration C ]</div><div class="line">&#125;</div><div class="line"> </div><div class="line">location ~* \.(gif|jpg|jpeg)$ &#123;         # 匹配以 gif, jpg, or jpeg结尾的请求. 但是所有 /images/ 目录的请求将由 [Configuration C]处理.</div><div class="line">[ configuration D ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/04/zabbix 3.0 分布式监控/" rel="next" title="zabbix 3.0 分布式监控">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 分布式监控
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/运维与自动化发展/" rel="prev" title="运维与自动化发展(1)">
+                运维与自动化发展(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
