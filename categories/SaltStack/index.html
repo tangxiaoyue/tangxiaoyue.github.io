@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="saltstack," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,16 +57,15 @@
 
 
 
-<meta name="description" content="SaltStack简单说明一个配置管理系统，能够维护预定义状态的远程节点(比如，确保指定的报被安装，指定的服务在运行)一个分布式远程执行系统，用来在远程节点（可以是单个节点，也可以是任意规则挑选出来的节点）上执行命令和查询数据开发其的目的是为远程执行提供最好的解决方案，并使远程执行变得更好，更快，更简单">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SaltStack基础（1）--简介">
-<meta property="og:url" content="http://yoursite.com/2016/01/01/SaltStack基础（1）--简介/index.html">
+<meta name="description" content="勿忘初衷，方得始终">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRUCETANG">
+<meta property="og:url" content="http://yoursite.com/categories/SaltStack/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="SaltStack简单说明一个配置管理系统，能够维护预定义状态的远程节点(比如，确保指定的报被安装，指定的服务在运行)一个分布式远程执行系统，用来在远程节点（可以是单个节点，也可以是任意规则挑选出来的节点）上执行命令和查询数据开发其的目的是为远程执行提供最好的解决方案，并使远程执行变得更好，更快，更简单">
-<meta property="og:updated_time" content="2017-05-06T00:49:25.258Z">
+<meta property="og:description" content="勿忘初衷，方得始终">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SaltStack基础（1）--简介">
-<meta name="twitter:description" content="SaltStack简单说明一个配置管理系统，能够维护预定义状态的远程节点(比如，确保指定的报被安装，指定的服务在运行)一个分布式远程执行系统，用来在远程节点（可以是单个节点，也可以是任意规则挑选出来的节点）上执行命令和查询数据开发其的目的是为远程执行提供最好的解决方案，并使远程执行变得更好，更快，更简单">
+<meta name="twitter:title" content="BRUCETANG">
+<meta name="twitter:description" content="勿忘初衷，方得始终">
 
 
 
@@ -84,7 +83,7 @@
   };
 </script>
 
-  <title> SaltStack基础（1）--简介 | BRUCETANG </title>
+  <title> 分类: SaltStack | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -105,7 +104,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,144 +235,47 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                SaltStack基础（1）--简介
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-01T11:09:26+08:00" content="2016-01-01">
-              2016-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">运维自动化</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="SaltStack简单说明"><a href="#SaltStack简单说明" class="headerlink" title="SaltStack简单说明"></a>SaltStack简单说明</h3><p>一个配置管理系统，能够维护预定义状态的远程节点(比如，确保指定的报被安装，指定的服务在运行)<br>一个分布式远程执行系统，用来在远程节点（可以是单个节点，也可以是任意规则挑选出来的节点）上执行命令和查询数据<br>开发其的目的是为远程执行提供最好的解决方案，并使远程执行变得更好，更快，更简单</p>
-<a id="more"></a>
-<h3 id="Salt的核心功能"><a href="#Salt的核心功能" class="headerlink" title="Salt的核心功能"></a>Salt的核心功能</h3><p>1.使命令发送到远程系统是并行的而不是串行的<br>2.使用安全加密的协议<br>3.使用最小最快的网络载荷<br>4.提供简单的编程接口<br>5.Salt同样引入了更加细致化的领域控制系统来远程执行，使得系统成为目标不止可以通过主机名，还可以通过系统属性。</p>
-<h3 id="Builds-on-proven-technology"><a href="#Builds-on-proven-technology" class="headerlink" title="Builds on proven technology"></a>Builds on proven technology</h3><p>   为了允许简单的扩展，Salt执行程序可以写为纯Python模块。数据从Salt执行过程中收集到可以发送回master服务端，或者发送到任何<br>任意程序。Salt可以从一个简单的Python<br>API调用，或者从命令行被调用，所以Salt可以用来执行一次性命令，也可以作为一个更大的应用程序的一个组成部分。</p>
-<h3 id="Python客户端接口"><a href="#Python客户端接口" class="headerlink" title="Python客户端接口"></a>Python客户端接口</h3><p>为了允许简单的扩展，Salt执行程序可以写为纯Python模块。数据从Salt执行过程中收集到可以发送回master服务端，或者发送到任何<br>任意程序。Salt可以从一个简单的Python<br>API调用，或者从命令行被调用，所以Salt可以用来执行一次性命令，也可以作为一个更大的应用程序的一个组成部分。</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>快速，灵活，易扩展</strong><br>结果是能够在1台或多台目标机器上快速执行命令的系统。Salt运行快速，安装简单，高度可定制；Salt用相同的远程执行架构满足管理不同数量服务器的需求。<br>Salt基础设施可以集成最好的远程执行工具，增强了Salt的能力及用途，得到功能丰富实用可以适用于任何网络的系统</p>
-<h3 id="Salt-三大功能"><a href="#Salt-三大功能" class="headerlink" title="Salt 三大功能"></a>Salt 三大功能</h3><p>A、远程执行<br>B、配置管理（状态，不可以回滚，需要谨慎操作）<br>C、云管理</p>
-<h3 id="Salt竞争对手"><a href="#Salt竞争对手" class="headerlink" title="Salt竞争对手"></a>Salt竞争对手</h3><p>Pupper （需要ruby，不支持远程执行）+func使用ansible （Python）</p>
-<h3 id="四种运行方式"><a href="#四种运行方式" class="headerlink" title="四种运行方式"></a>四种运行方式</h3><p>1.Local 本地模式<br>2.Minion/Master  C/S架构（客户端/服务器 ）<br>3.Syndic -Zabbix proxy  代理模式<br>4.Salt   SSHSSH模式</p>
-
-      
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        SaltStack
+        <small>分类</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
+            <a class="post-title-link" href="/2016/01/02/SaltStack快速入门（2）--远程执行/" itemprop="url">
+              
+                <span itemprop="name">SaltStack快速入门（2）--远程执行</span>
+              
+            </a>
+        
+      </h1>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/saltstack/" rel="tag">#saltstack</a>
-          
-        </div>
-      
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-01-02T11:09:26+08:00"
+              content="2016-01-02" >
+          01-02
+        </time>
+      </div>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/05/11/LVM常规操作记录梳理/" rel="next" title="LVM常规操作记录梳理">
-                <i class="fa fa-chevron-left"></i> LVM常规操作记录梳理
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/02/SaltStack基础（2）--部署/" rel="prev" title="SaltStack基础（2）--部署">
-                SaltStack基础（2）--部署 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+
 
 
           </div>
@@ -381,10 +283,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -404,17 +302,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -433,7 +322,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -466,17 +355,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SaltStack简单说明"><span class="nav-number">1.</span> <span class="nav-text">SaltStack简单说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Salt的核心功能"><span class="nav-number">2.</span> <span class="nav-text">Salt的核心功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Builds-on-proven-technology"><span class="nav-number">3.</span> <span class="nav-text">Builds on proven technology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python客户端接口"><span class="nav-number">4.</span> <span class="nav-text">Python客户端接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">5.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Salt-三大功能"><span class="nav-number">6.</span> <span class="nav-text">Salt 三大功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Salt竞争对手"><span class="nav-number">7.</span> <span class="nav-text">Salt竞争对手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四种运行方式"><span class="nav-number">8.</span> <span class="nav-text">四种运行方式</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -561,10 +439,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
 
   
 
