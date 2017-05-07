@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="saltstack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="YAML编写技巧刚接触Sal tStack的状态管理，最苦恼的可能就是SLS的编写了，尽管YAML语法可能第一眼看上去很简洁，但是真正写起来也是令人畏惧，初学者很容易被各种报错搞晕，降低对Sal tStack的学习乐趣，甚至放弃SaltStack，但是只要记住三个非常简单的规则就可以快乐地使用YAML语法编写SLS文件了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SaltStack（3）--配置管理">
+<meta property="og:url" content="http://yoursite.com/2016/01/03/SaltStack（3）--配置管理/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="YAML编写技巧刚接触Sal tStack的状态管理，最苦恼的可能就是SLS的编写了，尽管YAML语法可能第一眼看上去很简洁，但是真正写起来也是令人畏惧，初学者很容易被各种报错搞晕，降低对Sal tStack的学习乐趣，甚至放弃SaltStack，但是只要记住三个非常简单的规则就可以快乐地使用YAML语法编写SLS文件了。">
+<meta property="og:updated_time" content="2017-05-07T08:03:03.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SaltStack（3）--配置管理">
+<meta name="twitter:description" content="YAML编写技巧刚接触Sal tStack的状态管理，最苦恼的可能就是SLS的编写了，尽管YAML语法可能第一眼看上去很简洁，但是真正写起来也是令人畏惧，初学者很容易被各种报错搞晕，降低对Sal tStack的学习乐趣，甚至放弃SaltStack，但是只要记住三个非常简单的规则就可以快乐地使用YAML语法编写SLS文件了。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> SaltStack（3）--配置管理 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SaltStack（3）--配置管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-03T11:09:26+08:00" content="2016-01-03">
+              2016-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SaltStack/" itemprop="url" rel="index">
+                    <span itemprop="name">SaltStack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="YAML编写技巧"><a href="#YAML编写技巧" class="headerlink" title="YAML编写技巧"></a>YAML编写技巧</h3><p>刚接触Sal tStack的状态管理，最苦恼的可能就是SLS的编写了，尽管YAML语法可能第一眼看上去很简洁，但是真正写起来也是令人畏惧，初学者很容易被各种报错搞晕，降低对Sal tStack的学习乐趣，甚至放弃SaltStack，但是只要记住三个非常简单的规则就可以快乐地使用YAML语法编写SLS文件了。</p>
+<a id="more"></a>
+<h4 id="规则一：缩进"><a href="#规则一：缩进" class="headerlink" title="规则一：缩进"></a>规则一：缩进</h4><p>YAML使用一个固定的缩进风格表示数据层级结构关系。SaltStack需要每个缩进级别由两个空格组成。注意：不要使用tabs，缩进是初学者总容易出错的地方之一。</p>
+<p><strong>提示：</strong> 2个空格，不能使用tab键</p>
+<h4 id="规则二：冒号"><a href="#规则二：冒号" class="headerlink" title="规则二：冒号"></a>规则二：冒号</h4><p>Python的字典是简单的键值对，其他语言的用户也应该知道这个数据类型叫哈希表或者关联数组。字典的key在YAML中的表现形式是一个以冒号结尾的字符串：</p>
+<p><strong>提示：</strong> 冒号后面有空格<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">my_key: my_value</div></pre></td></tr></table></figure></p>
+<h4 id="规则三：短横杠"><a href="#规则三：短横杠" class="headerlink" title="规则三：短横杠"></a>规则三：短横杠</h4><p>想要表示列表项，使用一个短横杠加一个空格。多个项使用同样的缩进级别作为同一列表的一<br>部分。</p>
+<p><strong>提示：</strong> 短横线后面有空格</p>
+<h3 id="state状态模块"><a href="#state状态模块" class="headerlink" title="state状态模块"></a>state状态模块</h3><h4 id="state功能"><a href="#state功能" class="headerlink" title="state功能"></a>state功能</h4><p>state是Saltstack最核心的功能，通过预先定制好的sls（salt state file）文件对被控制主机进行状态管理，支持包括程序包（pkg）、文件（file）、网络配置（network）、系统服务（service）、系统用户（user）等</p>
+<h4 id="设置file-roots"><a href="#设置file-roots" class="headerlink" title="设置file_roots"></a>设置file_roots</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# vim /etc/salt/master</div><div class="line">file_roots:           #file_root: 需定格</div><div class="line">  base:               #base前面两个空格</div><div class="line">    - /srv/salt       #-前面四个空格，后面一个空格</div><div class="line">                      #这三行去掉前面的#即可，使用默认的配置路径</div><div class="line">                      </div><div class="line">[root@node-10 ~]# systemctl restart salt-master</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">在这里有个特别需要我们注意的问题，一定要确保file_roots前面没有空格，而base前两个空格-前面四个空格，在salt的配置里面空格十分重要，我们必须高度注意，否则及其容易造成实验不成功，之所以对空格敏感主要salt基于Python开发，并采用了yaml的语法.（注意注意注意，不要使用tab键）</div><div class="line">有必要解释下相关配置内容:</div><div class="line">base:代表环境（默认必须有），可就是说salt可以同时管理多个环境，比如测试、开发、生产等环境。其实从我们修改的行上方不难我们不难看出，salt拥有针对多环境的特点。至于底下的小- 则代表状态文件存放路径，可能有些同学对这个状态文件有些疑惑，我们拿软件安装来讲，我们想要批量安装，环境标准化。我们总得告诉系统，我们要安装什么，怎么安装。这时候我们就需要一个文件为系统指明，这个文件就是上面的状态文件。要注意-和后面的路径有中间有一个空格哦</div></pre></td></tr></table></figure>
+<h4 id="创建相应的目录"><a href="#创建相应的目录" class="headerlink" title="创建相应的目录"></a>创建相应的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# mkdir /srv/salt -p</div><div class="line">[root@node-10 ~]# cd /srv/salt/</div></pre></td></tr></table></figure>
+<h4 id="设置top-sls"><a href="#设置top-sls" class="headerlink" title="设置top.sls"></a>设置top.sls</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在top.sls入口文件设置环境（如生产、开发、测试对应不同的minion和模块）。</div><div class="line">[root@node-10 ~]# vim /srv/salt/top.sls</div><div class="line">base:</div><div class="line">  &apos;*&apos;:</div><div class="line">   - nginx</div><div class="line"></div><div class="line">解释：所有的Minion均执行base目录下的init模块下的pkg-init.sls。我们可以把很多的sls放在一个目录中，方便管理。在top.sls只需要指定目录结构即可。</div></pre></td></tr></table></figure>
+<h4 id="编写状态文件"><a href="#编写状态文件" class="headerlink" title="编写状态文件"></a>编写状态文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@node-10 web]# vim nginx.sls </div><div class="line">nginx-install:     #state名称：nginx-install</div><div class="line">  pkg.installed:   #管理对象类型：pkg，需要执行的方法installed</div><div class="line">    - names:       #管理对象名称</div><div class="line">      - nginx      #名称：nginx</div><div class="line"></div><div class="line">nginx-service:  #管理对象类型：nginx-service，管理系统守护进程</div><div class="line">  service.running:  #service要执行的方法：running，</div><div class="line">    - name: nginx     #管理对象名称：nginx</div><div class="line">    - enable: True    #管理对象的状态，</div><div class="line">    </div><div class="line">提示：注意格式</div></pre></td></tr></table></figure>
+<h3 id="执行状态"><a href="#执行状态" class="headerlink" title="执行状态"></a>执行状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">[root@node-10 web]# salt &apos;*&apos; state.sls web.nginx</div><div class="line">node-11:</div><div class="line">----------</div><div class="line">          ID: nginx-install</div><div class="line">    Function: pkg.installed</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">     Comment: Package nginx is already installed</div><div class="line">     Started: 23:32:40.788400</div><div class="line">    Duration: 533.65 ms</div><div class="line">     Changes:   </div><div class="line">----------</div><div class="line">          ID: nginx-service</div><div class="line">    Function: service.running</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">     Comment: The service nginx is already running</div><div class="line">     Started: 23:32:41.322820</div><div class="line">    Duration: 47.314 ms</div><div class="line">     Changes: </div><div class="line">Summary for node-11</div><div class="line">------------</div><div class="line">Succeeded: 2</div><div class="line">Failed:    0</div><div class="line">------------</div><div class="line">Total states run:     2</div><div class="line">Total run time: 580.964 ms</div><div class="line">node-10:</div><div class="line">----------</div><div class="line">          ID: nginx-install</div><div class="line">    Function: pkg.installed</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">     Comment: Package nginx is already installed</div><div class="line">     Started: 21:53:53.713711</div><div class="line">    Duration: 530.331 ms</div><div class="line">     Changes:   </div><div class="line">----------</div><div class="line">          ID: nginx-service</div><div class="line">    Function: service.running</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">     Comment: The service nginx is already running</div><div class="line">     Started: 21:53:54.244788</div><div class="line">    Duration: 49.855 ms</div><div class="line">     Changes:   </div><div class="line"></div><div class="line">Summary for node-10</div><div class="line">------------</div><div class="line">Succeeded: 2</div><div class="line">Failed:    0</div><div class="line">------------</div><div class="line">Total states run:     2</div><div class="line">Total run time: 580.186 ms</div></pre></td></tr></table></figure>
+<p>实际master执行这个nginx.sls模块是将nginx.sls模块发送给minion之后，在minion上执行的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# cat /var/cache/salt/minion/files/base/web/nginx.sls </div><div class="line">nginx-install:</div><div class="line">  pkg.installed:</div><div class="line">    - names:</div><div class="line">      - nginx</div><div class="line"></div><div class="line">nginx-service:</div><div class="line">  service.running:</div><div class="line">    - name: nginx</div><div class="line">    - enable: True</div></pre></td></tr></table></figure></p>
+<h4 id="top-sls高级执行状态"><a href="#top-sls高级执行状态" class="headerlink" title="top.sls高级执行状态"></a>top.sls高级执行状态</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# cd /srv/salt/</div><div class="line">[root@node-10 salt]# vim top.sls </div><div class="line">base:</div><div class="line">  &apos;node-10&apos;:</div><div class="line">    - web.nginx</div><div class="line">  &apos;node-11&apos;:</div><div class="line">    - web.nginx</div><div class="line">    </div><div class="line"></div><div class="line">[root@node-10 salt]# salt &apos;*&apos; state.highstate </div><div class="line">node-10:</div><div class="line">----------</div><div class="line">          ID: nginx-install</div><div class="line">    Function: pkg.installed</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">     Comment: Package nginx is already installed</div><div class="line">     Started: 22:16:45.084148</div><div class="line">    Duration: 471.103 ms</div><div class="line">     Changes:   </div><div class="line">----------</div><div class="line">          ID: nginx-service</div><div class="line">    Function: service.running</div><div class="line">        Name: nginx</div><div class="line">      Result: True</div><div class="line">      ...</div><div class="line">      </div><div class="line">      </div><div class="line">在执行状态模块之前可以先测试执行，以免执行出错</div><div class="line">[root@node-10 salt]# salt &apos;*&apos; state.highstate test=True</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/saltstack/" rel="tag">#saltstack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/02/SaltStack快速入门（2）--远程执行/" rel="next" title="SaltStack快速入门（2）--远程执行">
+                <i class="fa fa-chevron-left"></i> SaltStack快速入门（2）--远程执行
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/04/SaltStack（4）--ZeroMQ/" rel="prev" title="SaltStack（4）--ZeroMQ">
+                SaltStack（4）--ZeroMQ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#YAML编写技巧"><span class="nav-number">1.</span> <span class="nav-text">YAML编写技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#规则一：缩进"><span class="nav-number">1.1.</span> <span class="nav-text">规则一：缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则二：冒号"><span class="nav-number">1.2.</span> <span class="nav-text">规则二：冒号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则三：短横杠"><span class="nav-number">1.3.</span> <span class="nav-text">规则三：短横杠</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state状态模块"><span class="nav-number">2.</span> <span class="nav-text">state状态模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#state功能"><span class="nav-number">2.1.</span> <span class="nav-text">state功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置file-roots"><span class="nav-number">2.2.</span> <span class="nav-text">设置file_roots</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建相应的目录"><span class="nav-number">2.3.</span> <span class="nav-text">创建相应的目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置top-sls"><span class="nav-number">2.4.</span> <span class="nav-text">设置top.sls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写状态文件"><span class="nav-number">2.5.</span> <span class="nav-text">编写状态文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行状态"><span class="nav-number">3.</span> <span class="nav-text">执行状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#top-sls高级执行状态"><span class="nav-number">3.1.</span> <span class="nav-text">top.sls高级执行状态</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

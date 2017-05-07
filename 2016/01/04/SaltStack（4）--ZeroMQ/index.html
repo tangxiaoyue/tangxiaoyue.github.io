@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="saltstack," />
 
 
 
@@ -57,15 +57,18 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/archives/2016/04/index.html">
+<meta name="description" content="我们进行自动化运维大多数情况下，是我们的服务器数量已经远远超过人工SSH维护的范围，SaltStack可以支数以千计，甚至更多的服务器。这些性能的提供主要来自于ZeroMQ，因为SaltStack底层是基于ZeroMQ进行高效的网络通信。ZMQ用于node与node间的通信，node可以是主机也可以是进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SaltStack（4）--ZeroMQ">
+<meta property="og:url" content="http://yoursite.com/2016/01/04/SaltStack（4）--ZeroMQ/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="我们进行自动化运维大多数情况下，是我们的服务器数量已经远远超过人工SSH维护的范围，SaltStack可以支数以千计，甚至更多的服务器。这些性能的提供主要来自于ZeroMQ，因为SaltStack底层是基于ZeroMQ进行高效的网络通信。ZMQ用于node与node间的通信，node可以是主机也可以是进程">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/ae1k8th4ke29ih6a7ygl35mk/image_1bfgv1v0qh1g1a7m1s3l1h9e1lio9.png">
+<meta property="og:updated_time" content="2017-05-07T08:10:31.852Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="SaltStack（4）--ZeroMQ">
+<meta name="twitter:description" content="我们进行自动化运维大多数情况下，是我们的服务器数量已经远远超过人工SSH维护的范围，SaltStack可以支数以千计，甚至更多的服务器。这些性能的提供主要来自于ZeroMQ，因为SaltStack底层是基于ZeroMQ进行高效的网络通信。ZMQ用于node与node间的通信，node可以是主机也可以是进程">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/ae1k8th4ke29ih6a7ygl35mk/image_1bfgv1v0qh1g1a7m1s3l1h9e1lio9.png">
 
 
 
@@ -83,7 +86,7 @@
   };
 </script>
 
-  <title> 归档 | BRUCETANG </title>
+  <title> SaltStack（4）--ZeroMQ | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,7 +107,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,65 +238,142 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 44 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SaltStack（4）--ZeroMQ
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-04T11:09:26+08:00" content="2016-01-04">
+              2016-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SaltStack/" itemprop="url" rel="index">
+                    <span itemprop="name">SaltStack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p> 我们进行自动化运维大多数情况下，是我们的服务器数量已经远远超过人工SSH维护的范围，SaltStack可以支数以千计，甚至更多的服务器。这些性能的提供主要来自于ZeroMQ，因为SaltStack底层是基于ZeroMQ进行高效的网络通信。ZMQ用于node与node间的通信，node可以是主机也可以是进程</p>
+<a id="more"></a>
+<h3 id="ZeroMQ简介"><a href="#ZeroMQ简介" class="headerlink" title="ZeroMQ简介"></a>ZeroMQ简介</h3><p>  ZeroMQ（我们通常还会用ØMQ , 0MQ, zmq等来表示）是一个简单好用的传输层，像框架一样的一个套接字库，他使得Socket编程更加简单、简洁和性能更高。它还是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。</p>
+<h3 id="发布与订阅"><a href="#发布与订阅" class="headerlink" title="发布与订阅"></a>发布与订阅</h3><p>ZeroMQ支持Publish/Subscribe，即发布与订阅模式，我们经常简称Pub/Sub。<br><img src="http://static.zybuluo.com/BruceTang/ae1k8th4ke29ih6a7ygl35mk/image_1bfgv1v0qh1g1a7m1s3l1h9e1lio9.png" alt="image_1bfgv1v0qh1g1a7m1s3l1h9e1lio9.png-11.6kB"></p>
+<p>Salt Master运行两个网络服务，其中一个是ZeroMQ PUB系统，默认监听4505端口。可以通过修改/etc/salt/master配置文件的publish_port参数设置。它是salt的消息发布系统，如果查看4505端口，会发现所有的Minion连接到Master的4505端口，TCP状态持续保持为ESTABLISHED。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# lsof -i:4505</div><div class="line">COMMAND    PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME</div><div class="line">salt-mast 1109 root   14u  IPv4 2130345      0t0  TCP *:4505 (LISTEN)</div><div class="line">salt-mast 1109 root   16u  IPv4 2131887      0t0  TCP node-10:4505-&gt;node-10:37255 (ESTABLISHED)</div><div class="line">salt-mast 1109 root   17u  IPv4 2133378      0t0  TCP node-10:4505-&gt;node-11:56725 (ESTABLISHED)</div><div class="line">salt-mini 4712 root   20u  IPv4 2134221      0t0  TCP node-10:37255-&gt;node-10:4505 (ESTABLISHED)</div></pre></td></tr></table></figure></p>
+<pre><code>这样Salt Master发布一个消息，所有连接到4505这个Pub端口上的Minion都会接收到这个消息。然后每个Minion会再判断自己是否需要执行这个消息。
+</code></pre><h3 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h3><p>  Salt Master运行的第二个网络服务就是ZeroMQ REP系统，默认监听4506端口，可以通过修改/etc/salt/master配置文件的ret_port参数设置。它是salt客户端与服务端通信的端口。比如说Minion执行某个命令后的返回值就是发送给Master的4506这个REP端口<br>由于我们在最初安装了python-setproctitle软件包，所以我们可以直接看到Salt Master启动的进程的名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# lsof -i:4506</div><div class="line">COMMAND    PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME</div><div class="line">salt-mast 1115 root   22u  IPv4 2129518      0t0  TCP *:4506 (LISTEN)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/saltstack/" rel="tag">#saltstack</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/03/SaltStack（3）--配置管理/" rel="next" title="SaltStack（3）--配置管理">
+                <i class="fa fa-chevron-left"></i> SaltStack（3）--配置管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/11/Nginx配置文件nginx.conf中文详解/" rel="prev" title="Nginx配置文件nginx.conf中文详解">
+                Nginx配置文件nginx.conf中文详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/05/Mysql 启动慢查询日志/" itemprop="url">
-              
-                <span itemprop="name">Mysql 启动慢查询日志</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-05T21:09:26+08:00"
-              content="2016-04-05" >
-          04-05
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -301,6 +381,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -320,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -373,6 +466,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ZeroMQ简介"><span class="nav-number">1.</span> <span class="nav-text">ZeroMQ简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布与订阅"><span class="nav-number">2.</span> <span class="nav-text">发布与订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求与响应"><span class="nav-number">3.</span> <span class="nav-text">请求与响应</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -457,11 +561,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
 
 
   
