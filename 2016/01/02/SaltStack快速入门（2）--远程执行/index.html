@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="saltstack," />
 
 
 
@@ -57,34 +57,37 @@
 
 
 
-<meta name="description" content="docker-enter登入容器
-强烈推荐使用此种方法：简单、方便
-
-下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令">
+<meta name="description" content="软件依赖要求
+Python版本要求Python版本大于2.6小于3.0
+msgpack-python: Saltstack消息交换库
+YAML: Saltstack配置解析定义语法
+jinja2: Saltstack states配置模板
+MarkupSafe: Python unicode转换库
+apache-libcloud: Saltstack对云架构编排库
+Requests HTTP Py">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（3）--容器登入">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（3）--容器登入/index.html">
+<meta property="og:title" content="SaltStack快速入门（2）--远程执行">
+<meta property="og:url" content="http://yoursite.com/2016/01/02/SaltStack快速入门（2）--远程执行/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="docker-enter登入容器
-强烈推荐使用此种方法：简单、方便
-
-下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令">
-<meta property="og:updated_time" content="2017-04-07T05:08:02.691Z">
+<meta property="og:description" content="软件依赖要求
+Python版本要求Python版本大于2.6小于3.0
+msgpack-python: Saltstack消息交换库
+YAML: Saltstack配置解析定义语法
+jinja2: Saltstack states配置模板
+MarkupSafe: Python unicode转换库
+apache-libcloud: Saltstack对云架构编排库
+Requests HTTP Py">
+<meta property="og:updated_time" content="2017-05-07T03:49:31.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（3）--容器登入">
-<meta name="twitter:description" content="docker-enter登入容器
-强烈推荐使用此种方法：简单、方便
-
-下载.bashrc_docker，并将内容放到.bashrc中。
-
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令">
+<meta name="twitter:title" content="SaltStack快速入门（2）--远程执行">
+<meta name="twitter:description" content="软件依赖要求
+Python版本要求Python版本大于2.6小于3.0
+msgpack-python: Saltstack消息交换库
+YAML: Saltstack配置解析定义语法
+jinja2: Saltstack states配置模板
+MarkupSafe: Python unicode转换库
+apache-libcloud: Saltstack对云架构编排库
+Requests HTTP Py">
 
 
 
@@ -102,7 +105,7 @@
   };
 </script>
 
-  <title> Docker 基础（3）--容器登入 | BRUCETANG </title>
+  <title> SaltStack快速入门（2）--远程执行 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +278,7 @@
             
             
               
-                Docker 基础（3）--容器登入
+                SaltStack快速入门（2）--远程执行
               
             
           </h1>
@@ -287,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-01-02T11:09:26+08:00" content="2016-01-02">
+              2016-01-02
             </time>
           </span>
 
@@ -301,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/运维自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">运维自动化</span>
                   </a>
                 </span>
 
@@ -333,208 +336,36 @@
       
 
       
-        <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+        <h3 id="软件依赖要求"><a href="#软件依赖要求" class="headerlink" title="软件依赖要求"></a>软件依赖要求</h3><ol>
+<li>Python版本要求Python版本大于2.6小于3.0</li>
+<li>msgpack-python: Saltstack消息交换库</li>
+<li>YAML: Saltstack配置解析定义语法</li>
+<li>jinja2: Saltstack states配置模板</li>
+<li>MarkupSafe: Python unicode转换库</li>
+<li>apache-libcloud: Saltstack对云架构编排库</li>
+<li>Requests HTTP Python库</li>
+<li>Zero MQ: Saltstack消息系统</li>
+<li>pyzmq: ZeroMQ Python库</li>
+<li>PyCrypto: Python 密码库</li>
+<li>M2Crypto: Openssl Python包装库</li>
+</ol>
+<a id="more"></a>
+<h3 id="安装系统环境"><a href="#安装系统环境" class="headerlink" title="安装系统环境"></a>安装系统环境</h3><p>操作系统：centos7 x86_64<br>主机1：IP：192.168.10.10<br>主机名：node-10</p>
+<p>主机2：IP: 192.168.10.11<br>主机名：node-11</p>
+<h3 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h3><p>1.在主机192.168.10.10上安装salt-master 和salt-minion<br>2.主机192.168.10.11上安装salt-minion</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm -y</div><div class="line">[root@node-10 ~]# yum install -y salt-master salt-minion</div><div class="line">[root@node-11 ~]# yum install -y salt-minion</div><div class="line">[root@node-10 ~]# systemctl start salt-master</div></pre></td></tr></table></figure>
+<h3 id="SaltStack配置"><a href="#SaltStack配置" class="headerlink" title="SaltStack配置"></a>SaltStack配置</h3><h4 id="修改master配置文件"><a href="#修改master配置文件" class="headerlink" title="修改master配置文件"></a>修改master配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]#  vim /etc/salt/master</div><div class="line">interface: 129.168.10.10    #服务端ip.</div><div class="line"></div><div class="line">[root@node-10 ~]# systemctl start salt-master</div></pre></td></tr></table></figure>
+<h4 id="修改被minion端"><a href="#修改被minion端" class="headerlink" title="修改被minion端"></a>修改被minion端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# vim /etc/salt/minion</div><div class="line">master: 192.168.10.10   #master的主机名或ip. IP地址后面有一个空格</div><div class="line">id:node-10     #本机标识符,默认为主机名</div><div class="line"></div><div class="line">[root@node-10 ~]# systemctl start salt-minion</div></pre></td></tr></table></figure>
+<h4 id="日志文件默认路径"><a href="#日志文件默认路径" class="headerlink" title="日志文件默认路径"></a>日志文件默认路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# tailf /var/log/salt/master</div><div class="line">[root@node-10 ~]# tailf /var/log/salt/minion</div></pre></td></tr></table></figure>
+<h4 id="接受minion的托管请求"><a href="#接受minion的托管请求" class="headerlink" title="接受minion的托管请求"></a>接受minion的托管请求</h4><p>minion向master投诚后, 还需要master接受才行. 这个过程叫做”授信”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# salt-key -L</div><div class="line">Accepted Keys:</div><div class="line">Denied Keys:</div><div class="line">Unaccepted Keys:</div><div class="line">node-10</div><div class="line">Rejected Keys:</div></pre></td></tr></table></figure></p>
+<p>命令说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">salt-key -L #查看当前所有证书情况</div><div class="line">salt-key -A -y  # -A 是接受所有等待认证的key </div><div class="line">  -l ARG, --list=ARG #显示指定状态的key(支持正则表达式)</div><div class="line">  -L， --list-all  #显示所有public keys</div><div class="line">  -a ACCEPT, --accept=ACCEPT #接受指定等待认证的key(支持正则表达式)</div><div class="line">  -A, --accept-all  #接受所欲等待认证得key</div><div class="line">  -r REJECT, --reject=REJECT  #拒绝指定的等待认证的key（支持正则）</div><div class="line">  -R， --reject-all  #拒绝所有等待认证的key</div><div class="line">  -d DELETE, --delete=DELETE #删除指定key</div><div class="line">  -D, --delete-all  #删除所欲key</div><div class="line">  -f FINGER, --finger=FINGER #删除指定key</div><div class="line">  -F, --finger-all  #删除所有key</div></pre></td></tr></table></figure></p>
+<p>其中Unaccepted Keys是未许可的minion. 可使用下面的命令通过认证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# salt-key -a node-10</div><div class="line">The following keys are going to be accepted:</div><div class="line">Unaccepted Keys:</div><div class="line">node-10</div><div class="line">Proceed? [n/Y] y</div><div class="line">Key for minion node-10 accepted.</div><div class="line"></div><div class="line">[root@node-10 ~]# salt-key -L</div><div class="line">Accepted Keys:    #已许可的minion</div><div class="line">node-10</div><div class="line">Denied Keys:</div><div class="line">Unaccepted Keys:</div><div class="line">Rejected Keys:</div></pre></td></tr></table></figure></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h4 id="基本操作命令通用格式"><a href="#基本操作命令通用格式" class="headerlink" title="基本操作命令通用格式"></a>基本操作命令通用格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">格式: 命令  对象   执行模块         参数</div><div class="line">salt    ‘*’      cmd.run      “ping -c 4 www.baidu.com&quot;</div></pre></td></tr></table></figure>
+<h4 id="测试连通性"><a href="#测试连通性" class="headerlink" title="测试连通性"></a>测试连通性</h4><p>安装配置好之后, 首先要测试一下连通性, salt会列出每个认证过的minion连通状态(true或false).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@node-10 ~]# salt &apos;*&apos; test.ping</div><div class="line">[root@node-10 minions_pre]# salt &apos;*&apos; test.ping</div><div class="line">node-10:</div><div class="line">    True</div><div class="line">node-11:</div><div class="line">    True</div></pre></td></tr></table></figure></p>
+<h4 id="远程执行"><a href="#远程执行" class="headerlink" title="远程执行"></a>远程执行</h4><p>模块：  `cmd.run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@node-10 minions_pre]# salt &apos;*&apos; cmd.run &apos;/etc/init.d/network restart &apos;</div><div class="line">node-11:</div><div class="line">    Restarting network (via systemctl):  [  OK  ]</div><div class="line">node-10:</div><div class="line">    Restarting network (via systemctl):  [  OK  ]</div></pre></td></tr></table></figure></p>
+<h4 id="批量查看系统时间"><a href="#批量查看系统时间" class="headerlink" title="批量查看系统时间"></a>批量查看系统时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@node-10 minions_pre]# salt &apos;*&apos; cmd.run &quot;uptime&quot;</div><div class="line">node-11:</div><div class="line">     19:42:12 up  3:28,  1 user,  load average: 0.00, 0.01, 0.05</div><div class="line">node-10:</div><div class="line">     18:03:25 up 1 day, 13:03,  2 users,  load average: 0.02, 0.06, 0.10</div></pre></td></tr></table></figure>
+<p><strong>注意:</strong><br>默认情况下<code>master</code>和<code>minion</code>之间使用以下端口进行通信:<br><code>4505(publish_port)</code>：salt的消息发布系统<br><code>4506(ret_port)</code>：salt客户端与服务端通信的端口<br><code>cmd.run</code> 为模块,又称之为<code>超级命令</code>. 可以执行Linux中的任何命令.</p>
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
-</code></pre><a id="more"></a>
-<pre><code>[root@tang ~]# wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker
-
-[root@tang ~]# echo &quot;[ -f ~/.bashrc_docker ] &amp;&amp; . ~/.bashrc_docker&quot; &gt;&gt; ~/.bashrc; source ~/.bashrc
-
-
-[root@tang ~]# docker-
-docker-containerd               docker-ctr-current              docker-pid
-docker-containerd-current       docker-current                  docker-storage-setup
-docker-containerd-shim          docker-enter                    
-docker-containerd-shim-current  docker-ip 
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         24 minutes ago      Up 23 minutes                           tang
-
-[root@tang ~]# docker-pid tang
-19271
-
-[root@tang ~]# nsenter --target 19271  --mount --uts --ipc --net --pid  #此种方法进入容器以下会讲到
-[root@test /]# exit
-logout
-
-[root@tang ~]# docker-ip tang
-172.18.0.2
-
-直接使用docker-enter命令进入容器，非常方便！
-[root@tang ~]# docker-enter tang
-Last login: Sun Apr  2 06:38:47 UTC 2017
-
-[root@test ~]# exit
-logout
-
-[root@tang ~]# docker ps   #退出登陆窗口后，容器还在
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         26 minutes ago      Up 9 seconds                            tang
-
-注意：以在容器的上下文中运行任意命令！即在宿主机上执行容器里的命令
-
-[root@tang ~]# docker-enter tang uptime
- 07:06:28 up 1 day, 22:44,  0 users,  load average: 0.00, 0.01, 0.05
-
-注意：在宿主机上使用docker-enter命令执行容器中的命令时，最好后面加上--符号，这样容器里的所有存在的命令都可以正常执行。
-[root@tang ~]# docker-enter tang -- uptime
-
- 07:06:59 up 1 day, 22:45,  0 users,  load average: 0.00, 0.01, 0.05
-
-[root@tang ~]# docker-enter tang -- df -h
-Filesystem                                                                                         Size  Used Avail Use% Mounted on
-/dev/mapper/docker-253:1-2024335-661487685eb1f6a356157463d60db20caa2c1fb3ac273de680c367e3b12dabab   10G  238M  9.8G   3% /
-tmpfs                                                                                              920M     0  920M   0% /dev
-tmpfs                                                                                              920M     0  920M   0% /sys/fs/cgroup
-/dev/vda1                                                                                           99G  4.7G   89G   5% /etc/hosts
-shm                                                                                                 64M     0   64M   0% /dev/shm
-
-[root@tang ~]# cat /etc/redhat-release 
-CentOS Linux release 7.2.1511 (Core) 
-
-[root@tang ~]# docker-enter tang -- cat /etc/redhat-release 
-CentOS Linux release 7.3.1611 (Core)
-</code></pre><h3 id="nsenter登入容器"><a href="#nsenter登入容器" class="headerlink" title="nsenter登入容器"></a>nsenter登入容器</h3><pre><code>使用外部工具nsenter登陆容器，该工具和docker exec命令的效果差不多。
-
-使用nsenter或dockerexec，都可以在容器的上下文（严格地说，是命名空间）中运行任意命令！
-
-
-==nsenter安装：
-[root@tang ~]#  yum install util-linux -y 
-
-
-==nsenter使用：
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         50 minutes ago      Up 24 minutes                           tang
-
-[root@tang ~]# docker inspect -f &quot;{{ .State.Pid }}&quot; tang
-19271
-
-[root@tang ~]# nsenter -t 19271  -m -u -i -n -p
-
-解释nsenter指令中进程id之后的参数的含义：
-
-–mount参数是进去到mount namespace中 
-–uts参数是进入到uts namespace中 
-–ipc参数是进入到System V IPC namaspace中 
-–net参数是进入到network namespace中 
-–pid参数是进入到pid namespace中 
-–user参数是进入到user namespace中
-
-[root@tang ~]#  nsenter --help
-
-Usage:
- nsenter [options] &lt;program&gt; [&lt;argument&gt;...]
-
-Run a program with namespaces of other processes.
-
-Options:
- -t, --target &lt;pid&gt;     target process to get namespaces from
- -m, --mount[=&lt;file&gt;]   enter mount namespace
- -u, --uts[=&lt;file&gt;]     enter UTS namespace (hostname etc)
- -i, --ipc[=&lt;file&gt;]     enter System V IPC namespace
- -n, --net[=&lt;file&gt;]     enter network namespace
- -p, --pid[=&lt;file&gt;]     enter pid namespace
- -U, --user[=&lt;file&gt;]    enter user namespace
- -S, --setuid &lt;uid&gt;     set uid in entered namespace
- -G, --setgid &lt;gid&gt;     set gid in entered namespace
-     --preserve-credentials do not touch uids or gids
- -r, --root[=&lt;dir&gt;]     set the root directory
- -w, --wd[=&lt;dir&gt;]       set the working directory
- -F, --no-fork          do not fork before exec ing &lt;program&gt;
- -Z, --follow-context   set SELinux context according to --target PID
- -h, --help     display this help and exit
- -V, --version  output version information and exit
-
-我们进入容器中查看进程 
-以下是以nsenter启动的进程
-[root@test /]# ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0  11768  1684 ?        Ss+  07:03   0:00 /bin/bash
-root        77  0.0  0.1  15200  1988 ?        S    07:31   0:00 -bash
-root        90  0.0  0.0  50872  1816 ?        R+   07:31   0:00 ps aux
-
-/bin/bash是我们运行容器产生的进程
--bash 是我们使用nsenter产生的，这样如果我们退出容器，容器就不会退出，因为-bash还在运行
-
-[root@test /]# exit
-logout
-
-[root@tang ~]# docker ps 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         55 minutes ago      Up 29 minutes                           tang
-
-因为每次进入容器都需要输入那两条命令，所以我们可以写一个脚本来获取。 
-
-==脚本内容如下：
-[root@tang opt]# cat docker_in.sh 
-#!/bin/bash
-# Use nsenter to access docker
-docker_in(){
-  NAME_ID=$1
-  PID=$(docker inspect -f &quot;{{ .State.Pid }}&quot; $NAME_ID)
-  nsenter -t $PID -m -u -i -n -p
-}
-docker_in $1
-
-[root@tang opt]# chmod +x docker_in.sh 
-[root@tang opt]# ./docker_in.sh tang
-[root@test /]# ps -ef
-UID        PID  PPID  C STIME TTY          TIME CMD
-root         1     0  0 07:03 ?        00:00:00 /bin/bash
-root        91     0  0 07:34 ?        00:00:00 -bash
-root       104    91  0 07:34 ?        00:00:00 ps -ef
-[root@test /]# exit
-logout
-[root@tang opt]# docker exec tang ps -ef
-UID        PID  PPID  C STIME TTY          TIME CMD
-root         1     0  0 07:03 ?        00:00:00 /bin/bash
-root       105     0  0 07:35 ?        00:00:00 ps -ef
-
-
-我们还可以使用exec进入docker容器中
-
-[root@tang opt]# docker exec -it tang /bin/bash
-</code></pre><h3 id="start-ai登入容器"><a href="#start-ai登入容器" class="headerlink" title="start -ai登入容器"></a>start -ai登入容器</h3><pre><code>对于一个已关闭的容器的登陆，可以使用&quot;docker start -ai container&quot;登陆。这种其实就是先启动容器，然后再进入容器内。
-
-[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Exited (0) 53 seconds ago                       tang
-
-[root@tang ~]# docker start -ai tang   #-a -i 都可以
-[root@test /]# exit
-exit
-[root@tang ~]# docker start -i tang
-[root@tang ~]# docker start -a tang
-</code></pre><h3 id="docker-exec登入容器"><a href="#docker-exec登入容器" class="headerlink" title="docker exec登入容器"></a>docker exec登入容器</h3><pre><code>使用自带命令docker exec登陆容器
-
-命令格式：docker exec -ti container_id /bin/bash
-
-[root@tang ~]# docker ps    #前提是容器已经启动
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 2 minutes                            tang
-[root@tang ~]# docker exec -it tang /bin/bash
-[root@test /]# exit
-</code></pre><h3 id="docker-attach登入容器"><a href="#docker-attach登入容器" class="headerlink" title="docker attach登入容器"></a>docker attach登入容器</h3><pre><code>使用自带命令docker attach登陆容器。
-
-命令格式：docker attach container_id
-
-[root@tang ~]# docker ps   #前提容器已经启动了
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-e657e9214a57        centos              &quot;/bin/bash&quot;         About an hour ago   Up 5 minutes                            tang
-[root@tang ~]# docker attach tang
-[root@test /]# exit
-</code></pre><h3 id="ssh登入容器"><a href="#ssh登入容器" class="headerlink" title="ssh登入容器"></a>ssh登入容器</h3><pre><code>使用ssh登陆容器。这种方法需要在容器中启动sshd，存在开销和攻击面增大的问题。同时也违反了Docker所倡导的一个容器一个进程的原则
-
-ssh登入会专门写一篇文章介绍。这里就不叙述了
-</code></pre>
       
     </div>
 
@@ -548,7 +379,7 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
+            <a href="/tags/saltstack/" rel="tag">#saltstack</a>
           
         </div>
       
@@ -557,16 +388,16 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（4）--镜像管理/" rel="next" title="Docker 基础（4）--镜像管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（4）--镜像管理
+              <a href="/2016/01/01/SaltStact（1）--简介/" rel="next" title="SaltStact（1）--简介">
+                <i class="fa fa-chevron-left"></i> SaltStact（1）--简介
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（5）--容器管理/" rel="prev" title="Docker 基础（5）--容器管理">
-                Docker 基础（5）--容器管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/11/Nginx配置文件nginx.conf中文详解/" rel="prev" title="Nginx配置文件nginx.conf中文详解">
+                Nginx配置文件nginx.conf中文详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -683,7 +514,7 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-enter登入容器"><span class="nav-number">1.</span> <span class="nav-text">docker-enter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nsenter登入容器"><span class="nav-number">2.</span> <span class="nav-text">nsenter登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start-ai登入容器"><span class="nav-number">3.</span> <span class="nav-text">start -ai登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-exec登入容器"><span class="nav-number">4.</span> <span class="nav-text">docker exec登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-attach登入容器"><span class="nav-number">5.</span> <span class="nav-text">docker attach登入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh登入容器"><span class="nav-number">6.</span> <span class="nav-text">ssh登入容器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件依赖要求"><span class="nav-number">1.</span> <span class="nav-text">软件依赖要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装系统环境"><span class="nav-number">2.</span> <span class="nav-text">安装系统环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装说明"><span class="nav-number">3.</span> <span class="nav-text">安装说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体过程"><span class="nav-number">4.1.</span> <span class="nav-text">具体过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SaltStack配置"><span class="nav-number">5.</span> <span class="nav-text">SaltStack配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改master配置文件"><span class="nav-number">5.1.</span> <span class="nav-text">修改master配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改被minion端"><span class="nav-number">5.2.</span> <span class="nav-text">修改被minion端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志文件默认路径"><span class="nav-number">5.3.</span> <span class="nav-text">日志文件默认路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接受minion的托管请求"><span class="nav-number">5.4.</span> <span class="nav-text">接受minion的托管请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本操作命令通用格式"><span class="nav-number">6.1.</span> <span class="nav-text">基本操作命令通用格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试连通性"><span class="nav-number">6.2.</span> <span class="nav-text">测试连通性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程执行"><span class="nav-number">6.3.</span> <span class="nav-text">远程执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量查看系统时间"><span class="nav-number">6.4.</span> <span class="nav-text">批量查看系统时间</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
