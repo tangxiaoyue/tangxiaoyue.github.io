@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="区块链技术," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="区块链是目前一个比较热门的新概念，蕴含了技术与金融两层概念。从技术角度来看，这是一个牺牲一致性效率且保证最终一致性的的分布式的数据库，当然这是比较片面的。从经济学的角度来看，这种容错能力很强的点对点网络，恰恰满足了共享经济的一个必须要求——低成本的可信环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链技术(1)--区块链概念">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/区块链技术(1)--区块链概念/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="区块链是目前一个比较热门的新概念，蕴含了技术与金融两层概念。从技术角度来看，这是一个牺牲一致性效率且保证最终一致性的的分布式的数据库，当然这是比较片面的。从经济学的角度来看，这种容错能力很强的点对点网络，恰恰满足了共享经济的一个必须要求——低成本的可信环境">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/vvkyo2dxtzb9en6cgm0ype6u/image_1bfk92cjp2231uin190k10v5ts99.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/0f3pyodhky6erwbf3kd9j2n8/image_1bfk93q1o1rgd9u41rtl1jp46ram.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/n0yl2zw7h92d0ac4kribo2oh/image_1bfk9ad21181f1vkf1rfgqcm18v913.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/y41educy1ksad45ueyiq0bj0/image_1bfk9irjs139416lt163nvh21a4e1g.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/z0ec109xddsjoohezg5teffz/image_1bfk9jm551tqrku13icrbmpj1t.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/w6ag2x3fl20c8y0kj9cywq3f/image_1bfk9k38u176tafp144k18p369u2a.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/7lq9t57oo5bo2xif6zvjcytd/image_1bfk9kfg31162fo21gr21kbh6ie2n.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/owcgyx3292b3gdph9bb2qloe/image_1bfk9n6161m0pbqi1v5f1g531ovr34.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/nypl7awzbnwb1qp6z0z4p2zu/image_1bfk9nh14dpitsu1a8i1u8i81u3h.png">
+<meta property="og:updated_time" content="2017-05-08T15:10:13.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链技术(1)--区块链概念">
+<meta name="twitter:description" content="区块链是目前一个比较热门的新概念，蕴含了技术与金融两层概念。从技术角度来看，这是一个牺牲一致性效率且保证最终一致性的的分布式的数据库，当然这是比较片面的。从经济学的角度来看，这种容错能力很强的点对点网络，恰恰满足了共享经济的一个必须要求——低成本的可信环境">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/vvkyo2dxtzb9en6cgm0ype6u/image_1bfk92cjp2231uin190k10v5ts99.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 区块链技术(1)--区块链概念 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                区块链技术(1)--区块链概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T22:37:26+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/区块链技术/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>区块链是目前一个比较热门的新概念，蕴含了技术与金融两层概念。从技术角度来看，这是一个牺牲一致性效率且保证最终一致性的的分布式的数据库，当然这是比较片面的。从经济学的角度来看，这种容错能力很强的点对点网络，恰恰满足了共享经济的一个必须要求——低成本的可信环境</p>
+<a id="more"></a>
+<h3 id="区块链定义"><a href="#区块链定义" class="headerlink" title="区块链定义"></a>区块链定义</h3><p><img src="http://static.zybuluo.com/BruceTang/vvkyo2dxtzb9en6cgm0ype6u/image_1bfk92cjp2231uin190k10v5ts99.png" alt="image_1bfk92cjp2231uin190k10v5ts99.png-244.3kB"><br><code>区块链技术到底是什么</code>？很少有人能够解释清楚。现在市面上有很多关于区块链的书籍，内容基本都是，区块链能做什么，区块链的未来前景等。总的来说，区块链是一套协议，一组规范，而不是具体代码、项目。</p>
+<p>理解了这套协议，你可以基于现有的技术，以不同的语言去实现它。我们也无法用一句简单的话去概况什么是区块链，站的角度不同，得到的结论也不一样。</p>
+<p><code>金融业</code>的人会说区块链是一个分布式的账本，是一个分布式的银行记账系统。</p>
+<p><code>密码学者</code>的会说区块链是使用密码学构建的去信任网络。</p>
+<p><code>码农</code>可能会说区块链就是一个确保最终一致性的分布式数据库。（ps：基于对IBM的超级账本Hyperledger项目fabric的认识。）</p>
+<p><code>吃瓜群众可以从网络获取定义</code>：区块链（Blockchain）是一种分布式数据库，起源自比特币。区块链是一串使用密码学方法相关联产生的数据块，每一个数据块中包含了一次比特币网络交易的信息，用于验证其信息的有效性（防伪）和生成下一个区块。该概念在中本聪的白皮书中提出，中本聪创造第一个区块，即“创世区块”（摘自维基百科）。</p>
+<p>但无论怎么定义，只要理解了其技术要点，每个人都会有自己的认识。</p>
+<h3 id="区块链技术三要素"><a href="#区块链技术三要素" class="headerlink" title="区块链技术三要素"></a>区块链技术三要素</h3><p><img src="http://static.zybuluo.com/BruceTang/0f3pyodhky6erwbf3kd9j2n8/image_1bfk93q1o1rgd9u41rtl1jp46ram.png" alt="image_1bfk93q1o1rgd9u41rtl1jp46ram.png-266.4kB"><br>首先，我们回顾一下软件系统架构。</p>
+<h4 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h4><p>在互联网技术飞速发展的前半程，client与server的角色基本上是分工明确，1个server提供服务，n个client调用服务，这即所谓的中心化，系统的可靠性依赖server的可靠性。</p>
+<h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4><p>随着业务复杂度上升、业务量激增，传统的中心化已经不能满足需要。这时候，服务分拆，横向纵向拓展变得理所应当，这就是我们现在所处的分布式系统架构，系统的可靠性依赖于分布式系统的容灾恢复能力。</p>
+<h4 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h4><p>分布式架构给我们带来的便利性很容易让我们觉得这就是“完美无缺”的架构，但服务提供方还是只依赖某一机构。如果机构作恶，宕机，篡改数据，那么造成的后果我想大家都清楚。（如果不清楚，请脑补机构==支付宝）。</p>
+<p>区块链使用的p2p网络通信技术或许给了我们另外一种选择：人皆生而平等，没有谁生来就是server，就是client。每个节点都是平等的，既是生产者也是消费者。</p>
+<p>注：今天所说的去中心化是一个理想化的状态，就如同共产主义理想。现阶段来说区块链去中心化本质上是相对去中心化。</p>
+<p>有人可能会问，p2p网络就能保证不作恶，不宕机，数据不被篡改么？别急，p2p网络只是为所有节点提供了信息交换的方式。做事的还是共识算法和加密算法。</p>
+<h4 id="共识算法"><a href="#共识算法" class="headerlink" title="共识算法"></a>共识算法</h4><p>一提到区块链，所有懂的人都会说到共识算法，拜占庭将军问题，然后拽出一大堆高端大气上档次的英文缩写：POW,POS,DPOS,PBFT，等等。听众一脸懵逼，而如果你让他详细解释，可能绝大部分人也解释不清楚，这就如同爱因斯坦的相对论。</p>
+<p>但别担心，最简单的解释，共识算法就是保证少数服从多数！大多数人认定一件事，这件事就是事实，也就意味着如果你要去改变一个既定事实，那么你必须伙同大多数人陪你一起作假。</p>
+<p>在电影电视剧中，这种情况很常见，弱者屈服于强者做伪证。但在基于p2p通信的数以千计的节点中，想要伙同其他节点一起作恶，除非“大多数节点”都被统一组织（人）控制，有共同的利益，且利益大于付出，否则不可达成。</p>
+<p>这里“大多数节点”加了引号，因为有些算法并不是在大多数的临界点51%时就能达成共识。如PBFT，需要66%以上的确定节点才能达成共识。比如现在比特币网络有人就提出了这样的担心，因为大概有75%的算力被中国矿池掌控。</p>
+<h4 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h4><p>说到加密算法，大多数码农都会想到诸如对称加密，非对称加密，hash, md5，des，rsa等。加密的本质其实很简单，让信息真实、隐秘的交流及存储。真实性由数据签名保证，隐私性由数据加密实现。区块链平台现在广泛使用的算法有椭圆曲线签名算法（ECDSA）、SHA256以及ripemd160，三者的结合使用保证了区块链在密码学层面上达到高度隐私。</p>
+<h4 id="结合"><a href="#结合" class="headerlink" title="结合"></a>结合</h4><p>回到刚刚的问题：p2p网络就能保证不作恶，不宕机，数据不被篡改么？我们把区块链技术三要素结合起来探讨这个问题。</p>
+<p><code>作恶</code>：要在数以千计的平等节点之间寻找作恶同伙，通常作恶的收获还不如作恶的付出，这就从根本上杜绝了大量坏节点的出现。比如，比特币的POW共识算法，就算联合了比特币网络51%以上的算力去实现双花、硬分叉，得到的收益或许还不够交电费。</p>
+<p><code>宕机</code>：这个很好理解，所有的节点都是平等的，一个宕机了，不影响整个网络的持续运行。</p>
+<p><code>数据篡改</code>：这其实是作恶的子集，但是比较重要，拿出来说。区块链的一个重要特征就是时序性，前一时间产生的交易会影响后续所有交易（交易签名），如果想要篡改中间某一交易的数据，那么必须在此交易所在的区块开始分叉，产生一个新链，改变这之后的所有交易，而且还要比其他链的区块产生的速度更快，否则没有意义，因为区块链网络只认最长的那条链（基于比特币区块链）。</p>
+<h3 id="区块链应用四展望"><a href="#区块链应用四展望" class="headerlink" title="区块链应用四展望"></a>区块链应用四展望</h3><h4 id="区块链金融"><a href="#区块链金融" class="headerlink" title="区块链金融"></a>区块链金融</h4><p>比尔盖茨曾经讲过一句话：“传统银行如果不改变思路，就是21世纪要灭绝的恐龙”。之前，我们都只是当做一句笑谈。就像马云爸爸说他这辈子最大的错误就是建立阿里巴巴。</p>
+<p>在区块链技术被挖掘出来以后，这句话被反复引用，无论是否炒作，必须看到区块链在应对金融业务时拥有的得天独厚的优势，如果银行不思求变，那么被时代抛弃是必然。因此，诸如花旗银行、汇丰银行、摩根斯坦利等42家巨头银行加入由一家区块链创业公司创建的R3区块链联盟也就不难理解了。</p>
+<p>未来世界是数字世界，数字资产会变成大家资产的主要凭证。金融的本质就是信用，如何在银行全面数字化过程中利用去信任的区块链技术，这必定是未来5-10年金融创业的黄金命题。</p>
+<h4 id="价值互联网"><a href="#价值互联网" class="headerlink" title="价值互联网"></a>价值互联网</h4><p>过去20年，我们亲眼目睹了互联网技术如何改变我们的生活，信息化的巨大变革彻底的改变（便利）了我们的衣食住行。实现了信息传播与分享的解放，是信息的去中心化。但互联网并没有解决财富与价值在互联网上的交换与转移。</p>
+<p>如果说现有的互联网已解决信息传播与分享的瓶颈，那么区块链要解决的就是资金、合约和数字化资产在互联网上交换、交易与转移的难题。未来20年，是信息互联网升级为价值互联网的创业潮。</p>
+<h4 id="共享经济"><a href="#共享经济" class="headerlink" title="共享经济"></a>共享经济</h4><p>近两年来，滴滴与uber之间的互联网租车争夺战，将“共享经济”推到了风口浪尖。这种个人与个人之间直接共享闲置资产的方式将通过区块链更加流行。因为区块链网络作为一个去信任去中心网络，让人们摆脱了个人与个人之间的信任危机以及中心化的非市场化运作。比如法国一个去中心化的叫车平台Arade City，司机与乘客直接交易。</p>
+<p>而我们公司现在也正在做一个共享用户闲置磁盘空间的区块链应用平台。我们相信，唯数据与空间不可辜负，基于区块链技术，可让闲置的空间存储可被信任的加密数据。数据可以是用户自己的照片视频，也可以是某组织的业务数据。</p>
+<p>而对大数据分析来说，现有的大数据应用，数据都是存在一个中心化的厂商手里，谁敢保证数据拥有者不会因为自身的利益修改数据内容？而用了区块链技术保管的数据才能保证数据被所有人共同管理，不可篡改。</p>
+<h4 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h4><p>智能合约也是现在很火热的一个概念。简单的说，智能合约类似于计算机语言的if语句，当一个预先编好的合约的某一条件被触发时，就自动在区块链网络中执行合约相应的合同条款，而不需人为干预。</p>
+<p>按照这样的愿景，未来律师的职责可能会大变样，律师的职责不是裁定个人合约，而是生产智能合约模板。定制性如何，易用性如何将决定合约的价格或者律师的身价。所以才会有笑谈：不会写脚本的律师不是好的码农。</p>
+<h3 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h3><p>以前，重复造轮子是衡量一个公司技术能力的重要指标。但是随着开源精神的普及以及github平台的广泛使用，贡献开源项目已经是互联网公司的常态。这里介绍两个比较出名的区块链平台开源项目。</p>
+<h4 id="超级账本"><a href="#超级账本" class="headerlink" title="超级账本"></a>超级账本</h4><p>超级账本（hyperledger）是Linux基金会于2015年发起的推进区块链数字技术和交易验证的开源项目，加入成员包括：荷兰银行（ABN AMRO）、埃森哲（Accenture）、IBM等十几个不同利益体，目标是让成员共同合作，共建开放平台，满足来自多个不同行业各种用户案例，并简化业务流程。</p>
+<p>超级账本项目很适合联盟链，私有链的构建。现在超级账本的开源代码实现Fabric由IBM主持孵化，由go语言开发，现在版本为0.6， 坑还很多，需要时间来填，我们的项目也是基于Fabric。所以，现在开始学习Fabric，应该是比较好的选择。</p>
+<h4 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h4><p>以太坊（Ethereum）是一个运行智能合约的去中心化平台（Platform for Smart Contract），平台上的应用按程序设定运行，不存在停机、审查、欺诈、第三方人为干预的可能。以太坊平台由 Golang、C++、Python 等多种编程语言实现。</p>
+<p>前段时间的The DAO事件让以太坊平台损失惨重，以太坊也分裂成ETC和ETH，平台的发展前景不明。</p>
+<h3 id="国内现状"><a href="#国内现状" class="headerlink" title="国内现状"></a>国内现状</h3><p><img src="http://static.zybuluo.com/BruceTang/n0yl2zw7h92d0ac4kribo2oh/image_1bfk9ad21181f1vkf1rfgqcm18v913.png" alt="image_1bfk9ad21181f1vkf1rfgqcm18v913.png-344.4kB"></p>
+<h4 id="布比"><a href="#布比" class="headerlink" title="布比"></a>布比</h4><p>布比区块链已经广泛应用于数字资产、股权债券、贸易金融、供应链溯源、商业积分、联合征信、公示公证、数据安全等领域，并正在与交易所、银行等主流金融机构开展应用试验和测试。以多中心化信任为核心，致力于打造新一代价值流通网络，让数字资产都自由流动起来。</p>
+<h4 id="小蚁"><a href="#小蚁" class="headerlink" title="小蚁"></a>小蚁</h4><p>小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。</p>
+<h4 id="唯链"><a href="#唯链" class="headerlink" title="唯链"></a>唯链</h4><p>以区块链技术为核心，VeChain提供一套面向全球的真假校验和透明供应链管理的解决方案以应对全球泛滥的假货问题，同时使得消费客户更加关注所购买的产品本身，包括产地，材料质地，设计理念，品牌故事等。</p>
+<h4 id="ASCH"><a href="#ASCH" class="headerlink" title="ASCH"></a>ASCH</h4><p>Asch 是一个去中心化的应用平台。它提供了一系列的 sdk 和 api 来帮助开发者构建基于 Javascript 和侧链技术的去中心化应用。Asch 通过提供定制侧链、智能合约、应用托管等一体化的行业解决方案，致力于打造一个易于使用、功能完备、即插即用的系统。</p>
+<h4 id="云象"><a href="#云象" class="headerlink" title="云象"></a>云象</h4><p>云象区块链为企业级的B端客户进行服务，提供身份验证、电子证据保全、供应链管理、产品追溯等商业智能合约应用，同时我们为行业私有链应用，提供不可篡改、安全、部署成本低的区块链数据库产品。</p>
+<h4 id="太一"><a href="#太一" class="headerlink" title="太一"></a>太一</h4><p>太一云科技，拥有全球最顶尖的区块链研发团队，已研发包括区块链征信，区块链资产登记流转，区块链安全，智能合约，区块链大数据，区块链物联网，区块链云计算中心等领域的数十项核心专利技术。</p>
+<p>将立足中国市场，积极开展区块链技术的产业化应用，在金融，商业，个人及企业信用等社会活动中，植入区块链的基因，改变人们对传统信用机制的认知，重塑互联网的价值传输构架，为创造崭新的更合理更公平全球新经济和新金融生态环境提供普适化的基础设施和解决方案。</p>
+<h3 id="如何从技术角度理解区块链"><a href="#如何从技术角度理解区块链" class="headerlink" title="如何从技术角度理解区块链"></a>如何从技术角度理解区块链</h3><ul>
+<li>作者 陈浩</li>
+</ul>
+<p>我接触过一些工程师，初次接触区块链时，不约而同的表达了：都是成熟的技术，不就是分布式存储嘛。站在工程师的角度，第一反应将这种新概念映射到自己的知识框架中，是非常自然的。但是细究之下发现，这种片面的理解可能将对区块链的理解带入一个误区，那就是作为一个技术人员，忽略了区块链的经济学特性——一个权力分散且完全自治的系统。</p>
+<p>区块链本质上是一个基于P2P的价值传输协议，我们不能只看到了P2P，而看不到价值传输。同样的，也不能只看到了价值传输，而看不到区块链的底层技术。</p>
+<p>可以这么说，区块链更像是一门交叉学科，结合了P2P网络技术、非对称加密技术、宏观经济学、经济学博弈等等知识，构建的一个新领域——针对价值互联网的探索。</p>
+<p><code>那什么是价值互联网</code>？价值互联网可以是当下如日中天的电子商务所衍生的支付业务。但，真的只是支付领域吗？很显然这是不够的，一级资本市场，实体资产确权与转移，证券登记交割、征信与反欺诈。我们再仔细想想，我们的各大电商平台的专业差评师，恶意刷单还少吗？</p>
+<p>如今的金融领域，除了支付比较便利之外，在其他绝大部分的业务中，我们就像是被套着锁链走路一样，我们反复确认，反复审核，反复监督，我们反复构建一个又一个的大大小小的高可用集群，保证线上服务的可靠性与连续性，我们雇佣一个又一个的安全工程师，交付一个又一个的渗透测试项目。为什么？因为作弊的成本太低了，低到只要改数据库的一行记录就可以提取上百万的资金。</p>
+<p>强大的互联网给了我们成本几乎为零的高速信息传输通道，却没有一个成本低廉可靠的高速价值传输通道，那么这也就是区块链即将带来的。</p>
+<p><strong>区块链是一个公共的分布式总账，下面从技术角度简单介绍一下</strong>。</p>
+<p>想象有一个100台的分布式数据库集群，现在的情况是这100个节点实际上的拥有者是一个机构，并且所有节点处在该机构的内网当中，所以这个机构想让这100个数据库节点干嘛就干嘛，换句话说这100个节点之间是处于一个可信任的环境，并且受控于一个实体，这个实体具有绝对仲裁分配权。</p>
+<p>另外的情况是这样的，想象这100个节点分别归不同的人所有，且每个人的节点数据都是一样的，即完全冗余，并且所有的节点是处在广域网当中，换句话说就是这100个节点之间是不信任的，且不存在一个实体，它拥有绝对仲裁权。</p>
+<p>现在考虑第二种情况，采用什么样的算法（共识模型）能够提供一个可信任的环境，使：</p>
+<pre><code>每个节点交换数据过程不被篡改；交换历史记录不可被篡改；
+
+每个节点的数据会同步到最新数据，且承认经过共识的最新数据；
+
+基于少数服从多数的原则，整体节点维护的数据本身客观反映了交换历史。
+</code></pre><p>区块链本质上就是要解决以上第二种情况的一种技术方案，更确切的说应该叫分布式的冗余的链式总帐本方案。有关区块链的一些要素，在我以往的文章里有总结过一些：</p>
+<pre><code>包含一个分布式数据库
+
+分布式数据库是区块链的物理载体，区块链是交易的逻辑载体，所有核心节点都应包含该条区块链数据的全副本
+
+区块链按时间序列化区块，且区块链是整个网络交易数据的唯一主体
+
+区块链只对添加有效，对其他操作无效
+
+基于非对称加密的公私钥验证
+
+记账节点要求拜占庭将军问题可解/避免
+
+共识过程（consensus progress）是演化稳定的，即面对一定量的不同节点的矛盾数据不会崩溃。
+
+共识过程能够解决double-spending问题
+</code></pre><p>所以作为一个技术人员，不应当只看到了区块链所依赖的技术，更应该关注区块链以外的点和面，综合来看，区块链将会有趣得多。</p>
+<h3 id="区块链的一般性架构介绍"><a href="#区块链的一般性架构介绍" class="headerlink" title="区块链的一般性架构介绍"></a>区块链的一般性架构介绍</h3><p>有关区块链技术的介绍，在各个区块链平台的社区是有详细资料的，但是针对这些资料的总结，以及抽象出一共通概念的介绍，还是凤毛麟角，本文尝试总结一下。</p>
+<p>在介绍之前，我想稍微介绍一下公有链，联盟链的概念，这些概念是以太坊创始人Vitalik提出的，我在这些概念的基础上做了一些研究。</p>
+<p>其实区分公有链、联盟链很简单，只要看这个区块链的访问权限就可以了，如果访问该区块链需要获得链上节点的许可，那么这是一个联盟链，否则是公有链。根据名称，我们也可以”望文生义“，公有表示一个完全开放的网络，联盟表示一个半开放的网络，成员之间是共享的，非成员身份是没有自由访问权限的，所以我们也称联盟链为许可链。</p>
+<p>下面我们来看几个比较主流的区块链平台（<strong>公有链，皆开源</strong>）：</p>
+<pre><code>比特币 Bitcoin
+
+以太坊 Ethereum/经典以太坊 Ethereum Classic
+
+比特股 Bitshares
+</code></pre><p>我一般戏称为”三巨头“，从生态上来看，比特币是最为成熟稳定的，以太坊更像是一个冲在前面的勇士，比特股相比前两位生态要小很多，但是从创新的角度，也不亚于前两位。其他的很多项目，是从这三个区块链上衍生出来的，所以以这三个为基础，基本上可以吃透区块链了。</p>
+<p>不得不提的还有Linux基金会项目——HyperLedger项目（主打联盟链，开源），也是旨在打造一个通用的区块链技术，不过我认为目前尚在开发迭代当中，还没有具体的应用案例，按下不讲。</p>
+<p>另外还有一些银行寡头间的联盟链项目——R3 CEV项目（联盟链，闭源），以及中国的R3项目——ChinaLedger（联盟链，闭源），当然这些不是开源的，我无法获得有用的资料进行分析，所以就不展开了。</p>
+<p>从技术上来看，针对不同的业务场景，对区块链有不同需求，比如实时结算业务，要求区块链提供秒级的交割，相对应的就是出块速度的要求，而出块速度过快往往会导致区块链分叉（fork），形成孤儿链，孤儿链是无效的，那么交易也就作废了，影响了区块链的最终一致性。如果频繁产生分叉造成相当比例的用户交易失效，那么可以认为系统是不可靠的。</p>
+<p>如果我们将这种实时性要求比较高的业务安插到联盟链中，就可以控制风险，通过调整共识算法，利用快速一致共识模型（Consensus Model）来避免上述问题，虽然不如公有链那么健壮，但对某些特殊场景足够了。所以架构层面，对公有链和联盟链的技术也要差异化对待。</p>
+<p>不过客户端整体的设计还是有一些通用的概念的，如下图：<br><img src="http://static.zybuluo.com/BruceTang/y41educy1ksad45ueyiq0bj0/image_1bfk9irjs139416lt163nvh21a4e1g.png" alt="image_1bfk9irjs139416lt163nvh21a4e1g.png-477.6kB"></p>
+<p>一个区块链至少分为三层，最底层是一些通用的基础模块，比如基础加密算法，网络通讯库，流处理，线程封装，消息封装与解码，系统时间等；</p>
+<p>中间一层是区块链的核心模块，一般包含了区块链的主要逻辑，如P2P网络协议，共识模块，交易处理模块，交易池模块，简单合约或者智能合约模块，嵌入式数据库处理模块，钱包模块等；</p>
+<p>最上面一层，往往都是基于Json Standard RPC的交互模块，基于Json-RPC，我们还可以做出更好的UI界面，也可以是一个web-service。</p>
+<p>如果区块链 支持智能合约，可能还要分更多的层，比如增加BaaS层，区块链上的智能合约提供自治的服务，比如下面这张以太坊的架构图（来自Google，仅作参考）：<br><img src="http://static.zybuluo.com/BruceTang/z0ec109xddsjoohezg5teffz/image_1bfk9jm551tqrku13icrbmpj1t.png" alt="image_1bfk9jm551tqrku13icrbmpj1t.png-430kB"></p>
+<p>这种分层更加关注的是区块链本身的分层，即业务上的视角，而不完全是技术的。</p>
+<p>我们再转向比特币的设计：</p>
+<p><img src="http://static.zybuluo.com/BruceTang/w6ag2x3fl20c8y0kj9cywq3f/image_1bfk9k38u176tafp144k18p369u2a.png" alt="image_1bfk9k38u176tafp144k18p369u2a.png-302.4kB"><br>比特币几个模块之间的耦合度其实比较高，而且有不少历史包袱，比特币的发明者——中本聪在开发比特币的时候，使用VC++开发，而VC++的标准库中的sstream流处理性能非常感人，不得不放弃，自行实现了了基于vector的流处理容器。而随着c++11的推出以及标准库的更新迭代，性能不可同日而语。</p>
+<p>从整张图我们可以看出，比特币的模块比较少，也比较简单。chain-paramters描述了整个区块链的参数设置，wallet是与地址/加密还有存储相关的，mem-pool是未确认的交易池。得益于比特币核心开发者的不朽贡献，相比中本聪时代的比特币代码，现在的比特币代码质量已经相当不错了。</p>
+<p>以上无论哪种设计，一般都要从P2P网络协议作为切入，作为一个P2P钱包，既要提供Service也要提供Client，作为Service依赖P2P网络协议，作为Client依赖Json-RPC。</p>
+<p>需要指出的是，目前”三巨头”所使用的账户模型是不同的（所谓账户模型是指账户记账方法），比特币使用UXTO模型，以太坊和比特股使用账户余额模型。</p>
+<p>UXTO模型（Unspent Transaction Outputs (UTXOs) ）：此模型表达了一种转移的概念，即任何产生的新币，在以后的生命周期中，只有转移，没有消亡，转移实质上是由加密算法的签名与验证控制的：</p>
+<p><img src="http://static.zybuluo.com/BruceTang/7lq9t57oo5bo2xif6zvjcytd/image_1bfk9kfg31162fo21gr21kbh6ie2n.png" alt="image_1bfk9kfg31162fo21gr21kbh6ie2n.png-98.7kB"></p>
+<h3 id="共识算法与分布式"><a href="#共识算法与分布式" class="headerlink" title="共识算法与分布式"></a>共识算法与分布式</h3><p>终于来到重点了，本文每节其实都可以展开成为独立的文章，内容所限，简单讲。</p>
+<p>所谓区块链共识过程，在上文有所提及，是指如何将全网交易数据客观记录并且不可篡改的过程。目前”三巨头”分别使用不同的共识算法（Consensus Algorithm）, 比特币使用工作量证明PoW（Proof of Work），以太坊即将转换为权益证明PoS（Proof of Stake），比特股使用授权权益证明DPoS（Delegated Proof of Stake）。</p>
+<p>以上这些算法我称之为“经济学”的算法，所谓经济学的算法，是指让作弊成本可计算，且让作弊成本往往远大于作弊带来的收益，即作弊无利可图，通过这种思想构造一个用于节点之间博弈的算法，并使之趋向一个稳定的平衡。相对应的我们还有计算机领域的分布式一致性算法，例如Paxos、Raft，我也称之为传统分布式一致性算法。</p>
+<p>它们之间的最大区别是：系统在拜占庭将军（Byzantine Generals Problem）情景下的可靠性，即拜占庭容错（PBFT算法支持拜占庭容错）。然而无论是Paxos还是Raft算法，理论上都可能会进入无法表决通过的死循环(尽管这个概率其实是非常非常低的)，但是他们都是满足safety的，只是放松了liveness的要求, PBFT也是这样。</p>
+<p>下面是一些传统分布式一致性算法和区块链共识过程的异同点。先来看<strong>相同点</strong>：</p>
+<pre><code>Append only
+
+强调序列化
+
+少数服从多数原则
+
+分离覆盖的问题：即长链覆盖短链区块，多节点覆盖少数节点日志
+</code></pre><p><strong>不同点:</strong></p>
+<pre><code>传统分布式一致性算法大多不考虑拜占庭容错（Byzanetine Paxos除外），即假设所有节点只发生宕机、网络故障等非人为问题，并不考虑恶意节点篡改数据的问题；
+
+传统分布式一致性算法是面向日志（数据库）的，即更通用的情况，而区块链共识模型面向交易的，所以严格来说，传统分布式一致性算法应该处于区块链共识模型的下面一层。
+
+考虑上面的不同点，结合公有链和联盟链的特征，我们有：
+
+联盟链：半封闭生态的价值网络，存在对等的不信任节点，如某某协会成员之间。
+
+公有链：开放生态的价值网络，这层主要是为行业链和私有链提供全球交易网络。
+</code></pre><p>由于联盟行业链其半封闭半开放特性，使用Delegated Proof of XXX 是可行的，可以考虑以传统一致性算法作为基础加入拜占庭容错/安全防护机制进行改进也是可以的。</p>
+<p>而针对公有链，PoW/Pos/DPos等“经济学”的算法可能是最优算法。技术上，以上不同的共识算法，我们很多新开发区块链都相应的支持一个特性：共识模块可插拔，以应对不同场景下的要求。</p>
+<p>下图是一张未来区块链生态示意图：<br><img src="http://static.zybuluo.com/BruceTang/owcgyx3292b3gdph9bb2qloe/image_1bfk9n6161m0pbqi1v5f1g531ovr34.png" alt="image_1bfk9n6161m0pbqi1v5f1g531ovr34.png-316.3kB"></p>
+<p>公有链提供可信可靠的价值传输网络，上面可以继续组建去中心化应用（DAPP）或者部署联盟链，甚至传统数据库都行，在上层搭建C端应用。</p>
+<p>数字资产与价值流通网络</p>
+<p>这里有张未来区块链发展的示意图：<br><img src="http://static.zybuluo.com/BruceTang/nypl7awzbnwb1qp6z0z4p2zu/image_1bfk9nh14dpitsu1a8i1u8i81u3h.png" alt="image_1bfk9nh14dpitsu1a8i1u8i81u3h.png-216.6kB"></p>
+<p>ref: Metaverse元界白皮书-CN(概要)</p>
+<p>“三巨头”中，比特币在“数字货币”处，比特股在“去中心化交易所”附近，以太坊在“去中心化组织”处。而实际上，区块链和现实的接触点，还在图示位置。所以区块链仍是一个正在成长的事物，结合图5，我们希望构建一个基础设施完善的价值传输网络，上层应用丰富的区块链生态，仍然需要付出巨大的努力。</p>
+<p>下一步目标，是将资产数字化（类比资产证券化），例如我们可以将珍稀物品（艺术品/古董）数字化、知识产权数字化、票据基金等收益权数字化，将极大的提升市场运作效率，配备智能合约，甚至人工智能，可编程社会不再是梦想。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链技术/" rel="tag">#区块链技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/04/zabbix 3.0 分布式监控/" rel="next" title="zabbix 3.0 分布式监控">
+                <i class="fa fa-chevron-left"></i> zabbix 3.0 分布式监控
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/11/Nginx域名访问的白名单配置梳理/" rel="prev" title="Nginx域名访问的白名单配置梳理">
+                Nginx域名访问的白名单配置梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链定义"><span class="nav-number">1.</span> <span class="nav-text">区块链定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链技术三要素"><span class="nav-number">2.</span> <span class="nav-text">区块链技术三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中心化"><span class="nav-number">2.1.</span> <span class="nav-text">中心化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式"><span class="nav-number">2.2.</span> <span class="nav-text">分布式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化"><span class="nav-number">2.3.</span> <span class="nav-text">去中心化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共识算法"><span class="nav-number">2.4.</span> <span class="nav-text">共识算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加密算法"><span class="nav-number">2.5.</span> <span class="nav-text">加密算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合"><span class="nav-number">2.6.</span> <span class="nav-text">结合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链应用四展望"><span class="nav-number">3.</span> <span class="nav-text">区块链应用四展望</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链金融"><span class="nav-number">3.1.</span> <span class="nav-text">区块链金融</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值互联网"><span class="nav-number">3.2.</span> <span class="nav-text">价值互联网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享经济"><span class="nav-number">3.3.</span> <span class="nav-text">共享经济</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#智能合约"><span class="nav-number">3.4.</span> <span class="nav-text">智能合约</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源项目"><span class="nav-number">4.</span> <span class="nav-text">开源项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#超级账本"><span class="nav-number">4.1.</span> <span class="nav-text">超级账本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以太坊"><span class="nav-number">4.2.</span> <span class="nav-text">以太坊</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国内现状"><span class="nav-number">5.</span> <span class="nav-text">国内现状</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布比"><span class="nav-number">5.1.</span> <span class="nav-text">布比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小蚁"><span class="nav-number">5.2.</span> <span class="nav-text">小蚁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#唯链"><span class="nav-number">5.3.</span> <span class="nav-text">唯链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCH"><span class="nav-number">5.4.</span> <span class="nav-text">ASCH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云象"><span class="nav-number">5.5.</span> <span class="nav-text">云象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#太一"><span class="nav-number">5.6.</span> <span class="nav-text">太一</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何从技术角度理解区块链"><span class="nav-number">6.</span> <span class="nav-text">如何从技术角度理解区块链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链的一般性架构介绍"><span class="nav-number">7.</span> <span class="nav-text">区块链的一般性架构介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共识算法与分布式"><span class="nav-number">8.</span> <span class="nav-text">共识算法与分布式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
