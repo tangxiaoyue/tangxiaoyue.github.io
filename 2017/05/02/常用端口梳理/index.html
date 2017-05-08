@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="大家在学习计算机的时候，对于最常用的几个端口比如80端口肯定有很深的印象，但是对于其他一些不是那么常用的端口可能就没那么了解。所以，在一些使用频率相对较高的端口上，很容易会引发一些由于陌生而出现的错误，或者被黑客利用某些端口进行入侵。对于这件事情，大部分人都很头疼——最多可达65535个的端口，让人怎么记？别怕，这次专门给大家整理了一些比较常见端口信息，遇到问题，一查就好！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用端口梳理">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/常用端口梳理/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="大家在学习计算机的时候，对于最常用的几个端口比如80端口肯定有很深的印象，但是对于其他一些不是那么常用的端口可能就没那么了解。所以，在一些使用频率相对较高的端口上，很容易会引发一些由于陌生而出现的错误，或者被黑客利用某些端口进行入侵。对于这件事情，大部分人都很头疼——最多可达65535个的端口，让人怎么记？别怕，这次专门给大家整理了一些比较常见端口信息，遇到问题，一查就好！">
+<meta property="og:updated_time" content="2017-05-08T14:21:45.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用端口梳理">
+<meta name="twitter:description" content="大家在学习计算机的时候，对于最常用的几个端口比如80端口肯定有很深的印象，但是对于其他一些不是那么常用的端口可能就没那么了解。所以，在一些使用频率相对较高的端口上，很容易会引发一些由于陌生而出现的错误，或者被黑客利用某些端口进行入侵。对于这件事情，大部分人都很头疼——最多可达65535个的端口，让人怎么记？别怕，这次专门给大家整理了一些比较常见端口信息，遇到问题，一查就好！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 常用端口梳理 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用端口梳理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-02T22:37:26+08:00" content="2017-05-02">
+              2017-05-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大家在学习计算机的时候，对于最常用的几个端口比如80端口肯定有很深的印象，但是对于其他一些不是那么常用的端口可能就没那么了解。所以，在一些使用频率相对较高的端口上，很容易会引发一些由于陌生而出现的错误，或者被黑客利用某些端口进行入侵。对于这件事情，大部分人都很头疼——最多可达65535个的端口，让人怎么记？<br>别怕，这次专门给大家整理了一些比较常见端口信息，遇到问题，一查就好！</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div><div class="line">585</div><div class="line">586</div><div class="line">587</div><div class="line">588</div><div class="line">589</div><div class="line">590</div><div class="line">591</div><div class="line">592</div><div class="line">593</div><div class="line">594</div><div class="line">595</div><div class="line">596</div><div class="line">597</div><div class="line">598</div><div class="line">599</div><div class="line">600</div><div class="line">601</div><div class="line">602</div><div class="line">603</div><div class="line">604</div><div class="line">605</div><div class="line">606</div><div class="line">607</div><div class="line">608</div><div class="line">609</div><div class="line">610</div><div class="line">611</div><div class="line">612</div><div class="line">613</div><div class="line">614</div><div class="line">615</div><div class="line">616</div><div class="line">617</div><div class="line">618</div><div class="line">619</div><div class="line">620</div><div class="line">621</div><div class="line">622</div><div class="line">623</div><div class="line">624</div><div class="line">625</div><div class="line">626</div><div class="line">627</div><div class="line">628</div><div class="line">629</div><div class="line">630</div><div class="line">631</div><div class="line">632</div><div class="line">633</div><div class="line">634</div><div class="line">635</div><div class="line">636</div><div class="line">637</div><div class="line">638</div><div class="line">639</div><div class="line">640</div><div class="line">641</div><div class="line">642</div><div class="line">643</div><div class="line">644</div><div class="line">645</div><div class="line">646</div><div class="line">647</div><div class="line">648</div><div class="line">649</div><div class="line">650</div><div class="line">651</div><div class="line">652</div><div class="line">653</div><div class="line">654</div><div class="line">655</div><div class="line">656</div><div class="line">657</div><div class="line">658</div><div class="line">659</div><div class="line">660</div><div class="line">661</div><div class="line">662</div><div class="line">663</div><div class="line">664</div><div class="line">665</div><div class="line">666</div><div class="line">667</div><div class="line">668</div><div class="line">669</div><div class="line">670</div><div class="line">671</div><div class="line">672</div><div class="line">673</div><div class="line">674</div><div class="line">675</div><div class="line">676</div><div class="line">677</div><div class="line">678</div><div class="line">679</div><div class="line">680</div><div class="line">681</div><div class="line">682</div><div class="line">683</div><div class="line">684</div><div class="line">685</div><div class="line">686</div><div class="line">687</div><div class="line">688</div><div class="line">689</div><div class="line">690</div><div class="line">691</div><div class="line">692</div><div class="line">693</div><div class="line">694</div><div class="line">695</div><div class="line">696</div><div class="line">697</div><div class="line">698</div><div class="line">699</div><div class="line">700</div><div class="line">701</div><div class="line">702</div><div class="line">703</div><div class="line">704</div><div class="line">705</div><div class="line">706</div><div class="line">707</div><div class="line">708</div><div class="line">709</div><div class="line">710</div><div class="line">711</div><div class="line">712</div><div class="line">713</div><div class="line">714</div><div class="line">715</div><div class="line">716</div><div class="line">717</div><div class="line">718</div><div class="line">719</div><div class="line">720</div><div class="line">721</div><div class="line">722</div><div class="line">723</div><div class="line">724</div><div class="line">725</div><div class="line">726</div><div class="line">727</div><div class="line">728</div><div class="line">729</div><div class="line">730</div><div class="line">731</div><div class="line">732</div><div class="line">733</div><div class="line">734</div><div class="line">735</div><div class="line">736</div><div class="line">737</div><div class="line">738</div><div class="line">739</div><div class="line">740</div><div class="line">741</div><div class="line">742</div><div class="line">743</div><div class="line">744</div><div class="line">745</div><div class="line">746</div><div class="line">747</div><div class="line">748</div><div class="line">749</div><div class="line">750</div><div class="line">751</div><div class="line">752</div><div class="line">753</div><div class="line">754</div><div class="line">755</div><div class="line">756</div><div class="line">757</div><div class="line">758</div><div class="line">759</div><div class="line">760</div><div class="line">761</div><div class="line">762</div><div class="line">763</div><div class="line">764</div><div class="line">765</div><div class="line">766</div><div class="line">767</div><div class="line">768</div><div class="line">769</div><div class="line">770</div><div class="line">771</div><div class="line">772</div></pre></td><td class="code"><pre><div class="line">注意：一个计算机最多有65535个端口，端口不能重复。</div><div class="line">常用端口号： </div><div class="line">IIS（HTTP）：80 </div><div class="line">SQLServer：1433 </div><div class="line">Oracle：1521 </div><div class="line">MySQL：3306 </div><div class="line">FTP：21 </div><div class="line">SSH：22 </div><div class="line">Tomcat：8080</div><div class="line">常用和不常用端口一览表</div><div class="line"></div><div class="line">端口：0 </div><div class="line">服务：Reserved </div><div class="line">说明：通常用于分析操作系统。这一方法能够工作是因为在一些系统中“0”是无效端口，当你试图使用通常的闭合端口连接它时将产生不同的结果。一种典型的扫描，使用IP地址为0.0.0.0，设置ACK位并在以太网层广播。 </div><div class="line"></div><div class="line">端口：1 </div><div class="line">服务：tcpmux </div><div class="line">说明：这显示有人在寻找SGI </div><div class="line">Irix机器。Irix是实现tcpmux的主要提供者，默认情况下tcpmux在这种系统中被打开。Irix机器在发布是含有几个默认的无密码的帐户，如：IP、GUEST </div><div class="line">UUCP、NUUCP、DEMOS </div><div class="line">、TUTOR、DIAG、OUTOFBOX等。许多管理员在安装后忘记删除这些帐户。因此HACKER在INTERNET上搜索tcpmux并利用这些帐户。</div><div class="line"></div><div class="line">端口：7 </div><div class="line">服务：Echo </div><div class="line">说明：能看到许多人搜索Fraggle放大器时，发送到X.X.X.0和X.X.X.255的信息。 </div><div class="line"></div><div class="line">端口：19 </div><div class="line">服务：Character </div><div class="line">Generator </div><div class="line">说明：这是一种仅仅发送字符的服务。UDP版本将会在收到UDP包后回应含有垃圾字符的包。TCP连接时会发送含有垃圾字符的数据流直到连接关闭。HACKER利用IP欺骗可以发动DoS攻击。伪造两个chargen服务器之间的UDP包。同样Fraggle </div><div class="line">DoS攻击向目标地址的这个端口广播一个带有伪造受害者IP的数据包，受害者为了回应这些数据而过载。</div><div class="line"></div><div class="line">端口：21 </div><div class="line">服务：FTP </div><div class="line">说明：FTP服务器所开放的端口，用于上传、下载。最常见的攻击者用于寻找打开anonymous的FTP服务器的方法。这些服务器带有可读写的目录。木马Doly </div><div class="line">Trojan、Fore、Invisible FTP、WebEx、WinCrash和Blade </div><div class="line">Runner所开放的端口。</div><div class="line"></div><div class="line">端口：22 </div><div class="line">服务：Ssh </div><div class="line">说明：PcAnywhere建立的TCP和这一端口的连接可能是为了寻找ssh。这一服务有许多弱点，如果配置成特定的模式，许多使用RSAREF库的版本就会有不少的漏洞存在。</div><div class="line"></div><div class="line">端口：23 </div><div class="line">服务：Telnet </div><div class="line">说明：远程登录，入侵者在搜索远程登录UNIX的服务。大多数情况下扫描这一端口是为了找到机器运行的操作系统。还有使用其他技术，入侵者也会找到密码。木马Tiny </div><div class="line">Telnet </div><div class="line">Server就开放这个端口。</div><div class="line"></div><div class="line">端口：25 </div><div class="line">服务：SMTP </div><div class="line">说明：SMTP服务器所开放的端口，用于发送邮件。入侵者寻找SMTP服务器是为了传递他们的SPAM。入侵者的帐户被关闭，他们需要连接到高带宽的E-MAIL服务器上，将简单的信息传递到不同的地址。木马Antigen、Email </div><div class="line">Password Sender、Haebu Coceda、Shtrilitz </div><div class="line">Stealth、WinPC、WinSpy都开放这个端口。</div><div class="line"></div><div class="line">端口：31 </div><div class="line">服务：MSG </div><div class="line">Authentication </div><div class="line">说明：木马Master Paradise、Hackers </div><div class="line">Paradise开放此端口。</div><div class="line"></div><div class="line">端口：42 </div><div class="line">服务：WINS </div><div class="line">Replication </div><div class="line">说明：WINS复制</div><div class="line"></div><div class="line">端口：53 </div><div class="line">服务：Domain Name </div><div class="line">Server（DNS） </div><div class="line">说明：DNS服务器所开放的端口，入侵者可能是试图进行区域传递（TCP），欺骗DNS（UDP）或隐藏其他的通信。因此防火墙常常过滤或记录此端口。</div><div class="line"></div><div class="line">端口：67 </div><div class="line">服务：Bootstrap </div><div class="line">Protocol Server </div><div class="line">说明：通过DSL和Cable </div><div class="line">modem的防火墙常会看见大量发送到广播地址255.255.255.255的数据。这些机器在向DHCP服务器请求一个地址。HACKER常进入它们，分配一个地址把自己作为局部路由器而发起大量中间人（man-in-middle）攻击。客户端向68端口广播请求配置，服务器向67端口广播回应请求。这种回应使用广播是因为客户端还不知道可以发送的IP地址。</div><div class="line">DHCP (UDP ports 67 and 68)</div><div class="line"></div><div class="line">端口：69 </div><div class="line">服务：Trival </div><div class="line">File </div><div class="line">Transfer </div><div class="line">说明：许多服务器与bootp一起提供这项服务，便于从系统下载启动代码。但是它们常常由于错误配置而使入侵者能从系统中窃取任何文件。它们也可用于系统写入文件。 </div><div class="line"></div><div class="line">端口：79 </div><div class="line">服务：Finger </div><div class="line">Server </div><div class="line">说明：入侵者用于获得用户信息，查询操作系统，探测已知的缓冲区溢出错误，回应从自己机器到其他机器Finger扫描。</div><div class="line"></div><div class="line">端口：80 </div><div class="line">服务：HTTP </div><div class="line">说明：用于网页浏览。木马Executor开放此端口。</div><div class="line"></div><div class="line">端口：99 </div><div class="line">服务：Metagram </div><div class="line">Relay </div><div class="line">说明：后门程序ncx99开放此端口。</div><div class="line"></div><div class="line">端口：102 </div><div class="line">服务：Message transfer </div><div class="line">agent(MTA)-X.400 over TCP/IP </div><div class="line">说明：消息传输代理。</div><div class="line"></div><div class="line">端口：109 </div><div class="line">服务：Post Office </div><div class="line">Protocol </div><div class="line">-Version3 </div><div class="line">说明：POP3服务器开放此端口，用于接收邮件，客户端访问服务器端的邮件服务。POP3服务有许多公认的弱点。关于用户名和密码交换缓冲区溢出的弱点至少有20个，这意味着入侵者可以在真正登陆前进入系统。成功登陆后还有其他缓冲区溢出错误。</div><div class="line"></div><div class="line">端口：110 </div><div class="line">服务：SUN公司的RPC服务所有端口 </div><div class="line">说明：常见RPC服务有rpc.mountd、NFS、rpc.statd、rpc.csmd、rpc.ttybd、amd等</div><div class="line"></div><div class="line">端口：113 </div><div class="line">服务：Authentication </div><div class="line">Service </div><div class="line">说明：这是一个许多计算机上运行的协议，用于鉴别TCP连接的用户。使用标准的这种服务可以获得许多计算机的信息。但是它可作为许多服务的记录器，尤其是FTP、POP、IMAP、SMTP和IRC等服务。通常如果有许多客户通过防火墙访问这些服务，将会看到许多这个端口的连接请求。记住，如果阻断这个端口客户端会感觉到在防火墙另一边与E-MAIL服务器的缓慢连接。许多防火墙支持TCP连接的阻断过程中发回RST。这将会停止缓慢的连接。</div><div class="line"></div><div class="line">端口：119 </div><div class="line">服务：Network </div><div class="line">News Transfer </div><div class="line">Protocol </div><div class="line">说明：NEWS新闻组传输协议，承载USENET通信。这个端口的连接通常是人们在寻找USENET服务器。多数ISP限制，只有他们的客户才能访问他们的新闻组服务器。打开新闻组服务器将允许发/读任何人的帖子，访问被限制的新闻组服务器，匿名发帖或发送SPAM。</div><div class="line"></div><div class="line">端口：135 </div><div class="line">服务：Location </div><div class="line">Service </div><div class="line">说明：Microsoft在这个端口运行DCE RPC end-point mapper为它的DCOM服务。这与UNIX </div><div class="line">111端口的功能很相似。使用DCOM和RPC的服务利用计算机上的end-point </div><div class="line">mapper注册它们的位置。远端客户连接到计算机时，它们查找end-point </div><div class="line">mapper找到服务的位置。HACKER扫描计算机的这个端口是为了找到这个计算机上运行Exchange </div><div class="line">Server吗？什么版本？还有些DOS攻击直接针对这个端口。</div><div class="line"></div><div class="line">端口：137、138、139 </div><div class="line">服务：NETBIOS Name </div><div class="line">Service </div><div class="line">说明：其中137、138是UDP端口，当通过网上邻居传输文件时用这个端口。而139端口通过这个端口进入的连接试图获得NetBIOS/SMB服务。这个协议被用于windows文件和打印机共享和SAMBA。还有WINS </div><div class="line">Regisrtation也用它。 </div><div class="line"></div><div class="line">端口：143 </div><div class="line">服务：Interim Mail Access Protocol </div><div class="line">v2 </div><div class="line">说明：和POP3的安全问题一样，许多IMAP服务器存在有缓冲区溢出漏洞。记住：一种Linux蠕虫（admv0rm）会通过这个端口繁殖，因此许多这个端口的扫描来自不知情的已经被感染的用户。当REDHAT在他们的LINUX发布版本中默认允许IMAP后，这些漏洞变的很流行。这一端口还被用于IMAP2，但并不流行。</div><div class="line"></div><div class="line">端口：161 </div><div class="line">服务：SNMP </div><div class="line">说明：SNMP允许远程管理设备。所有配置和运行信息的储存在数据库中，通过SNMP可获得这些信息。许多管理员的错误配置将被暴露在Internet。Cackers将试图使用默认的密码public、private访问系统。他们可能会试验所有可能的组合。SNMP包可能会被错误的指向用户的网络。</div><div class="line"></div><div class="line">端口：177 </div><div class="line">服务：X </div><div class="line">Display Manager Control </div><div class="line">Protocol </div><div class="line">说明：许多入侵者通过它访问X-windows操作台，它同时需要打开6000端口。</div><div class="line"></div><div class="line">端口：389 </div><div class="line">服务：LDAP、ILS </div><div class="line">说明：轻型目录访问协议和NetMeeting </div><div class="line">Internet Locator </div><div class="line">Server共用这一端口。</div><div class="line"></div><div class="line">端口：443 </div><div class="line">服务：Https </div><div class="line">说明：网页浏览端口，能提供加密和通过安全端口传输的另一种HTTP。</div><div class="line"></div><div class="line">端口：456 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马HACKERS </div><div class="line">PARADISE开放此端口。</div><div class="line"></div><div class="line">端口：513 </div><div class="line">服务：Login,remote login </div><div class="line">说明：是从使用cable </div><div class="line">modem或DSL登陆到子网中的UNIX计算机发出的广播。这些人为入侵者进入他们的系统提供了信息。</div><div class="line"></div><div class="line">端口：544 </div><div class="line">服务：[NULL] </div><div class="line">说明：kerberos kshell</div><div class="line"></div><div class="line">端口：548 </div><div class="line">服务：Macintosh,File </div><div class="line">Services(AFP/IP) </div><div class="line">说明：Macintosh,文件服务。</div><div class="line"></div><div class="line">端口：553 </div><div class="line">服务：CORBA IIOP </div><div class="line">（UDP） </div><div class="line">说明：使用cable </div><div class="line">modem、DSL或VLAN将会看到这个端口的广播。CORBA是一种面向对象的RPC系统。入侵者可以利用这些信息进入系统。</div><div class="line"></div><div class="line">端口：555 </div><div class="line">服务：DSF </div><div class="line">说明：木马PhAse1.0、Stealth </div><div class="line">Spy、IniKiller开放此端口。</div><div class="line"></div><div class="line">端口：568 </div><div class="line">服务：Membership DPA </div><div class="line">说明：成员资格 </div><div class="line">DPA。</div><div class="line"></div><div class="line">端口：569 </div><div class="line">服务：Membership MSN </div><div class="line">说明：成员资格 </div><div class="line">MSN。</div><div class="line"></div><div class="line">端口：635 </div><div class="line">服务：mountd </div><div class="line">说明：Linux的mountd </div><div class="line">Bug。这是扫描的一个流行BUG。大多数对这个端口的扫描是基于UDP的，但是基于TCP的mountd有所增加（mountd同时运行于两个端口）。记住mountd可运行于任何端口（到底是哪个端口，需要在端口111做portmap查询），只是Linux默认端口是635，就像NFS通常运行于2049端口。</div><div class="line"></div><div class="line">端口：636 </div><div class="line">服务：LDAP </div><div class="line">说明：SSL（Secure </div><div class="line">Sockets layer）</div><div class="line"></div><div class="line">端口：666 </div><div class="line">服务：Doom Id Software </div><div class="line">说明：木马Attack FTP、Satanz </div><div class="line">Backdoor开放此端口</div><div class="line"></div><div class="line">端口：993 </div><div class="line">服务：IMAP </div><div class="line">说明：SSL（Secure Sockets </div><div class="line">layer）</div><div class="line"></div><div class="line">端口：1001、1011 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Silencer、WebEx开放1001端口。木马Doly </div><div class="line">Trojan开放1011端口。</div><div class="line"></div><div class="line">端口：1024 </div><div class="line">服务：Reserved </div><div class="line">说明：它是动态端口的开始，许多程序并不在乎用哪个端口连接网络，它们请求系统为它们分配下一个闲置端口。基于这一点分配从端口1024开始。这就是说第一个向系统发出请求的会分配到1024端口。你可以重启机器，打开Telnet，再打开一个窗口运行natstat </div><div class="line">-a 将会看到Telnet被分配1024端口。还有SQL </div><div class="line">session也用此端口和5000端口。</div><div class="line"></div><div class="line">端口：1025、1033 </div><div class="line">服务：1025：network blackjack </div><div class="line">1033：[NULL] </div><div class="line">说明：木马netspy开放这2个端口。</div><div class="line"></div><div class="line">端口：1080 </div><div class="line">服务：SOCKS </div><div class="line">说明：这一协议以通道方式穿过防火墙，允许防火墙后面的人通过一个IP地址访问INTERNET。理论上它应该只允许内部的通信向外到达INTERNET。但是由于错误的配置，它会允许位于防火墙外部的攻击穿过防火墙。WinGate常会发生这种错误，在加入IRC聊天室时常会看到这种情况。</div><div class="line"></div><div class="line">端口：1170 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Streaming </div><div class="line">Audio Trojan、Psyber Stream </div><div class="line">Server、Voice开放此端口。</div><div class="line"></div><div class="line">端口：1234、1243、6711、6776 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马SubSeven2.0、Ultors </div><div class="line">Trojan开放1234、6776端口。木马SubSeven1.0/1.9开放1243、6711、6776端口。</div><div class="line"></div><div class="line">端口：1245 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Vodoo开放此端口。</div><div class="line"></div><div class="line">端口：1433 </div><div class="line">服务：SQL </div><div class="line">说明：Microsoft的SQL服务开放的端口。</div><div class="line"></div><div class="line">端口：1492 </div><div class="line">服务：stone-design-1 </div><div class="line">说明：木马FTP99CMP开放此端口。</div><div class="line"></div><div class="line">端口：1500 </div><div class="line">服务：RPC </div><div class="line">client fixed port session </div><div class="line">queries </div><div class="line">说明：RPC客户固定端口会话查询</div><div class="line"></div><div class="line">端口：1503 </div><div class="line">服务：NetMeeting </div><div class="line">T.120 </div><div class="line">说明：NetMeeting </div><div class="line">T.120</div><div class="line"></div><div class="line">端口：1524 </div><div class="line">服务：ingress </div><div class="line">说明：许多攻击脚本将安装一个后门SHELL于这个端口，尤其是针对SUN系统中Sendmail和RPC服务漏洞的脚本。如果刚安装了防火墙就看到在这个端口上的连接企图，很可能是上述原因。可以试试Telnet到用户的计算机上的这个端口，看看它是否会给你一个SHELL。连接到600/pcserver也存在这个问题。</div><div class="line"></div><div class="line">端口：1600 </div><div class="line">服务：issd </div><div class="line">说明：木马Shivka-Burka开放此端口。</div><div class="line"></div><div class="line">端口：1720 </div><div class="line">服务：NetMeeting </div><div class="line">说明：NetMeeting </div><div class="line">H.233 call Setup。</div><div class="line"></div><div class="line">端口：1731 </div><div class="line">服务：NetMeeting Audio Call </div><div class="line">Control </div><div class="line">说明：NetMeeting音频调用控制。</div><div class="line"></div><div class="line">端口：1807 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马SpySender开放此端口。</div><div class="line"></div><div class="line">端口：1981 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马ShockRave开放此端口。</div><div class="line"></div><div class="line">端口：1999 </div><div class="line">服务：cisco </div><div class="line">identification </div><div class="line">port </div><div class="line">说明：木马BackDoor开放此端口。</div><div class="line"></div><div class="line">端口：2000 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马GirlFriend </div><div class="line">1.3、Millenium 1.0开放此端口。</div><div class="line"></div><div class="line">端口：2001 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Millenium 1.0、Trojan </div><div class="line">Cow开放此端口。</div><div class="line"></div><div class="line">端口：2023 </div><div class="line">服务：xinuexpansion 4 </div><div class="line">说明：木马Pass </div><div class="line">Ripper开放此端口。</div><div class="line"></div><div class="line">端口：2049 </div><div class="line">服务：NFS </div><div class="line">说明：NFS程序常运行于这个端口。通常需要访问Portmapper查询这个服务运行于哪个端口。</div><div class="line"></div><div class="line">端口：2115 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Bugs开放此端口。</div><div class="line"></div><div class="line">端口：2140、3150 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Deep </div><div class="line">Throat 1.0/3.0开放此端口。</div><div class="line"></div><div class="line">端口：2500 </div><div class="line">服务：RPC client using a fixed port session </div><div class="line">replication </div><div class="line">说明：应用固定端口会话复制的RPC客户</div><div class="line"></div><div class="line">端口：2583 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Wincrash </div><div class="line">2.0开放此端口。</div><div class="line"></div><div class="line">端口：2801 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Phineas </div><div class="line">Phucker开放此端口。</div><div class="line"></div><div class="line">端口：3024、4092 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马WinCrash开放此端口。</div><div class="line"></div><div class="line">端口：3128 </div><div class="line">服务：squid </div><div class="line">说明：这是squid </div><div class="line">HTTP代理服务器的默认端口。攻击者扫描这个端口是为了搜寻一个代理服务器而匿名访问Internet。也会看到搜索其他代理服务器的端口8000、8001、8080、8888。扫描这个端口的另一个原因是用户正在进入聊天室。其他用户也会检验这个端口以确定用户的机器是否支持代理。</div><div class="line"></div><div class="line">端口：3129 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Master </div><div class="line">Paradise开放此端口。</div><div class="line"></div><div class="line">端口：3150 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马The </div><div class="line">Invasor开放此端口。</div><div class="line"></div><div class="line">端口：3210、4321 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马SchoolBus开放此端口</div><div class="line"></div><div class="line">端口：3333 </div><div class="line">服务：dec-notes </div><div class="line">说明：木马Prosiak开放此端口</div><div class="line"></div><div class="line">端口：3389 </div><div class="line">服务：超级终端 </div><div class="line">说明：WINDOWS </div><div class="line">2000终端开放此端口。</div><div class="line"></div><div class="line">端口：3700 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Portal of </div><div class="line">Doom开放此端口</div><div class="line"></div><div class="line">端口：3996、4060 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马RemoteAnything开放此端口</div><div class="line"></div><div class="line">端口：4000 </div><div class="line">服务：QQ客户端 </div><div class="line">说明：腾讯QQ客户端开放此端口。</div><div class="line"></div><div class="line">端口：4092 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马WinCrash开放此端口。</div><div class="line"></div><div class="line">端口：4590 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马ICQTrojan开放此端口。</div><div class="line"></div><div class="line">端口：5000、5001、5321、50505 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马blazer5开放5000端口。木马Sockets </div><div class="line">de </div><div class="line">Troie开放5000、5001、5321、50505端口。</div><div class="line"></div><div class="line">端口：5400、5401、5402 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Blade </div><div class="line">Runner开放此端口。</div><div class="line"></div><div class="line">端口：5550 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马xtcp开放此端口。</div><div class="line"></div><div class="line">端口：5569 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Robo-Hack开放此端口。</div><div class="line"></div><div class="line">端口：5632 </div><div class="line">服务：pcAnywere </div><div class="line">说明：有时会看到很多这个端口的扫描，这依赖于用户所在的位置。当用户打开pcAnywere时，它会自动扫描局域网C类网以寻找可能的代理（这里的代理是指agent而不是proxy）。入侵者也会寻找开放这种服务的计算机。，所以应该查看这种扫描的源地址。一些搜寻pcAnywere的扫描包常含端口22的UDP数据包。</div><div class="line"></div><div class="line">端口：5742 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马WinCrash1.03开放此端口。</div><div class="line"></div><div class="line">端口：6267 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马广外女生开放此端口。</div><div class="line"></div><div class="line">端口：6400 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马The </div><div class="line">tHing开放此端口。</div><div class="line"></div><div class="line">端口：6670、6671 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Deep Throat开放6670端口。而Deep </div><div class="line">Throat </div><div class="line">3.0开放6671端口。</div><div class="line"></div><div class="line">端口：6883 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马DeltaSource开放此端口。</div><div class="line"></div><div class="line">端口：6969 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Gatecrasher、Priority开放此端口。</div><div class="line"></div><div class="line">端口：6970 </div><div class="line">服务：RealAudio </div><div class="line">说明：RealAudio客户将从服务器的6970-7170的UDP端口接收音频数据流。这是由TCP-7070端口外向控制连接设置的。</div><div class="line"></div><div class="line">端口：7000 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Remote </div><div class="line">Grab开放此端口。</div><div class="line"></div><div class="line">端口：7300、7301、7306、7307、7308 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马NetMonitor开放此端口。另外NetSpy1.0也开放7306端口。</div><div class="line"></div><div class="line">端口：7323 </div><div class="line">服务：[NULL] </div><div class="line">说明：Sygate服务器端。</div><div class="line"></div><div class="line">端口：7626 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Giscier开放此端口。</div><div class="line"></div><div class="line">端口：7789 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马ICKiller开放此端口。</div><div class="line"></div><div class="line">端口：8000 </div><div class="line">服务：OICQ </div><div class="line">说明：腾讯QQ服务器端开放此端口。</div><div class="line"></div><div class="line">端口：8010 </div><div class="line">服务：Wingate </div><div class="line">说明：Wingate代理开放此端口。</div><div class="line"></div><div class="line">端口：8080 </div><div class="line">服务：代理端口 </div><div class="line">说明：WWW代理开放此端口。</div><div class="line"></div><div class="line">端口：9400、9401、9402 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Incommand </div><div class="line">1.0开放此端口。</div><div class="line"></div><div class="line">端口：9872、9873、9874、9875、10067、10167 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Portal </div><div class="line">of </div><div class="line">Doom开放此端口。</div><div class="line"></div><div class="line">端口：9989 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马iNi-Killer开放此端口。</div><div class="line"></div><div class="line">端口：11000 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马SennaSpy开放此端口。</div><div class="line"></div><div class="line">端口：11223 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Progenic </div><div class="line">trojan开放此端口。</div><div class="line"></div><div class="line">端口：12076、61466 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Telecommando开放此端口。</div><div class="line"></div><div class="line">端口：12223 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Hack’99 </div><div class="line">KeyLogger开放此端口。</div><div class="line"></div><div class="line">端口：12345、12346 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马NetBus1.60/1.70、GabanBus开放此端口。</div><div class="line"></div><div class="line">端口：12361 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Whack-a-mole开放此端口。</div><div class="line"></div><div class="line">端口：13223 </div><div class="line">服务：PowWow </div><div class="line">说明：PowWow是Tribal </div><div class="line">Voice的聊天程序。它允许用户在此端口打开私人聊天的连接。这一程序对于建立连接非常具有攻击性。它会驻扎在这个TCP端口等回应。造成类似心跳间隔的连接请求。如果一个拨号用户从另一个聊天者手中继承了IP地址就会发生好象有很多不同的人在测试这个端口的情况。这一协议使用OPNG作为其连接请求的前4个字节。</div><div class="line"></div><div class="line">端口：16969 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Priority开放此端口。</div><div class="line"></div><div class="line">端口：17027 </div><div class="line">服务：Conducent </div><div class="line">说明：这是一个外向连接。这是由于公司内部有人安装了带有Conducent”adbot”的共享软件。Conducent”adbot”是为共享软件显示广告服务的。使用这种服务的一种流行的软件是Pkware。</div><div class="line"></div><div class="line">端口：19191 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马蓝色火焰开放此端口。</div><div class="line"></div><div class="line">端口：20000、20001 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Millennium开放此端口。</div><div class="line"></div><div class="line">端口：20034 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马NetBus </div><div class="line">Pro开放此端口。</div><div class="line"></div><div class="line">端口：21554 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马GirlFriend开放此端口。</div><div class="line"></div><div class="line">端口：22222 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Prosiak开放此端口。</div><div class="line"></div><div class="line">端口：23456 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Evil </div><div class="line">FTP、Ugly </div><div class="line">FTP开放此端口。</div><div class="line"></div><div class="line">端口：26274、47262 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Delta开放此端口。</div><div class="line"></div><div class="line">端口：27374 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Subseven </div><div class="line">2.1开放此端口。</div><div class="line"></div><div class="line">端口：30100 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马NetSphere开放此端口。</div><div class="line"></div><div class="line">端口：30303 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Socket23开放此端口。</div><div class="line"></div><div class="line">端口：30999 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Kuang开放此端口。</div><div class="line"></div><div class="line">端口：31337、31338 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马BO(Back </div><div class="line">Orifice)开放此端口。另外木马DeepBO也开放31338端口。</div><div class="line"></div><div class="line">端口：31339 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马NetSpy </div><div class="line">DK开放此端口。</div><div class="line"></div><div class="line">端口：31666 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马BOWhack开放此端口。</div><div class="line"></div><div class="line">端口：33333 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Prosiak开放此端口。</div><div class="line"></div><div class="line">端口：34324 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Tiny </div><div class="line">Telnet Server、BigGluck、TN开放此端口。</div><div class="line"></div><div class="line">端口：40412 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马The </div><div class="line">Spy开放此端口。</div><div class="line"></div><div class="line">端口：40421、40422、40423、40426、 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Masters </div><div class="line">Paradise开放此端口。</div><div class="line"></div><div class="line">端口：43210、54321 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马SchoolBus </div><div class="line">1.0/2.0开放此端口。</div><div class="line"></div><div class="line">端口：44445 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Happypig开放此端口。</div><div class="line"></div><div class="line">端口：50766 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Fore开放此端口。</div><div class="line"></div><div class="line">端口：53001 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Remote </div><div class="line">Windows Shutdown开放此端口。</div><div class="line"></div><div class="line">端口：65000 </div><div class="line">服务：[NULL] </div><div class="line">说明：木马Devil </div><div class="line">1.03开放此端口。</div><div class="line"></div><div class="line">端口：88 </div><div class="line">说明：Kerberos </div><div class="line">krb5。另外TCP的88端口也是这个用途。</div><div class="line"></div><div class="line">端口：137 </div><div class="line">说明：SQL Named Pipes encryption over other </div><div class="line">protocols name lookup(其他协议名称查找上的SQL命名管道加密技术)和SQL RPC encryption over other </div><div class="line">protocols name lookup(其他协议名称查找上的SQL RPC加密技术)和Wins NetBT name service(WINS </div><div class="line">NetBT名称服务)和Wins Proxy都用这个端口。</div><div class="line"></div><div class="line">端口：161 </div><div class="line">说明：Simple Network Management </div><div class="line">Protocol(SMTP)（简单网络管理协议）。</div><div class="line"></div><div class="line">端口：162 </div><div class="line">说明：SNMP </div><div class="line">Trap（SNMP陷阱）</div><div class="line"></div><div class="line">端口：445 </div><div class="line">说明：Common Internet File </div><div class="line">System(CIFS)（公共Internet文件系统）</div><div class="line"></div><div class="line">端口：464 </div><div class="line">说明：Kerberos </div><div class="line">kpasswd(v5)。另外TCP的464端口也是这个用途。</div><div class="line"></div><div class="line">端口：500 </div><div class="line">说明：Internet Key </div><div class="line">Exchange(IKE)（Internet密钥交换）</div><div class="line"></div><div class="line">端口：1645、1812 </div><div class="line">说明：Remot Authentication </div><div class="line">Dial-In User Service(RADIUS)authentication(Routing and Remote </div><div class="line">Access)(远程认证拨号用户服务)</div><div class="line"></div><div class="line">端口：1646、1813 </div><div class="line">说明：RADIUS accounting(Routing and </div><div class="line">Remote Access)(RADIUS记帐（路由和远程访问）)</div><div class="line"></div><div class="line">端口：1701 </div><div class="line">说明：Layer Two Tunneling </div><div class="line">Protocol(L2TP)(第2层隧道协议)</div><div class="line"></div><div class="line">端口：1801、3527 </div><div class="line">说明：Microsoft Message Queue </div><div class="line">Server(Microsoft消息队列服务器)。还有TCP的135、1801、2101、2103、2105也是同样的用途。</div><div class="line"></div><div class="line">端口：2504 </div><div class="line">说明：Network </div><div class="line">Load Balancing(网络平衡负荷)</div><div class="line"></div><div class="line">网络层—数据包的包格式里面有个很重要的字段叫做协议号。比如在传输层如果是TCP连接，那么在网络层IP包里面的协议号就将会有个值是6，如果是UDP的话那个值就是17—传输层。</div><div class="line">传输层—通过接口关联(端口的字段叫做端口)—应用层。 </div><div class="line">用netstat –an 可以查看本机开放的端口号。 </div><div class="line"></div><div class="line">代理服务器常用端口</div><div class="line"></div><div class="line">（1）. HTTP协议代理服务器常用端口号：80/8080/3128/8081/9080 </div><div class="line">（2）. SOCKS代理协议服务器常用端口号：1080 </div><div class="line">（3）. FTP（文件传输）协议代理服务器常用端口号：21 </div><div class="line">（4）. Telnet（远程登录）协议代理服务器常用端口：23</div><div class="line">HTTP服务器，默认的端口号为80/tcp（木马Executor开放此端口）； </div><div class="line">HTTPS（securely transferring web pages）服务器，默认的端口号为443/tcp 443/udp； </div><div class="line">Telnet（不安全的文本传送），默认端口号为23/tcp（木马Tiny Telnet Server所开放的端口）； </div><div class="line">FTP，默认的端口号为21/tcp（木马Doly Trojan、Fore、Invisible FTP、WebEx、WinCrash和Blade Runner所开放的端口）； </div><div class="line">TFTP（Trivial File Transfer Protocol ），默认的端口号为69/udp； </div><div class="line">SSH（安全登录）、SCP（文件传输）、端口重定向，默认的端口号为22/tcp； </div><div class="line">SMTP Simple Mail Transfer Protocol (E-mail)，默认的端口号为25/tcp（木马Antigen、Email Password Sender、Haebu Coceda、Shtrilitz Stealth、WinPC、WinSpy都开放这个端口）； </div><div class="line">POP3 Post Office Protocol (E-mail) ，默认的端口号为110/tcp； </div><div class="line">WebLogic，默认的端口号为7001； </div><div class="line">Webshpere应用程序，默认的端口号为9080； </div><div class="line">webshpere管理工具，默认的端口号为9090； </div><div class="line">JBOSS，默认的端口号为8080； </div><div class="line">TOMCAT，默认的端口号为8080； </div><div class="line">WIN2003远程登陆，默认的端口号为3389； </div><div class="line">Symantec AV/Filter for MSE ,默认端口号为 8081； </div><div class="line">Oracle 数据库，默认的端口号为1521； </div><div class="line">ORACLE EMCTL，默认的端口号为1158； </div><div class="line">Oracle XDB（ XML 数据库），默认的端口号为8080； </div><div class="line">Oracle XDB FTP服务，默认的端口号为2100； </div><div class="line">MS SQL*SERVER数据库server，默认的端口号为1433/tcp 1433/udp； </div><div class="line">MS SQL*SERVER数据库monitor，默认的端口号为1434/tcp 1434/udp； </div><div class="line">QQ，默认的端口号为1080/udp</div><div class="line">TcpMux0 1 Tcp端口服务多路复用器 </div><div class="line">Echo 1 7 回送(echo回送所有的接收数据)</div><div class="line">Discard2 9 删除(静态删除所有接受的数据) </div><div class="line">Systat3 11 当前用户 </div><div class="line">Daytime 13 白天 </div><div class="line">Quotd 17 每天的引用 </div><div class="line">Chargen 19 产生字符 </div><div class="line">Ftp-data 20 </div><div class="line">文件传送(默认数据) </div><div class="line">Ftp 21 文件传送(控制端口) </div><div class="line">Telnet 23 远程通信网</div><div class="line">Smtp 25 简单邮件传输协议 </div><div class="line">Time 37 时间 </div><div class="line">Nicname 43 谁</div><div class="line">Domain 53 域名服务器 </div><div class="line">Bootps 67 引导程序协议服务器 </div><div class="line">Bootpc 68 </div><div class="line">引导程序协议客户 </div><div class="line">Tftp 69 普通文件传输协议 </div><div class="line">Gopher 70 Gopher</div><div class="line">Finger 79 拨号 </div><div class="line">WWW-http 80 WWW-Http </div><div class="line">Kerberos 88 </div><div class="line">Kerberos </div><div class="line">Pop2 109 邮政协议版本2 </div><div class="line">Pop3 110 邮政协议版本3</div><div class="line">Sunrpc 111 Sun运端程序呼叫 </div><div class="line">nntp 119 网络新闻传输协议 </div><div class="line">Ntp 123 网络时间协议</div><div class="line">Netbios-ns 137 网络基本输入输出系统命名服务 </div><div class="line">Netbios-ns 138 </div><div class="line">网络基本输入输出系统数据报服务 </div><div class="line">Netbios-ssn 139 网络基本输入输出系统期间服务 </div><div class="line">Imap2 143 </div><div class="line">中间邮件访问协议V2 </div><div class="line">Snmp 161 简单网络管理协议 </div><div class="line">Bgp 179 边界网关协议</div><div class="line">Syslog 514 系统登陆器</div></pre></td></tr></table></figure>
+<p>本文来自：<a href="http://mageedu.blog.51cto.com/4265610/1921073" target="_blank" rel="external">http://mageedu.blog.51cto.com/4265610/1921073</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux基础/" rel="tag">#Linux基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/十大企业级Linux服务器安全防护要点/" rel="next" title="十大企业级Linux服务器安全防护要点">
+                <i class="fa fa-chevron-left"></i> 十大企业级Linux服务器安全防护要点
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

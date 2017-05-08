@@ -1,0 +1,759 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="随着开源系统Linux的盛行，其在大中型企业的应用也在逐渐普及，很多企业的应用服务都是构筑在其之上，例如Web服务、数据库服务、集群服务等等。
+因此，Linux的安全性就成为了企业构筑安全应用的一个基础，是重中之重，如何对其进行安全防护是企业需要解决的一个基础性问题，基于此，本文将给出十大企业级Linux服务器安全防护的要点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十大企业级Linux服务器安全防护要点">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/十大企业级Linux服务器安全防护要点/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="随着开源系统Linux的盛行，其在大中型企业的应用也在逐渐普及，很多企业的应用服务都是构筑在其之上，例如Web服务、数据库服务、集群服务等等。
+因此，Linux的安全性就成为了企业构筑安全应用的一个基础，是重中之重，如何对其进行安全防护是企业需要解决的一个基础性问题，基于此，本文将给出十大企业级Linux服务器安全防护的要点。">
+<meta property="og:updated_time" content="2017-05-08T14:25:03.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="十大企业级Linux服务器安全防护要点">
+<meta name="twitter:description" content="随着开源系统Linux的盛行，其在大中型企业的应用也在逐渐普及，很多企业的应用服务都是构筑在其之上，例如Web服务、数据库服务、集群服务等等。
+因此，Linux的安全性就成为了企业构筑安全应用的一个基础，是重中之重，如何对其进行安全防护是企业需要解决的一个基础性问题，基于此，本文将给出十大企业级Linux服务器安全防护的要点。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 十大企业级Linux服务器安全防护要点 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                十大企业级Linux服务器安全防护要点
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-27T23:37:26+08:00" content="2017-03-27">
+              2017-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着开源系统Linux的盛行，其在大中型企业的应用也在逐渐普及，很多企业的应用服务都是构筑在其之上，例如Web服务、数据库服务、集群服务等等。</p>
+<p>因此，Linux的安全性就成为了企业构筑安全应用的一个基础，是重中之重，如何对其进行安全防护是企业需要解决的一个基础性问题，基于此，本文将给出十大企业级Linux服务器安全防护的要点。</p>
+<a id="more"></a>
+<h3 id="强化：密码管理"><a href="#强化：密码管理" class="headerlink" title="强化：密码管理"></a>强化：密码管理</h3><p>设定登录密码是一项非常重要的安全措施，如果用户的密码设定不合适，就很容易被破译，尤其是拥有超级用户使用权限的用户，如果没有良好的密码，将给系统造成很大的安全漏洞。</p>
+<p>目前密码破解程序大多采用字典攻击以及暴力攻击手段，而其中用户密码设定不当，则极易受到字典攻击的威胁。很多用户喜欢用自己的英文名、生日或者账户等信息来设定密码，这样，黑客可能通过字典攻击或者是社会工程的手段来破解密码。所以建议用户在设定密码的过程中，应尽量使用非字典中出现的组合字符，并且采用数字与字符相结合、大小写相结合的密码设置方式，增加密码被黑客破解的难度。而且，也可以使用定期修改密码、使密码定期作废的方式，来保护自己的登录密码。</p>
+<p>在多用户系统中，如果强迫每个用户选择不易猜出的密码，将大大提高系统的安全性。但如果passwd程序无法强迫每个上机用户使用恰当的密码，要确保密码的安全度，就只能依靠密码破解程序了。实际上，密码破解程序是黑客工具箱中的一种工具，它将常用的密码或者是英文字典中所有可能用来作密码的字都用程序加密成密码字，然后将其与Linux系统的/etc/passwd密码文件或/etc/shadow影子文件相比较，如果发现有吻合的密码，就可以求得明码了。在网络上可以找到很多密码破解程序，比较有名的程序是crack和john the ripper.用户可以自己先执行密码破解程序，找出容易被黑客破解的密码，先行改正总比被黑客破解要有利。</p>
+<h3 id="限定：网络服务管理"><a href="#限定：网络服务管理" class="headerlink" title="限定：网络服务管理"></a>限定：网络服务管理</h3><p>早期的Linux版本中，每一个不同的网络服务都有一个服务程序(守护进程，Daemon)在后台运行，后来的版本用统一的/etc/inetd服务器程序担此重任。Inetd是Internetdaemon的缩写，它同时监视多个网络端口，一旦接收到外界传来的连接信息，就执行相应的TCP或UDP网络服务。由于受inetd的统一指挥，因此Linux中的大部分TCP或UDP服务都是在/etc/inetd.conf文件中设定。所以取消不必要服务的第一步就是检查/etc/inetd.conf文件，在不要的服务前加上“#”号。</p>
+<p>一般来说，除了http、smtp、telnet和ftp之外，其他服务都应该取消，诸如简单文件传输协议tftp、网络邮件存储及接收所用的imap/ipop传输协议、寻找和搜索资料用的gopher以及用于时间同步的daytime和time等。还有一些报告系统状态的服务，如finger、efinger、systat和netstat等，虽然对系统查错和寻找用户非常有用，但也给黑客提供了方便之门。例如，黑客可以利用finger服务查找用户的电话、使用目录以及其他重要信息。因此，很多Linux系统将这些服务全部取消或部分取消，以增强系统的安全性。Inetd除了利用/etc/inetd.conf设置系统服务项之外，还利用/etc/services文件查找各项服务所使用的端口。因此，用户必须仔细检查该文件中各端口的设定，以免有安全上的漏洞。</p>
+<p>在后继的Linux版本中(比如Red Hat Linux7.2之后)，取而代之的是采用xinetd进行网络服务的管理。</p>
+<p>当然，具体取消哪些服务不能一概而论，需要根据实际的应用情况来定，但是系统管理员需要做到心中有数，因为一旦系统出现安全问题，才能做到有步骤、有条不紊地进行查漏和补救工作，这点比较重要。</p>
+<h3 id="严格审计：系统登录用户管理"><a href="#严格审计：系统登录用户管理" class="headerlink" title="严格审计：系统登录用户管理"></a>严格审计：系统登录用户管理</h3><p>在进入Linux系统之前，所有用户都需要登录，也就是说，用户需要输入用户账号和密码，只有它们通过系统验证之后，用户才能进入系统。</p>
+<p>与其他Unix操作系统一样，Linux一般将密码加密之后，存放在/etc/passwd文件中。Linux系统上的所有用户都可以读到/etc/passwd文件，虽然文件中保存的密码已经经过加密，但仍然不太安全。因为一般的用户可以利用现成的密码破译工具，以穷举法猜测出密码。比较安全的方法是设定影子文件/etc/shadow，只允许有特殊权限的用户阅读该文件。</p>
+<p>在Linux系统中，如果要采用影子文件，必须将所有的公用程序重新编译，才能支持影子文件。这种方法比较麻烦，比较简便的方法是采用插入式验证模块(PAM)。很多Linux系统都带有Linux的工具程序PAM，它是一种身份验证机制，可以用来动态地改变身份验证的方法和要求，而不要求重新编译其他公用程序。这是因为PAM采用封闭包的方式，将所有与身份验证有关的逻辑全部隐藏在模块内，因此它是采用影子档案的最佳帮手。</p>
+<p>此外，PAM还有很多安全功能：它可以将传统的DES加密方法改写为其他功能更强的加密方法，以确保用户密码不会轻易地遭人破译;它可以设定每个用户使用电脑资源的上限;它甚至可以设定用户的上机时间和地点。</p>
+<p>Linux系统管理人员只需花费几小时去安装和设定PAM，就能大大提高Linux系统的安全性，把很多攻击阻挡在系统之外。</p>
+<h3 id="设定：用户账号安全等级管理"><a href="#设定：用户账号安全等级管理" class="headerlink" title="设定：用户账号安全等级管理"></a>设定：用户账号安全等级管理</h3><p>除密码之外，用户账号也有安全等级，这是因为在Linux上每个账号可以被赋予不同的权限，因此在建立一个新用户ID时，系统管理员应该根据需要赋予该账号不同的权限，并且归并到不同的用户组中。</p>
+<p>在Linux系统中的部分文件中，可以设定允许上机和不允许上机人员的名单。其中，允许上机人员名单在/etc/hosts.allow中设置，不允许上机人员名单在/etc/hosts.deny中设置。此外，Linux将自动把允许进入或不允许进入的结果记录到/var/log/secure文件中，系统管理员可以据此查出可疑的进入记录。</p>
+<p>每个账号ID应该有专人负责。在企业中，如果负责某个ID的职员离职，管理员应立即从系统中删除该账号。很多入侵事件都是借用了那些很久不用的账号。</p>
+<p>在用户账号之中，黑客最喜欢具有root权限的账号，这种超级用户有权修改或删除各种系统设置，可以在系统中畅行无阻。因此，在给任何账号赋予root权限之前，都必须仔细考虑。</p>
+<p>Linux系统中的/etc/securetty文件包含了一组能够以root账号登录的终端机名称。例如，在RedHatLinux系统中，该文件的初始值仅允许本地虚拟控制台(rtys)以root权限登录，而不允许远程用户以root权限登录。最好不要修改该文件，如果一定要从远程登录为root权限，最好是先以普通账号登录，然后利用su命令升级为超级用户。</p>
+<h3 id="谨慎使用：“r系列”远程程序管理"><a href="#谨慎使用：“r系列”远程程序管理" class="headerlink" title="谨慎使用：“r系列”远程程序管理"></a>谨慎使用：“r系列”远程程序管理</h3><p>在Linux系统中有一系列r字头的公用程序，比如rlogin，rcp等等。它们非常容易被黑客用来入侵我们的系统，因而非常危险，因此绝对不要将root账号开放给这些公用程序。由于这些公用程序都是用。rhosts文件或者hosts.equiv文件核准进入的，因此一定要确保root账号不包括在这些文件之内。</p>
+<p>由于r等远程指令是黑客们用来攻击系统的较好途径，因此很多安全工具都是针对这一安全漏洞而设计的。例如，PAM工具就可以用来将r字头公用程序有效地禁止掉，它在/etc/pam.d/rlogin文件中加上登录必须先核准的指令，使整个系统的用户都不能使用自己home目录下的。rhosts文件。</p>
+<h3 id="限制：root用户权限管理"><a href="#限制：root用户权限管理" class="headerlink" title="限制：root用户权限管理"></a>限制：root用户权限管理</h3><p>Root一直是Linux保护的重点，由于它权力无限，因此最好不要轻易将超级用户授权出去。但是，有些程序的安装和维护工作必须要求有超级用户的权限，在这种情况下，可以利用其他工具让这类用户有部分超级用户的权限。sudo就是这样的工具。</p>
+<p>sudo程序允许一般用户经过组态设定后，以用户自己的密码再登录一次，取得超级用户的权限，但只能执行有限的几个指令。例如，应用sudo后，可以让管理磁带备份的管理人员每天按时登录到系统中，取得超级用户权限去执行文档备份工作，但却没有特权去作其他只有超级用户才能作的工作。</p>
+<p>sudo不但限制了用户的权限，而且还将每次使用sudo所执行的指令记录下来，不管该指令的执行是成功还是失败。在大型企业中，有时候有许多人同时管理Linux系统的各个不同部分，每个管理人员都有用sudo授权给某些用户超级用户权限的能力，从sudo的日志中，可以追踪到谁做了什么以及改动了系统的哪些部分。</p>
+<p>值得注意的是，sudo并不能限制所有的用户行为，尤其是当某些简单的指令没有设置限定时，就有可能被黑客滥用。例如，一般用来显示文件内容的/etc/cat指令，如果有了超级用户的权限，黑客就可以用它修改或删除一些重要的文件。</p>
+<h3 id="追踪黑客踪迹：日志管理"><a href="#追踪黑客踪迹：日志管理" class="headerlink" title="追踪黑客踪迹：日志管理"></a>追踪黑客踪迹：日志管理</h3><p>当用户仔细设定了各种与Linux相关的配置(最常用日志管理选项)，并且安装了必要的安全防护工具之后，Linux操作系统的安全性的确大为提高，但是却并不能保证防止那些比较熟练的网络黑客的入侵。</p>
+<p>在平时，网络管理人员要经常提高警惕，随时注意各种可疑状况，并且按时检查各种系统日志文件，包括一般信息日志、网络连接日志、文件传输日志以及用户登录日志等。在检查这些日志时，要注意是否有不合常理的时间记载。例如：</p>
+<p>正常用户在半夜三更登录;</p>
+<p>不正常的日志记录，比如日志只记录了一半就切断了，或者整个日志文件被删除了;</p>
+<p>用户从陌生的网址进入系统;</p>
+<p>因密码错误或用户账号错误被摈弃在外的日志记录，尤其是那些一再连续尝试进入失败，但却有一定模式的试错法;</p>
+<p>非法使用或不正当使用超级用户权限su的指令;</p>
+<p>重新开机或重新启动各项服务的记录。</p>
+<p>上述这些问题都需要系统管理员随时留意系统登录的用户状况以及查看相应日志文件，许多背离正常行为的蛛丝马迹都应当引起高度注意。</p>
+<h3 id="横向扩展：综合防御管理"><a href="#横向扩展：综合防御管理" class="headerlink" title="横向扩展：综合防御管理"></a>横向扩展：综合防御管理</h3><p>防火墙、IDS等防护技术已经成功地应用到网络安全的各个领域，而且都有非常成熟的产品。</p>
+<p>在Linux系统来说，有一个自带的Netfilter/Iptables防火墙框架，通过合理地配置其也能起到主机防火墙的功效。在Linux系统中也有相应的轻量级的网络入侵检测系统Snort以及主机入侵检测系统LIDS(Linux Intrusion Detection System)，使用它们可以快速、高效地进行防护。</p>
+<p>需要提醒注意的是：在大多数的应用情境下，我们需要综合使用这两项技术，因为防火墙相当于安全防护的第一层，它仅仅通过简单地比较IP地址/端口对来过滤网络流量，而IDS更加具体，它需要通过具体的数据包(部分或者全部)来过滤网络流量，是安全防护的第二层。综合使用它们，能够做到互补，并且发挥各自的优势，最终实现综合防御。</p>
+<h3 id="评测：漏洞追踪及管理"><a href="#评测：漏洞追踪及管理" class="headerlink" title="评测：漏洞追踪及管理"></a>评测：漏洞追踪及管理</h3><p>Linux作为一种优秀的开源软件，其自身的发展也日新月异，同时，其存在的问题也会在日后的应用中慢慢暴露出来。黑客对新技术的关注从一定程度上来说要高于我们防护人员，所以要想在网络攻防的战争中处于有利地位，保护Linux系统的安全，就要求我们要保持高度的警惕性和对新技术的高度关注。用户特别是使用Linux作为关键业务系统的系统管理员们，需要通过Linux的一些权威网站和论坛上尽快地获取有关该系统的一些新技术以及一些新的系统漏洞的信息，进行漏洞扫描、渗透测试等系统化的相关配套工作，做到防范于未然，提早行动，在漏洞出现后甚至是出现前的最短时间内封堵系统的漏洞，并且在实践中不断地提高安全防护的技能，这样才是一个比较的解决办法和出路。</p>
+<h3 id="保持更新：补丁管理"><a href="#保持更新：补丁管理" class="headerlink" title="保持更新：补丁管理"></a>保持更新：补丁管理</h3><p>Linux作为一种优秀的开源软件，其稳定性、安全性和可用性有极为可靠的保证，世界上的Linux高手共同维护着个优秀的产品，因而起流通渠道很多，而且经常有更新的程序和系统补丁出现，因此，为了加强系统安全，一定要经常更新系统内核。</p>
+<p>Kernel是Linux操作系统的核心，它常驻内存，用于加载操作系统的其他部分，并实现操作系统的基本功能。由于Kernel控制计算机和网络的各种功能，因此，它的安全性对整个系统安全至关重要。早期的Kernel版本存在许多众所周知的安全漏洞，而且也不太稳定，只有2.0.x以上的版本才比较稳定和安全(一般说来，内核版本号为偶数的相对稳定，而为奇数的则一般为测试版本，用户们使用时要多留意)，新版本的运行效率也有很大改观。在设定Kernel的功能时，只选择必要的功能，千万不要所有功能照单全收，否则会使Kernel变得很大，既占用系统资源，也给黑客留下可乘之机。</p>
+<p>在Internet上常常有最新的安全修补程序，Linux系统管理员应该消息灵通，经常光顾安全新闻组，查阅新的修补程序。</p>
+<p>本文来自：<a href="http://mageedu.blog.51cto.com/4265610/1910600" target="_blank" rel="external">http://mageedu.blog.51cto.com/4265610/1910600</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux基础/" rel="tag">#Linux基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/Docker高级（1）--架构总览/" rel="next" title="Docker高级（1）--架构总览">
+                <i class="fa fa-chevron-left"></i> Docker高级（1）--架构总览
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/02/常用端口梳理/" rel="prev" title="常用端口梳理">
+                常用端口梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#强化：密码管理"><span class="nav-number">1.</span> <span class="nav-text">强化：密码管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限定：网络服务管理"><span class="nav-number">2.</span> <span class="nav-text">限定：网络服务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#严格审计：系统登录用户管理"><span class="nav-number">3.</span> <span class="nav-text">严格审计：系统登录用户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设定：用户账号安全等级管理"><span class="nav-number">4.</span> <span class="nav-text">设定：用户账号安全等级管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谨慎使用：“r系列”远程程序管理"><span class="nav-number">5.</span> <span class="nav-text">谨慎使用：“r系列”远程程序管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制：root用户权限管理"><span class="nav-number">6.</span> <span class="nav-text">限制：root用户权限管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#追踪黑客踪迹：日志管理"><span class="nav-number">7.</span> <span class="nav-text">追踪黑客踪迹：日志管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#横向扩展：综合防御管理"><span class="nav-number">8.</span> <span class="nav-text">横向扩展：综合防御管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测：漏洞追踪及管理"><span class="nav-number">9.</span> <span class="nav-text">评测：漏洞追踪及管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保持更新：补丁管理"><span class="nav-number">10.</span> <span class="nav-text">保持更新：补丁管理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
