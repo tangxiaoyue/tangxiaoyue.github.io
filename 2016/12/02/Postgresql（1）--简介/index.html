@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="zabbix3.0," />
+  <meta name="keywords" content="Postgresql," />
 
 
 
@@ -57,36 +57,16 @@
 
 
 
-<meta name="description" content="监控常遇到的问题？　　1.监控主机多，性能跟不上，延迟大　　2.多机房，防火墙因素Zabbix轻松解决以上问题，Nagios不太好解决的问题。
-Zabbix 模式介绍：1、被动模式2、主动模式">
+<meta name="description" content="何为PostgreSQLPostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zabbix 3.0 主动式监控">
-<meta property="og:url" content="http://yoursite.com/2016/10/04/zabbix 3.0 主动式监控/index.html">
+<meta property="og:title" content="Postgresql（1）--简介">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/Postgresql（1）--简介/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="监控常遇到的问题？　　1.监控主机多，性能跟不上，延迟大　　2.多机房，防火墙因素Zabbix轻松解决以上问题，Nagios不太好解决的问题。
-Zabbix 模式介绍：1、被动模式2、主动模式">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/i209oboed960ccdai7j30opw/image_1bf4mod7e6mfhfpbit1ct359om.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/a26801341q0bo1ihn3kmm3vv/image_1bf4ms3fc1gfj1qk4m4113fi126213.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/0o13q9g70f96zrvbuv9shl5r/image_1bf4mtvfgh8kcldre55kn78k1g.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/jqzj9iexu6gb432wiqtouczd/image_1bf4n2lv01c3h1p9oh8763v16ft1t.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/qfuux37zmoxlo6gn31j4uw2l/image_1bf4njff3uh1s1l1v1v9clabc2a.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/5ekpof92atjk7g0hcqs9mpjy/image_1bf4nkreaettphkcm7lsvt5o2n.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/mwbj07z0pffea84pwvujycii/image_1bf4nms3hgji1gin190map5r334.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/rtpignfk79cek3kmez85ku2o/image_1bf4npoaq1qckergqj31m7319pr3h.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/f0bce1j1xk1l6msgsw4sfbzk/image_1bf4nsdeq6nfl3v25l7186u3u.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/ersmlo255wtx7nkrex97lf3i/image_1bf4ntjqf148vk261ig0a43set4b.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/cshaw8fwtwhwt0a9r6ombarp/image_1bf4nv4q31doa1c2q15868s644k4o.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/r9er3o91cz5smz9wtmwz9w0w/image_1bf4o0hpje881qd7pf0hk816jn55.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/lrs64t8ywuxnjbqws9mmhis8/image_1bf4o4oigigd192ldaj1i6v17na5i.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/3z92a8f0kzuwf22xuwgkholx/image_1bf4o5aj015aa1j86b0k1880eh05v.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/8t107a1gptzj6ijvjl90ikbm/image_1bf4o9eo2vrp1s8449m1cfgo296c.png">
-<meta property="og:image" content="http://static.zybuluo.com/BruceTang/72otq3n4r8nmll2892jgj7he/image_1bf4oa0sm4ih9qef4d1ouj1rdv6p.png">
-<meta property="og:updated_time" content="2017-05-02T14:19:06.609Z">
+<meta property="og:description" content="何为PostgreSQLPostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：">
+<meta property="og:updated_time" content="2017-05-08T12:52:03.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zabbix 3.0 主动式监控">
-<meta name="twitter:description" content="监控常遇到的问题？　　1.监控主机多，性能跟不上，延迟大　　2.多机房，防火墙因素Zabbix轻松解决以上问题，Nagios不太好解决的问题。
-Zabbix 模式介绍：1、被动模式2、主动模式">
-<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/i209oboed960ccdai7j30opw/image_1bf4mod7e6mfhfpbit1ct359om.png">
+<meta name="twitter:title" content="Postgresql（1）--简介">
+<meta name="twitter:description" content="何为PostgreSQLPostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：">
 
 
 
@@ -104,7 +84,7 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
   };
 </script>
 
-  <title> zabbix 3.0 主动式监控 | BRUCETANG </title>
+  <title> Postgresql（1）--简介 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +257,7 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
             
             
               
-                zabbix 3.0 主动式监控
+                Postgresql（1）--简介
               
             
           </h1>
@@ -289,8 +269,8 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T10:09:26+08:00" content="2016-10-04">
-              2016-10-04
+            <time itemprop="dateCreated" datetime="2016-12-02T12:37:26+08:00" content="2016-12-02">
+              2016-12-02
             </time>
           </span>
 
@@ -303,8 +283,8 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
+                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
+                    <span itemprop="name">Postgresql</span>
                   </a>
                 </span>
 
@@ -335,27 +315,22 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
       
 
       
-        <p><strong>监控常遇到的问题？</strong><br>　　1.监控主机多，性能跟不上，延迟大<br>　　2.多机房，防火墙因素<br>Zabbix轻松解决以上问题，Nagios不太好解决的问题。</p>
-<p><strong>Zabbix 模式介绍：</strong><br>1、被动模式<br>2、主动模式</p>
+        <h3 id="何为PostgreSQL"><a href="#何为PostgreSQL" class="headerlink" title="何为PostgreSQL"></a>何为PostgreSQL</h3><p>PostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。<br>PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：</p>
 <a id="more"></a>
-<p>默认是被动模式，我们可以通过以下方式查看监控项是什么模式<br><img src="http://static.zybuluo.com/BruceTang/i209oboed960ccdai7j30opw/image_1bf4mod7e6mfhfpbit1ct359om.png" alt="image_1bf4mod7e6mfhfpbit1ct359om.png-219.5kB"></p>
-<p>因为我们使用的是模板，无法进行修改。我们可以修改配置文件或者新建item的时候设置。<br><img src="http://static.zybuluo.com/BruceTang/a26801341q0bo1ihn3kmm3vv/image_1bf4ms3fc1gfj1qk4m4113fi126213.png" alt="image_1bf4ms3fc1gfj1qk4m4113fi126213.png-233.1kB"></p>
-<p>　　<strong>注意：</strong><br>　1、当监控主机超过300+，建议使用主动模式（此处是一个经验值，要根据服务器的硬件来进行考虑）<br>　2、还需要保证Queue对列里面没有延迟的主机</p>
-<p><strong>Queue 对列介绍</strong><br>如果此处的延迟主机有点多的话，我们就需要将被动模式修改为主动模式.<br><img src="http://static.zybuluo.com/BruceTang/0o13q9g70f96zrvbuv9shl5r/image_1bf4mtvfgh8kcldre55kn78k1g.png" alt="image_1bf4mtvfgh8kcldre55kn78k1g.png-173.8kB"></p>
-<h2 id="主动模式设置"><a href="#主动模式设置" class="headerlink" title="主动模式设置"></a>主动模式设置</h2><p>将原来的agent端192.168.10.11监控设置为主动模式 </p>
-<p>###　修改配置文件<br>为了方便模拟，我们将node-11(192.168.10.11)从Zabbix删除从新添加<br><img src="http://static.zybuluo.com/BruceTang/jqzj9iexu6gb432wiqtouczd/image_1bf4n2lv01c3h1p9oh8763v16ft1t.png" alt="image_1bf4n2lv01c3h1p9oh8763v16ft1t.png-192.8kB"></p>
-<h3 id="配置zabbix-agentd-conf文件"><a href="#配置zabbix-agentd-conf文件" class="headerlink" title="配置zabbix_agentd.conf文件"></a>配置zabbix_agentd.conf文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# vim /etc/zabbix/zabbix_agentd.conf</div><div class="line">#Server=192.168.10.10</div><div class="line">#servr端IP,我们需要注释Server，因为这个是被动模式用的</div><div class="line"></div><div class="line">StartAgents=0</div><div class="line">#设置为0之后就不会TCP端口，之前监听TCP端口是因为Server要去问agent信息所以需要开启</div><div class="line"></div><div class="line">ServerActive=192.168.10.10</div><div class="line">#server端IP，此处可以是IP或者是域名，他会连接10051端口</div><div class="line"></div><div class="line">Hostname=node-11</div><div class="line">#agent端主机名，唯一识别符，我们需要修改成我们本机的主机名。如果我们不设置，它默认会通过item来获取</div><div class="line"></div><div class="line">[root@node-11 ~]# systemctl restart zabbix-agent.service </div><div class="line">保存重启</div></pre></td></tr></table></figure>
-<p>保存重启之后我们可以查看我们监听的一些端口，因为我们关闭的被动模式所以不会在监听zabbix端口了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@node-11 ~]# netstat -lntup</div><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </div><div class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2435/master         </div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1416/sshd           </div><div class="line">tcp6       0      0 ::1:25                  :::*                    LISTEN      2435/master         </div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      2606/mysqld         </div><div class="line">tcp6       0      0 :::22                   :::*                    LISTEN      1416/sshd           </div><div class="line">udp        0      0 0.0.0.0:51218           0.0.0.0:*                           757/avahi-daemon: r </div><div class="line">udp        0      0 0.0.0.0:5353            0.0.0.0:*                           757/avahi-daemon: r</div></pre></td></tr></table></figure>
-<h2 id="Zabbix-web设置"><a href="#Zabbix-web设置" class="headerlink" title="Zabbix-web设置"></a>Zabbix-web设置</h2><p>我们需要添加zabbix-agent active(也就是主动模式)<br>添加模板，zabbix没有提供主动模式的模板。所以我们需要克隆一下OS Linux<br><img src="http://static.zybuluo.com/BruceTang/qfuux37zmoxlo6gn31j4uw2l/image_1bf4njff3uh1s1l1v1v9clabc2a.png" alt="image_1bf4njff3uh1s1l1v1v9clabc2a.png-252.3kB"></p>
-<p>找到OS Linux 模板，移动到最下面 点击复制<br><img src="http://static.zybuluo.com/BruceTang/5ekpof92atjk7g0hcqs9mpjy/image_1bf4nkreaettphkcm7lsvt5o2n.png" alt="image_1bf4nkreaettphkcm7lsvt5o2n.png-72.2kB"></p>
-<p>我们从新进行设置名称<br><img src="http://static.zybuluo.com/BruceTang/mwbj07z0pffea84pwvujycii/image_1bf4nms3hgji1gin190map5r334.png" alt="image_1bf4nms3hgji1gin190map5r334.png-168.6kB"></p>
-<p>修改我们刚刚添加的模板名为OS Linux Active<br><img src="http://static.zybuluo.com/BruceTang/rtpignfk79cek3kmez85ku2o/image_1bf4npoaq1qckergqj31m7319pr3h.png" alt="image_1bf4npoaq1qckergqj31m7319pr3h.png-283.4kB"></p>
-<p>我们点击刚刚创建模板的item<br><img src="http://static.zybuluo.com/BruceTang/f0bce1j1xk1l6msgsw4sfbzk/image_1bf4nsdeq6nfl3v25l7186u3u.png" alt="image_1bf4nsdeq6nfl3v25l7186u3u.png-145.3kB"></p>
-<p>进行批量更新<br><img src="http://static.zybuluo.com/BruceTang/ersmlo255wtx7nkrex97lf3i/image_1bf4ntjqf148vk261ig0a43set4b.png" alt="image_1bf4ntjqf148vk261ig0a43set4b.png-218.3kB"><br><img src="http://static.zybuluo.com/BruceTang/cshaw8fwtwhwt0a9r6ombarp/image_1bf4nv4q31doa1c2q15868s644k4o.png" alt="image_1bf4nv4q31doa1c2q15868s644k4o.png-166.7kB"><br>然后选择最下方Update </p>
-<p>结果如下：<br><img src="http://static.zybuluo.com/BruceTang/r9er3o91cz5smz9wtmwz9w0w/image_1bf4o0hpje881qd7pf0hk816jn55.png" alt="image_1bf4o0hpje881qd7pf0hk816jn55.png-230.1kB"></p>
-<p>添加主机<br><img src="http://static.zybuluo.com/BruceTang/lrs64t8ywuxnjbqws9mmhis8/image_1bf4o4oigigd192ldaj1i6v17na5i.png" alt="image_1bf4o4oigigd192ldaj1i6v17na5i.png-166kB"><br><img src="http://static.zybuluo.com/BruceTang/3z92a8f0kzuwf22xuwgkholx/image_1bf4o5aj015aa1j86b0k1880eh05v.png" alt="image_1bf4o5aj015aa1j86b0k1880eh05v.png-147.5kB"></p>
-<p>最终结果<br><img src="http://static.zybuluo.com/BruceTang/8t107a1gptzj6ijvjl90ikbm/image_1bf4o9eo2vrp1s8449m1cfgo296c.png" alt="image_1bf4o9eo2vrp1s8449m1cfgo296c.png-186.6kB"><br><img src="http://static.zybuluo.com/BruceTang/72otq3n4r8nmll2892jgj7he/image_1bf4oa0sm4ih9qef4d1ouj1rdv6p.png" alt="image_1bf4oa0sm4ih9qef4d1ouj1rdv6p.png-220.5kB"></p>
+<p>1.复杂查询<br>2.外键<br>3.触发器<br>4.可更新的视图<br>5.事务完整性<br>6.多版本并发控制</p>
+<p>另外，PostgreSQL可以用许多方法进行扩展，比如通过增加新的：<br>1.数据类型<br>2.函数<br>3.操作符<br>4.聚合函数<br>5.索引方法<br>6.过程语言</p>
+<p>并且，因为许可证的灵活，任何人都可以以任何目的免费使用、修改、分发PostgreSQL，不管是私用、商用、还是学术研究使用。</p>
+<h3 id="选用理由"><a href="#选用理由" class="headerlink" title="选用理由"></a>选用理由</h3><p>(1)PostgreSQL支持用多种编程语言编写存程过程和函数<br>(2)PostgreSQL支持非常强大的用户自定义数据类型功能</p>
+<h3 id="PostgreSQL资源"><a href="#PostgreSQL资源" class="headerlink" title="PostgreSQL资源"></a>PostgreSQL资源</h3><p>（1）Plantet PostgreSQL （<a href="http://planet.postgresql.org）是PostgreSQL技术博客文章的汇聚站点，其中包含从PostgreSQL核心开发人员到普通用户编写" target="_blank" rel="external">http://planet.postgresql.org）是PostgreSQL技术博客文章的汇聚站点，其中包含从PostgreSQL核心开发人员到普通用户编写</a><br>的各类文章，包括新特性演汉及对现有功能的使用说明<br>（2）PostgreSQL Wiki（<a href="https://wiki.postgresql.org）提供对PostgreSQL各个方面的使用技巧说明，以及从其他数据库移值到PostgreSQL的方法" target="_blank" rel="external">https://wiki.postgresql.org）提供对PostgreSQL各个方面的使用技巧说明，以及从其他数据库移值到PostgreSQL的方法</a><br>（3）PostgreSQL Books(<a href="https://www.postgresql.org/docs/books/)提供有关PostgreSQL的书箱列表信息；" target="_blank" rel="external">https://www.postgresql.org/docs/books/)提供有关PostgreSQL的书箱列表信息；</a></p>
+<h3 id="PostgreSQL管理工具"><a href="#PostgreSQL管理工具" class="headerlink" title="PostgreSQL管理工具"></a>PostgreSQL管理工具</h3><p>postgresql常用管理工具有四种：psql、pgAdmin,phpPgAdmin和Adminer。PostgreSQL的核心开发团队维护着前三种。</p>
+<p>（1）psql是一种用于执行查询的命令行工具<br>（2）pgAdmin是一种广泛使用的开源PostgreSQL图形界面管理工具<br>（3）phpPgAdmin基于Web页面的管理工具</p>
+<p><code>PostgreSQL默认侦听端口 5432</code></p>
+<h3 id="PostgreSQL数据库对象"><a href="#PostgreSQL数据库对象" class="headerlink" title="PostgreSQL数据库对象"></a>PostgreSQL数据库对象</h3><p>(1)服务<br>在大多数操作系统上，PostgreSQL是作为一种服务（或者叫守护进程）安装的。多个PostgreSQL服务可以运行于同一台物理服务器上，但它们的侦听端口不能<br>重复，也不能共享一个数据存储目录。</p>
+<p>(2)database<br>每个PostgreSQL服务可以包含多个独立的database</p>
+<p>(3)schema<br>database的下一层逻辑结构就是schema</p>
+<p>(4)catalog<br>catalog是系统级的schema,用于存储系统函数和系统元数据。每个database创建好以后默认都会含有两个catalog：<br>一个名为pg_catalog,用于存储PostgreSQL系统自带的函数，表，系统视图，数据类型转换器以及数据类型定义等元数据<br>另一个是information_schema,用于存储ANSI标准中所要求提供的元数据查询视图，这些视图遵从ANSI SQL标准的要求，以提定的格式向外界提供PostgreSQL</p>
+<p>元数据信息<br>PostgreSQL information_schema中最常用的视图一般有以下几个：<br>columns视图：列出了数据库中的所有表列<br>tables视图：列出数据库中的所有表（包括视图）<br>view视图：列出所有视图以及用于构建或重新构建该视图的关联SQL</p>
+<p>（5）变量<br>（6）扩展包<br>（7）表<br>在Postgresql中，表首先属于某个schema,而schema又属于某个database,这样就构成了一种三级存储结构<br>Postgresql的表支持两种强大的功能，<br>第一种是表继承，即一张表可以有父表和子表<br>第二种是创建一张表的同时，系统会自动为此表创建一种对应的自定义数据类型<br>（8）外部表和外部数据封装器<br>通过外部表可以直接在本地数据库中访问来自外部数据源的数据<br>外部表映射关系的建立是通过配置外部数据封装器（Foreign Data Wrapper，FDW）实现的。FDW是PostgreSQL和外部数据源之间的一架魔法桥，可实现两边<br>数据的互联互通。<br>（9）表空间<br>表空间是用于存储数据的物理空间<br>（10）视图<br>（11）函数<br>（12）内置编程语言<br>（13）运算符<br>（14）数据类型<br>（15）数据类型转换器<br>（16）序列<br>（1）行或记录<br>（17）触发器<br>（18）规则</p>
 
       
     </div>
@@ -370,7 +345,7 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
       
         <div class="post-tags">
           
-            <a href="/tags/zabbix3-0/" rel="tag">#zabbix3.0</a>
+            <a href="/tags/Postgresql/" rel="tag">#Postgresql</a>
           
         </div>
       
@@ -379,16 +354,16 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/03/zabbix 3.0 自定义监控--磁盘读写/" rel="next" title="zabbix 3.0 自定义监控--磁盘读写">
-                <i class="fa fa-chevron-left"></i> zabbix 3.0 自定义监控--磁盘读写
+              <a href="/2016/10/11/Nginx域名访问的白名单配置梳理/" rel="next" title="Nginx域名访问的白名单配置梳理">
+                <i class="fa fa-chevron-left"></i> Nginx域名访问的白名单配置梳理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/04/zabbix 3.0 分布式监控/" rel="prev" title="zabbix 3.0 分布式监控">
-                zabbix 3.0 分布式监控 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/11/Linux下防御DDOS攻击的操作梳理/" rel="prev" title="Linux下防御DDOS攻击的操作梳理">
+                Linux下防御DDOS攻击的操作梳理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +480,7 @@ Zabbix 模式介绍：1、被动模式2、主动模式">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主动模式设置"><span class="nav-number">1.</span> <span class="nav-text">主动模式设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置zabbix-agentd-conf文件"><span class="nav-number">1.1.</span> <span class="nav-text">配置zabbix_agentd.conf文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zabbix-web设置"><span class="nav-number">2.</span> <span class="nav-text">Zabbix-web设置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为PostgreSQL"><span class="nav-number">1.</span> <span class="nav-text">何为PostgreSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选用理由"><span class="nav-number">2.</span> <span class="nav-text">选用理由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PostgreSQL资源"><span class="nav-number">3.</span> <span class="nav-text">PostgreSQL资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PostgreSQL管理工具"><span class="nav-number">4.</span> <span class="nav-text">PostgreSQL管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PostgreSQL数据库对象"><span class="nav-number">5.</span> <span class="nav-text">PostgreSQL数据库对象</span></a></li></ol></div>
             
           </div>
         </section>
