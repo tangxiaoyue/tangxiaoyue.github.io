@@ -68,7 +68,7 @@ Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servl">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/lg138tny62x2rnd5dry8upfs/image_1bfm7br8h1nbq1jad1i3h11bm6i79.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/kiw621autpc9px2fyp2luu8m/image_1bfm7cdrkm8q18hc5ep1per1sk9m.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/kqmhyt4qz1o9g612e9kc8jqa/image_1bfm7cspmd441ob91pft119680813.png">
-<meta property="og:updated_time" content="2017-05-10T13:07:23.059Z">
+<meta property="og:updated_time" content="2017-05-10T13:28:42.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat相关知识整理（1）">
 <meta name="twitter:description" content="初识ServletSUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。
@@ -328,7 +328,7 @@ Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servl">
 <p>提供了可被服务器动态加载并执行的程序代码，为来自客户端的请求提供相应的服务；</p>
 <p>Servlet完全用Java语言编写，因此要求运行Servlet的服务器必须支持Java语言；</p>
 <p>Servlet完全在服务器端运行，因此它的运行不依赖于浏览器。不管浏览器是否支持Java语言，都能请求访问服务器端的Servlet。</p>
-<p>&lt;! – more – &gt;</p>
+<a id="more"></a>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><p>Tomcat作为运行Servlet的容器，其基本功能是负责接收和解析来自客户端的请求，同时把客户端的请求传送给相应的Servlet，并把Servlet的响应结果返回给客户端。</p>
 <h4 id="Tomcat组件"><a href="#Tomcat组件" class="headerlink" title="Tomcat组件"></a>Tomcat组件</h4><p><strong>Tomcat组件分为4类：</strong></p>
 <p>1.<code>顶层类元素</code>：包括<server>元素和<service>元素，它们位于整个配置文件的顶层；</service></server></p>
