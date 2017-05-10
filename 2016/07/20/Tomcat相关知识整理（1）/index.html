@@ -1,0 +1,832 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Web服务," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="初识ServletSUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。
+Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat相关知识整理（1）">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/Tomcat相关知识整理（1）/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="初识ServletSUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。
+Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servl">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/lg138tny62x2rnd5dry8upfs/image_1bfm7br8h1nbq1jad1i3h11bm6i79.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/kiw621autpc9px2fyp2luu8m/image_1bfm7cdrkm8q18hc5ep1per1sk9m.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/kqmhyt4qz1o9g612e9kc8jqa/image_1bfm7cspmd441ob91pft119680813.png">
+<meta property="og:updated_time" content="2017-05-10T13:07:23.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat相关知识整理（1）">
+<meta name="twitter:description" content="初识ServletSUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。
+Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servl">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/lg138tny62x2rnd5dry8upfs/image_1bfm7br8h1nbq1jad1i3h11bm6i79.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Tomcat相关知识整理（1） | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tomcat相关知识整理（1）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T20:37:26+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="初识Servlet"><a href="#初识Servlet" class="headerlink" title="初识Servlet"></a>初识Servlet</h3><p>SUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。</p>
+<p>Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servlet容器，它的最主要的特征就是动态执行JavaWeb应用中的Servlet实现类中的程序代码。</p>
+<p>Servlet是一种运行在服务器上的小插件，其最常见的用途是扩展Web服务器的功能，可作为非常安全的、可移植的、易于使用的CGI替代品。具有以下特点：</p>
+<p>提供了可被服务器动态加载并执行的程序代码，为来自客户端的请求提供相应的服务；</p>
+<p>Servlet完全用Java语言编写，因此要求运行Servlet的服务器必须支持Java语言；</p>
+<p>Servlet完全在服务器端运行，因此它的运行不依赖于浏览器。不管浏览器是否支持Java语言，都能请求访问服务器端的Servlet。</p>
+<p>&lt;! – more – &gt;</p>
+<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><p>Tomcat作为运行Servlet的容器，其基本功能是负责接收和解析来自客户端的请求，同时把客户端的请求传送给相应的Servlet，并把Servlet的响应结果返回给客户端。</p>
+<h4 id="Tomcat组件"><a href="#Tomcat组件" class="headerlink" title="Tomcat组件"></a>Tomcat组件</h4><p><strong>Tomcat组件分为4类：</strong></p>
+<p>1.<code>顶层类元素</code>：包括<server>元素和<service>元素，它们位于整个配置文件的顶层；</service></server></p>
+<p>2.<code>连接器类元素</code>：为<connector>元素，代表介于客户端与服务器端之间的通信接口，负责将客户端的请求发送给服务器端，并将服务器的响应结果返回给客户端；</connector></p>
+<p>3.<code>容器类元素</code>：代表处理客户端请求并生成响应结果的组件，共有四类，分别为<engine>、<host>、<context>和<cluster>元素。Engine组件为特定的Service组件处理所有客户端请求，Host组件为特定的虚拟主机处理所有的客户端请求，Context组件为特定的Web应用处理所有的客户端请求。<br>Cluster组件负责为Tomcat集群系统进行会话复制、Context组件的属性的复制，以及集群范围内WAR文件的发布。</cluster></context></host></engine></p>
+<p>4.<code>嵌套类元素</code>：代表可以被嵌入到容器中的组件，如<valve>元素和<realm>元素等。</realm></valve></p>
+<h4 id="Tomcat元素"><a href="#Tomcat元素" class="headerlink" title="Tomcat元素"></a>Tomcat元素</h4><p><code>&lt;Server&gt;</code>元素：代表整个Servlet容器组件，是Tomcat的顶级元素。在<server>元素中可包含一个或多个<service>元素；</service></server></p>
+<p><code>&lt;Service&gt;</code>元素：包含一个<engine>元素，以及一个或多个<connector>元素，这些<connector>元素共享同一个<engine>元素；</engine></connector></connector></engine></p>
+<p><code>&lt;Connector&gt;</code>元素：代表和客户端实际交互的组件，负责接收客户端请求，以及向客户端返回响应结果；</p>
+<p><code>&lt;Engine&gt;</code>元素：每个<service>元素只能包含一个<engine>元素。<engine>元素处理在同一个<service>中所有<connector>元素接收到的客户端请求；</connector></service></engine></engine></service></p>
+<p><code>&lt;Host&gt;</code>元素：在一个<engine>元素中可以包含多个<host>元素。每个<host>元素定义了一个虚拟主机，它可以包含一个或多个Web应用；</host></host></engine></p>
+<p><code>&lt;Context&gt;</code>元素：每个<context>元素代表了运行在虚拟主机上的单个Web应用。在一个<host>元素中可以包含多个<context>元素。</context></host></context></p>
+<h4 id="Tomcat的工作模式"><a href="#Tomcat的工作模式" class="headerlink" title="Tomcat的工作模式"></a>Tomcat的工作模式</h4><h5 id="独立的Servlet容器"><a href="#独立的Servlet容器" class="headerlink" title="独立的Servlet容器"></a>独立的Servlet容器</h5><p>Tomcat作为独立的web服务器来单独运行，Servlet容器组件作为web服务器中的一部分存在，这是Tomcat的默认工作模式。 在这种模式下，Tomcat是一个独立进行的Java程序。和运行其他Java程序一样，运行Tomcat需要启动一个Java虚拟机进程，由该进程来运行Tomcat。<br><img src="http://static.zybuluo.com/BruceTang/lg138tny62x2rnd5dry8upfs/image_1bfm7br8h1nbq1jad1i3h11bm6i79.png" alt="image_1bfm7br8h1nbq1jad1i3h11bm6i79.png-15.6kB"></p>
+<h5 id="其他web服务器进程内的Servlet容器"><a href="#其他web服务器进程内的Servlet容器" class="headerlink" title="其他web服务器进程内的Servlet容器"></a>其他web服务器进程内的Servlet容器</h5><p>在这种模式下，Tomcat分为web服务器插件和Servlet容器插件两部分。web服务器插件在其他web服务器进程的内部地址空间启动一个JVM，Servlet在此JVM中运行。如有客户端发出调用Servlet的请求，web服务器插件获得对此请求的控制并将它转发(JNI通信机制)给Servlet容器组件。<br><img src="http://static.zybuluo.com/BruceTang/kiw621autpc9px2fyp2luu8m/image_1bfm7cdrkm8q18hc5ep1per1sk9m.png" alt="image_1bfm7cdrkm8q18hc5ep1per1sk9m.png-28.4kB"></p>
+<h5 id="其他web服务器进程外的Servlet容器"><a href="#其他web服务器进程外的Servlet容器" class="headerlink" title="其他web服务器进程外的Servlet容器"></a>其他web服务器进程外的Servlet容器</h5><p>在这种模式下，Tomcat分为web服务器插件和Servlet容器组件两部分。web服务器插件在其他web服务器的外部地址空间启动一个JVM进程，Servlet容器组件再次JVM中运行。如有客户端发出调用Servlet的请求，web服务器插件获得对此请求的控制并将它转发(IPC通信机制)给Servlet容器组件。</p>
+<p>当Tomcat作为独立的Servlet容器来运行时，可看做是能运行Java Servlet的独立web服务器。此外，Tomcat还可作为其他web服务器进程内或进程外的Servlet容器，从而与其他web服务器集成，集成的意义在于：对于不支持运行Java Servlet的其web服务器，可通过集成Tomcat来提供运行Servlet的功能。<br><img src="http://static.zybuluo.com/BruceTang/kqmhyt4qz1o9g612e9kc8jqa/image_1bfm7cspmd441ob91pft119680813.png" alt="image_1bfm7cspmd441ob91pft119680813.png-26.6kB"></p>
+<h3 id="Tomcat的目录结构"><a href="#Tomcat的目录结构" class="headerlink" title="Tomcat的目录结构"></a>Tomcat的目录结构</h3><p><code>bin</code>：存放启动和关闭Tomcat的脚本文件及所用到的类；</p>
+<p><code>conf</code>：存放Tomcat的各种配置文件，其中最重要的配置文件是server.xml；</p>
+<p><code>logs</code>：存放Tomcat的日志文件；</p>
+<p><code>lib</code>：存放Tomcat服务器及所有Web应用都可以访问的jar文件；</p>
+<p><code>webapps</code>：Web应用的默认部署目录；</p>
+<p><code>work</code>：Tomcat的工作目录，Tomcat在运行时把生成的一些工作文件放于此目录下。在默认情况下，Tomcat把编译JSP而生成的Servlet类文件放于此目录下；</p>
+<p><code>tmp</code>：临时文件目录。</p>
+<p><strong>NOTE:</strong></p>
+<p>Tomcat的lib子目录：存放的jar文件不仅能被Tomcat访问，还能被所有在Tomcat中发布的JavaWeb应用访问；</p>
+<p>JavaWeb应用的lib子目录：存放的jar文件只能被当前JavaWeb应用访问。</p>
+<p><strong>NOTE：</strong></p>
+<p>Tomcat在加载Web应用时，会把相应的web.xml文件中的数据读入到内存中。</p>
+<p>Context元素</p>
+<h4 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h4><p><code>path</code>：指定访问该Web应用的URL入口，什么都不写表示根路径；</p>
+<p><code>docBase</code>：指定Web应用的文件路径，可以给定绝对路径，也可以给定相对于<host>的appBase属性的相对路径。如果Web应用采用开放目录结构，则指定Web应用的根路径；如果Web应用是个war文件，则是定war文件的路径；</host></p>
+<p><code>className</code>：指定实现Context组件的Java类的名字，这个类必须实现org.apache.catalina.Context接口；</p>
+<p><code>reloadable</code>：如果这个属性设为true，Tomcat服务器在运行状态下会监视在WEB-INF/classes和WEB-INF/lib目录下的class文件的改动，以监视Web应用的WEB-INF/web.xml文件的改动。如果检测到有class文件或web.xml文件被更新，服务器会自动重新加载Web应用。</p>
+<h4 id="专有属性"><a href="#专有属性" class="headerlink" title="专有属性"></a>专有属性</h4><p><code>cachingAllowed</code>：如果为true，表示允许启用静态资源的缓存，默认值为true；</p>
+<p><code>cacheMaxSize</code>：设定静态资源缓存的最大容量，默认为10m；</p>
+<p><code>workDir</code>：指定Web应用的工作目录，Tomcat在运行时会把与这个web应用相关的临时文件放在这个目录下；</p>
+<p><code>uppackWar</code>：如果设为true，表示将把Web应用的WAR文件展开为开放目录结构后再运行。如果设为false，则直接运行war文件。默认为true。</p>
+<h4 id="Host元素"><a href="#Host元素" class="headerlink" title="Host元素"></a>Host元素</h4><h5 id="主要属性-1"><a href="#主要属性-1" class="headerlink" title="主要属性"></a>主要属性</h5><p><code>name</code>：指定虚拟主机的名字</p>
+<p><code>className</code>：指定实现虚拟主机的Java类的名字，这个Java类必须实现org.apache.catalina.Host接口；</p>
+<p><code>appBase</code>：指定虚拟主机的目录，可以指定绝对目录，也可以指定相对于<catalina_home>的相对路径；</catalina_home></p>
+<p><code>autoDeploy</code>：如果设定为true，表示当Tomcat服务器处于运行状态时，能够检测appBase下的文件，如果有新的Web应用加进来，则会自动发布这个Web应用；</p>
+<p><code>deployOnStart</code>：如果此项设置为true，则表示当Tomcat启动时会自动发布appBase目录下的所有Web应用。如果web应用没有相应的context元素，那么Tomcat会提供一个默认的context组件。默认值为true。</p>
+<h5 id="专有属性-1"><a href="#专有属性-1" class="headerlink" title="专有属性"></a>专有属性</h5><p><code>unpackWARS</code>：如果设置为true，表示将把appBase属性指定的目录下的web应用的war文件先展开为开放的目录结构后再运行，如果设置为false，则直接运行war文件；</p>
+<p><code>workDir</code>：指定虚拟主机的工作目录，Tomcat在运行时会把与这个虚拟主机的所有web应用相关的临时文件放在此目录下，默认值为<catalina_home>/work。如果<host>元素下的一个<context>元素也设置了workDIR属性，那么<context>的workDir属性会覆盖<host>元素的workDir属性；</host></context></context></host></catalina_home></p>
+<p><code>deployXML</code>：如果设置为false，那么Tomcat不会解析web应用中的用于设置context元素的META-INF/context.xml文件。默认值为true。</p>
+<h3 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h3><p>SUN的Servlet规范对JavaWeb应用的定义：JavaWeb应用由一组Servlet/JSP、HTML文件、相关Java类，以及其他可以绑定的资源构成，它可以在由各种供应商提供的符合Servlet规范的Servlet容器中运行。</p>
+<p><strong>JavaWeb应用包含的内容：</strong></p>
+<p><code>Srvlet组件</code>：标准Servlet接口的实现类，运行在服务器端，包含了被Servlet容器动态调用的程序代码。</p>
+<p><code>JSP组件</code>：包含Java程序代码的HTML文档，运行在服务器端。当客户端请求JSP文件时，Servlet容器先把它翻译成Servlet类，然后动态调用它的程序代码。</p>
+<p>相关的Java类：开发人员自定义的与Web应用相关的Java类。</p>
+<p>静态文档：存放在存放在服务器端的文件系统中，如HTML文件、图片文件等。当客户端请求访问这些文件时，Servlet容器先从本地文件系统中读取这些文件的数据，再把它发送到客户端。</p>
+<p><code>web.xml文件</code>：JavaWeb应用的配置文件，采用XML格式。该文件必须位于Web应用的WEB-INF目录下。</p>
+<p>Servlet规范规定：JavaWeb应用必须采用固定的目录结构，即每种类型的组件在web应用中都有固定的存放目录。</p>
+<p><strong>JavaWeb应用的目录结构，以helloapp为例</strong>   </p>
+<p><code>/helloapp</code>：此Web应用的根目录，所有的JSP和HTML文件都存放于此目录或用户自定义的子目录下(WEB-INF子目录除外)；</p>
+<p><code>/helloapp/WEB-INF</code>：存放此Web应用的配置文件web.xml；</p>
+<p><code>/helloapp/WEB-INF/classes</code>：存放各种.class文件，Servlet类的.class文件也存放于此目录下；</p>
+<p><code>/helloapp/WEB-INF/lib</code>：存放此Web应用所需的各种jar文件；</p>
+<p><code>/helloapp/META-INF</code>：当前Webapp的私有资源目录，通常存放自用的context.xml；</p>
+<p><code>/helloapp/classes</code>：此Webapp的私有类；</p>
+<p><code>/helloapp/lib</code>：此Webapp的私有类，被打包为jar格式；</p>
+<p><code>/helloapp/index.jsp</code>：此Webapp的主页。</p>
+<p>NOTE：在WEB-INF目录的classes及lib子目录下都可以存放类文件。在运行时，Servlet容器的类加载器先加载classes目录下的类，再加载lib目录下的jar文件中的类。</p>
+<h3 id="Tomcat阀-Valve"><a href="#Tomcat阀-Valve" class="headerlink" title="Tomcat阀(Valve)"></a>Tomcat阀(Valve)</h3><p>Tomcat阀能够对Catalina容器接收到的http请求进行预处理。Tomcat阀可以可以加入到3种Catalina容器中，它们是Engine、Host和Context。</p>
+<p><strong>Tomcat阀主要包括以下几种：</strong></p>
+<pre><code>客户访问日志阀(Access Log Valve)
+
+远程地址过滤器(Remote Address Filter)
+
+远程主机过滤器(Remote Host Filter)
+
+客户请求记录器(Request Dumper)
+</code></pre><h4 id="客户访问日志阀"><a href="#客户访问日志阀" class="headerlink" title="客户访问日志阀"></a>客户访问日志阀</h4><p>能够将客户端的请求信息写到日志文件中，这些日志文件可以记录网页的访问次数、访问时间、用户的会话活动和用户的安全验证信息等。客户访问日志阀可以加入到Engine、Host或Context容器。</p>
+<p>属性：</p>
+<p><code>className</code>：指定阀的实现类，此处为org.apache.catalina.valves.AccessLogValve；</p>
+<p><code>directory</code>：设定存放日志文件的绝对或相对于<code>&lt;CATALINA_HOME</code>&gt;的目录，默认为<code>&lt;CATALINA_HOME&gt;/logs</code>；</p>
+<p><code>pattern</code>：设定日志的格式和内容；</p>
+<p><code>prefix</code>：设定日志文件名前缀，默认为access_log；</p>
+<p><code>resolveHosts</code>：如果设为true，表示把远程IP地址解析为主机名；如果设为false，表示直接记录远程IP地址，默认为false；</p>
+<p><code>suffix</code>：设定日志文件的扩展名，默认为””；</p>
+<p><strong>pattern属性的可选值：</strong></p>
+<pre><code>%a：远程IP地址；
+%A：本地IP地址；
+%b：发送的字节数，不包括HTTP头部，符号“-”表示发送字节为零；
+%B：发送的字节数，不包括HTTP头部；
+%h：远程主机名；
+%H：客户端请求所用的协议；
+%l：远程逻辑用户名(目前总是返回符号“-”)；
+%m：客户端的请方式；
+%p：接收到客户端请求的本地服务器端口；
+%q：客户端请求中的查询字符串(Query String)，即HTTP请求的第一行的URI部分的“?”后面的内容；
+%r：客户端请求的第一行内容(包括请求方式、请求URI及HTTP协议版本)；
+%s：服务器响应结果中的HTTP状态代码；
+%S：用户的额Session ID；
+%t：时间和日期；
+%u：通过安全认证的远程用户名，符号“-”表示不存在远程用户名；
+%U：客户端请求的URL路径；
+%v：本地服务器名；
+</code></pre><h4 id="远程地址过滤器"><a href="#远程地址过滤器" class="headerlink" title="远程地址过滤器"></a>远程地址过滤器</h4><p>可以根据远程客户端的IP地址来决定是否接受客户端的请求。在远程地址过滤器中，事先保存了一份被拒绝的IP地址清单和允许访问的IP地址清单。</p>
+<p>属性</p>
+<p><code>className</code>：指定阀实现类，此处为<code>org.apache.catalina.valves.AccessLogValve</code>；</p>
+<p><code>allow</code>：指定允许访问的客户端IP地址，如果没有设定，则表示只要客户端IP地址不在deny清单中，就允许访问，多个IP地址用逗号隔开；</p>
+<p><code>deny</code>：指定不允许访问的IP地址；</p>
+<h4 id="远程主机过滤器"><a href="#远程主机过滤器" class="headerlink" title="远程主机过滤器"></a>远程主机过滤器</h4><p>与远程地址多滤器基本上相同，只是一个是基于ip，一个是基于主机名。</p>
+<h4 id="客户请求记录器"><a href="#客户请求记录器" class="headerlink" title="客户请求记录器"></a>客户请求记录器</h4><p>用于把客户端请求的详细信息记录到日志文件，是一个有效的跟踪工具，尤其是当HTTP请求中的Header或Cookie有错误时，它可以跟踪客户请求的详细信息。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web服务/" rel="tag">#Web服务</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/05/Mysql 启动慢查询日志/" rel="next" title="Mysql 启动慢查询日志">
+                <i class="fa fa-chevron-left"></i> Mysql 启动慢查询日志
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/MySQL问题系列- MySQL连接数被限制为214个/" rel="prev" title="MySQL问题系列- MySQL连接数被限制为214个">
+                MySQL问题系列- MySQL连接数被限制为214个 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#初识Servlet"><span class="nav-number">1.</span> <span class="nav-text">初识Servlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat"><span class="nav-number">2.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tomcat组件"><span class="nav-number">2.1.</span> <span class="nav-text">Tomcat组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tomcat元素"><span class="nav-number">2.2.</span> <span class="nav-text">Tomcat元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tomcat的工作模式"><span class="nav-number">2.3.</span> <span class="nav-text">Tomcat的工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#独立的Servlet容器"><span class="nav-number">2.3.1.</span> <span class="nav-text">独立的Servlet容器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他web服务器进程内的Servlet容器"><span class="nav-number">2.3.2.</span> <span class="nav-text">其他web服务器进程内的Servlet容器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他web服务器进程外的Servlet容器"><span class="nav-number">2.3.3.</span> <span class="nav-text">其他web服务器进程外的Servlet容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat的目录结构"><span class="nav-number">3.</span> <span class="nav-text">Tomcat的目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要属性"><span class="nav-number">3.1.</span> <span class="nav-text">主要属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#专有属性"><span class="nav-number">3.2.</span> <span class="nav-text">专有属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Host元素"><span class="nav-number">3.3.</span> <span class="nav-text">Host元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主要属性-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">主要属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#专有属性-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">专有属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaWeb"><span class="nav-number">4.</span> <span class="nav-text">JavaWeb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat阀-Valve"><span class="nav-number">5.</span> <span class="nav-text">Tomcat阀(Valve)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户访问日志阀"><span class="nav-number">5.1.</span> <span class="nav-text">客户访问日志阀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程地址过滤器"><span class="nav-number">5.2.</span> <span class="nav-text">远程地址过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程主机过滤器"><span class="nav-number">5.3.</span> <span class="nav-text">远程主机过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户请求记录器"><span class="nav-number">5.4.</span> <span class="nav-text">客户请求记录器</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

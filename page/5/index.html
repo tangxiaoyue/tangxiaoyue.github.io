@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
-                  Nginx采用https加密访问后出现的问题
+                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
+                  MySQ binlog三种模式及设置方法
                 </a>
               
             
@@ -273,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
-              2016-03-11
+            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
+              2016-03-12
             </time>
           </span>
 
@@ -287,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -320,10 +320,10 @@
 
       
         
-          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
-<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
+            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -436,6 +436,117 @@
 <p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
+                  Nginx采用https加密访问后出现的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1246,116 +1357,6 @@ mysqladmin [option] command [command option] command ......
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/01/SaltStack（1）--简介/" itemprop="url">
-                  SaltStack（1）--简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-01T11:09:26+08:00" content="2016-01-01">
-              2016-01-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SaltStack/" itemprop="url" rel="index">
-                    <span itemprop="name">SaltStack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="SaltStack简单说明"><a href="#SaltStack简单说明" class="headerlink" title="SaltStack简单说明"></a>SaltStack简单说明</h3><p>一个配置管理系统，能够维护预定义状态的远程节点(比如，确保指定的报被安装，指定的服务在运行)<br>一个分布式远程执行系统，用来在远程节点（可以是单个节点，也可以是任意规则挑选出来的节点）上执行命令和查询数据<br>开发其的目的是为远程执行提供最好的解决方案，并使远程执行变得更好，更快，更简单</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/01/SaltStack（1）--简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1401,7 +1402,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1409,7 +1410,7 @@ mysqladmin [option] command [command option] command ......
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1418,7 +1419,7 @@ mysqladmin [option] command [command option] command ......
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
