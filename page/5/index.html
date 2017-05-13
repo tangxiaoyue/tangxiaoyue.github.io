@@ -259,6 +259,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/05/Mysql 启动慢查询日志/" itemprop="url">
+                  Mysql 启动慢查询日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-05T21:09:26+08:00" content="2016-04-05">
+              2016-04-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="查看mysql系统参数"><a href="#查看mysql系统参数" class="headerlink" title="查看mysql系统参数"></a>查看mysql系统参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &quot;%slow%&quot;;</div><div class="line">+---------------------------+-------------------------------+</div><div class="line">| Variable_name             | Value                         |</div><div class="line">+---------------------------+-------------------------------+</div><div class="line">| log_slow_admin_statements | OFF                           |</div><div class="line">| log_slow_slave_statements | OFF                           |</div><div class="line">| slow_launch_time          | 2                             |</div><div class="line">| slow_query_log            | OFF                           |</div><div class="line">| slow_query_log_file       | /mysql/data/nagiosdb-slow.log |</div><div class="line">+---------------------------+-------------------------------+</div><div class="line">5 rows in set (0.00 sec)</div><div class="line"></div><div class="line"></div><div class="line">slow_query_log： off关闭状态  on开启状态</div><div class="line">slow_launch_time   默认超过2s为慢查询</div><div class="line">slow_query_log_file  慢查询日志存放地点</div><div class="line"></div><div class="line"></div><div class="line">这三个参数，在不同的mysql版本中，不太一样，不过都可以通过 show variables like &quot;%slow%&quot; 查看出来</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/05/Mysql 启动慢查询日志/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
                   Mysql优化系列--总结梳理
                 </a>
@@ -703,116 +813,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx服务器http重定向到https/" itemprop="url">
-                  Nginx服务器http重定向到https
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>http重定向到https使用了nginx的重定向命令。那么应该如何写重定向？之前老版本的nginx可能使用了以下类似的格式。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx服务器http重定向到https/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
                   Mysqladmin命令总结
                 </a>
@@ -879,6 +879,116 @@ mysqladmin [option] command [command option] command ......
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/Nginx服务器http重定向到https/" itemprop="url">
+                  Nginx服务器http重定向到https
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>http重定向到https使用了nginx的重定向命令。那么应该如何写重定向？之前老版本的nginx可能使用了以下类似的格式。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/11/Nginx服务器http重定向到https/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1235,116 +1345,6 @@ mysqladmin [option] command [command option] command ......
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/03/SaltStack（3）--配置管理/" itemprop="url">
-                  SaltStack（3）--配置管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-03T11:09:26+08:00" content="2016-01-03">
-              2016-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SaltStack/" itemprop="url" rel="index">
-                    <span itemprop="name">SaltStack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="YAML编写技巧"><a href="#YAML编写技巧" class="headerlink" title="YAML编写技巧"></a>YAML编写技巧</h3><p>刚接触Sal tStack的状态管理，最苦恼的可能就是SLS的编写了，尽管YAML语法可能第一眼看上去很简洁，但是真正写起来也是令人畏惧，初学者很容易被各种报错搞晕，降低对Sal tStack的学习乐趣，甚至放弃SaltStack，但是只要记住三个非常简单的规则就可以快乐地使用YAML语法编写SLS文件了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/03/SaltStack（3）--配置管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1390,7 +1390,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
