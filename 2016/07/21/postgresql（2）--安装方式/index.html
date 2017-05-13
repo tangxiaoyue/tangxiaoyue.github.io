@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="Postgresql," />
 
 
 
@@ -57,22 +57,16 @@
 
 
 
-<meta name="description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
+<meta name="description" content="RPM安装方式rpm安装包12345678910111213postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-libs-9.4.8-1PGDG.rhe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 基础（5）--容器管理">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/Docker 基础（5）--容器管理/index.html">
+<meta property="og:title" content="postgresql（2）--安装方式">
+<meta property="og:url" content="http://yoursite.com/2016/07/21/postgresql（2）--安装方式/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
-<meta property="og:updated_time" content="2017-04-07T05:36:54.355Z">
+<meta property="og:description" content="RPM安装方式rpm安装包12345678910111213postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-libs-9.4.8-1PGDG.rhe">
+<meta property="og:updated_time" content="2017-05-13T03:44:06.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 基础（5）--容器管理">
-<meta name="twitter:description" content="查看启动的容器[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &amp;q">
+<meta name="twitter:title" content="postgresql（2）--安装方式">
+<meta name="twitter:description" content="RPM安装方式rpm安装包12345678910111213postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpmpostgresql94-libs-9.4.8-1PGDG.rhe">
 
 
 
@@ -90,7 +84,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
   };
 </script>
 
-  <title> Docker 基础（5）--容器管理 | BRUCETANG </title>
+  <title> postgresql（2）--安装方式 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +257,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
             
             
               
-                Docker 基础（5）--容器管理
+                postgresql（2）--安装方式
               
             
           </h1>
@@ -275,8 +269,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2016-07-21T20:37:26+08:00" content="2016-07-21">
+              2016-07-21
             </time>
           </span>
 
@@ -289,8 +283,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
+                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
+                    <span itemprop="name">Postgresql</span>
                   </a>
                 </span>
 
@@ -321,59 +315,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
       
 
       
-        <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+        <h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="源码安装方式"><a href="#源码安装方式" class="headerlink" title="源码安装方式"></a>源码安装方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cd /usr/src/ </div><div class="line">wget http://ftp.postgresql.org/pub/source/v9.4.8/postgresql-9.4.8.tar.gz</div><div class="line">tar -zxvf postgresql-9.4.8.tar.gz</div><div class="line">cd postgresql-9.1.4 </div><div class="line"></div><div class="line">./configure </div><div class="line">make </div><div class="line">make install </div><div class="line">mkdir /usr/local/pgsql/data </div><div class="line">chown postgres /usr/local/pgsql/data </div><div class="line">su – postgres </div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div></pre></td></tr></table></figure>
 
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
-
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
-exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
-
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
-
-
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
-</code></pre>
       
     </div>
 
@@ -387,7 +332,7 @@ tang                 latest              393d449b1ed4        44 seconds ago     
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
+            <a href="/tags/Postgresql/" rel="tag">#Postgresql</a>
           
         </div>
       
@@ -396,16 +341,16 @@ tang                 latest              393d449b1ed4        44 seconds ago     
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（7）--数据管理/" rel="next" title="Docker 基础（7）--数据管理">
-                <i class="fa fa-chevron-left"></i> Docker 基础（7）--数据管理
+              <a href="/2016/07/20/Tomcat相关知识整理（1）/" rel="next" title="Tomcat相关知识整理（1）">
+                <i class="fa fa-chevron-left"></i> Tomcat相关知识整理（1）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/12/Docker高级（1）--架构总览/" rel="prev" title="Docker高级（1）--架构总览">
-                Docker高级（1）--架构总览 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/04/MySQL问题系列- MySQL连接数被限制为214个/" rel="prev" title="MySQL问题系列- MySQL连接数被限制为214个">
+                MySQL问题系列- MySQL连接数被限制为214个 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +467,7 @@ tang                 latest              393d449b1ed4        44 seconds ago     
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看启动的容器"><span class="nav-number">1.</span> <span class="nav-text">查看启动的容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有的容器-包括启动、停止"><span class="nav-number">2.</span> <span class="nav-text">查看所有的容器(包括启动、停止)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器-create、run-、进入容器"><span class="nav-number">3.</span> <span class="nav-text">创建容器(create、run)、进入容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动停止容器"><span class="nav-number">4.</span> <span class="nav-text">启动停止容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器-指定容器名"><span class="nav-number">5.</span> <span class="nav-text">创建容器,指定容器名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除容器-镜像"><span class="nav-number">6.</span> <span class="nav-text">删除容器/镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导出容器-可迁移到其它机器-导入容器"><span class="nav-number">7.</span> <span class="nav-text">导出容器(可迁移到其它机器)/导入容器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPM安装方式"><span class="nav-number">1.</span> <span class="nav-text">RPM安装方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm安装包"><span class="nav-number">1.1.</span> <span class="nav-text">rpm安装包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码安装方式"><span class="nav-number">2.</span> <span class="nav-text">源码安装方式</span></a></li></ol></div>
             
           </div>
         </section>
