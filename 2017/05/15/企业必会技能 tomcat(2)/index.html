@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,16 +57,22 @@
 
 
 
-<meta name="description" content="XtraBackup备份1、yum安装mysql（以centos7为例）">
+<meta name="description" content="title: 企业必会技能 tomcat(2)date: 2016-07-22 08:09:26tags: [Tomcat]categories: Tomcat
+什么是Tomcat？　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XtraBackup主从复制及备份">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/XtraBackup主从复制及备份/index.html">
+<meta property="og:title" content="BRUCETANG">
+<meta property="og:url" content="http://yoursite.com/2017/05/15/企业必会技能 tomcat(2)/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="XtraBackup备份1、yum安装mysql（以centos7为例）">
-<meta property="og:updated_time" content="2017-04-07T14:12:45.806Z">
+<meta property="og:description" content="title: 企业必会技能 tomcat(2)date: 2016-07-22 08:09:26tags: [Tomcat]categories: Tomcat
+什么是Tomcat？　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/b1cqbsulz64u6z19rudqsr30/image_1bg5a9ggr16ul1f3ijurpfh3vk9.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/lh3h7tje5wo4xdn3iiekg01i/image_1bg5afule1blfrar3p91ltj1qs2m.png">
+<meta property="og:updated_time" content="2017-05-15T05:54:57.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XtraBackup主从复制及备份">
-<meta name="twitter:description" content="XtraBackup备份1、yum安装mysql（以centos7为例）">
+<meta name="twitter:title" content="BRUCETANG">
+<meta name="twitter:description" content="title: 企业必会技能 tomcat(2)date: 2016-07-22 08:09:26tags: [Tomcat]categories: Tomcat
+什么是Tomcat？　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/b1cqbsulz64u6z19rudqsr30/image_1bg5a9ggr16ul1f3ijurpfh3vk9.png">
 
 
 
@@ -84,7 +90,7 @@
   };
 </script>
 
-  <title> XtraBackup主从复制及备份 | BRUCETANG </title>
+  <title>  | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +263,7 @@
             
             
               
-                XtraBackup主从复制及备份
+                
               
             
           </h1>
@@ -269,30 +275,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2017-05-15T13:54:54+08:00" content="2017-05-15">
+              2017-05-15
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -315,204 +302,146 @@
       
 
       
-        <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
-</code></pre><a id="more"></a>
-<pre><code>###主从操作一致
+        <hr>
+<p>title: 企业必会技能 tomcat(2)<br>date: 2016-07-22 08:09:26<br>tags: [Tomcat]<br>categories: Tomcat</p>
+<h2 id="什么是Tomcat？"><a href="#什么是Tomcat？" class="headerlink" title="什么是Tomcat？"></a>什么是Tomcat？</h2><p>　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP<br>2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。 　　<br>　　Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat 部分是Apache 服务器的扩展，但它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。  　<br>　　诀窍是，当配置正确时，Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。目前Tomcat最新版本为9.0。</p>
+<a id="more"></a>
+<p>Apache软件基金会：<a href="http://apache.org/index.html#projects-list" target="_blank" rel="external">http://apache.org/index.html#projects-list</a></p>
+<h2 id="Tomcat版本及其区别介绍"><a href="#Tomcat版本及其区别介绍" class="headerlink" title="Tomcat版本及其区别介绍"></a>Tomcat版本及其区别介绍</h2><p><strong>TOMCAT版本的区别主要反映在两个方面：</strong></p>
+<ol>
+<li>Tomcat本身的技术演进，包括性能的不断提高，功能的增加增强，甚至于重构</li>
+<li>因为Tomcat本身是块Servlet容器的试验田，所以他的版本是跟Servlet和JSP的规范一起发展<br><img src="http://static.zybuluo.com/BruceTang/b1cqbsulz64u6z19rudqsr30/image_1bg5a9ggr16ul1f3ijurpfh3vk9.png" alt="image_1bg5a9ggr16ul1f3ijurpfh3vk9.png-66.5kB"></li>
+</ol>
+<h2 id="Tomcat-安装"><a href="#Tomcat-安装" class="headerlink" title="Tomcat 安装"></a>Tomcat 安装</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><pre><code>[root@tang ~]# /etc/init.d/iptables stop
+[root@tang ~]#getenforce 0
+Disabled
+#提示：因为tomcat是主要跑程序的，内存是需要比较大的。如果我们本地测试可以设置低一点
+</code></pre><h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>tomcat运行需要JDK支持</p>
+<pre><code>下载安装http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+配置Java环境
+# tar zxf jdk-8u91-linux-x64.tar.gz -C /usr/local/
+# ln –s /usr/local/jdk1.8.0_91 /usr/local/jdk
+# vim /etc/profile
+export JAVA_HOME=/usr/local/jdk
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+# source /etc/profile
+看到如下信息，java环境配置成功
+# java -version
+java version &quot;1.8.0_91&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
+</code></pre><p>温馨提示： JDK版本最好对应tomcat版本(可能会出现不兼容现学)</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><pre><code>[root@tang ~]# wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz
+[root@tang ~]# tar xf apache-tomcat-8.5.13.tar.gz -C /usr/local/
+[root@tang ~]# mv /usr/local/apache-tomcat-8.5.13.tar.gz/ /usr/local/tomcat
+启动
+[root@tang ~]# /usr/local/tomcat/bin/startup.sh &amp;&amp; tailf /usr/local/tomcat/logs/catalina.out 
+#这样启动是为了方便看日志
+tomcat启动停止脚本
+# 启动startup.sh
+# 停止shutdown.sh
+</code></pre><p>访问路径：<a href="http://ip:8080" target="_blank" rel="external">http://ip:8080</a> (默认8080端口)<br><img src="http://static.zybuluo.com/BruceTang/lh3h7tje5wo4xdn3iiekg01i/image_1bg5afule1blfrar3p91ltj1qs2m.png" alt="image_1bg5afule1blfrar3p91ltj1qs2m.png-201.9kB"></p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>tomcat配置文件路径<code>/tomcat/bin/server.xml</code></p>
+<pre><code># shutdown指定终止Tomcat服务器运行时,发给Tomcat服务器的shutdown监听端口的字符串.该属性必须设置
+&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
+  &lt;!-- Security listener. Documentation at /docs/config/listeners.html
+  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;
+  --&gt;
+  &lt;!--APR library loader. Documentation at /docs/apr.html --&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
+  &lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
+</code></pre><p>service服务配置</p>
+<pre><code>&lt;Connector port=&quot;8221&quot; protocol=&quot;HTTP/1.1&quot;      #port 端口配置
+           connectionTimeout=&quot;20000&quot;            #connectionTimeout指定超时的时间数(以毫秒为单位)
+           maxThreads=&quot;3000&quot;               #tomcat起动的最大线程数，即同时处理的任务个数，默认值为200
+           minSpareThreads=&quot;100&quot;　　　　　　　　　#初始化时创建的线程数
+           acceptCount=&quot;800&quot;　#指定当所有可以使用的处理请求的线程数都被使用时，
+           　　　　　　　　　　　　　　　　　　　　可以放到处理队列中的请求数，超过这个数的请求将不予处理
+           　　　　　　　　　　　　　　　　　　　　
+           maxKeepAliveRequests=&quot;200&quot;　　#表示该连接最大支持的请求数。超过该请求数的连接也将被关闭（此时就会返回一个Connection: close头给客户端）。
+           URIEncoding=&quot;UTF-8&quot;　　　　　#指定字符集
+           redirectPort=&quot;8443&quot; /&gt;   #指定服务器正在处理http请求时收到了一个SSL传输请求后重定向的端口号
+</code></pre><h2 id="设置Tomcat-内存限制"><a href="#设置Tomcat-内存限制" class="headerlink" title="设置Tomcat 内存限制"></a>设置Tomcat 内存限制</h2><p>优化catalina.sh配置文件。在catalina.sh配置文件中添加以下代码：</p>
+<pre><code>JAVA_OPTS=&quot;-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=512m -XX:MaxNewSize=512m -XX:PermSize=512m -XX:MaxPermSize=512m&quot;
+server:一定要作为第一个参数，在多个CPU时性能佳
+-Xms：初始堆内存Heap大小，使用的最小内存,cpu性能高时此值应设的大一些
+-Xmx：初始堆内存heap最大值，使用的最大内存
+上面两个值是分配JVM的最小和最大内存，取决于硬件物理内存的大小，建议均设为物理内存的一半。
+-XX:PermSize:设定内存的永久保存区域
+-XX:MaxPermSize:设定最大内存的永久保存区域
+-XX:MaxNewSize:
+-Xss 15120 这使得JBoss每增加一个线程（thread)就会立即消耗15M内存，而最佳值应该是128K,默认值好像是512k.
++XX:AggressiveHeap 会使得 Xms没有意义。这个参数让jvm忽略Xmx参数,疯狂地吃完一个G物理内存,再吃尽一个G的swap。
+-Xss：每个线程的Stack大小
+-verbose:gc 现实垃圾收集信息
+-Xloggc:gc.log 指定垃圾收集日志文件
+-Xmn：young generation的heap大小，一般设置为Xmx的3、4分之一
+-XX:+UseParNewGC ：缩短minor收集的时间
+-XX:+UseConcMarkSweepGC ：缩短major收集的时间
+</code></pre><p><strong>例子：我公司服务器Tomcat内存设置如下</strong><br>服务器硬件：2核8G<br>tomcat实例：3个tomcat实例</p>
+<pre><code>JAVA_OPTS=&quot;-server -Xms2048m -Xmx4096m&quot;
+</code></pre><h2 id="Tomcat获取用户IP地址"><a href="#Tomcat获取用户IP地址" class="headerlink" title="Tomcat获取用户IP地址"></a>Tomcat获取用户IP地址</h2><p>在tomcat配置文件<code>/conf/server.xml</code>下配置</p>
+<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+       prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
+       pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
+</code></pre><h2 id="tomcat启动停止脚本"><a href="#tomcat启动停止脚本" class="headerlink" title="tomcat启动停止脚本"></a>tomcat启动停止脚本</h2><p>考虑到Tomcat启动每次需要手动比较麻烦，我们这有写好的启动脚本</p>
+<pre><code>#!/bin/bash
+# chkconfig: 2345 74 44
+# description: Tomcat is a Java Servlet Container
+. /etc/profile
+TOMCAT_HOME=/usr/local/tomcat
+start () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+    /bin/bash $TOMCAT_HOME/bin/startup.sh
+else
+    echo &quot;$0 is  running&quot;
+fi
+}
+stop () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+        echo &quot;$0 is not running&quot;
+else
+        echo &quot;shutting down $0&quot;
+        kill -9 &quot;$TOMCAT_PID&quot; &amp;&amp; echo &quot;PID $TOMCAT_PID killed.&quot;
+fi
+}
+status () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+        echo &quot;$0 is not running&quot;
+else
+        echo &quot;$0 is running PID is $TOMCAT_PID&quot;
+fi
+}
+case $1 in
+start)
+start
+#tail -f $TOMCAT_HOME/logs/catalina.out
+;;
+stop)
+stop
+;;
+status)
+status
+;;
+restart)
+stop
+start
+#tail -f $TOMCAT_HOME/logs/catalina.out
+;;
+*)
+echo &quot;Usage:$0  {start|stop|status|restart}.&quot;
+;;
+esac
+</code></pre><p><strong>提示：</strong> 本脚本不提供log，还需要在脚本后面加上&amp;&amp; tailf logs/catalina.out</p>
 
-#查看操作系统版本：
-[root@node2 ~]# cat /etc/redhat-release
-CentOS Linux release 7.0.1406 (Core)
-
-#关闭防火墙和seLinux
-[root@node2 ~]# systemctl stop firewalld
-[root@node2 ~]# sed -i &quot;s#SELINUX=enforcing#SELINUX=disabled#g&quot; /etc/selinux/config
-[root@node2 ~]# setenforce 0
-
-#yum安装mysql
-wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-community-server
-systemctl start mysql.service
-mysql -uroot
-&gt;set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;123456&apos;);
-
-###配置主从
-主：
-vim /etc/my.cnf
-[mysqld]
-log-bin = mysql-bin
-server-id=1
-
-从：
-vim /etc/my.cnf
-[mysqld]
-log-bin = mysql-bin
-server-id=2
-
-2、安装xtrabackup备份软件（主从进行安装）
-wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.3.4/binary/redhat/6/x86_64/percona-xtrabackup-2.3.4-1.el6.x86_64.rpm
-yum install -y epel-release
-yum localinstall percona-xtrabackup-2.3.4-1.el6.x86_64.rpm
-yum install -y perl-Time-HiRes
-
-#查看版本
-&gt;select version();
-
-#查看前默认的存储引擎
-&gt;show variables like &apos;%storage_engine%&apos;;
-
-
-3、导入数据（为了模拟比较真实可以往主库导入数据）（主库操作）
-#导入bubi_api数据库
-[root@node2 opt]# mysql -uroot -ppassword &lt; bubi_api.sql #
-查看数据大小 
-&gt; use information_schema;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-&gt; select concat(round(sum(data_length/1024/1024),2),&apos;MB&apos;) as data from tables;
-+----------+
-| data |
-+----------+
-| 194.94MB |
-+----------+
-1 row in set (0.04 sec)
-
-4、数据库备份（主操作）
-###备份
-[root@node2 opt]# mkdir /extrabackup
-[root@node2 opt]# innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=bubi --parallel=4 /mnt/resource/extrabackup
-###出现completed OK! 表示备份成功
-
-语法解释：–user=数据库用户
-–password=数据库密码
-–socket=指定socket
-–default-file=指定配置文件
-- 最后面是存放位
-
-###保持事务一致（主操作）
-[root@node2 2017-02-17_14-45-11]# innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=123456 --parallel=4 --apply-log /extrabackup/2017-02-17_14-45-11/
-###出现completed OK!表示事务保持了一致，可以用于恢复
-
-
-
-
-二、mysql主从同步操作
-1、传输数据、将/extrabackup/2017-02-17_14-45-11/拷贝到从库
-[root@node2 extrabackup]# scp -r 2017-02-17_14-45-11 root@192.168.1.13:/extrabackup/
-
-2、从库恢复数据
-[root@node3 extrabackup]# ll
-总用量 0
-drwx------. 4 root root 47 2月 17 14:47 2017-02-17_14-45-11
-
-#停止mysql
-[root@node3 extrabackup]# systemctl stop mysql
-
-#清空mysql data目录
-[root@node3 extrabackup]# cd /var/lib/mysql
-[root@node3 mysql]# mv * /opt/mysqlbak/
-
-#数据恢复
-innobackupex --defaults-file=/etc/my.cnf --socket=/var/lib/mysql/mysql.sock --user=root --password=123456 --copy-back /extrabackup/2017-02-17_11-49-35/
-###出现completed OK! 表示恢复成功
-
-#还原权限
-[root@node3 mysql]# cd ..
-[root@node3 lib]# chown mysql:mysql mysql -R
-
-#重启mysql并查看数据的大小
-[root@node3 lib]# systemctl start mysql
-[root@node3 lib]# ps -ef | grep mysql
-mysql 8173 1 0 14:59 ? 00:00:00 /bin/sh /usr/bin/mysqld_safe --basedir=/usr
-mysql 8338 8173 3 14:59 ? 00:00:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/lib/mysql/mysql.sock
-root 8364 5840 0 15:00 pts/0 00:00:00 grep --color=auto mysql
-
-&gt; use information_schema;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql&gt;    
-+----------+
-| data |
-+----------+
-| 194.94MB |
-+----------+
-1 row in set (0.26 sec)
-
-###数据主从大小都一样
-
-3、mysql主从同步操作
-###主库授权
-&gt; GRANT REPLICATION SLAVE ON *.* TO &apos;rep&apos;@&apos;192.168.1.13&apos; IDENTIFIED BY &apos;123456&apos;;
-&gt;FLUSH PRIVILEGES;
-
-###从库开启同步
-[root@node3 mysql]# cat /extrabackup/2017-02-17_14-45-11/xtrabackup_binlog_info
-mysql-bin.000001 171510867
-
-CHANGE MASTER TO
-MASTER_HOST=&apos;10.25.159.23&apos;,
-MASTER_USER=&apos;rep&apos;,
-MASTER_PASSWORD=&apos;db0226&apos;,
-MASTER_PORT=3306,
-MASTER_LOG_FILE=&apos;mysql-bin.000003&apos;,
-MASTER_LOG_POS=982559769;
-
-####在还没同步之前我们可以在主库继续增加入一个库，验证不锁表是否可以同步
-mysql&gt; show databases;
-+--------------------+
-| Database |
-+--------------------+
-| information_schema |
-| bubi_api |
-| mysql |
-| performance_schema |
-| tang |
-+--------------------+
-5 rows in set (0.00 sec)
-
-#####开启主从同步
-&gt;flush logs;
-&gt; start slave; ###从库操作
-&gt; show slave status\G
-Slave_IO_Running: Yes
-Slave_SQL_Running: Yes
-
-##查看从库数据
-mysql&gt; show databases;
-+--------------------+
-| Database |
-+--------------------+
-| information_schema |
-| bubi_api |
-| mysql |
-| performance_schema |
-| tang |
-+--------------------+
-5 rows in set (0.00 sec)
-
-注意：
-1、当从库停掉了（宕机还没测试）。主库继续写入数据，从库开启时，会自动同步
-
-
-
-
-##########mysql命令
-#查看binlog是否开启
-&gt;show binary logs;
-
-#查看serverid
-&gt;show variables like &apos;server_id&apos;;
-
-#查看binlog模式
-&gt;show variables like &apos;%log%&apos;;
-
-
-&gt;/dev/null 2&gt;&amp;1
-</code></pre>
       
     </div>
 
@@ -524,28 +453,18 @@ mysql&gt; show databases;
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/Docker 基础（3）--容器登入/" rel="next" title="Docker 基础（3）--容器登入">
-                <i class="fa fa-chevron-left"></i> Docker 基础（3）--容器登入
+              <a href="/2017/05/05/100个大数据名词和术语汇总/" rel="next" title="100个大数据名词和术语汇总">
+                <i class="fa fa-chevron-left"></i> 100个大数据名词和术语汇总
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/Docker 基础（4）--镜像管理/" rel="prev" title="Docker 基础（4）--镜像管理">
-                Docker 基础（4）--镜像管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -661,7 +580,7 @@ mysql&gt; show databases;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#XtraBackup备份"><span class="nav-number">1.</span> <span class="nav-text">XtraBackup备份</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Tomcat？"><span class="nav-number">1.</span> <span class="nav-text">什么是Tomcat？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat版本及其区别介绍"><span class="nav-number">2.</span> <span class="nav-text">Tomcat版本及其区别介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-安装"><span class="nav-number">3.</span> <span class="nav-text">Tomcat 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">3.1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK"><span class="nav-number">3.2.</span> <span class="nav-text">安装JDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Tomcat"><span class="nav-number">3.3.</span> <span class="nav-text">安装Tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">4.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Tomcat-内存限制"><span class="nav-number">5.</span> <span class="nav-text">设置Tomcat 内存限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat获取用户IP地址"><span class="nav-number">6.</span> <span class="nav-text">Tomcat获取用户IP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat启动停止脚本"><span class="nav-number">7.</span> <span class="nav-text">tomcat启动停止脚本</span></a></li></ol></div>
             
           </div>
         </section>
