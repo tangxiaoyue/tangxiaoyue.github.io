@@ -4,153 +4,6 @@
   
     
     <entry>
-      <title></title>
-      <url>http://yoursite.com/2017/05/15/%E4%BC%81%E4%B8%9A%E5%BF%85%E4%BC%9A%E6%8A%80%E8%83%BD%20tomcat(2)/</url>
-      <content type="html"><![CDATA[<hr>
-<p>title: 企业必会技能 tomcat(2)<br>date: 2016-07-22 08:09:26<br>tags: [Tomcat]<br>categories: Tomcat</p>
-<h2 id="什么是Tomcat？"><a href="#什么是Tomcat？" class="headerlink" title="什么是Tomcat？"></a>什么是Tomcat？</h2><p>　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP<br>2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。 　　<br>　　Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat 部分是Apache 服务器的扩展，但它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。  　<br>　　诀窍是，当配置正确时，Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。目前Tomcat最新版本为9.0。</p>
-<a id="more"></a>
-<p>Apache软件基金会：<a href="http://apache.org/index.html#projects-list" target="_blank" rel="external">http://apache.org/index.html#projects-list</a></p>
-<h2 id="Tomcat版本及其区别介绍"><a href="#Tomcat版本及其区别介绍" class="headerlink" title="Tomcat版本及其区别介绍"></a>Tomcat版本及其区别介绍</h2><p><strong>TOMCAT版本的区别主要反映在两个方面：</strong></p>
-<ol>
-<li>Tomcat本身的技术演进，包括性能的不断提高，功能的增加增强，甚至于重构</li>
-<li>因为Tomcat本身是块Servlet容器的试验田，所以他的版本是跟Servlet和JSP的规范一起发展<br><img src="http://static.zybuluo.com/BruceTang/b1cqbsulz64u6z19rudqsr30/image_1bg5a9ggr16ul1f3ijurpfh3vk9.png" alt="image_1bg5a9ggr16ul1f3ijurpfh3vk9.png-66.5kB"></li>
-</ol>
-<h2 id="Tomcat-安装"><a href="#Tomcat-安装" class="headerlink" title="Tomcat 安装"></a>Tomcat 安装</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><pre><code>[root@tang ~]# /etc/init.d/iptables stop
-[root@tang ~]#getenforce 0
-Disabled
-#提示：因为tomcat是主要跑程序的，内存是需要比较大的。如果我们本地测试可以设置低一点
-</code></pre><h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>tomcat运行需要JDK支持</p>
-<pre><code>下载安装http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-配置Java环境
-# tar zxf jdk-8u91-linux-x64.tar.gz -C /usr/local/
-# ln –s /usr/local/jdk1.8.0_91 /usr/local/jdk
-# vim /etc/profile
-export JAVA_HOME=/usr/local/jdk
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export PATH=$PATH:$JAVA_HOME/bin
-# source /etc/profile
-看到如下信息，java环境配置成功
-# java -version
-java version &quot;1.8.0_91&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
-Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
-</code></pre><p>温馨提示： JDK版本最好对应tomcat版本(可能会出现不兼容现学)</p>
-<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><pre><code>[root@tang ~]# wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz
-[root@tang ~]# tar xf apache-tomcat-8.5.13.tar.gz -C /usr/local/
-[root@tang ~]# mv /usr/local/apache-tomcat-8.5.13.tar.gz/ /usr/local/tomcat
-启动
-[root@tang ~]# /usr/local/tomcat/bin/startup.sh &amp;&amp; tailf /usr/local/tomcat/logs/catalina.out 
-#这样启动是为了方便看日志
-tomcat启动停止脚本
-# 启动startup.sh
-# 停止shutdown.sh
-</code></pre><p>访问路径：<a href="http://ip:8080" target="_blank" rel="external">http://ip:8080</a> (默认8080端口)<br><img src="http://static.zybuluo.com/BruceTang/lh3h7tje5wo4xdn3iiekg01i/image_1bg5afule1blfrar3p91ltj1qs2m.png" alt="image_1bg5afule1blfrar3p91ltj1qs2m.png-201.9kB"></p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>tomcat配置文件路径<code>/tomcat/bin/server.xml</code></p>
-<pre><code># shutdown指定终止Tomcat服务器运行时,发给Tomcat服务器的shutdown监听端口的字符串.该属性必须设置
-&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
-  &lt;!-- Security listener. Documentation at /docs/config/listeners.html
-  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;
-  --&gt;
-  &lt;!--APR library loader. Documentation at /docs/apr.html --&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
-  &lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
-</code></pre><p>service服务配置</p>
-<pre><code>&lt;Connector port=&quot;8221&quot; protocol=&quot;HTTP/1.1&quot;      #port 端口配置
-           connectionTimeout=&quot;20000&quot;            #connectionTimeout指定超时的时间数(以毫秒为单位)
-           maxThreads=&quot;3000&quot;               #tomcat起动的最大线程数，即同时处理的任务个数，默认值为200
-           minSpareThreads=&quot;100&quot;　　　　　　　　　#初始化时创建的线程数
-           acceptCount=&quot;800&quot;　#指定当所有可以使用的处理请求的线程数都被使用时，
-           　　　　　　　　　　　　　　　　　　　　可以放到处理队列中的请求数，超过这个数的请求将不予处理
-           　　　　　　　　　　　　　　　　　　　　
-           maxKeepAliveRequests=&quot;200&quot;　　#表示该连接最大支持的请求数。超过该请求数的连接也将被关闭（此时就会返回一个Connection: close头给客户端）。
-           URIEncoding=&quot;UTF-8&quot;　　　　　#指定字符集
-           redirectPort=&quot;8443&quot; /&gt;   #指定服务器正在处理http请求时收到了一个SSL传输请求后重定向的端口号
-</code></pre><h2 id="设置Tomcat-内存限制"><a href="#设置Tomcat-内存限制" class="headerlink" title="设置Tomcat 内存限制"></a>设置Tomcat 内存限制</h2><p>优化catalina.sh配置文件。在catalina.sh配置文件中添加以下代码：</p>
-<pre><code>JAVA_OPTS=&quot;-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=512m -XX:MaxNewSize=512m -XX:PermSize=512m -XX:MaxPermSize=512m&quot;
-server:一定要作为第一个参数，在多个CPU时性能佳
--Xms：初始堆内存Heap大小，使用的最小内存,cpu性能高时此值应设的大一些
--Xmx：初始堆内存heap最大值，使用的最大内存
-上面两个值是分配JVM的最小和最大内存，取决于硬件物理内存的大小，建议均设为物理内存的一半。
--XX:PermSize:设定内存的永久保存区域
--XX:MaxPermSize:设定最大内存的永久保存区域
--XX:MaxNewSize:
--Xss 15120 这使得JBoss每增加一个线程（thread)就会立即消耗15M内存，而最佳值应该是128K,默认值好像是512k.
-+XX:AggressiveHeap 会使得 Xms没有意义。这个参数让jvm忽略Xmx参数,疯狂地吃完一个G物理内存,再吃尽一个G的swap。
--Xss：每个线程的Stack大小
--verbose:gc 现实垃圾收集信息
--Xloggc:gc.log 指定垃圾收集日志文件
--Xmn：young generation的heap大小，一般设置为Xmx的3、4分之一
--XX:+UseParNewGC ：缩短minor收集的时间
--XX:+UseConcMarkSweepGC ：缩短major收集的时间
-</code></pre><p><strong>例子：我公司服务器Tomcat内存设置如下</strong><br>服务器硬件：2核8G<br>tomcat实例：3个tomcat实例</p>
-<pre><code>JAVA_OPTS=&quot;-server -Xms2048m -Xmx4096m&quot;
-</code></pre><h2 id="Tomcat获取用户IP地址"><a href="#Tomcat获取用户IP地址" class="headerlink" title="Tomcat获取用户IP地址"></a>Tomcat获取用户IP地址</h2><p>在tomcat配置文件<code>/conf/server.xml</code>下配置</p>
-<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
-       prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
-       pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
-</code></pre><h2 id="tomcat启动停止脚本"><a href="#tomcat启动停止脚本" class="headerlink" title="tomcat启动停止脚本"></a>tomcat启动停止脚本</h2><p>考虑到Tomcat启动每次需要手动比较麻烦，我们这有写好的启动脚本</p>
-<pre><code>#!/bin/bash
-# chkconfig: 2345 74 44
-# description: Tomcat is a Java Servlet Container
-. /etc/profile
-TOMCAT_HOME=/usr/local/tomcat
-start () {
-TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
-if [ -z $TOMCAT_PID ];then
-    /bin/bash $TOMCAT_HOME/bin/startup.sh
-else
-    echo &quot;$0 is  running&quot;
-fi
-}
-stop () {
-TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
-if [ -z $TOMCAT_PID ];then
-        echo &quot;$0 is not running&quot;
-else
-        echo &quot;shutting down $0&quot;
-        kill -9 &quot;$TOMCAT_PID&quot; &amp;&amp; echo &quot;PID $TOMCAT_PID killed.&quot;
-fi
-}
-status () {
-TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
-if [ -z $TOMCAT_PID ];then
-        echo &quot;$0 is not running&quot;
-else
-        echo &quot;$0 is running PID is $TOMCAT_PID&quot;
-fi
-}
-case $1 in
-start)
-start
-#tail -f $TOMCAT_HOME/logs/catalina.out
-;;
-stop)
-stop
-;;
-status)
-status
-;;
-restart)
-stop
-start
-#tail -f $TOMCAT_HOME/logs/catalina.out
-;;
-*)
-echo &quot;Usage:$0  {start|stop|status|restart}.&quot;
-;;
-esac
-</code></pre><p><strong>提示：</strong> 本脚本不提供log，还需要在脚本后面加上&amp;&amp; tailf logs/catalina.out</p>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[100个大数据名词和术语汇总]]></title>
       <url>http://yoursite.com/2017/05/05/100%E4%B8%AA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%8D%E8%AF%8D%E5%92%8C%E6%9C%AF%E8%AF%AD%E6%B1%87%E6%80%BB/</url>
       <content type="html"><![CDATA[<p>数据的出现带来了许多新的术语，但这些术语往往比较难以理解。因此，我们通过本文给出一个常用的大数据术语表，抛砖引玉，供大家深入了解，部分定义参考了相应的博客文章。</p>
@@ -1127,6 +980,83 @@ Syslog 514 系统登陆器
     </entry>
     
     <entry>
+      <title><![CDATA[Docker 基础（2）--命令]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
+</code></pre><a id="more"></a>
+<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
+docker pull images                                    #下载镜像
+docker    images                                    #查看镜像
+docker tag centos6  centos6_x86                                    #镜像改名
+docker save image&gt;/opt/images.tar.gz                                    #导出镜像
+docker load&lt;/opt/images.tar.gz                                    #导入镜像
+docker load --input /opt/images.tar.gz                                            #导入镜像
+docker rmi images_id                                                            #删除镜像
+docker rmi $(docker images -q)                                                    #删除所有镜像
+</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
+docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
+docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
+                                                                                    --name：指定容器名    
+                                                                                    -t：分配一个tty终端    
+                                                                                    -i：容器的标准输出保持打开状态 
+                                                                                    -h:指定主机名
+docker create -it --name centos1 centos                                            #使用create创建容器
+docekr stop ID（name）                                                            #停止容器
+docker start ID（name）                                                            #启动容器
+docker attach ID（name）                                                            #进入容器
+docker exec -it ID(name)  /bin/bash
+docker rm  ID（name）                                                            #删除容器    
+                                                                                    -f：强制删除容器，包括在运行的
+                                                                                #exec和attach总结: 
+                                                                                    attach登陆容器后,退出时容器会关闭. 
+                                                                                    推荐使用exec进入容器
+docker rm $(docker ps -a -q)                                                    #删除所有容器
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
+docker run --name nginx -d -p 81:80 nginx                                         #指定映射
+docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
+</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
+</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
+docekr inspect ID(name)                                                            #查看容器信息
+                                                                                    ==查看mounts模块
+docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
+docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
+                                                                                    ==rw：读写
+docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
+                                                                                ==ro：只读
+docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
+</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
+                                            -d：直接在后台执行
+docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
+docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
+                                        #test1和test2的/data数据可以共享
+</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
+</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+yum install -y nginx
+docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
+                                            ==同时打一个标签叫mynginx:v1
+                                            ==tang相当于你向github上提交的用户名
+docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
+```
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 基础（9）--Dockerfile]]></title>
       <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%889%EF%BC%89--Dockerfile/</url>
       <content type="html"><![CDATA[<h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
@@ -1278,83 +1208,6 @@ ENV &lt;key&gt;=&lt;value&gt; ...
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（2）--命令]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
-</code></pre><a id="more"></a>
-<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
-docker pull images                                    #下载镜像
-docker    images                                    #查看镜像
-docker tag centos6  centos6_x86                                    #镜像改名
-docker save image&gt;/opt/images.tar.gz                                    #导出镜像
-docker load&lt;/opt/images.tar.gz                                    #导入镜像
-docker load --input /opt/images.tar.gz                                            #导入镜像
-docker rmi images_id                                                            #删除镜像
-docker rmi $(docker images -q)                                                    #删除所有镜像
-</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
-docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
-docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
-                                                                                    --name：指定容器名    
-                                                                                    -t：分配一个tty终端    
-                                                                                    -i：容器的标准输出保持打开状态 
-                                                                                    -h:指定主机名
-docker create -it --name centos1 centos                                            #使用create创建容器
-docekr stop ID（name）                                                            #停止容器
-docker start ID（name）                                                            #启动容器
-docker attach ID（name）                                                            #进入容器
-docker exec -it ID(name)  /bin/bash
-docker rm  ID（name）                                                            #删除容器    
-                                                                                    -f：强制删除容器，包括在运行的
-                                                                                #exec和attach总结: 
-                                                                                    attach登陆容器后,退出时容器会关闭. 
-                                                                                    推荐使用exec进入容器
-docker rm $(docker ps -a -q)                                                    #删除所有容器
-</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
-docker run --name nginx -d -p 81:80 nginx                                         #指定映射
-docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
-</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
-</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
-docekr inspect ID(name)                                                            #查看容器信息
-                                                                                    ==查看mounts模块
-docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
-docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
-                                                                                    ==rw：读写
-docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
-                                                                                ==ro：只读
-docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
-</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
-                                            -d：直接在后台执行
-docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
-docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
-                                        #test1和test2的/data数据可以共享
-</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
-</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-yum install -y nginx
-docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
-                                            ==同时打一个标签叫mynginx:v1
-                                            ==tang相当于你向github上提交的用户名
-docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
-```
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Docker问题梳理--持续更新]]></title>
       <url>http://yoursite.com/2017/03/11/Docker%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/</url>
       <content type="html"><![CDATA[<h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
@@ -1367,211 +1220,6 @@ Failed to get D-Bus connection: Operation not permitted
 解决：
 
 docker run --privileged -itd -h node1 --name node1 centos /sbin/init
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
-</code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
-
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
-
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
-exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
-
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
-
-
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
-<a id="more"></a>
-<pre><code>[root@tang ~]# docker pull registry
-
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
-
-默认占用5000端口，我们查看是否存在5000端口
-[root@tang ~]# netstat -lntup | grep 5000
-
-运行容器
-[root@tang ~]# docker run -d -p 5000:5000 registry
-f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
-
-提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（4）--镜像管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%884%EF%BC%89--%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre>  <a id="more"></a>
-<pre><code>[root@tang ~]# docker run -it -h nginx --name nginx  centos  /bin/bash
-
-[root@nginx /]# rpm -ivh
-http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-
-[root@nginx /]# yum install -y nginx
-
-[root@tang ~]# docker ps -a 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e46c71171306        centos              &quot;/bin/bash&quot;         2 minutes ago       Exited (0) 40 seconds ago                       nginx
-
-[root@tang ~]# docker commit -m &quot;my nginx&quot; -a &quot;tang&quot; e46c71171306 new_nginx:v1
-sha256:c15ceb0a6871e3a56e3b22d67254d09b2e03a8ae909719a6dea0daaf937940ef
-
-    -m: 改动信息
-    -a: 作者信息
-    e46c71171306: 这一串为容器ID
-    new_nginx:01 新镜像的名字
-
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
-new_nginx            v1                  c15ceb0a6871        About a minute ago   355 MB
-docker.io/centos     latest              98d35105a391        2 weeks ago          192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago          33.17 MB
-</code></pre><h3 id="基于本地模块创建镜像"><a href="#基于本地模块创建镜像" class="headerlink" title="基于本地模块创建镜像"></a>基于本地模块创建镜像</h3><pre><code>模版获取,直接到openva官网下载(https://openvz.org/Download/template/precreated)
-
-[root@tang opt]# wget http://download.openvz.org/template/precreated/centos-6-x86_64-minimal.tar.gz
-
-[root@tang opt]# cat centos-6-x86_64-minimal.tar.gz |docker import - centos6
-sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-
-[root@tang opt]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-centos6      
-</code></pre><h3 id="镜像导出-导入"><a href="#镜像导出-导入" class="headerlink" title="镜像导出/导入"></a>镜像导出/导入</h3><pre><code>[root@tang opt]# docker save centos6 &gt;/opt/centos6.tar.gz   #导出
-
-[root@tang opt]# ll
-total 1539880
--rw-r--r-- 1 root root 565194752 Apr  2 16:19 centos6.tar.gz
-
-[root@tang opt]# docker rmi centos6
-Untagged: centos6:latest
-Deleted: sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-Deleted: sha256:dbcc6b3893af5f0b45e06f2934f73f5dc34f2e9e54fc4d50a51cc47195f19089
-
-[root@tang opt]# docker load &lt; /opt/centos6.tar.gz              #导入
-[root@tang opt]# docker load --input /opt/centos6.tar.gz        #导入
-
-#以上两种导入方法都可以
-
-[root@tang opt]# docker tag centos6  centos6_x86                #改名
-</code></pre><h3 id="将镜像上传到dockerhub官网"><a href="#将镜像上传到dockerhub官网" class="headerlink" title="将镜像上传到dockerhub官网"></a>将镜像上传到dockerhub官网</h3><pre><code>需要提前注册dockerhub账号
-
-1. docker hub 帐号在本地验证登陆:
-
-[root@tang opt]# docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.
-Username: tangxiaoyue
-Password: 
-Login Succeeded
-
-2. docker push 镜像到docker hub 的仓库
-docker push
-&lt;hub-user&gt;/&lt;repo-name&gt;:&lt;tag&gt;
-
-[root@tang ~]# docker tag centos tangxiaoyue/centos_tang:latest
-
-[root@tang ~]# docker push tangxiaoyue/centos_tang
-The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
-9b198ff9ff5b: Mounted from library/centos 
-latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
 </code></pre>]]></content>
       
         <categories>
@@ -1801,6 +1449,78 @@ mysql&gt; show databases;
         <tags>
             
             <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+</code></pre>  <a id="more"></a>
+<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+
+Exited:表示该容器已经退出。没有启动
+</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
+3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
+
+[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
+[root@b5dbba42703a /]# exit
+exit
+</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+[root@tang ~]# docker start tang_run                #start启动容器
+tang_run
+
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
+
+[root@tang ~]# docker stop tang_run                 #stop停止容器
+tang_run
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
+8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
+        -d: 容器退出后不关闭容器.
+        -h:指定主机名
+</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
+[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
+[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
+</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
+[root@tang ~]# docker rm tang
+tang
+[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
+
+
+提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
             
         </tags>
         
@@ -2094,7 +1814,7 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
 </code></pre><blockquote>
 <p>显示效果：</p>
 </blockquote>
-<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#97;&#100;&#x64;&#114;&#x65;&#x73;&#x73;&#64;&#101;&#x78;&#97;&#x6d;&#112;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;">&#97;&#100;&#x64;&#114;&#x65;&#x73;&#x73;&#64;&#101;&#x78;&#97;&#x6d;&#112;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;</a></p>
+<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#97;&#100;&#100;&#x72;&#x65;&#x73;&#115;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#109;">&#97;&#100;&#100;&#x72;&#x65;&#x73;&#115;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#109;</a></p>
 <h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
 <p>代码：  </p>
 </blockquote>
@@ -2316,6 +2036,100 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
     </entry>
     
     <entry>
+      <title><![CDATA[Docker 基础（4）--镜像管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%884%EF%BC%89--%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre>  <a id="more"></a>
+<pre><code>[root@tang ~]# docker run -it -h nginx --name nginx  centos  /bin/bash
+
+[root@nginx /]# rpm -ivh
+http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+
+[root@nginx /]# yum install -y nginx
+
+[root@tang ~]# docker ps -a 
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e46c71171306        centos              &quot;/bin/bash&quot;         2 minutes ago       Exited (0) 40 seconds ago                       nginx
+
+[root@tang ~]# docker commit -m &quot;my nginx&quot; -a &quot;tang&quot; e46c71171306 new_nginx:v1
+sha256:c15ceb0a6871e3a56e3b22d67254d09b2e03a8ae909719a6dea0daaf937940ef
+
+    -m: 改动信息
+    -a: 作者信息
+    e46c71171306: 这一串为容器ID
+    new_nginx:01 新镜像的名字
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
+new_nginx            v1                  c15ceb0a6871        About a minute ago   355 MB
+docker.io/centos     latest              98d35105a391        2 weeks ago          192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago          33.17 MB
+</code></pre><h3 id="基于本地模块创建镜像"><a href="#基于本地模块创建镜像" class="headerlink" title="基于本地模块创建镜像"></a>基于本地模块创建镜像</h3><pre><code>模版获取,直接到openva官网下载(https://openvz.org/Download/template/precreated)
+
+[root@tang opt]# wget http://download.openvz.org/template/precreated/centos-6-x86_64-minimal.tar.gz
+
+[root@tang opt]# cat centos-6-x86_64-minimal.tar.gz |docker import - centos6
+sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
+
+[root@tang opt]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+centos6      
+</code></pre><h3 id="镜像导出-导入"><a href="#镜像导出-导入" class="headerlink" title="镜像导出/导入"></a>镜像导出/导入</h3><pre><code>[root@tang opt]# docker save centos6 &gt;/opt/centos6.tar.gz   #导出
+
+[root@tang opt]# ll
+total 1539880
+-rw-r--r-- 1 root root 565194752 Apr  2 16:19 centos6.tar.gz
+
+[root@tang opt]# docker rmi centos6
+Untagged: centos6:latest
+Deleted: sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
+Deleted: sha256:dbcc6b3893af5f0b45e06f2934f73f5dc34f2e9e54fc4d50a51cc47195f19089
+
+[root@tang opt]# docker load &lt; /opt/centos6.tar.gz              #导入
+[root@tang opt]# docker load --input /opt/centos6.tar.gz        #导入
+
+#以上两种导入方法都可以
+
+[root@tang opt]# docker tag centos6  centos6_x86                #改名
+</code></pre><h3 id="将镜像上传到dockerhub官网"><a href="#将镜像上传到dockerhub官网" class="headerlink" title="将镜像上传到dockerhub官网"></a>将镜像上传到dockerhub官网</h3><pre><code>需要提前注册dockerhub账号
+
+1. docker hub 帐号在本地验证登陆:
+
+[root@tang opt]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.
+Username: tangxiaoyue
+Password: 
+Login Succeeded
+
+2. docker push 镜像到docker hub 的仓库
+docker push
+&lt;hub-user&gt;/&lt;repo-name&gt;:&lt;tag&gt;
+
+[root@tang ~]# docker tag centos tangxiaoyue/centos_tang:latest
+
+[root@tang ~]# docker push tangxiaoyue/centos_tang
+The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
+9b198ff9ff5b: Mounted from library/centos 
+latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 基础（7）--数据管理]]></title>
       <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%887%EF%BC%89--%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/</url>
       <content type="html"><![CDATA[<h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
@@ -2450,6 +2264,45 @@ logout
 [root@tang1 tang1]# ll
 total 4
 drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+<a id="more"></a>
+<pre><code>[root@tang ~]# docker pull registry
+
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+
+默认占用5000端口，我们查看是否存在5000端口
+[root@tang ~]# netstat -lntup | grep 5000
+
+运行容器
+[root@tang ~]# docker run -d -p 5000:5000 registry
+f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
+
+提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
 </code></pre>]]></content>
       
         <categories>
@@ -4345,10 +4198,168 @@ Active connections: 当前活跃的连接数
     </entry>
     
     <entry>
-      <title><![CDATA[postgresql（3）--常用命令]]></title>
-      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%883%EF%BC%89--%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
+      <title><![CDATA[企业必会技能 tomcat(2)]]></title>
+      <url>http://yoursite.com/2016/07/22/%E4%BC%81%E4%B8%9A%E5%BF%85%E4%BC%9A%E6%8A%80%E8%83%BD%20tomcat(2)/</url>
+      <content type="html"><![CDATA[<h2 id="什么是Tomcat？"><a href="#什么是Tomcat？" class="headerlink" title="什么是Tomcat？"></a>什么是Tomcat？</h2><p>　Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP<br>2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。 　　<br>　　Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat 部分是Apache 服务器的扩展，但它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。  　<br>　　诀窍是，当配置正确时，Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。目前Tomcat最新版本为9.0。</p>
+<a id="more"></a>
+<p>Apache软件基金会：<a href="http://apache.org/index.html#projects-list" target="_blank" rel="external">http://apache.org/index.html#projects-list</a></p>
+<h2 id="Tomcat版本及其区别介绍"><a href="#Tomcat版本及其区别介绍" class="headerlink" title="Tomcat版本及其区别介绍"></a>Tomcat版本及其区别介绍</h2><p><strong>TOMCAT版本的区别主要反映在两个方面：</strong></p>
+<ol>
+<li>Tomcat本身的技术演进，包括性能的不断提高，功能的增加增强，甚至于重构</li>
+<li>因为Tomcat本身是块Servlet容器的试验田，所以他的版本是跟Servlet和JSP的规范一起发展<br><img src="http://static.zybuluo.com/BruceTang/b1cqbsulz64u6z19rudqsr30/image_1bg5a9ggr16ul1f3ijurpfh3vk9.png" alt="image_1bg5a9ggr16ul1f3ijurpfh3vk9.png-66.5kB"></li>
+</ol>
+<h2 id="Tomcat-安装"><a href="#Tomcat-安装" class="headerlink" title="Tomcat 安装"></a>Tomcat 安装</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><pre><code>[root@tang ~]# /etc/init.d/iptables stop
+[root@tang ~]#getenforce 0
+Disabled
+#提示：因为tomcat是主要跑程序的，内存是需要比较大的。如果我们本地测试可以设置低一点
+</code></pre><h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>tomcat运行需要JDK支持</p>
+<pre><code>下载安装http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+配置Java环境
+# tar zxf jdk-8u91-linux-x64.tar.gz -C /usr/local/
+# ln –s /usr/local/jdk1.8.0_91 /usr/local/jdk
+# vim /etc/profile
+export JAVA_HOME=/usr/local/jdk
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+# source /etc/profile
+看到如下信息，java环境配置成功
+# java -version
+java version &quot;1.8.0_91&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
+</code></pre><p>温馨提示： JDK版本最好对应tomcat版本(可能会出现不兼容现学)</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><pre><code>[root@tang ~]# wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz
+[root@tang ~]# tar xf apache-tomcat-8.5.13.tar.gz -C /usr/local/
+[root@tang ~]# mv /usr/local/apache-tomcat-8.5.13.tar.gz/ /usr/local/tomcat
+启动
+[root@tang ~]# /usr/local/tomcat/bin/startup.sh &amp;&amp; tailf /usr/local/tomcat/logs/catalina.out 
+#这样启动是为了方便看日志
+tomcat启动停止脚本
+# 启动startup.sh
+# 停止shutdown.sh
+</code></pre><p>访问路径：<a href="http://ip:8080" target="_blank" rel="external">http://ip:8080</a> (默认8080端口)<br><img src="http://static.zybuluo.com/BruceTang/lh3h7tje5wo4xdn3iiekg01i/image_1bg5afule1blfrar3p91ltj1qs2m.png" alt="image_1bg5afule1blfrar3p91ltj1qs2m.png-201.9kB"></p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>tomcat配置文件路径<code>/tomcat/bin/server.xml</code></p>
+<pre><code># shutdown指定终止Tomcat服务器运行时,发给Tomcat服务器的shutdown监听端口的字符串.该属性必须设置
+&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
+  &lt;!-- Security listener. Documentation at /docs/config/listeners.html
+  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;
+  --&gt;
+  &lt;!--APR library loader. Documentation at /docs/apr.html --&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
+  &lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
+</code></pre><p>service服务配置</p>
+<pre><code>&lt;Connector port=&quot;8221&quot; protocol=&quot;HTTP/1.1&quot;      #port 端口配置
+           connectionTimeout=&quot;20000&quot;            #connectionTimeout指定超时的时间数(以毫秒为单位)
+           maxThreads=&quot;3000&quot;               #tomcat起动的最大线程数，即同时处理的任务个数，默认值为200
+           minSpareThreads=&quot;100&quot;　　　　　　　　　#初始化时创建的线程数
+           acceptCount=&quot;800&quot;　#指定当所有可以使用的处理请求的线程数都被使用时，
+           　　　　　　　　　　　　　　　　　　　　可以放到处理队列中的请求数，超过这个数的请求将不予处理
+           　　　　　　　　　　　　　　　　　　　　
+           maxKeepAliveRequests=&quot;200&quot;　　#表示该连接最大支持的请求数。超过该请求数的连接也将被关闭（此时就会返回一个Connection: close头给客户端）。
+           URIEncoding=&quot;UTF-8&quot;　　　　　#指定字符集
+           redirectPort=&quot;8443&quot; /&gt;   #指定服务器正在处理http请求时收到了一个SSL传输请求后重定向的端口号
+</code></pre><h2 id="设置Tomcat-内存限制"><a href="#设置Tomcat-内存限制" class="headerlink" title="设置Tomcat 内存限制"></a>设置Tomcat 内存限制</h2><p>优化catalina.sh配置文件。在catalina.sh配置文件中添加以下代码：</p>
+<pre><code>JAVA_OPTS=&quot;-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms1024m -Xmx1024m -XX:NewSize=512m -XX:MaxNewSize=512m -XX:PermSize=512m -XX:MaxPermSize=512m&quot;
+server:一定要作为第一个参数，在多个CPU时性能佳
+-Xms：初始堆内存Heap大小，使用的最小内存,cpu性能高时此值应设的大一些
+-Xmx：初始堆内存heap最大值，使用的最大内存
+上面两个值是分配JVM的最小和最大内存，取决于硬件物理内存的大小，建议均设为物理内存的一半。
+-XX:PermSize:设定内存的永久保存区域
+-XX:MaxPermSize:设定最大内存的永久保存区域
+-XX:MaxNewSize:
+-Xss 15120 这使得JBoss每增加一个线程（thread)就会立即消耗15M内存，而最佳值应该是128K,默认值好像是512k.
++XX:AggressiveHeap 会使得 Xms没有意义。这个参数让jvm忽略Xmx参数,疯狂地吃完一个G物理内存,再吃尽一个G的swap。
+-Xss：每个线程的Stack大小
+-verbose:gc 现实垃圾收集信息
+-Xloggc:gc.log 指定垃圾收集日志文件
+-Xmn：young generation的heap大小，一般设置为Xmx的3、4分之一
+-XX:+UseParNewGC ：缩短minor收集的时间
+-XX:+UseConcMarkSweepGC ：缩短major收集的时间
+</code></pre><p><strong>例子：我公司服务器Tomcat内存设置如下</strong><br>服务器硬件：2核8G<br>tomcat实例：3个tomcat实例</p>
+<pre><code>JAVA_OPTS=&quot;-server -Xms2048m -Xmx4096m&quot;
+</code></pre><h2 id="Tomcat获取用户IP地址"><a href="#Tomcat获取用户IP地址" class="headerlink" title="Tomcat获取用户IP地址"></a>Tomcat获取用户IP地址</h2><p>在tomcat配置文件<code>/conf/server.xml</code>下配置</p>
+<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+       prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
+       pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
+</code></pre><h2 id="tomcat启动停止脚本"><a href="#tomcat启动停止脚本" class="headerlink" title="tomcat启动停止脚本"></a>tomcat启动停止脚本</h2><p>考虑到Tomcat启动每次需要手动比较麻烦，我们这有写好的启动脚本</p>
+<pre><code>#!/bin/bash
+# chkconfig: 2345 74 44
+# description: Tomcat is a Java Servlet Container
+. /etc/profile
+TOMCAT_HOME=/usr/local/tomcat
+start () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+    /bin/bash $TOMCAT_HOME/bin/startup.sh
+else
+    echo &quot;$0 is  running&quot;
+fi
+}
+stop () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+        echo &quot;$0 is not running&quot;
+else
+        echo &quot;shutting down $0&quot;
+        kill -9 &quot;$TOMCAT_PID&quot; &amp;&amp; echo &quot;PID $TOMCAT_PID killed.&quot;
+fi
+}
+status () {
+TOMCAT_PID=`ps -ef |grep &quot;$TOMCAT_HOME&quot; |grep -v &quot;grep&quot; |awk &apos;{print $2}&apos;`
+if [ -z $TOMCAT_PID ];then
+        echo &quot;$0 is not running&quot;
+else
+        echo &quot;$0 is running PID is $TOMCAT_PID&quot;
+fi
+}
+case $1 in
+start)
+start
+#tail -f $TOMCAT_HOME/logs/catalina.out
+;;
+stop)
+stop
+;;
+status)
+status
+;;
+restart)
+stop
+start
+#tail -f $TOMCAT_HOME/logs/catalina.out
+;;
+*)
+echo &quot;Usage:$0  {start|stop|status|restart}.&quot;
+;;
+esac
+</code></pre><p><strong>提示：</strong> 本脚本不提供log，还需要在脚本后面加上&amp;&amp; tailf logs/catalina.out</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tomcat </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Tomcat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[postgresql（2）--安装方式]]></title>
+      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%882%EF%BC%89--%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="源码安装方式"><a href="#源码安装方式" class="headerlink" title="源码安装方式"></a>源码安装方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cd /usr/src/ </div><div class="line">wget http://ftp.postgresql.org/pub/source/v9.4.8/postgresql-9.4.8.tar.gz</div><div class="line">tar -zxvf postgresql-9.4.8.tar.gz</div><div class="line">cd postgresql-9.1.4 </div><div class="line"></div><div class="line">./configure </div><div class="line">make </div><div class="line">make install </div><div class="line">mkdir /usr/local/pgsql/data </div><div class="line">chown postgres /usr/local/pgsql/data </div><div class="line">su – postgres </div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -4367,11 +4378,10 @@ Active connections: 当前活跃的连接数
     </entry>
     
     <entry>
-      <title><![CDATA[postgresql（2）--安装方式]]></title>
-      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%882%EF%BC%89--%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="源码安装方式"><a href="#源码安装方式" class="headerlink" title="源码安装方式"></a>源码安装方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cd /usr/src/ </div><div class="line">wget http://ftp.postgresql.org/pub/source/v9.4.8/postgresql-9.4.8.tar.gz</div><div class="line">tar -zxvf postgresql-9.4.8.tar.gz</div><div class="line">cd postgresql-9.1.4 </div><div class="line"></div><div class="line">./configure </div><div class="line">make </div><div class="line">make install </div><div class="line">mkdir /usr/local/pgsql/data </div><div class="line">chown postgres /usr/local/pgsql/data </div><div class="line">su – postgres </div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div></pre></td></tr></table></figure>
+      <title><![CDATA[postgresql（3）--常用命令]]></title>
+      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%883%EF%BC%89--%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -5210,6 +5220,32 @@ Sort_scan | 1823485 |
     </entry>
     
     <entry>
+      <title><![CDATA[Nginx服务器http重定向到https]]></title>
+      <url>http://yoursite.com/2016/03/11/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8http%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0https/</url>
+      <content type="html"><![CDATA[<p>http重定向到https使用了nginx的重定向命令。那么应该如何写重定向？之前老版本的nginx可能使用了以下类似的格式。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^/(.*)$ http://domain.com/$1 permanent;</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^ http://domain.com$request_uri? permanent;</div></pre></td></tr></table></figure></p>
+<p>现在nginx新版本已经换了种写法，上面这些已经不再推荐。</p>
+<p>下面是nginx http页面重定向到https页面最新支持的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen      80;</div><div class="line">    server_name    my.domain.com;</div><div class="line">    return      301 https://$server_name$request_uri;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen      443 ssl;</div><div class="line">    server_name    my.domain.com;</div><div class="line"></div><div class="line">    [....]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> nginx </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mysqladmin命令总结]]></title>
       <url>http://yoursite.com/2016/03/11/Mysqladmin%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<pre><code>mysqladmin 工具的使用格式：
@@ -5302,32 +5338,6 @@ mysqladmin [option] command [command option] command ......
         <tags>
             
             <tag> Mysql </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Nginx服务器http重定向到https]]></title>
-      <url>http://yoursite.com/2016/03/11/Nginx%E6%9C%8D%E5%8A%A1%E5%99%A8http%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0https/</url>
-      <content type="html"><![CDATA[<p>http重定向到https使用了nginx的重定向命令。那么应该如何写重定向？之前老版本的nginx可能使用了以下类似的格式。</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^/(.*)$ http://domain.com/$1 permanent;</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^ http://domain.com$request_uri? permanent;</div></pre></td></tr></table></figure></p>
-<p>现在nginx新版本已经换了种写法，上面这些已经不再推荐。</p>
-<p>下面是nginx http页面重定向到https页面最新支持的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen      80;</div><div class="line">    server_name    my.domain.com;</div><div class="line">    return      301 https://$server_name$request_uri;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen      443 ssl;</div><div class="line">    server_name    my.domain.com;</div><div class="line"></div><div class="line">    [....]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-      
-        <categories>
-            
-            <category> nginx </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> nginx </tag>
             
         </tags>
         
