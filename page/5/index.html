@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/21/postgresql（2）--安装方式/" itemprop="url">
-                  postgresql（2）--安装方式
+                <a class="post-title-link" href="/2016/07/21/postgresql（3）--常用命令/" itemprop="url">
+                  postgresql（3）--常用命令
                 </a>
               
             
@@ -320,12 +320,11 @@
 
       
         
-          <h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/21/postgresql（2）--安装方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -484,6 +483,120 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/02/nginx跨域设置/" itemprop="url">
+                  nginx跨域设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T08:09:26+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>  例子：访问<a href="http://10.0.0.10/">http://10.0.0.10/</a> 需要能实现跨域</p>
+<p>操作： <a href="http://10.0.0.10/项目是部署在tomcat里面，tomcat跨域暂时还不会，按照网上的方法操作也没成功">http://10.0.0.10/项目是部署在tomcat里面，tomcat跨域暂时还不会，按照网上的方法操作也没成功</a></p>
+<p>只有用Nginx做个代理，解决跨域问题了！</p>
+<p>1、将www.tangxiaoyue.com域名指向<a href="http://10.0.0.11/。只有在域名上设置才能实现跨域。(10.0.0.11是Nginx的IP">http://10.0.0.11/。只有在域名上设置才能实现跨域。(10.0.0.11是Nginx的IP</a>)<br>2、在nginx上的配置文件tang.conf进行设置</p>
+<p>配置文件例如：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/02/nginx跨域设置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/05/Mysql 启动慢查询日志/" itemprop="url">
                   Mysql 启动慢查询日志
                 </a>
@@ -551,6 +664,143 @@
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/02/nginx限制每个ip访问的频率和并发量/" itemprop="url">
+                  nginx限制每个ip访问的频率和并发量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-02T08:09:26+08:00" content="2016-04-02">
+              2016-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>使用limit_req_zone和limit_req指令配合使用来达到限制。一旦并发连接超过指定数量，就会返回503错误。
+
+&lt;!-- more --&gt;
+
+http{  
+       ...  
+       limit_req_zone$binary_remote_addr zone=allips:10m rate=20r/s;  
+       解释：#定义一个名为allips的limit_req_zone用来存储session，大小是10M内存，  
+            #以$binary_remote_addr为key,限制平均每秒的请求为20个，  
+            #1M能存储16000个状态，rete的值必须为整数，  
+            #如果限制两秒钟一个请求，可以设置成30r/m  
+       ...  
+       server{  
+         ...  
+         location {  
+           ...  
+           limit_reqzone=allips burst=5 nodelay;  
+           解释： #限制每ip每秒不超过20个请求，漏桶数burst为5  
+                 #brust的意思就是，如果第1秒、2,3,4秒请求为19个，  
+                 #第5秒的请求为25个是被允许的。  
+                 #但是如果你第1秒就25个请求，第2秒超过20的请求返回503错误。  
+                 #nodelay，如果不设置该选项，严格使用平均速率限制请求数，  
+                 #第1秒25个请求时，5个请求放到第2秒执行，  
+                 #设置nodelay，25个请求将在第1秒执行。  
+           ...  
+         }  
+         ...  
+       }  
+       ...  
+}
+</code></pre>
+          
         
       
     </div>
@@ -815,118 +1065,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/" itemprop="url">
-                  Nginx配置SSL证书部署HTTPS网站
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="购买ssl证书"><a href="#购买ssl证书" class="headerlink" title="购买ssl证书"></a>购买ssl证书</h3><p>购买网站：沃通</p>
-<h3 id="上传证书到nginx服务器，然后进行解压。"><a href="#上传证书到nginx服务器，然后进行解压。" class="headerlink" title="上传证书到nginx服务器，然后进行解压。"></a>上传证书到nginx服务器，然后进行解压。</h3><p>解压后的的效果：</p>
-<p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
                   Nginx采用https加密访问后出现的问题
                 </a>
@@ -1038,8 +1176,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx服务器http重定向到https/" itemprop="url">
-                  Nginx服务器http重定向到https
+                <a class="post-title-link" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/" itemprop="url">
+                  Nginx配置SSL证书部署HTTPS网站
                 </a>
               
             
@@ -1052,7 +1190,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
               2016-03-11
             </time>
           </span>
@@ -1099,9 +1237,11 @@
 
       
         
-          <p>http重定向到https使用了nginx的重定向命令。那么应该如何写重定向？之前老版本的nginx可能使用了以下类似的格式。</p>
+          <h3 id="购买ssl证书"><a href="#购买ssl证书" class="headerlink" title="购买ssl证书"></a>购买ssl证书</h3><p>购买网站：沃通</p>
+<h3 id="上传证书到nginx服务器，然后进行解压。"><a href="#上传证书到nginx服务器，然后进行解压。" class="headerlink" title="上传证书到nginx服务器，然后进行解压。"></a>上传证书到nginx服务器，然后进行解压。</h3><p>解压后的的效果：</p>
+<p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx服务器http重定向到https/#more" rel="contents">
+            <a class="btn" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1239,121 +1379,11 @@ mysqladmin [option] command [command option] command ......
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/Nginx配置文件nginx.conf中文详解/" itemprop="url">
-                  Nginx配置文件nginx.conf中文详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T11:37:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Nginx是一款面向性能设计的HTTP服务器，相较于Apache、lighttpd具有占有内存少，稳定性高等优势。<br>Nginx安装完毕后，会有响应的安装目录，安装目录里nginx.conf为nginx的主配置文件，ginx主配置文件分为4部分，main（全局配置）、server（主机设置）、upstream（负载均衡服务器设）和location（URL匹配特定位置的设置），这四者关系为：server继承main，location继承server，upstream既不会继承其他设置也不会被继承。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx配置文件nginx.conf中文详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1394,7 +1424,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
