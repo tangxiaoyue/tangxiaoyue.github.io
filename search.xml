@@ -1132,190 +1132,288 @@ drwxr-xr-x 2 root root 4096 Apr  3 02:07 tools
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
+      <title><![CDATA[Markdown语法大全]]></title>
+      <url>http://yoursite.com/2017/03/11/Markdown%E8%AF%AD%E6%B3%95%E5%A4%A7%E5%85%A8/</url>
+      <content type="html"><![CDATA[<p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
 <a id="more"></a>
-<pre><code>[root@tang ~]# docker pull registry
+<h2 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h2><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>1. *斜体*或_斜体_
+2. **粗体**
+3. ***加粗斜体***
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<ul>
+<li><em>这是一段斜体</em>   </li>
+<li><strong>这是一段粗体</strong>   </li>
+<li><strong><em>这是一段加粗斜体</em></strong>   </li>
+</ul>
+<h2 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h2><blockquote>
+<p>第一种写法： </p>
+</blockquote>
+<pre><code>1.这是一个一级标题   
+2.================
+3.   
+4. 这是一个一级标题   
+5. --------------------------
+</code></pre><blockquote>
+<p>第二种写法：</p>
+</blockquote>
+<pre><code># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre><h2 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3.超链接"></a>3.超链接</h2><h3 id="行内式"><a href="#行内式" class="headerlink" title="行内式"></a>行内式</h3><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>1.欢迎来到[梵居闹市](http:// blog.leanote.com/freewalk)     
+2.  
+3.欢迎来到[梵居闹市](http:// blog.leanote.com/freewalk &quot;梵居闹市&quot;)   
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<p>欢迎来到<a href="http://blog.leanote.com/freewalk" target="_blank" rel="external">梵居闹市</a><br>欢迎来到<a href="http://blog.leanote.com/freewalk" title="梵居闹市" target="_blank" rel="external">梵居闹市</a></p>
+<h3 id="参考式"><a href="#参考式" class="headerlink" title="参考式"></a>参考式</h3><blockquote>
+<p>代码：   </p>
+</blockquote>
+<pre><code>我经常去的几个网站[Google][1]、[Leanote][2]以及[自己的博客][3]    
+[Leanote 笔记][2]是一个不错的[网站][]。     
+[1]: http://www. google.com &quot;Google&quot;  
+[2]:http://www. leanote.com &quot;Leanote&quot;
+[3]:http://http:/ /blog.leanote.com/freewalk &quot;梵居闹市&quot;       
+[网站]:http: //http://blog.leanote.com/freewalk
+</code></pre><blockquote>
+<p>显示效果：    </p>
+</blockquote>
+<p>我经常去的几个网站<a href="Markdown是一种纯文本标记语言">Google</a>、<a href="http://www.leanote.com" title="Leanote" target="_blank" rel="external">Leanote</a>以及<a href="http://http://blog.leanote.com/freewalk" title="梵居闹市" target="_blank" rel="external">自己的博客</a><br><a href="http://www.leanote.com" title="Leanote" target="_blank" rel="external">Leanote 笔记</a>是一个不错的<a href="http://http://blog.leanote.com/freewalk" target="_blank" rel="external">网站</a>。</p>
+<h3 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h3><blockquote>
+<p>代码： </p>
+</blockquote>
+<pre><code>&lt;http://example.com/&gt;   
+&lt;address@example.com&gt;
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x61;&#100;&#x64;&#x72;&#101;&#x73;&#115;&#64;&#101;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#109;">&#x61;&#100;&#x64;&#x72;&#101;&#x73;&#115;&#64;&#101;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#109;</a></p>
+<h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
+<p>代码：  </p>
+</blockquote>
+<pre><code>跳转到[目录](#index)
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<p>跳转到<a href="#index">目录</a></p>
+<h2 id="5-列表"><a href="#5-列表" class="headerlink" title="5.列表"></a>5.列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
+<li><p>使用 *，+，- 表示无序列表。</p>
+<blockquote>
+<p>代码：  </p>
+</blockquote>
+<ul>
+<li>无序列表项 一</li>
+<li>无序列表项 二</li>
+<li>无序列表项 三<blockquote>
+<p>显示效果：</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>无序列表项 一</li>
+<li>无序列表项 二</li>
+<li>无序列表项 三</li>
+</ul>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>1. 有序列表项 一
+2. 有序列表项 二
+3. 有序列表项 三
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<ol>
+<li>有序列表项 一</li>
+<li>有序列表项 二</li>
+<li>有序列表项 三</li>
+</ol>
+<h3 id="列表缩进"><a href="#列表缩进" class="headerlink" title="列表缩进"></a>列表缩进</h3><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>*   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
+那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
+软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ 
+*   那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 
+寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 
+但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ 
+悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<ul>
+<li>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ </li>
+<li>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。<br>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。<br>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！<br>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩</li>
+</ul>
+<h3 id="包含段落的列表"><a href="#包含段落的列表" class="headerlink" title="包含段落的列表"></a>包含段落的列表</h3><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>*   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
+那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
+软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！
 
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+     那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 
+寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 
+但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！
 
-默认占用5000端口，我们查看是否存在5000端口
-[root@tang ~]# netstat -lntup | grep 5000
 
-运行容器
-[root@tang ~]# docker run -d -p 5000:5000 registry
-f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
+*    悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<ul>
+<li><p>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</p>
+<p> 那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。<br>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。<br>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ </p>
+</li>
+<li>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</li>
+</ul>
+<h3 id="包含引用的列表"><a href="#包含引用的列表" class="headerlink" title="包含引用的列表"></a>包含引用的列表</h3><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>*  阅读的方法:（一个空格）
+    &gt; 打开书本。
+    &gt; 打开电灯。
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<ul>
+<li>阅读的方法:<blockquote>
+<p>打开书本。<br>打开电灯。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="包含代码区块的引用"><a href="#包含代码区块的引用" class="headerlink" title="包含代码区块的引用"></a>包含代码区块的引用</h3><p><strong>语法说明：</strong><br>如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：   </p>
+<ul>
+<li><p>一列表项包含一个列表区块： </p>
+<pre><code>&lt;代码写在这&gt;
+</code></pre></li>
+</ul>
+<h3 id="一个特殊情况"><a href="#一个特殊情况" class="headerlink" title="一个特殊情况"></a>一个特殊情况</h3><p>在特殊情况下，项目列表很可能会不小心产生，像是下面这样的写法：     </p>
+<pre><code>1986. What a great season.
+</code></pre><p>会显示成：     </p>
+<ol>
+<li>What a great season.</li>
+</ol>
+<p>换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠：      </p>
+<pre><code>1986\. What a great season.
+</code></pre><p>会显示成：<br>1986. What a great season.</p>
+<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h2><ul>
+<li><p>代码：</p>
+<pre><code>&gt; 这是一个有两段文字的引用,
+&gt; 无意义的占行文字1.
+&gt; 无意义的占行文字2.
+&gt; 
+&gt; 无意义的占行文字3.
+&gt; 无意义的占行文字4
+</code></pre></li>
+<li>显示效果：  </li>
+</ul>
+<blockquote>
+<p>这是一个有两段文字的引用,<br>无意义的占行文字1.<br>无意义的占行文字2.     </p>
+<p>无意义的占行文字3.<br>无意义的占行文字4.     </p>
+</blockquote>
+<h3 id="引用的多层嵌套"><a href="#引用的多层嵌套" class="headerlink" title="引用的多层嵌套"></a>引用的多层嵌套</h3><ul>
+<li><p>代码：</p>
+<pre><code>&gt;&gt;&gt; 请问 Markdwon 怎么用？ - 小白
 
-提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
-</code></pre>]]></content>
+&gt;&gt; 自己看教程！ - 愤青
+
+&gt; 教程在哪？ - 小白
+</code></pre></li>
+<li>显示效果：</li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>请问 Markdwon 怎么用？ - 小白</p>
+</blockquote>
+<p>自己看教程！ - 愤青</p>
+</blockquote>
+<p>教程在哪？ - 小白</p>
+</blockquote>
+<h3 id="引用其它要素"><a href="#引用其它要素" class="headerlink" title="引用其它要素"></a>引用其它要素</h3><ul>
+<li><p>代码：</p>
+<pre><code>&gt; 1.   这是第一行列表项。
+&gt; 2.   这是第二行列表项。
+&gt; 
+&gt; 给出一些例子代码：
+&gt; 
+&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre></li>
+<li>显示效果：</li>
+</ul>
+<blockquote>
+<ol>
+<li>这是第一行列表项。</li>
+<li>这是第二行列表项。</li>
+</ol>
+<p>给出一些例子代码：</p>
+<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre></blockquote>
+<h2 id="7-插入图像"><a href="#7-插入图像" class="headerlink" title="7. 插入图像"></a>7. 插入图像</h2><h3 id="行内式-1"><a href="#行内式-1" class="headerlink" title="行内式"></a>行内式</h3><ul>
+<li><p>代码： </p>
+<pre><code>高圆圆： 
+![高圆圆](ht tp://pic2016.5442.com:82/2015/1117/16/7.jpg%21960.jpg &quot;高圆圆&quot;)
+</code></pre></li>
+</ul>
+<ul>
+<li>显示效果</li>
+</ul>
+<p>高圆圆：<br><img src="http://pic2016.5442.com:82/2015/1117/16/7.jpg%21960.jpg" alt="高圆圆" title="高圆圆"></p>
+<h2 id="8-内容目录"><a href="#8-内容目录" class="headerlink" title="8. 内容目录"></a>8. 内容目录</h2><ul>
+<li>markdownpad居然不支持该语法，我就呵呵了.<blockquote>
+<p>代码：</p>
+</blockquote>
+</li>
+</ul>
+<pre><code>[TOC]0.目录   
+[TOC]1. 斜体和粗体          
+[TOC]2. 分级标题
+[TOC]3. 超链接
+[TOC]     行内式
+[TOC]     参考式
+[TOC]    自动链接
+[TOC]4. 锚点
+</code></pre><h2 id="9-注脚"><a href="#9-注脚" class="headerlink" title="9. 注脚"></a>9. 注脚</h2><blockquote>
+<p>代码：</p>
+</blockquote>
+<pre><code>使用 Markdown[1]可以效率的书写文档,你可以使用 Leanote[Le] 编辑器进行书写。
+
+[1]:Markdown是一种纯文本标记语言
+
+[Le]:开源笔记平台，支持Markdown和笔记直接发为博文
+</code></pre><blockquote>
+<p>显示效果：</p>
+</blockquote>
+<p>使用 Markdown<a href="Markdown是一种纯文本标记语言">1</a>可以效率的书写文档,你可以使用 Leanote<a href="开源笔记平台，支持Markdown和笔记直接发为博文">Le</a> 编辑器进行书写。       </p>
+<p><br></p>
+<p><br></p>
+<p>   <strong>原文链接：<a href="http://blog.leanote.com/post/freewalk/Markdown-语法手册" target="_blank" rel="external">http://blog.leanote.com/post/freewalk/Markdown-语法手册</a></strong></p>
+]]></content>
       
         <categories>
             
-            <category> Docker </category>
+            <category> 博客搭建 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（9）--Dockerfile]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%889%EF%BC%89--Dockerfile/</url>
-      <content type="html"><![CDATA[<h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
-
-
-
-Dockerfile构建步骤：
-
-[root@tang /]# mkdir /dockerfile/nginx -p
-我们要在nginx目录上自动化创建一个nginx镜像
-</code></pre><a id="more"></a>
-<pre><code>注意：D需要大写，当我们构建dockerfile的时候，docker默认会在我们当前目录读取一个名为Dockerfile的文件。这时候的D必须大写
-
-[root@tang nginx]# cat Dockerfile 
-# This Dockerfile
-# My Name is TangXiaoyue
-# Base image
-FROM centos
-
-# Maintainer
-MAINTAINE tang 1060336375@qq.com
-
-#Commands
-RUN rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-RUN yum install -y nginx &amp;&amp; yum clean all
-RUN echo &quot;daemon off;&quot; &gt;&gt;/etc/nginx/nginx.conf
-ADD index.html /usr/share/nginx/html/index.html
-EXPOSE 80
-CMD [&quot;nginx&quot;]
-
-
-#井号代表注释
-#Base image  除了注释的第一行，必须是FROM，意思就是我们需要告诉dockerfile基础镜像是什么
-#Maintainer 维护信息
-
-#Commands 命令
-
-#ADD index.html 这个文件需要我们在当前目录下有才可以，我们配置我们可以准备好，然后使用ADD命令进行添加或修改
-EXPOSE 对外端口号
-CMD [“nginx”] 它要启动的命令是nginx （就算是nginx服务）
-
-
-
-
-我们写好dockerfile还需要一个index.html
-[root@tang nginx]#  echo TangXiaoyue &gt;index.html
-[root@tang nginx]# ll
-total 8
--rw-r--r-- 1 root root 364 Apr  2 20:50 Dockerfile
--rw-r--r-- 1 root root  12 Apr  2 20:52 index.html
-
-使用docker build进行构建
-[root@tang ~]# docker build -t nginx_test:v1 /dockerfile/nginx/
-[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-nginx_test           v1                  bc69ee414a0f        17 seconds ago      280.7 MB
-
-
-启动镜像
-[root@tang ~]# docker run --name nginx_test -d -p 82:80 nginx_test:v1
-7a02c27a0a04d34eec8f858e35848416b95572dbb1f485310caee5c185d2e426
-
-[root@tang ~]# curl 127.0.0.1:82
-TangXiaoyue
-</code></pre><h2 id="Dockerfile参数解释"><a href="#Dockerfile参数解释" class="headerlink" title="Dockerfile参数解释"></a>Dockerfile参数解释</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>格式：FROM&lt;image&gt;或FROM&lt;image&gt;:&lt;tag&gt;。
-
-解释：FROM是Dockerfile里的第一条指令（必须是），后面跟有效的镜像名（如果该镜像你的本地仓库没有则会从远程仓库Pull取）。
-然后后面的其它指令FROM的镜像中执行。
-</code></pre><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><pre><code>格式：MAINTAINER &lt;name&gt;
-
-    解释：指定维护者信息。
-</code></pre><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>格式：RUN &lt;command&gt;或 RUN[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]。
-
-    解释：运行命令，命令较长使可以使用\来换行。推荐使用上面数组的格式
-</code></pre><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><pre><code>格式：
-CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；
-CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
-CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给ENTRYPOINT的默认参数；
-
-解释： 
-CMD指定容器启动是执行的命令，每个Dockerfile只能有一条CMD命令，如果指定了多条，只有最后一条会被执行。
-如果你在启动容器的时候也指定的命令，那么会覆盖Dockerfile构建的镜像里面的CMD命令。
-</code></pre><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><pre><code>格式：
-   ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;,&quot;param2&quot;]
-   ENTRYPOINT command param1 param2（shell中执行）。
-
-解释：和CMD类似都是配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。 
-
-每个 Dockerfile 中只能有一个ENTRYPOINT，当指定多个时，只有最后一个起效。
-ENTRYPOINT没有CMD的可替换特性，也就是你启动容器的时候增加运行的命令不会覆盖ENTRYPOINT指定的命令。 
-　
-所以生产实践中我们可以同时使用ENTRYPOINT和CMD， 
-
-例如：
-    ENTRYPOINT [&quot;/usr/bin/rethinkdb&quot;]
-    CMD [&quot;--help&quot;]
-</code></pre><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><pre><code>格式：USER daemon
-
-    解释：指定运行容器时的用户名和UID，后续的RUN指令也会使用这里指定的用户。
-</code></pre><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>格式：EXPOSE&lt;port&gt; [&lt;port&gt;...]
-
-解释：设置Docker容器内部暴露的端口号，如果需要外部访问，还需要启动容器时增加-p或者-P参数进行分配。
-</code></pre><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>格式：ENV&lt;key&gt; &lt;value&gt;
-ENV &lt;key&gt;=&lt;value&gt; ...
-
-    解释：设置环境变量，可以在RUN之前使用，然后RUN命令时调用，容器启动时这些环境变量都会被指定
-</code></pre><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>格式：
-   ADD &lt;src&gt;... &lt;dest&gt;
-   ADD [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
-
-    解释：
-        将指定的&lt;src&gt;复制到容器文件系统中的&lt;dest&gt; 
-           所有拷贝到container中的文件和文件夹权限为0755,uid和gid为0 
-        如果文件是可识别的压缩格式，则docker会帮忙解压缩
-</code></pre><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><pre><code>格式：VOLUME [&quot;/data&quot;]
-
-    解释：可以将本地文件夹或者其他container的文件夹挂载到container中。
-</code></pre><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>格式：WORKDIR/path/to/workdir
-
-    解释：切换目录，为后续的RUN、CMD、ENTRYPOINT 指令配置工作目录。 
-    可以多次切换(相当于cd命令)， 
-    也可以使用多个WORKDIR 指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。例如:
-
-    WORKDIR /a
-    WORKDIR b
-    WORKDIR c
-    RUN pwd
-    则最终路径为 /a/b/c。
-</code></pre><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><pre><code>ONBUILD 指定的命令在构建镜像时并不执行，而是在它的子镜像中执行
-</code></pre><h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><pre><code>格式：ARG&lt;name&gt;[=&lt;default value&gt;]
-
-    解释：ARG指定了一个变量在docker build的时候使用，
-         可以使用--build-arg &lt;varname&gt;=&lt;value&gt;来指定参数的值，不过如果构建的时候不指定就会报错。
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
+            <tag> 博客搭建 </tag>
             
         </tags>
         
@@ -1445,83 +1543,6 @@ Failed to get D-Bus connection: Operation not permitted
 解决：
 
 docker run --privileged -itd -h node1 --name node1 centos /sbin/init
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Docker 基础（2）--命令]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
-systemctl start docker                                    #启动
-systemctl enable docker                                    #自启动
-</code></pre><a id="more"></a>
-<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
-docker pull images                                    #下载镜像
-docker    images                                    #查看镜像
-docker tag centos6  centos6_x86                                    #镜像改名
-docker save image&gt;/opt/images.tar.gz                                    #导出镜像
-docker load&lt;/opt/images.tar.gz                                    #导入镜像
-docker load --input /opt/images.tar.gz                                            #导入镜像
-docker rmi images_id                                                            #删除镜像
-docker rmi $(docker images -q)                                                    #删除所有镜像
-</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
-docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
-docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
-                                                                                    --name：指定容器名    
-                                                                                    -t：分配一个tty终端    
-                                                                                    -i：容器的标准输出保持打开状态 
-                                                                                    -h:指定主机名
-docker create -it --name centos1 centos                                            #使用create创建容器
-docekr stop ID（name）                                                            #停止容器
-docker start ID（name）                                                            #启动容器
-docker attach ID（name）                                                            #进入容器
-docker exec -it ID(name)  /bin/bash
-docker rm  ID（name）                                                            #删除容器    
-                                                                                    -f：强制删除容器，包括在运行的
-                                                                                #exec和attach总结: 
-                                                                                    attach登陆容器后,退出时容器会关闭. 
-                                                                                    推荐使用exec进入容器
-docker rm $(docker ps -a -q)                                                    #删除所有容器
-</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
-docker run --name nginx -d -p 81:80 nginx                                         #指定映射
-docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
-</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
-</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
-docekr inspect ID(name)                                                            #查看容器信息
-                                                                                    ==查看mounts模块
-docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
-docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
-                                                                                    ==rw：读写
-docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
-                                                                                ==ro：只读
-docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
-</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
-                                            -d：直接在后台执行
-docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
-docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
-                                        #test1和test2的/data数据可以共享
-</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
-</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
-yum install -y nginx
-docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
-                                            ==同时打一个标签叫mynginx:v1
-                                            ==tang相当于你向github上提交的用户名
-docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
-```
 </code></pre>]]></content>
       
         <categories>
@@ -1761,82 +1782,327 @@ ssh登入会专门写一篇文章介绍。这里就不叙述了
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（4）--镜像管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%884%EF%BC%89--%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre>  <a id="more"></a>
-<pre><code>[root@tang ~]# docker run -it -h nginx --name nginx  centos  /bin/bash
+      <title><![CDATA[Docker 基础（9）--Dockerfile]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%889%EF%BC%89--Dockerfile/</url>
+      <content type="html"><![CDATA[<h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
 
-[root@nginx /]# rpm -ivh
-http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
 
-[root@nginx /]# yum install -y nginx
 
-[root@tang ~]# docker ps -a 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e46c71171306        centos              &quot;/bin/bash&quot;         2 minutes ago       Exited (0) 40 seconds ago                       nginx
+Dockerfile构建步骤：
 
-[root@tang ~]# docker commit -m &quot;my nginx&quot; -a &quot;tang&quot; e46c71171306 new_nginx:v1
-sha256:c15ceb0a6871e3a56e3b22d67254d09b2e03a8ae909719a6dea0daaf937940ef
+[root@tang /]# mkdir /dockerfile/nginx -p
+我们要在nginx目录上自动化创建一个nginx镜像
+</code></pre><a id="more"></a>
+<pre><code>注意：D需要大写，当我们构建dockerfile的时候，docker默认会在我们当前目录读取一个名为Dockerfile的文件。这时候的D必须大写
 
-    -m: 改动信息
-    -a: 作者信息
-    e46c71171306: 这一串为容器ID
-    new_nginx:01 新镜像的名字
+[root@tang nginx]# cat Dockerfile 
+# This Dockerfile
+# My Name is TangXiaoyue
+# Base image
+FROM centos
+
+# Maintainer
+MAINTAINE tang 1060336375@qq.com
+
+#Commands
+RUN rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+RUN yum install -y nginx &amp;&amp; yum clean all
+RUN echo &quot;daemon off;&quot; &gt;&gt;/etc/nginx/nginx.conf
+ADD index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+CMD [&quot;nginx&quot;]
+
+
+#井号代表注释
+#Base image  除了注释的第一行，必须是FROM，意思就是我们需要告诉dockerfile基础镜像是什么
+#Maintainer 维护信息
+
+#Commands 命令
+
+#ADD index.html 这个文件需要我们在当前目录下有才可以，我们配置我们可以准备好，然后使用ADD命令进行添加或修改
+EXPOSE 对外端口号
+CMD [“nginx”] 它要启动的命令是nginx （就算是nginx服务）
+
+
+
+
+我们写好dockerfile还需要一个index.html
+[root@tang nginx]#  echo TangXiaoyue &gt;index.html
+[root@tang nginx]# ll
+total 8
+-rw-r--r-- 1 root root 364 Apr  2 20:50 Dockerfile
+-rw-r--r-- 1 root root  12 Apr  2 20:52 index.html
+
+使用docker build进行构建
+[root@tang ~]# docker build -t nginx_test:v1 /dockerfile/nginx/
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+nginx_test           v1                  bc69ee414a0f        17 seconds ago      280.7 MB
+
+
+启动镜像
+[root@tang ~]# docker run --name nginx_test -d -p 82:80 nginx_test:v1
+7a02c27a0a04d34eec8f858e35848416b95572dbb1f485310caee5c185d2e426
+
+[root@tang ~]# curl 127.0.0.1:82
+TangXiaoyue
+</code></pre><h2 id="Dockerfile参数解释"><a href="#Dockerfile参数解释" class="headerlink" title="Dockerfile参数解释"></a>Dockerfile参数解释</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>格式：FROM&lt;image&gt;或FROM&lt;image&gt;:&lt;tag&gt;。
+
+解释：FROM是Dockerfile里的第一条指令（必须是），后面跟有效的镜像名（如果该镜像你的本地仓库没有则会从远程仓库Pull取）。
+然后后面的其它指令FROM的镜像中执行。
+</code></pre><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><pre><code>格式：MAINTAINER &lt;name&gt;
+
+    解释：指定维护者信息。
+</code></pre><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>格式：RUN &lt;command&gt;或 RUN[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]。
+
+    解释：运行命令，命令较长使可以使用\来换行。推荐使用上面数组的格式
+</code></pre><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><pre><code>格式：
+CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;] 使用 exec 执行，推荐方式；
+CMD command param1 param2 在 /bin/sh 中执行，提供给需要交互的应用；
+CMD [&quot;param1&quot;,&quot;param2&quot;] 提供给ENTRYPOINT的默认参数；
+
+解释： 
+CMD指定容器启动是执行的命令，每个Dockerfile只能有一条CMD命令，如果指定了多条，只有最后一条会被执行。
+如果你在启动容器的时候也指定的命令，那么会覆盖Dockerfile构建的镜像里面的CMD命令。
+</code></pre><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><pre><code>格式：
+   ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;,&quot;param2&quot;]
+   ENTRYPOINT command param1 param2（shell中执行）。
+
+解释：和CMD类似都是配置容器启动后执行的命令，并且不可被 docker run 提供的参数覆盖。 
+
+每个 Dockerfile 中只能有一个ENTRYPOINT，当指定多个时，只有最后一个起效。
+ENTRYPOINT没有CMD的可替换特性，也就是你启动容器的时候增加运行的命令不会覆盖ENTRYPOINT指定的命令。 
+　
+所以生产实践中我们可以同时使用ENTRYPOINT和CMD， 
+
+例如：
+    ENTRYPOINT [&quot;/usr/bin/rethinkdb&quot;]
+    CMD [&quot;--help&quot;]
+</code></pre><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><pre><code>格式：USER daemon
+
+    解释：指定运行容器时的用户名和UID，后续的RUN指令也会使用这里指定的用户。
+</code></pre><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>格式：EXPOSE&lt;port&gt; [&lt;port&gt;...]
+
+解释：设置Docker容器内部暴露的端口号，如果需要外部访问，还需要启动容器时增加-p或者-P参数进行分配。
+</code></pre><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>格式：ENV&lt;key&gt; &lt;value&gt;
+ENV &lt;key&gt;=&lt;value&gt; ...
+
+    解释：设置环境变量，可以在RUN之前使用，然后RUN命令时调用，容器启动时这些环境变量都会被指定
+</code></pre><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>格式：
+   ADD &lt;src&gt;... &lt;dest&gt;
+   ADD [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
+
+    解释：
+        将指定的&lt;src&gt;复制到容器文件系统中的&lt;dest&gt; 
+           所有拷贝到container中的文件和文件夹权限为0755,uid和gid为0 
+        如果文件是可识别的压缩格式，则docker会帮忙解压缩
+</code></pre><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><pre><code>格式：VOLUME [&quot;/data&quot;]
+
+    解释：可以将本地文件夹或者其他container的文件夹挂载到container中。
+</code></pre><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>格式：WORKDIR/path/to/workdir
+
+    解释：切换目录，为后续的RUN、CMD、ENTRYPOINT 指令配置工作目录。 
+    可以多次切换(相当于cd命令)， 
+    也可以使用多个WORKDIR 指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。例如:
+
+    WORKDIR /a
+    WORKDIR b
+    WORKDIR c
+    RUN pwd
+    则最终路径为 /a/b/c。
+</code></pre><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><pre><code>ONBUILD 指定的命令在构建镜像时并不执行，而是在它的子镜像中执行
+</code></pre><h3 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h3><pre><code>格式：ARG&lt;name&gt;[=&lt;default value&gt;]
+
+    解释：ARG指定了一个变量在docker build的时候使用，
+         可以使用--build-arg &lt;varname&gt;=&lt;value&gt;来指定参数的值，不过如果构建的时候不指定就会报错。
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（2）--命令]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89--%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<h3 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h3><pre><code>yum install -y docker                                    #下载
+systemctl start docker                                    #启动
+systemctl enable docker                                    #自启动
+</code></pre><a id="more"></a>
+<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><pre><code>docker search  images                                    #搜索镜像
+docker pull images                                    #下载镜像
+docker    images                                    #查看镜像
+docker tag centos6  centos6_x86                                    #镜像改名
+docker save image&gt;/opt/images.tar.gz                                    #导出镜像
+docker load&lt;/opt/images.tar.gz                                    #导入镜像
+docker load --input /opt/images.tar.gz                                            #导入镜像
+docker rmi images_id                                                            #删除镜像
+docker rmi $(docker images -q)                                                    #删除所有镜像
+</code></pre><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><pre><code>docker ps -a                                                                    #查看容器
+docker run centos /bin/echo &quot;hehe&quot;                                                #首次创建一个容器
+docekr run -h tang --name tang -t -i centos /bin/bah                            #创建一个以tang为名的容器；
+                                                                                    --name：指定容器名    
+                                                                                    -t：分配一个tty终端    
+                                                                                    -i：容器的标准输出保持打开状态 
+                                                                                    -h:指定主机名
+docker create -it --name centos1 centos                                            #使用create创建容器
+docekr stop ID（name）                                                            #停止容器
+docker start ID（name）                                                            #启动容器
+docker attach ID（name）                                                            #进入容器
+docker exec -it ID(name)  /bin/bash
+docker rm  ID（name）                                                            #删除容器    
+                                                                                    -f：强制删除容器，包括在运行的
+                                                                                #exec和attach总结: 
+                                                                                    attach登陆容器后,退出时容器会关闭. 
+                                                                                    推荐使用exec进入容器
+docker rm $(docker ps -a -q)                                                    #删除所有容器
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><pre><code>docker run --name nginx -d -P nginx                                                #随机映射 
+docker run --name nginx -d -p 81:80 nginx                                         #指定映射
+docker run -it --name nginx -p 80:80 nginx /bin/bash                            #指定映射
+</code></pre><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><pre><code>docker logs ID（name）                                                            #查看日志
+</code></pre><h3 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h3><pre><code>docker run -it --name tang -v /data centos                                         #默认挂载目录
+docekr inspect ID(name)                                                            #查看容器信息
+                                                                                    ==查看mounts模块
+docekr run -it --name tang -v /data:/data centos                                   #指定挂载目录
+docker run -it --name tang -v /data:/data:rw centos                                 #指定权限挂载
+                                                                                    ==rw：读写
+docker run -it --name tang -v /data:/data:ro centos                             #指定权限挂载
+                                                                                ==ro：只读
+docker run -it --name tang  ~/.bash_history:/.bash_history centos                #记录历史记录
+</code></pre><h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre><code>docker run -d --name nfs -v /data:/data centos                                     #启动nfs容器，挂在一个卷，
+                                            -d：直接在后台执行
+docker run -it --name test1 --volumes-from nfs centos                            #启动test1容器，挂载到nfs的数据卷容器上
+docker run -it --name test2 --volumes-from nfs centos                             #启动test2容器，挂载到nfs的数据卷容器上
+                                        #test1和test2的/data数据可以共享
+</code></pre><h3 id="手动制作镜像"><a href="#手动制作镜像" class="headerlink" title="手动制作镜像"></a>手动制作镜像</h3><pre><code>docker run -it --name mynginx centos                                            #基础centos进行创建容器mynginx
+</code></pre><h2 id="在mynginx容器内安装nginx"><a href="#在mynginx容器内安装nginx" class="headerlink" title="在mynginx容器内安装nginx"></a>在mynginx容器内安装nginx</h2><pre><code>rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+yum install -y nginx
+docker commit -m &quot;my nginx&quot; f9c7dfb6f552 tang/mynginx:v1                        #提交镜像，
+                                            ==同时打一个标签叫mynginx:v1
+                                            ==tang相当于你向github上提交的用户名
+docker run -it --anme nginxv1 tang/mynginx:v1                                    #基于镜像tang/mynginx:v1创建容器nginxv1
+```
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（6）--仓库管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%886%EF%BC%89--%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
+</blockquote>
+<a id="more"></a>
+<pre><code>[root@tang ~]# docker pull registry
 
 [root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
-new_nginx            v1                  c15ceb0a6871        About a minute ago   355 MB
-docker.io/centos     latest              98d35105a391        2 weeks ago          192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago          33.17 MB
-</code></pre><h3 id="基于本地模块创建镜像"><a href="#基于本地模块创建镜像" class="headerlink" title="基于本地模块创建镜像"></a>基于本地模块创建镜像</h3><pre><code>模版获取,直接到openva官网下载(https://openvz.org/Download/template/precreated)
-
-[root@tang opt]# wget http://download.openvz.org/template/precreated/centos-6-x86_64-minimal.tar.gz
-
-[root@tang opt]# cat centos-6-x86_64-minimal.tar.gz |docker import - centos6
-sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-
-[root@tang opt]# docker images
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-centos6      
-</code></pre><h3 id="镜像导出-导入"><a href="#镜像导出-导入" class="headerlink" title="镜像导出/导入"></a>镜像导出/导入</h3><pre><code>[root@tang opt]# docker save centos6 &gt;/opt/centos6.tar.gz   #导出
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
 
-[root@tang opt]# ll
-total 1539880
--rw-r--r-- 1 root root 565194752 Apr  2 16:19 centos6.tar.gz
+默认占用5000端口，我们查看是否存在5000端口
+[root@tang ~]# netstat -lntup | grep 5000
 
-[root@tang opt]# docker rmi centos6
-Untagged: centos6:latest
-Deleted: sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
-Deleted: sha256:dbcc6b3893af5f0b45e06f2934f73f5dc34f2e9e54fc4d50a51cc47195f19089
+运行容器
+[root@tang ~]# docker run -d -p 5000:5000 registry
+f002089ab95474290853a2a24b86cb0adbb5848c4a468175304b59b27d6e3b0e
 
-[root@tang opt]# docker load &lt; /opt/centos6.tar.gz              #导入
-[root@tang opt]# docker load --input /opt/centos6.tar.gz        #导入
+提示：docker比较老的版本运行起来就可以运行，1.7之后都不可以
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+</code></pre>  <a id="more"></a>
+<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
 
-#以上两种导入方法都可以
+Exited:表示该容器已经退出。没有启动
+</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
 
-[root@tang opt]# docker tag centos6  centos6_x86                #改名
-</code></pre><h3 id="将镜像上传到dockerhub官网"><a href="#将镜像上传到dockerhub官网" class="headerlink" title="将镜像上传到dockerhub官网"></a>将镜像上传到dockerhub官网</h3><pre><code>需要提前注册dockerhub账号
+[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
+3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
 
-1. docker hub 帐号在本地验证登陆:
+[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
+[root@b5dbba42703a /]# exit
+exit
+</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
-[root@tang opt]# docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.
-Username: tangxiaoyue
-Password: 
-Login Succeeded
+[root@tang ~]# docker start tang_run                #start启动容器
+tang_run
 
-2. docker push 镜像到docker hub 的仓库
-docker push
-&lt;hub-user&gt;/&lt;repo-name&gt;:&lt;tag&gt;
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
 
-[root@tang ~]# docker tag centos tangxiaoyue/centos_tang:latest
+[root@tang ~]# docker stop tang_run                 #stop停止容器
+tang_run
+[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
+8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
+        -d: 容器退出后不关闭容器.
+        -h:指定主机名
+</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
+[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
+[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
+</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
+[root@tang ~]# docker rm tang
+tang
+[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
+[root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
 
-[root@tang ~]# docker push tangxiaoyue/centos_tang
-The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
-9b198ff9ff5b: Mounted from library/centos 
-latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
+
+提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
 </code></pre>]]></content>
       
         <categories>
@@ -2072,60 +2338,82 @@ mysql&gt; show databases;
     </entry>
     
     <entry>
-      <title><![CDATA[Docker 基础（5）--容器管理]]></title>
-      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%885%EF%BC%89--%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+      <title><![CDATA[Docker 基础（4）--镜像管理]]></title>
+      <url>http://yoursite.com/2017/03/11/Docker%20%E5%9F%BA%E7%A1%80%EF%BC%884%EF%BC%89--%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86/</url>
+      <content type="html"><![CDATA[<h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
 </code></pre>  <a id="more"></a>
-<h4 id="查看所有的容器-包括启动、停止"><a href="#查看所有的容器-包括启动、停止" class="headerlink" title="查看所有的容器(包括启动、停止)"></a>查看所有的容器(包括启动、停止)</h4><pre><code>[root@tang ~]# docker ps -a
+<pre><code>[root@tang ~]# docker run -it -h nginx --name nginx  centos  /bin/bash
+
+[root@nginx /]# rpm -ivh
+http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+
+[root@nginx /]# yum install -y nginx
+
+[root@tang ~]# docker ps -a 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-e5d7ccb9522c        centos              &quot;/bin/bash&quot;         15 seconds ago      Exited (0) 12 seconds ago                       tang1
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         3 minutes ago       Up 1 seconds                                    tang
+e46c71171306        centos              &quot;/bin/bash&quot;         2 minutes ago       Exited (0) 40 seconds ago                       nginx
 
-Exited:表示该容器已经退出。没有启动
-</code></pre><h4 id="创建容器-create、run-、进入容器"><a href="#创建容器-create、run-、进入容器" class="headerlink" title="创建容器(create、run)、进入容器"></a>创建容器(create、run)、进入容器</h4><pre><code>[root@tang ~]# docker images
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-docker.io/centos     latest              98d35105a391        2 weeks ago         192.5 MB
-docker.io/registry   latest              047218491f8c        4 weeks ago         33.17 MB
+[root@tang ~]# docker commit -m &quot;my nginx&quot; -a &quot;tang&quot; e46c71171306 new_nginx:v1
+sha256:c15ceb0a6871e3a56e3b22d67254d09b2e03a8ae909719a6dea0daaf937940ef
 
-[root@tang ~]# docker create -it --name tang_create centos /bin/bash                     #使用create创建容器
-3b316839ea357a3fe47fcae3488d6f491882ecb8c954412c502cbd6dcf9e2478
+    -m: 改动信息
+    -a: 作者信息
+    e46c71171306: 这一串为容器ID
+    new_nginx:01 新镜像的名字
 
-[root@tang ~]# docker run -it --name tang_run centos /bin/bash                          #使用run创建容器
-[root@b5dbba42703a /]# exit
-exit
-</code></pre><h4 id="启动停止容器"><a href="#启动停止容器" class="headerlink" title="启动停止容器"></a>启动停止容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-[root@tang ~]# docker start tang_run                #start启动容器
-tang_run
-
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-b5dbba42703a        centos              &quot;/bin/bash&quot;         4 minutes ago       Up 14 seconds                           tang_run
-
-[root@tang ~]# docker stop tang_run                 #stop停止容器
-tang_run
-[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre><h4 id="创建容器-指定容器名"><a href="#创建容器-指定容器名" class="headerlink" title="创建容器,指定容器名"></a>创建容器,指定容器名</h4><pre><code>[root@tang ~]# docker run -itd -h tang_run --name tang centos /bin/bash
-8afe717f82718214056a61e3881552338d5c911d272a80342edec063b5048
-        -d: 容器退出后不关闭容器.
-        -h:指定主机名
-</code></pre><h4 id="删除容器-镜像"><a href="#删除容器-镜像" class="headerlink" title="删除容器/镜像"></a>删除容器/镜像</h4><pre><code>[root@tang ~]# docker rm tang                               #删除容器
-[root@tang ~]# docker rm -f tang                            #强制删除容器，不管是否在运行
-[root@tang ~]# docker rm $(docker ps -a -q)                 #删除所有容器
-</code></pre><h4 id="导出容器-可迁移到其它机器-导入容器"><a href="#导出容器-可迁移到其它机器-导入容器" class="headerlink" title="导出容器(可迁移到其它机器)/导入容器"></a>导出容器(可迁移到其它机器)/导入容器</h4><pre><code>[root@tang ~]# docker export tang &gt;/opt/tang.tar            #导出容器
-[root@tang ~]# docker rm tang
-tang
-[root@tang ~]# cat /opt/tang.tar |docker import - tang      #恢复的只是一个镜像，需要通过镜像创建容器
 [root@tang ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
+new_nginx            v1                  c15ceb0a6871        About a minute ago   355 MB
+docker.io/centos     latest              98d35105a391        2 weeks ago          192.5 MB
+docker.io/registry   latest              047218491f8c        4 weeks ago          33.17 MB
+</code></pre><h3 id="基于本地模块创建镜像"><a href="#基于本地模块创建镜像" class="headerlink" title="基于本地模块创建镜像"></a>基于本地模块创建镜像</h3><pre><code>模版获取,直接到openva官网下载(https://openvz.org/Download/template/precreated)
+
+[root@tang opt]# wget http://download.openvz.org/template/precreated/centos-6-x86_64-minimal.tar.gz
+
+[root@tang opt]# cat centos-6-x86_64-minimal.tar.gz |docker import - centos6
+sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
+
+[root@tang opt]# docker images
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
-tang                 latest              393d449b1ed4        44 seconds ago      192.5 MB
+centos6      
+</code></pre><h3 id="镜像导出-导入"><a href="#镜像导出-导入" class="headerlink" title="镜像导出/导入"></a>镜像导出/导入</h3><pre><code>[root@tang opt]# docker save centos6 &gt;/opt/centos6.tar.gz   #导出
 
+[root@tang opt]# ll
+total 1539880
+-rw-r--r-- 1 root root 565194752 Apr  2 16:19 centos6.tar.gz
 
-提示：如果在之前那个容器内创建的文件，导出，导入之后容器内的文件是不变的
+[root@tang opt]# docker rmi centos6
+Untagged: centos6:latest
+Deleted: sha256:3d2aed457a111b136bdb9178d6203cb4bb0116501f7a4847088d7593c0930a8c
+Deleted: sha256:dbcc6b3893af5f0b45e06f2934f73f5dc34f2e9e54fc4d50a51cc47195f19089
+
+[root@tang opt]# docker load &lt; /opt/centos6.tar.gz              #导入
+[root@tang opt]# docker load --input /opt/centos6.tar.gz        #导入
+
+#以上两种导入方法都可以
+
+[root@tang opt]# docker tag centos6  centos6_x86                #改名
+</code></pre><h3 id="将镜像上传到dockerhub官网"><a href="#将镜像上传到dockerhub官网" class="headerlink" title="将镜像上传到dockerhub官网"></a>将镜像上传到dockerhub官网</h3><pre><code>需要提前注册dockerhub账号
+
+1. docker hub 帐号在本地验证登陆:
+
+[root@tang opt]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.
+Username: tangxiaoyue
+Password: 
+Login Succeeded
+
+2. docker push 镜像到docker hub 的仓库
+docker push
+&lt;hub-user&gt;/&lt;repo-name&gt;:&lt;tag&gt;
+
+[root@tang ~]# docker tag centos tangxiaoyue/centos_tang:latest
+
+[root@tang ~]# docker push tangxiaoyue/centos_tang
+The push refers to a repository [docker.io/tangxiaoyue/centos_tang]
+9b198ff9ff5b: Mounted from library/centos 
+latest: digest: sha256:be5b4a93f116a57ab3fd454ada72421eac892a3a4925627ac9a44f65fcd69cf8 size: 529
 </code></pre>]]></content>
       
         <categories>
@@ -2138,294 +2426,6 @@ tang                 latest              393d449b1ed4        44 seconds ago     
         <tags>
             
             <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Markdown语法大全]]></title>
-      <url>http://yoursite.com/2017/03/11/Markdown%E8%AF%AD%E6%B3%95%E5%A4%A7%E5%85%A8/</url>
-      <content type="html"><![CDATA[<p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
-<a id="more"></a>
-<h2 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h2><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>1. *斜体*或_斜体_
-2. **粗体**
-3. ***加粗斜体***
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<ul>
-<li><em>这是一段斜体</em>   </li>
-<li><strong>这是一段粗体</strong>   </li>
-<li><strong><em>这是一段加粗斜体</em></strong>   </li>
-</ul>
-<h2 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h2><blockquote>
-<p>第一种写法： </p>
-</blockquote>
-<pre><code>1.这是一个一级标题   
-2.================
-3.   
-4. 这是一个一级标题   
-5. --------------------------
-</code></pre><blockquote>
-<p>第二种写法：</p>
-</blockquote>
-<pre><code># 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-</code></pre><h2 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3.超链接"></a>3.超链接</h2><h3 id="行内式"><a href="#行内式" class="headerlink" title="行内式"></a>行内式</h3><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>1.欢迎来到[梵居闹市](http:// blog.leanote.com/freewalk)     
-2.  
-3.欢迎来到[梵居闹市](http:// blog.leanote.com/freewalk &quot;梵居闹市&quot;)   
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<p>欢迎来到<a href="http://blog.leanote.com/freewalk" target="_blank" rel="external">梵居闹市</a><br>欢迎来到<a href="http://blog.leanote.com/freewalk" title="梵居闹市" target="_blank" rel="external">梵居闹市</a></p>
-<h3 id="参考式"><a href="#参考式" class="headerlink" title="参考式"></a>参考式</h3><blockquote>
-<p>代码：   </p>
-</blockquote>
-<pre><code>我经常去的几个网站[Google][1]、[Leanote][2]以及[自己的博客][3]    
-[Leanote 笔记][2]是一个不错的[网站][]。     
-[1]: http://www. google.com &quot;Google&quot;  
-[2]:http://www. leanote.com &quot;Leanote&quot;
-[3]:http://http:/ /blog.leanote.com/freewalk &quot;梵居闹市&quot;       
-[网站]:http: //http://blog.leanote.com/freewalk
-</code></pre><blockquote>
-<p>显示效果：    </p>
-</blockquote>
-<p>我经常去的几个网站<a href="Markdown是一种纯文本标记语言">Google</a>、<a href="http://www.leanote.com" title="Leanote" target="_blank" rel="external">Leanote</a>以及<a href="http://http://blog.leanote.com/freewalk" title="梵居闹市" target="_blank" rel="external">自己的博客</a><br><a href="http://www.leanote.com" title="Leanote" target="_blank" rel="external">Leanote 笔记</a>是一个不错的<a href="http://http://blog.leanote.com/freewalk" target="_blank" rel="external">网站</a>。</p>
-<h3 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h3><blockquote>
-<p>代码： </p>
-</blockquote>
-<pre><code>&lt;http://example.com/&gt;   
-&lt;address@example.com&gt;
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<p><a href="http://example.com/" target="_blank" rel="external">http://example.com/</a><br><a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x61;&#x64;&#100;&#114;&#101;&#x73;&#x73;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;">&#x61;&#x64;&#100;&#114;&#101;&#x73;&#x73;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;</a></p>
-<h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4.锚点"></a>4.锚点</h2><blockquote>
-<p>代码：  </p>
-</blockquote>
-<pre><code>跳转到[目录](#index)
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<p>跳转到<a href="#index">目录</a></p>
-<h2 id="5-列表"><a href="#5-列表" class="headerlink" title="5.列表"></a>5.列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
-<li><p>使用 *，+，- 表示无序列表。</p>
-<blockquote>
-<p>代码：  </p>
-</blockquote>
-<ul>
-<li>无序列表项 一</li>
-<li>无序列表项 二</li>
-<li>无序列表项 三<blockquote>
-<p>显示效果：</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>无序列表项 一</li>
-<li>无序列表项 二</li>
-<li>无序列表项 三</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>1. 有序列表项 一
-2. 有序列表项 二
-3. 有序列表项 三
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<ol>
-<li>有序列表项 一</li>
-<li>有序列表项 二</li>
-<li>有序列表项 三</li>
-</ol>
-<h3 id="列表缩进"><a href="#列表缩进" class="headerlink" title="列表缩进"></a>列表缩进</h3><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>*   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
-那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
-软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ 
-*   那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 
-寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 
-但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ 
-悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<ul>
-<li>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ </li>
-<li>那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。<br>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。<br>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！<br>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩</li>
-</ul>
-<h3 id="包含段落的列表"><a href="#包含段落的列表" class="headerlink" title="包含段落的列表"></a>包含段落的列表</h3><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>*   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
-那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
-软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！
-
-     那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 
-寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 
-但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！
-
-
-*    悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<ul>
-<li><p>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</p>
-<p> 那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。<br>寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。<br>但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ </p>
-</li>
-<li>悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。</li>
-</ul>
-<h3 id="包含引用的列表"><a href="#包含引用的列表" class="headerlink" title="包含引用的列表"></a>包含引用的列表</h3><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>*  阅读的方法:（一个空格）
-    &gt; 打开书本。
-    &gt; 打开电灯。
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<ul>
-<li>阅读的方法:<blockquote>
-<p>打开书本。<br>打开电灯。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="包含代码区块的引用"><a href="#包含代码区块的引用" class="headerlink" title="包含代码区块的引用"></a>包含代码区块的引用</h3><p><strong>语法说明：</strong><br>如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：   </p>
-<ul>
-<li><p>一列表项包含一个列表区块： </p>
-<pre><code>&lt;代码写在这&gt;
-</code></pre></li>
-</ul>
-<h3 id="一个特殊情况"><a href="#一个特殊情况" class="headerlink" title="一个特殊情况"></a>一个特殊情况</h3><p>在特殊情况下，项目列表很可能会不小心产生，像是下面这样的写法：     </p>
-<pre><code>1986. What a great season.
-</code></pre><p>会显示成：     </p>
-<ol>
-<li>What a great season.</li>
-</ol>
-<p>换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠：      </p>
-<pre><code>1986\. What a great season.
-</code></pre><p>会显示成：<br>1986. What a great season.</p>
-<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h2><ul>
-<li><p>代码：</p>
-<pre><code>&gt; 这是一个有两段文字的引用,
-&gt; 无意义的占行文字1.
-&gt; 无意义的占行文字2.
-&gt; 
-&gt; 无意义的占行文字3.
-&gt; 无意义的占行文字4
-</code></pre></li>
-<li>显示效果：  </li>
-</ul>
-<blockquote>
-<p>这是一个有两段文字的引用,<br>无意义的占行文字1.<br>无意义的占行文字2.     </p>
-<p>无意义的占行文字3.<br>无意义的占行文字4.     </p>
-</blockquote>
-<h3 id="引用的多层嵌套"><a href="#引用的多层嵌套" class="headerlink" title="引用的多层嵌套"></a>引用的多层嵌套</h3><ul>
-<li><p>代码：</p>
-<pre><code>&gt;&gt;&gt; 请问 Markdwon 怎么用？ - 小白
-
-&gt;&gt; 自己看教程！ - 愤青
-
-&gt; 教程在哪？ - 小白
-</code></pre></li>
-<li>显示效果：</li>
-</ul>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>请问 Markdwon 怎么用？ - 小白</p>
-</blockquote>
-<p>自己看教程！ - 愤青</p>
-</blockquote>
-<p>教程在哪？ - 小白</p>
-</blockquote>
-<h3 id="引用其它要素"><a href="#引用其它要素" class="headerlink" title="引用其它要素"></a>引用其它要素</h3><ul>
-<li><p>代码：</p>
-<pre><code>&gt; 1.   这是第一行列表项。
-&gt; 2.   这是第二行列表项。
-&gt; 
-&gt; 给出一些例子代码：
-&gt; 
-&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);
-</code></pre></li>
-<li>显示效果：</li>
-</ul>
-<blockquote>
-<ol>
-<li>这是第一行列表项。</li>
-<li>这是第二行列表项。</li>
-</ol>
-<p>给出一些例子代码：</p>
-<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);
-</code></pre></blockquote>
-<h2 id="7-插入图像"><a href="#7-插入图像" class="headerlink" title="7. 插入图像"></a>7. 插入图像</h2><h3 id="行内式-1"><a href="#行内式-1" class="headerlink" title="行内式"></a>行内式</h3><ul>
-<li><p>代码： </p>
-<pre><code>高圆圆： 
-![高圆圆](ht tp://pic2016.5442.com:82/2015/1117/16/7.jpg%21960.jpg &quot;高圆圆&quot;)
-</code></pre></li>
-</ul>
-<ul>
-<li>显示效果</li>
-</ul>
-<p>高圆圆：<br><img src="http://pic2016.5442.com:82/2015/1117/16/7.jpg%21960.jpg" alt="高圆圆" title="高圆圆"></p>
-<h2 id="8-内容目录"><a href="#8-内容目录" class="headerlink" title="8. 内容目录"></a>8. 内容目录</h2><ul>
-<li>markdownpad居然不支持该语法，我就呵呵了.<blockquote>
-<p>代码：</p>
-</blockquote>
-</li>
-</ul>
-<pre><code>[TOC]0.目录   
-[TOC]1. 斜体和粗体          
-[TOC]2. 分级标题
-[TOC]3. 超链接
-[TOC]     行内式
-[TOC]     参考式
-[TOC]    自动链接
-[TOC]4. 锚点
-</code></pre><h2 id="9-注脚"><a href="#9-注脚" class="headerlink" title="9. 注脚"></a>9. 注脚</h2><blockquote>
-<p>代码：</p>
-</blockquote>
-<pre><code>使用 Markdown[1]可以效率的书写文档,你可以使用 Leanote[Le] 编辑器进行书写。
-
-[1]:Markdown是一种纯文本标记语言
-
-[Le]:开源笔记平台，支持Markdown和笔记直接发为博文
-</code></pre><blockquote>
-<p>显示效果：</p>
-</blockquote>
-<p>使用 Markdown<a href="Markdown是一种纯文本标记语言">1</a>可以效率的书写文档,你可以使用 Leanote<a href="开源笔记平台，支持Markdown和笔记直接发为博文">Le</a> 编辑器进行书写。       </p>
-<p><br></p>
-<p><br></p>
-<p>   <strong>原文链接：<a href="http://blog.leanote.com/post/freewalk/Markdown-语法手册" target="_blank" rel="external">http://blog.leanote.com/post/freewalk/Markdown-语法手册</a></strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 博客搭建 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 博客搭建 </tag>
             
         </tags>
         
@@ -4355,10 +4355,11 @@ esac
     </entry>
     
     <entry>
-      <title><![CDATA[postgresql（3）--常用命令]]></title>
-      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%883%EF%BC%89--%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
+      <title><![CDATA[postgresql（2）--安装方式]]></title>
+      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%882%EF%BC%89--%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="源码安装方式"><a href="#源码安装方式" class="headerlink" title="源码安装方式"></a>源码安装方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cd /usr/src/ </div><div class="line">wget http://ftp.postgresql.org/pub/source/v9.4.8/postgresql-9.4.8.tar.gz</div><div class="line">tar -zxvf postgresql-9.4.8.tar.gz</div><div class="line">cd postgresql-9.1.4 </div><div class="line"></div><div class="line">./configure </div><div class="line">make </div><div class="line">make install </div><div class="line">mkdir /usr/local/pgsql/data </div><div class="line">chown postgres /usr/local/pgsql/data </div><div class="line">su – postgres </div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -4377,11 +4378,10 @@ esac
     </entry>
     
     <entry>
-      <title><![CDATA[postgresql（2）--安装方式]]></title>
-      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%882%EF%BC%89--%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="源码安装方式"><a href="#源码安装方式" class="headerlink" title="源码安装方式"></a>源码安装方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cd /usr/src/ </div><div class="line">wget http://ftp.postgresql.org/pub/source/v9.4.8/postgresql-9.4.8.tar.gz</div><div class="line">tar -zxvf postgresql-9.4.8.tar.gz</div><div class="line">cd postgresql-9.1.4 </div><div class="line"></div><div class="line">./configure </div><div class="line">make </div><div class="line">make install </div><div class="line">mkdir /usr/local/pgsql/data </div><div class="line">chown postgres /usr/local/pgsql/data </div><div class="line">su – postgres </div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div></pre></td></tr></table></figure>
+      <title><![CDATA[postgresql（3）--常用命令]]></title>
+      <url>http://yoursite.com/2016/07/21/postgresql%EF%BC%883%EF%BC%89--%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -4560,6 +4560,53 @@ Cluster组件负责为Tomcat集群系统进行会话复制、Context组件的属
         <tags>
             
             <tag> Mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MySQ binlog三种模式及设置方法]]></title>
+      <url>http://yoursite.com/2016/03/12/MySQ%20binlog%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8F%8A%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
+</code></pre><a id="more"></a>
+<pre><code>优点：在row level模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条被修改。所以rowlevel的日志内容会非常清楚的记录下每一行数据修改的细节。
+不会出现某些特定的情况下的存储过程或function，以及trigger的调用和触发无法被正确复制的问题
+
+缺点：row level，所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，会产生大量的日志内容。
+</code></pre><h2 id="Statement-Level（默认"><a href="#Statement-Level（默认" class="headerlink" title="Statement Level（默认"></a>Statement Level（默认</h2><pre><code>每一条会修改数据的sql都会记录到master的bin-log中。slave在复制的时候sql进程会解析成和原来master端执行过的相同的sql来再次执行 
+
+优点：statement level下的优点首先就是解决了row level下的缺点，不需要记录每一行数据的变化，减少bin-log日志量，节约IO，提高性能，因为它只需要在Master上锁执行的语句的细节，以及执行语句的上下文的信息。
+
+缺点：由于只记录语句，所以，在statement level下 已经发现了有不少情况会造成MySQL的复制出现问题，主要是修改数据的时候使用了某些定的函数或者功能的时候会出现。
+</code></pre><h2 id="Mixed-自动模式"><a href="#Mixed-自动模式" class="headerlink" title="Mixed 自动模式"></a>Mixed 自动模式</h2><pre><code>在Mixed模式下，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志格式，也就是在Statement和Row之间选择一种。
+如果sql语句确实就是update或者delete等修改数据的语句，那么还是会记录所有行的变更。
+</code></pre><h2 id="企业场景如何选择binlog模式"><a href="#企业场景如何选择binlog模式" class="headerlink" title="企业场景如何选择binlog模式"></a>企业场景如何选择binlog模式</h2><pre><code>1、互联网公司，使用MySQL的功能相对少（存储过程、触发器、函数） 
+
+选择默认的语句模式，Statement Level（默认） 
+2、公司如果用到使用MySQL的特殊功能（存储过程、触发器、函数） 
+则选择Mixed模式
+
+3、公司如果用到使用MySQL的特殊功能（存储过程、触发器、函数）又希望数据最大化一直，此时最好选择Row level模式
+</code></pre><h2 id="行模式和语句模式的区别"><a href="#行模式和语句模式的区别" class="headerlink" title="行模式和语句模式的区别"></a>行模式和语句模式的区别</h2><pre><code>1.语句模式： 
+100万条记录 
+只需1条delete * from test；就可以删除100万条记录
+
+2.row模式 
+100万条记录 
+记录100万条删除命令
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Mysql </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mysql </tag>
             
         </tags>
         
@@ -5115,62 +5162,19 @@ Sort_scan | 1823485 |
     </entry>
     
     <entry>
-      <title><![CDATA[MySQ binlog三种模式及设置方法]]></title>
-      <url>http://yoursite.com/2016/03/12/MySQ%20binlog%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8F%8A%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
-</code></pre><a id="more"></a>
-<pre><code>优点：在row level模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条被修改。所以rowlevel的日志内容会非常清楚的记录下每一行数据修改的细节。
-不会出现某些特定的情况下的存储过程或function，以及trigger的调用和触发无法被正确复制的问题
-
-缺点：row level，所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，会产生大量的日志内容。
-</code></pre><h2 id="Statement-Level（默认"><a href="#Statement-Level（默认" class="headerlink" title="Statement Level（默认"></a>Statement Level（默认</h2><pre><code>每一条会修改数据的sql都会记录到master的bin-log中。slave在复制的时候sql进程会解析成和原来master端执行过的相同的sql来再次执行 
-
-优点：statement level下的优点首先就是解决了row level下的缺点，不需要记录每一行数据的变化，减少bin-log日志量，节约IO，提高性能，因为它只需要在Master上锁执行的语句的细节，以及执行语句的上下文的信息。
-
-缺点：由于只记录语句，所以，在statement level下 已经发现了有不少情况会造成MySQL的复制出现问题，主要是修改数据的时候使用了某些定的函数或者功能的时候会出现。
-</code></pre><h2 id="Mixed-自动模式"><a href="#Mixed-自动模式" class="headerlink" title="Mixed 自动模式"></a>Mixed 自动模式</h2><pre><code>在Mixed模式下，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志格式，也就是在Statement和Row之间选择一种。
-如果sql语句确实就是update或者delete等修改数据的语句，那么还是会记录所有行的变更。
-</code></pre><h2 id="企业场景如何选择binlog模式"><a href="#企业场景如何选择binlog模式" class="headerlink" title="企业场景如何选择binlog模式"></a>企业场景如何选择binlog模式</h2><pre><code>1、互联网公司，使用MySQL的功能相对少（存储过程、触发器、函数） 
-
-选择默认的语句模式，Statement Level（默认） 
-2、公司如果用到使用MySQL的特殊功能（存储过程、触发器、函数） 
-则选择Mixed模式
-
-3、公司如果用到使用MySQL的特殊功能（存储过程、触发器、函数）又希望数据最大化一直，此时最好选择Row level模式
-</code></pre><h2 id="行模式和语句模式的区别"><a href="#行模式和语句模式的区别" class="headerlink" title="行模式和语句模式的区别"></a>行模式和语句模式的区别</h2><pre><code>1.语句模式： 
-100万条记录 
-只需1条delete * from test；就可以删除100万条记录
-
-2.row模式 
-100万条记录 
-记录100万条删除命令
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> Mysql </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> mysql </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Nginx配置SSL证书部署HTTPS网站]]></title>
-      <url>http://yoursite.com/2016/03/11/Nginx%E9%85%8D%E7%BD%AESSL%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2HTTPS%E7%BD%91%E7%AB%99/</url>
-      <content type="html"><![CDATA[<h3 id="购买ssl证书"><a href="#购买ssl证书" class="headerlink" title="购买ssl证书"></a>购买ssl证书</h3><p>购买网站：沃通</p>
-<h3 id="上传证书到nginx服务器，然后进行解压。"><a href="#上传证书到nginx服务器，然后进行解压。" class="headerlink" title="上传证书到nginx服务器，然后进行解压。"></a>上传证书到nginx服务器，然后进行解压。</h3><p>解压后的的效果：</p>
-<p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
+      <title><![CDATA[Nginx采用https加密访问后出现的问题]]></title>
+      <url>http://yoursite.com/2016/03/11/Nginx%E9%87%87%E7%94%A8https%E5%8A%A0%E5%AF%86%E8%AE%BF%E9%97%AE%E5%90%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
 <a id="more"></a>
-<p>[root@bubidev-ng3 nginx]# ll<br><img src="http://static.zybuluo.com/BruceTang/7twkrgynzp9eb0nujtiifi2m/image_1bfaqkr27183sd46odrbmdh7p9.png" alt="image_1bfaqkr27183sd46odrbmdh7p9.png-13.3kB"></p>
-<p>CRT 即 certificate的缩写，即证书。<br>KEY 通常指私钥。</p>
-<h3 id="在nginx的配置文件里面配置"><a href="#在nginx的配置文件里面配置" class="headerlink" title="在nginx的配置文件里面配置"></a>在nginx的配置文件里面配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       443;</div><div class="line">    server_name  www.tang.cn tang.cn;</div><div class="line">    ssl on;</div><div class="line">    ssl_certificate bumeng_cn_ssl_pro.crt;</div><div class="line">    ssl_certificate_key bumeng_cn_ssl_pro.key;</div><div class="line">    ssl_session_timeout 5m;</div><div class="line">    ssl_protocols SSLv3 TLSv1;</div><div class="line">    ssl_ciphers HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM;</div><div class="line">    ssl_prefer_server_ciphers on;</div><div class="line">    if ( $http_user_agent =  &quot;Mozilla/5.0&quot;)&#123;</div><div class="line">        return 403;</div><div class="line">        &#125;</div><div class="line">    location / &#123;</div><div class="line">        proxy_pass http://10.0.0.10:8080/tang;</div><div class="line">        proxy_cookie_path /tang/ /;</div><div class="line">        proxy_set_header Host &quot;www.tang.cn&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">location ~ \.php$ &#123;</div><div class="line">root /var/www/vhosts/fff/main;</div><div class="line">fastcgi_pass 127.0.0.1:9000;</div><div class="line">fastcgi_read_timeout 30;</div><div class="line">fastcgi_index fff.php;</div><div class="line">fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;</div><div class="line">#include fastcgi_params;</div><div class="line">include fastcgi.conf;</div><div class="line">fastcgi_param HTTPS on;                        【或者fastcgi_param HTTPS     $https if_not_empty; 】</div><div class="line">&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如何开启 Nginx 的 SSL 或者 HTTPS呢？</p>
+<p>大家有没有试过使用HTTPS登陆 phpmyadmin 的时候会自动返回“The plain HTTP request was sent to HTTPS port”？<br>这是个 fastcgi 的配置问题！</p>
+<p><strong>解决方法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">location ~ .*\.(php|php5)?$</div><div class="line">&#123;</div><div class="line">try_files $uri =404;</div><div class="line">fastcgi_pass unix:/tmp/php-cgi.sock;</div><div class="line">fastcgi_param HTTPS     $https if_not_empty;</div><div class="line">fastcgi_index index.php;</div><div class="line">include fcgi.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解释：</strong></p>
+<p>很多人认为使用 fastcgi_param HTTPS on;，这样是没错啦，不过强迫使用这个参数，可能不太有效！</p>
+<p>最好的答案是上面的配置（参考下面 nginx 官方的链接）<br><code>fastcgi_param HTTPS $https if_not_empty;</code><br>有 https 协议时才自动使用 https on，否则忽略这个参数。<br>内嵌的变量：<br><code>$https</code> – 如果链接是 SSL 就返回 “ON”，否则返回空字符串。<br><code>if_not_empty</code>; – 当参数有值时才传递到服务器</p>
+<p>注意：这个 if_not_empty 额外参数只适合 Nginx 1.1.11 之后的版本</p>
 ]]></content>
       
         <categories>
@@ -5189,19 +5193,15 @@ Sort_scan | 1823485 |
     </entry>
     
     <entry>
-      <title><![CDATA[Nginx采用https加密访问后出现的问题]]></title>
-      <url>http://yoursite.com/2016/03/11/Nginx%E9%87%87%E7%94%A8https%E5%8A%A0%E5%AF%86%E8%AE%BF%E9%97%AE%E5%90%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-      <content type="html"><![CDATA[<p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
-<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+      <title><![CDATA[Nginx配置SSL证书部署HTTPS网站]]></title>
+      <url>http://yoursite.com/2016/03/11/Nginx%E9%85%8D%E7%BD%AESSL%E8%AF%81%E4%B9%A6%E9%83%A8%E7%BD%B2HTTPS%E7%BD%91%E7%AB%99/</url>
+      <content type="html"><![CDATA[<h3 id="购买ssl证书"><a href="#购买ssl证书" class="headerlink" title="购买ssl证书"></a>购买ssl证书</h3><p>购买网站：沃通</p>
+<h3 id="上传证书到nginx服务器，然后进行解压。"><a href="#上传证书到nginx服务器，然后进行解压。" class="headerlink" title="上传证书到nginx服务器，然后进行解压。"></a>上传证书到nginx服务器，然后进行解压。</h3><p>解压后的的效果：</p>
+<p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">location ~ \.php$ &#123;</div><div class="line">root /var/www/vhosts/fff/main;</div><div class="line">fastcgi_pass 127.0.0.1:9000;</div><div class="line">fastcgi_read_timeout 30;</div><div class="line">fastcgi_index fff.php;</div><div class="line">fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;</div><div class="line">#include fastcgi_params;</div><div class="line">include fastcgi.conf;</div><div class="line">fastcgi_param HTTPS on;                        【或者fastcgi_param HTTPS     $https if_not_empty; 】</div><div class="line">&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如何开启 Nginx 的 SSL 或者 HTTPS呢？</p>
-<p>大家有没有试过使用HTTPS登陆 phpmyadmin 的时候会自动返回“The plain HTTP request was sent to HTTPS port”？<br>这是个 fastcgi 的配置问题！</p>
-<p><strong>解决方法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">location ~ .*\.(php|php5)?$</div><div class="line">&#123;</div><div class="line">try_files $uri =404;</div><div class="line">fastcgi_pass unix:/tmp/php-cgi.sock;</div><div class="line">fastcgi_param HTTPS     $https if_not_empty;</div><div class="line">fastcgi_index index.php;</div><div class="line">include fcgi.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>解释：</strong></p>
-<p>很多人认为使用 fastcgi_param HTTPS on;，这样是没错啦，不过强迫使用这个参数，可能不太有效！</p>
-<p>最好的答案是上面的配置（参考下面 nginx 官方的链接）<br><code>fastcgi_param HTTPS $https if_not_empty;</code><br>有 https 协议时才自动使用 https on，否则忽略这个参数。<br>内嵌的变量：<br><code>$https</code> – 如果链接是 SSL 就返回 “ON”，否则返回空字符串。<br><code>if_not_empty</code>; – 当参数有值时才传递到服务器</p>
-<p>注意：这个 if_not_empty 额外参数只适合 Nginx 1.1.11 之后的版本</p>
+<p>[root@bubidev-ng3 nginx]# ll<br><img src="http://static.zybuluo.com/BruceTang/7twkrgynzp9eb0nujtiifi2m/image_1bfaqkr27183sd46odrbmdh7p9.png" alt="image_1bfaqkr27183sd46odrbmdh7p9.png-13.3kB"></p>
+<p>CRT 即 certificate的缩写，即证书。<br>KEY 通常指私钥。</p>
+<h3 id="在nginx的配置文件里面配置"><a href="#在nginx的配置文件里面配置" class="headerlink" title="在nginx的配置文件里面配置"></a>在nginx的配置文件里面配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       443;</div><div class="line">    server_name  www.tang.cn tang.cn;</div><div class="line">    ssl on;</div><div class="line">    ssl_certificate bumeng_cn_ssl_pro.crt;</div><div class="line">    ssl_certificate_key bumeng_cn_ssl_pro.key;</div><div class="line">    ssl_session_timeout 5m;</div><div class="line">    ssl_protocols SSLv3 TLSv1;</div><div class="line">    ssl_ciphers HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM;</div><div class="line">    ssl_prefer_server_ciphers on;</div><div class="line">    if ( $http_user_agent =  &quot;Mozilla/5.0&quot;)&#123;</div><div class="line">        return 403;</div><div class="line">        &#125;</div><div class="line">    location / &#123;</div><div class="line">        proxy_pass http://10.0.0.10:8080/tang;</div><div class="line">        proxy_cookie_path /tang/ /;</div><div class="line">        proxy_set_header Host &quot;www.tang.cn&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -5498,7 +5498,7 @@ node-10:
       
         <categories>
             
-            <category> Saltstack </category>
+            <category> SaltStack </category>
             
         </categories>
         
