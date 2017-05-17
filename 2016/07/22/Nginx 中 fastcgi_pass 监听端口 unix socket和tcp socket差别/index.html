@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -57,15 +57,16 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+<meta name="description" content="Nginx连接fastcgi的方式有2种：unix domain socket和TCP，Unix domain socket 或者 IPCsocket是一种终端，可以使同一台操作系统上的两个或多个进程进行数据通信。与管道相比，Unix domain sockets 既可以使用字节流和数据队列，而管道通信则只能通过字节流。Unix domain sockets的接口和Internet socket很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别">
+<meta property="og:url" content="http://yoursite.com/2016/07/22/Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="Nginx连接fastcgi的方式有2种：unix domain socket和TCP，Unix domain socket 或者 IPCsocket是一种终端，可以使同一台操作系统上的两个或多个进程进行数据通信。与管道相比，Unix domain sockets 既可以使用字节流和数据队列，而管道通信则只能通过字节流。Unix domain sockets的接口和Internet socket很">
+<meta property="og:updated_time" content="2017-05-17T14:12:14.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别">
+<meta name="twitter:description" content="Nginx连接fastcgi的方式有2种：unix domain socket和TCP，Unix domain socket 或者 IPCsocket是一种终端，可以使同一台操作系统上的两个或多个进程进行数据通信。与管道相比，Unix domain sockets 既可以使用字节流和数据队列，而管道通信则只能通过字节流。Unix domain sockets的接口和Internet socket很">
 
 
 
@@ -83,7 +84,7 @@
   };
 </script>
 
-  <title> 归档 | BRUCETANG </title>
+  <title> Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,7 +105,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,402 +236,164 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 59 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/27/十大企业级Linux服务器安全防护要点/" itemprop="url">
-              
-                <span itemprop="name">十大企业级Linux服务器安全防护要点</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-27T23:37:26+08:00"
-              content="2017-03-27" >
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/12/Docker高级（1）--架构总览/" itemprop="url">
-              
-                <span itemprop="name">Docker高级（1）--架构总览</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-12T12:37:26+08:00"
-              content="2017-03-12" >
-          03-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker问题梳理/" itemprop="url">
-              
-                <span itemprop="name">Docker问题梳理--持续更新</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
-              
-                <span itemprop="name">Docker 基础（8）--网络管理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker 基础（9）--Dockerfile/" itemprop="url">
-              
-                <span itemprop="name">Docker 基础（9）--Dockerfile</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
-              
-                <span itemprop="name">Docker 基础（4）--镜像管理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-              
-                <span itemprop="name">Markdown语法大全</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker 基础（6）--仓库管理/" itemprop="url">
-              
-                <span itemprop="name">Docker 基础（6）--仓库管理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-              
-                <span itemprop="name">XtraBackup主从复制及备份</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-              
-                <span itemprop="name">Docker 基础（3）--容器登入</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T12:37:26+08:00"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/03/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-22T08:09:26+08:00" content="2016-07-22">
+              2016-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
 
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Nginx连接fastcgi的方式有2种：<code>unix domain socket和TCP</code>，Unix <code>domain socket 或者 IPC</code><br>socket是一种终端，可以使同一台操作系统上的两个或多个进程进行数据通信。与管道相比，Unix domain sockets 既可以使用字节流和数据队列，而管道通信则只能通过字节流。Unix domain sockets的接口和Internet socket很像，但它不使用网络底层协议来通信。Unix domain socket 的功能是POSIX操作系统里的一种组件。</p>
+<a id="more"></a>
+<p><strong>TCP和unix domain socket方式对比</strong></p>
+<p>TCP是使用TCP端口连接127.0.0.1:9000</p>
+<p>Socket是使用unix domain socket连接套接字/dev/shm/php-cgi.sock（很多教程使用路径/tmp，而路径/dev/shm是个tmpfs，速度比磁盘快得多）</p>
+<pre><code>fastcgi_pass  unix:/tmp/php-cgi.sock
+fastcgi_pass  127.0.0.1:9000
+</code></pre><p>在服务器压力不大的情况下，tcp和socket差别不大，但在压力比较满的时候，用套接字方式，效果确实比较好。</p>
+<p>下面是php 5.3以上版本将TCP改成socket方式的配置方法：</p>
+<pre><code>修改php-fpm.conf（/usr/local/php/etc/php-fpm.conf）
+
+;listen = 127.0.0.1:9000
+listen = /dev/shm/php-cgi.sock
+</code></pre><p>修改nginx配置文件server段的配置，将http的方式改为socket方式</p>
+<pre><code>location ~ .*\.(php|php5)?$  {
+                #fastcgi_pass  127.0.0.1:9000;
+                fastcgi_pass   unix:/dev/shm/php-cgi.sock;
+                fastcgi_index index.php;
+                include fastcgi.conf;
+        }
+
+重启php-fpm与nginx
+
+service nginx restart
+service php-fpm restart
+ls -al /dev/shm
+</code></pre><p>可以看到php-cgi.sock文件unix套接字类型</p>
+<p>理论上，unix socket 不走网络，效率高一些，但稳定性不是很理想，看这个测试：</p>
+<p><a href="http://blog.csdn.net/liv2005/article/details/7741732" target="_blank" rel="external">http://blog.csdn.net/liv2005/article/details/7741732</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/21/postgresql（3）--常用命令/" rel="next" title="postgresql（3）--常用命令">
+                <i class="fa fa-chevron-left"></i> postgresql（3）--常用命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/22/企业必会技能 tomcat(2)/" rel="prev" title="企业必会技能 tomcat(2)">
+                企业必会技能 tomcat(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -638,6 +401,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -657,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -710,6 +486,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -794,11 +581,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
 
 
   

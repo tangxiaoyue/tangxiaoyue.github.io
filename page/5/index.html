@@ -259,6 +259,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/21/postgresql（2）--安装方式/" itemprop="url">
+                  postgresql（2）--安装方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-21T20:37:26+08:00" content="2016-07-21">
+              2016-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
+                    <span itemprop="name">Postgresql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/21/postgresql（2）--安装方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/20/Tomcat相关知识整理（1）/" itemprop="url">
                   Tomcat相关知识整理（1）
                 </a>
@@ -484,117 +594,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-                  MySQ binlog三种模式及设置方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
                   Mysql优化系列--总结梳理
                 </a>
@@ -705,8 +704,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
-                  Nginx采用https加密访问后出现的问题
+                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
+                  MySQ binlog三种模式及设置方法
                 </a>
               
             
@@ -719,8 +718,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
-              2016-03-11
+            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
+              2016-03-12
             </time>
           </span>
 
@@ -733,8 +732,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -766,10 +765,10 @@
 
       
         
-          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
-<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
+            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -882,6 +881,117 @@
 <p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
+                  Nginx采用https加密访问后出现的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1239,117 +1349,6 @@ mysqladmin [option] command [command option] command ......
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/25/Iptables防火墙规则使用梳理/" itemprop="url">
-                  Iptables防火墙规则使用梳理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-25T23:09:26+08:00" content="2016-02-25">
-              2016-02-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/网络知识/" itemprop="url" rel="index">
-                    <span itemprop="name">网络知识</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>iptables是组成Linux平台下的包过滤防火墙，与大多数的Linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，完成封包过滤、封包重定向和网络地址转换(NAT)等功能。在日常Linux运维工作中，经常会设置iptables防火墙规则，用来加固服务安全。以下对iptables的规则使用做了总结性梳理：</p>
-<h2 id="iptables相关概念"><a href="#iptables相关概念" class="headerlink" title="iptables相关概念"></a>iptables相关概念</h2><p>###　规则概念<br><code>规则（rules）</code>其实就是网络管理员的预定义的条件，规则一般定义为’如果数据包’符合这样的条件，就这样处理这个数据包”。规则存储在内核空间的信息包过滤表中，这些规则分别指定了源地址、目的地址、传输协议（如TCP、UDP、ICMP）和服务类型（如HTTP、FTP和SMTP）等.<br>当数据包与规则匹配时，iptables就根据规则所定义的方法来处理这些数据包，如放行(accept),拒绝(reject)和丢弃(drop)等。配置防火墙的主要工作是添加,修改和删除等规则。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/25/Iptables防火墙规则使用梳理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1395,7 +1394,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

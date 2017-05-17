@@ -1140,8 +1140,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/21/postgresql（2）--安装方式/" itemprop="url">
-                  postgresql（2）--安装方式
+                <a class="post-title-link" href="/2016/07/22/Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别/" itemprop="url">
+                  Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别
                 </a>
               
             
@@ -1154,8 +1154,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-21T20:37:26+08:00" content="2016-07-21">
-              2016-07-21
+            <time itemprop="dateCreated" datetime="2016-07-22T08:09:26+08:00" content="2016-07-22">
+              2016-07-22
             </time>
           </span>
 
@@ -1168,8 +1168,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
-                    <span itemprop="name">Postgresql</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -1201,9 +1201,9 @@
 
       
         
-          <h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
+          <p>Nginx连接fastcgi的方式有2种：<code>unix domain socket和TCP</code>，Unix <code>domain socket 或者 IPC</code><br>socket是一种终端，可以使同一台操作系统上的两个或多个进程进行数据通信。与管道相比，Unix domain sockets 既可以使用字节流和数据队列，而管道通信则只能通过字节流。Unix domain sockets的接口和Internet socket很像，但它不使用网络底层协议来通信。Unix domain socket 的功能是POSIX操作系统里的一种组件。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/21/postgresql（2）--安装方式/#more" rel="contents">
+            <a class="btn" href="/2016/07/22/Nginx 中 fastcgi_pass 监听端口 unix socket和tcp socket差别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1383,7 +1383,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
