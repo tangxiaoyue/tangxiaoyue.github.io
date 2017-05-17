@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="saltstack," />
 
 
 
@@ -57,15 +57,16 @@
 
 
 
-<meta name="description" content="勿忘初衷，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BRUCETANG">
-<meta property="og:url" content="http://yoursite.com/archives/2015/04/index.html">
+<meta name="description" content="Saltstack有多种方式匹配目标主机，支持and、or，可以混合匹配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SaltStack（6）--正则匹配">
+<meta property="og:url" content="http://yoursite.com/2016/07/22/SaltStack（6）--正则匹配/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="勿忘初衷，方得始终">
+<meta property="og:description" content="Saltstack有多种方式匹配目标主机，支持and、or，可以混合匹配">
+<meta property="og:updated_time" content="2017-05-17T13:54:46.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BRUCETANG">
-<meta name="twitter:description" content="勿忘初衷，方得始终">
+<meta name="twitter:title" content="SaltStack（6）--正则匹配">
+<meta name="twitter:description" content="Saltstack有多种方式匹配目标主机，支持and、or，可以混合匹配">
 
 
 
@@ -83,7 +84,7 @@
   };
 </script>
 
-  <title> 归档 | BRUCETANG </title>
+  <title> SaltStack（6）--正则匹配 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -104,7 +105,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,65 +236,167 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 58 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SaltStack（6）--正则匹配
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-22T08:09:26+08:00" content="2016-07-22">
+              2016-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/saltstack/" itemprop="url" rel="index">
+                    <span itemprop="name">saltstack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>Saltstack有多种方式匹配目标主机，支持and、or，可以混合匹配</p>
+<a id="more"></a>
+<h3 id="Grains匹配"><a href="#Grains匹配" class="headerlink" title="Grains匹配"></a>Grains匹配</h3><p>测试全部匹配为CentOS系统的网络联通性</p>
+<p><strong>-G</strong><br>    [root@node-10 ~]# salt -G os:CentOS test.ping<br>    node-10:<br>        True<br>    node-11:<br>        True</p>
+<h3 id="列表匹配"><a href="#列表匹配" class="headerlink" title="列表匹配"></a>列表匹配</h3><p><strong>-L</strong></p>
+<pre><code> [root@node-10 ~]# salt -L &apos;node-10,node-11&apos; test.ping  
+node-10:
+    True
+node-11:
+    True
+</code></pre><h3 id="网段-IP匹配"><a href="#网段-IP匹配" class="headerlink" title="网段/IP匹配"></a>网段/IP匹配</h3><p><strong>-S</strong></p>
+<pre><code>[root@node-10 ~]# salt -S 192.168.10.0/24 test.ping  
+node-10:
+    True
+node-11:
+    True
+</code></pre><p>其他还包括<code>-E(PCRE Minion id匹配)</code>、<code>-P(Grains PCRE匹配)</code>、<code>-I(Pillar glob匹配)</code>、<code>-R(Range cluster匹配)</code>、<code>-D(Minion Data匹配)</code></p>
+<h3 id="minion端分组"><a href="#minion端分组" class="headerlink" title="minion端分组"></a>minion端分组</h3><p><strong>-N</strong><br>将相同minion端进行分组，利于对minion进行批量操作</p>
+<p>编辑/etc/salt/master配置分组</p>
+<pre><code>[root@node-10 ~]# vim /etc/salt/master
+nodegroups:
+  web: &apos;S@192.168.10.10&apos;
+  db: &apos;S@192.168.10.0/24&apos;
+</code></pre><p>进行分组操作</p>
+<pre><code>[root@node-10 ~]# salt -N web test.ping
+node-10:
+    True
+[root@node-10 ~]# salt -N db test.ping
+node-11:
+    True
+node-10:
+    True
+</code></pre>
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/saltstack/" rel="tag">#saltstack</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/21/postgresql（3）--常用命令/" rel="next" title="postgresql（3）--常用命令">
+                <i class="fa fa-chevron-left"></i> postgresql（3）--常用命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/22/企业必会技能 tomcat(2)/" rel="prev" title="企业必会技能 tomcat(2)">
+                企业必会技能 tomcat(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/04/11/Nginx 伪静态设置/" itemprop="url">
-              
-                <span itemprop="name">Nginx 伪静态设置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-04-11T09:38:27+08:00"
-              content="2015-04-11" >
-          04-11
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -301,6 +404,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -320,8 +427,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
@@ -373,6 +489,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Grains匹配"><span class="nav-number">1.</span> <span class="nav-text">Grains匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表匹配"><span class="nav-number">2.</span> <span class="nav-text">列表匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网段-IP匹配"><span class="nav-number">3.</span> <span class="nav-text">网段/IP匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minion端分组"><span class="nav-number">4.</span> <span class="nav-text">minion端分组</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -457,11 +584,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
 
 
   
