@@ -371,121 +371,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（7）--数据管理/" itemprop="url">
-                  Docker 基础（7）--数据管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
-root@tang docker]# mkdir docker_01
-[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
-[root@docker_01 /]# cd /docker_01/        
-[root@docker_01 docker_01]# touch docker_01.txt
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（7）--数据管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
                   XtraBackup主从复制及备份
                 </a>
@@ -551,6 +436,119 @@ root@tang docker]# mkdir docker_01
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（5）--容器管理/" itemprop="url">
+                  Docker 基础（5）--容器管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/11/Docker 基础（5）--容器管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -709,8 +707,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
+                  Docker 基础（8）--网络管理
                 </a>
               
             
@@ -737,8 +735,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -770,9 +768,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
       
         
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
+          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -890,6 +889,119 @@ hexo deploy
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/Hexo常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/21/tomcat十大安全优化措施/" itemprop="url">
+                  tomcat十大安全优化措施
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-21T20:37:26+08:00" content="2017-01-21">
+              2017-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="telnet管理端口保护"><a href="#telnet管理端口保护" class="headerlink" title="telnet管理端口保护"></a>telnet管理端口保护</h3><p>使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。</p>
+<pre><code># vi conf/server.xml
+&lt;Server port=&quot;8365&quot; shutdown=&quot;IN0IT&quot;&gt;
+</code></pre><p>远程关闭Tomcat：<br>telnet ip port 后，然后键入大写的SHUTDOWN。其中port默认为8005</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/21/tomcat十大安全优化措施/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1160,8 +1272,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/12/11/Linux下防御DDOS攻击的操作梳理/" itemprop="url">
-                  Linux下防御DDOS攻击的操作梳理
+                <a class="post-title-link" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/" itemprop="url">
+                  Linux 跟踪进程对CPU的占用情况，对内存的占用情况
                 </a>
               
             
@@ -1174,8 +1286,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-11T09:38:27+08:00" content="2016-12-11">
-              2016-12-11
+            <time itemprop="dateCreated" datetime="2016-12-23T20:37:26+08:00" content="2016-12-23">
+              2016-12-23
             </time>
           </span>
 
@@ -1221,122 +1333,12 @@ hexo deploy
 
       
         
-          <h3 id="DDOS介绍"><a href="#DDOS介绍" class="headerlink" title="DDOS介绍"></a>DDOS介绍</h3><p>DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。</p>
-<p>DDOS攻击的本质是：<br>利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。</p>
-<p>可以参考下面的例子理解下DDOS攻击。<br>1）某饭店可以容纳100人同时就餐，某日有个商家恶意竞争，雇佣了200人来这个饭店坐着不吃不喝，导致饭店满满当当无法正常营业。（DDOS攻击成功）<br>2）老板当即大怒，派人把不吃不喝影响正常营业的人全都轰了出去，且不再让他们进来捣乱，饭店恢复了正常营业。（添加规则和黑名单进行DDOS防御，防御成功）<br>3）主动攻击的商家心存不满，这次请了五千人逐批次来捣乱，导致该饭店再次无法正常营业。（增加DDOS流量，改变攻击方式）<br>4）饭店把那些捣乱的人轰出去只后，另一批接踵而来。此时老板将饭店营业规模扩大，该饭店可同时容纳1万人就餐，5000人同时来捣乱饭店营业也不会受到影响。（增加硬防与其抗衡）</p>
-<p>DDOS攻击只不过是一个概称，其下有各种攻击方式，比如:”CC攻击、SYN攻击、NTP攻击、TCP攻击、DNS攻击等等”，现在DDOS发展变得越来越可怕，NTP服务放大攻击渐渐成为主流了，这意味着可以将每秒的攻击流量放大几百倍，比如每秒1G的SYN碎片攻击换成NTP放大攻击，就成为了200G或者更多。</p>
+          <p> 本文使用java进程来举例</p>
+<ol>
+<li>查看java进程及其线程对cpu的占用情况<br>首先使用ps -ef找到java进程id</li>
+</ol>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/11/Linux下防御DDOS攻击的操作梳理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/02/Postgresql（1）--简介/" itemprop="url">
-                  Postgresql（1）--简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-02T12:37:26+08:00" content="2016-12-02">
-              2016-12-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
-                    <span itemprop="name">Postgresql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="何为PostgreSQL"><a href="#何为PostgreSQL" class="headerlink" title="何为PostgreSQL"></a>何为PostgreSQL</h3><p>PostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。<br>PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/02/Postgresql（1）--简介/#more" rel="contents">
+            <a class="btn" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1366,7 +1368,7 @@ hexo deploy
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1407,7 +1409,7 @@ hexo deploy
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">71</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1424,7 +1426,7 @@ hexo deploy
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

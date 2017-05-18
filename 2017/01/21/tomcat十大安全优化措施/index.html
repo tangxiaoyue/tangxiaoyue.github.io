@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Tomcat," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="telnet管理端口保护使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。
+# vi conf/server.xml
+&amp;lt;Server port=&amp;quot;8365&amp;quot; shutdown=&amp;quot;IN0IT&amp;quot;&amp;gt;
+远程关闭Tomcat：tel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat十大安全优化措施">
+<meta property="og:url" content="http://yoursite.com/2017/01/21/tomcat十大安全优化措施/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="telnet管理端口保护使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。
+# vi conf/server.xml
+&amp;lt;Server port=&amp;quot;8365&amp;quot; shutdown=&amp;quot;IN0IT&amp;quot;&amp;gt;
+远程关闭Tomcat：tel">
+<meta property="og:updated_time" content="2017-05-18T08:36:31.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tomcat十大安全优化措施">
+<meta name="twitter:description" content="telnet管理端口保护使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。
+# vi conf/server.xml
+&amp;lt;Server port=&amp;quot;8365&amp;quot; shutdown=&amp;quot;IN0IT&amp;quot;&amp;gt;
+远程关闭Tomcat：tel">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> tomcat十大安全优化措施 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                tomcat十大安全优化措施
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-21T20:37:26+08:00" content="2017-01-21">
+              2017-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="telnet管理端口保护"><a href="#telnet管理端口保护" class="headerlink" title="telnet管理端口保护"></a>telnet管理端口保护</h3><p>使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。</p>
+<pre><code># vi conf/server.xml
+&lt;Server port=&quot;8365&quot; shutdown=&quot;IN0IT&quot;&gt;
+</code></pre><p>远程关闭Tomcat：<br>telnet ip port 后，然后键入大写的SHUTDOWN。其中port默认为8005</p>
+<a id="more"></a>
+<h3 id="AJP连接端口保护"><a href="#AJP连接端口保护" class="headerlink" title="AJP连接端口保护"></a>AJP连接端口保护</h3><p>Tomcat 服务器通过Connector连接器组件与客户程序建立连接，Connector组件负责接收客户的请求，以及把Tomcat服务器的响应结果发送给客 户。默认情况下，Tomcat在server.xml中配置了两种连接器，一种使用ajp，要和apache结合使用，一种使用http。当使用http 时，可以限制ajp端口访问，在于防止线下测试流量被mod_jk转发至线上tomcat服务器。可以通过iptables规则限制ajp端口的访问，或 者直接将改行注释。</p>
+<pre><code># vim conf/server.xml
+&lt;!--&lt;Connector port=&quot;8329&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;--&gt;
+</code></pre><h3 id="禁用管理端"><a href="#禁用管理端" class="headerlink" title="禁用管理端"></a>禁用管理端</h3><p>对于tomcat的web管理端属于高危安全隐患，一旦被攻破，黑客通过上传web shell方式取得服务器的控制权，那是非常可怕的。我们需要删除tomcat安装目录下conf/tomcat-user.xml或者删除webapps下默认的目录和文件。</p>
+<pre><code># mv ../conf/tomcat-user.xml /tmp
+# mv webapps/* /tmp
+</code></pre><p>###降权启动tomcat</p>
+<p>tomcat 启动用户权限必须为非root，避免一旦tomcat服务被入侵，获取root权限，普通用户只能使用大于1024端口，如果要想使用80端口，可以使用 iptables规则进行转发，或者使用代理。一般情况下，tomcat前方有一个反向代理服务器nginx或者apache等。</p>
+<p>参考：<a href="https://tomcat.apache.org/tomcat-8.0-doc/setup.html" target="_blank" rel="external">https://tomcat.apache.org/tomcat-8.0-doc/setup.html</a></p>
+<pre><code>[root@tomcat ~]# cd /usr/local/tomcat/bin/
+[root@tomcat bin]# tar xf commons-daemon-native.tar.gz
+[root@tomcat bin]# cd commons-daemon-1.0.15-native-src/unix
+[root@tomcat unix]# ./configure --with-java=/usr/java/jdk1.8.0_45/
+[root@tomcat unix]# make
+[root@tomcat unix]# cp jsvc /usr/local/tomcat/bin/
+[root@tomcat bin]# cd /usr/local/tomcat/bin/
+</code></pre><p>编辑daemon.sh,首行加入以下内容，表示启动tomcat用户为nginx</p>
+<pre><code>TOMCAT_USER=nginx
+</code></pre><p>启动关闭tomcat</p>
+<pre><code># ./daemon.sh start | stop | version | run
+</code></pre><p>查看启动情况</p>
+<pre><code># netstat -tnlp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name   
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      2460/sshd           
+tcp        0      0 127.0.0.1:25                0.0.0.0:*                   LISTEN      1443/master         
+tcp        0      0 :::8080                     :::*                        LISTEN      4287/jsvc.exec      
+tcp        0      0 :::22                       :::*                        LISTEN      2460/sshd           
+tcp        0      0 ::1:25                      :::*                        LISTEN      1443/master 
+</code></pre><h3 id="文件列表访问控制"><a href="#文件列表访问控制" class="headerlink" title="文件列表访问控制"></a>文件列表访问控制</h3><p>conf/web.xml文件中的default部分listings的配置必须为false，false为不列出目录文件，true为允许列出，默认为false。</p>
+<pre><code>&lt;init-param&gt;
+     &lt;param-name&gt;listings&lt;/param-name&gt;
+     &lt;param-value&gt;false&lt;/param-value&gt;
+ &lt;/init-param&gt;
+</code></pre><h3 id="版本信息隐藏"><a href="#版本信息隐藏" class="headerlink" title="版本信息隐藏"></a>版本信息隐藏</h3><p>对一些常见错误重定向，避免出错暴露服务器和版本信息。在conf/web.xml重定向403，404及500等错误到指定页面。</p>
+<pre><code>&lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/404.html&lt;/location&gt;
+&lt;/error-page&gt;
+&lt;error-page&gt;
+    &lt;error-code&gt;403&lt;/error-code&gt;
+    &lt;location&gt;/403.html&lt;/location&gt;
+&lt;/error-page&gt;
+&lt;error-page&gt;
+    &lt;error-code&gt;500&lt;/error-code&gt;
+    &lt;location&gt;/500.html&lt;/location&gt;
+&lt;/error-page&gt;
+</code></pre><h3 id="脚本权限回收"><a href="#脚本权限回收" class="headerlink" title="脚本权限回收"></a>脚本权限回收</h3><p>去除其他用户对bin目录下可执行权限，防止其他用户起停tomcat</p>
+<pre><code># chmod -R 744 bin/*
+</code></pre><h3 id="访问日志格式规范"><a href="#访问日志格式规范" class="headerlink" title="访问日志格式规范"></a>访问日志格式规范</h3><p>开启Referer和User-Agetn是为了一旦出现安全问题能够更好的根据日志进行排查</p>
+<pre><code>&lt;Host name=&quot;23.83.xx.xx&quot;  appBase=&quot;webapps&quot;
+      unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
+  &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+         prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
+         pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b %{Referer}i %{User-Agent}i %D&quot; /&gt;
+  &lt;Context docBase=&quot;/usr/local/tomcat/webapps/FWYsWeb&quot; path=&quot;&quot;  reloadable=&quot;true&quot;/&gt;
+  &lt;Context docBase=&quot;/usr/local/tomcat/webapps/FWYsWeb&quot; path=&quot;/FWYsWeb&quot;  reloadable=&quot;true&quot;/&gt;
+&lt;/Host&gt;
+</code></pre><h3 id="设置信任IP白名单"><a href="#设置信任IP白名单" class="headerlink" title="设置信任IP白名单"></a>设置信任IP白名单</h3><p>只允许192.168.31.0网段访问</p>
+<pre><code>&lt;Host name=&quot;192.168.31.128&quot;  appBase=&quot;webapps&quot;
+       unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
+   &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+          prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
+          pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b %{Referer}i %{User-Agent}i %D&quot; /&gt;
+   &lt;Valve className=&quot;org.apache.catalina.valves.RemoteAddrValve&quot; allow=&quot;192.168.31.*&quot;/&gt;
+   &lt;Context docBase=&quot;/usr/local/tomcat/webapps/FWYsWeb&quot; path=&quot;&quot;  reloadable=&quot;true&quot;/&gt;
+   &lt;Context docBase=&quot;/usr/local/tomcat/webapps/FWYsWeb&quot; path=&quot;/FWYsWeb&quot;  reloadable=&quot;true&quot;/&gt;
+ &lt;/Host&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tomcat/" rel="tag">#Tomcat</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/02/MongoDB（1）--简介/" rel="next" title="MongoDB（1）--简介">
+                <i class="fa fa-chevron-left"></i> MongoDB（1）--简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/Hexo常用命令/" rel="prev" title="Hexo常用命令">
+                Hexo常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#telnet管理端口保护"><span class="nav-number">1.</span> <span class="nav-text">telnet管理端口保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJP连接端口保护"><span class="nav-number">2.</span> <span class="nav-text">AJP连接端口保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用管理端"><span class="nav-number">3.</span> <span class="nav-text">禁用管理端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件列表访问控制"><span class="nav-number">4.</span> <span class="nav-text">文件列表访问控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本信息隐藏"><span class="nav-number">5.</span> <span class="nav-text">版本信息隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本权限回收"><span class="nav-number">6.</span> <span class="nav-text">脚本权限回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问日志格式规范"><span class="nav-number">7.</span> <span class="nav-text">访问日志格式规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置信任IP白名单"><span class="nav-number">8.</span> <span class="nav-text">设置信任IP白名单</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
