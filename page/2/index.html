@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（6）--仓库管理/" itemprop="url">
-                  Docker 基础（6）--仓库管理
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（7）--数据管理/" itemprop="url">
+                  Docker 基础（7）--数据管理
                 </a>
               
             
@@ -320,11 +320,14 @@
 
       
         
-          <blockquote>
-<p>Docker的仓库是DockerHub，类似于github，github有一个开源的软件叫gitlab。Docker也有一个开源软件docker registry</p>
-</blockquote>
+          <h4 id="挂载本地目录到容器里"><a href="#挂载本地目录到容器里" class="headerlink" title="挂载本地目录到容器里"></a>挂载本地目录到容器里</h4><pre><code>[root@tang /]# mkdir /data/docker -p
+root@tang docker]# mkdir docker_01
+[root@tang docker]# docker run -it -h docker_01 --name docker_01 -v /data/docker/docker_01/:/docker_01 centos bash
+[root@docker_01 /]# cd /docker_01/        
+[root@docker_01 docker_01]# touch docker_01.txt
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（6）--仓库管理/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（7）--数据管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -371,8 +374,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/XtraBackup主从复制及备份/" itemprop="url">
-                  XtraBackup主从复制及备份
+                <a class="post-title-link" href="/2017/03/11/Docker问题梳理/" itemprop="url">
+                  Docker问题梳理--持续更新
                 </a>
               
             
@@ -399,8 +402,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -432,10 +435,134 @@
 
       
         
-          <h4 id="XtraBackup备份"><a href="#XtraBackup备份" class="headerlink" title="XtraBackup备份"></a>XtraBackup备份</h4><pre><code>1、yum安装mysql（以centos7为例）
+          
+            <h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
+
+使用systemctl启动服务的时候出现以下异常：
+
+Failed to get D-Bus connection: Operation not permitted 
+
+
+解决：
+
+docker run --privileged -itd -h node1 --name node1 centos /sbin/init
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（9）--Dockerfile/" itemprop="url">
+                  Docker 基础（9）--Dockerfile
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
+
+
+
+Dockerfile构建步骤：
+
+[root@tang /]# mkdir /dockerfile/nginx -p
+我们要在nginx目录上自动化创建一个nginx镜像
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/XtraBackup主从复制及备份/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（9）--Dockerfile/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -661,117 +788,6 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
-                  Docker 基础（8）--网络管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1272,8 +1288,8 @@ hexo deploy
             
               
                 
-                <a class="post-title-link" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/" itemprop="url">
-                  Linux 跟踪进程对CPU的占用情况，对内存的占用情况
+                <a class="post-title-link" href="/2016/12/28/tomcat的三种运行模式/" itemprop="url">
+                  tomcat的三种运行模式
                 </a>
               
             
@@ -1286,8 +1302,8 @@ hexo deploy
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-23T20:37:26+08:00" content="2016-12-23">
-              2016-12-23
+            <time itemprop="dateCreated" datetime="2016-12-28T18:09:26+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -1300,8 +1316,8 @@ hexo deploy
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux基础</span>
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
                   </a>
                 </span>
 
@@ -1333,12 +1349,9 @@ hexo deploy
 
       
         
-          <p> 本文使用java进程来举例</p>
-<ol>
-<li>查看java进程及其线程对cpu的占用情况<br>首先使用ps -ef找到java进程id</li>
-</ol>
+          <p>Tomcat Connector的三种不同的运行模式性能相差很大，有人测试过的结果如下：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/#more" rel="contents">
+            <a class="btn" href="/2016/12/28/tomcat的三种运行模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1409,7 +1422,7 @@ hexo deploy
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

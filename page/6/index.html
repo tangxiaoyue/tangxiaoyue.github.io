@@ -259,6 +259,121 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/20/Tomcat相关知识整理（1）/" itemprop="url">
+                  Tomcat相关知识整理（1）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T20:37:26+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="初识Servlet"><a href="#初识Servlet" class="headerlink" title="初识Servlet"></a>初识Servlet</h3><p>SUN公司制定了一系列Web应用与Web服务器进行协作的标准Java接口，统称为Java Servlet API，还对Web服务器发布及运行Web应用的一些细节做了规约。SUN公司把这一系列标准Java接口和规约统称为Servlet规范。Servlet就是Web服务器与Web应用进行协作的标准接口。</p>
+<p>Servlet规范把能够发布和运行JavaWeb应用的Web服务器称为Servlet容器，它的最主要的特征就是动态执行JavaWeb应用中的Servlet实现类中的程序代码。</p>
+<p>Servlet是一种运行在服务器上的小插件，其最常见的用途是扩展Web服务器的功能，可作为非常安全的、可移植的、易于使用的CGI替代品。具有以下特点：</p>
+<p>提供了可被服务器动态加载并执行的程序代码，为来自客户端的请求提供相应的服务；</p>
+<p>Servlet完全用Java语言编写，因此要求运行Servlet的服务器必须支持Java语言；</p>
+<p>Servlet完全在服务器端运行，因此它的运行不依赖于浏览器。不管浏览器是否支持Java语言，都能请求访问服务器端的Servlet。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/20/Tomcat相关知识整理（1）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/02/nginx跨域设置/" itemprop="url">
                   nginx跨域设置
                 </a>
@@ -841,117 +956,6 @@ http{
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
-                  Nginx采用https加密访问后出现的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
-<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/" itemprop="url">
                   Nginx配置SSL证书部署HTTPS网站
                 </a>
@@ -1064,8 +1068,8 @@ http{
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
-                  Mysqladmin命令总结
+                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
+                  Nginx采用https加密访问后出现的问题
                 </a>
               
             
@@ -1078,7 +1082,7 @@ http{
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
               2016-03-11
             </time>
           </span>
@@ -1092,8 +1096,8 @@ http{
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -1125,11 +1129,10 @@ http{
 
       
         
-          <pre><code>mysqladmin 工具的使用格式：
-mysqladmin [option] command [command option] command ......
-</code></pre>
+          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
+            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1286,8 +1289,8 @@ mysqladmin [option] command [command option] command ......
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx配置文件nginx.conf中文详解/" itemprop="url">
-                  Nginx配置文件nginx.conf中文详解
+                <a class="post-title-link" href="/2016/03/11/Mysqladmin命令总结/" itemprop="url">
+                  Mysqladmin命令总结
                 </a>
               
             
@@ -1300,7 +1303,7 @@ mysqladmin [option] command [command option] command ......
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T11:37:26+08:00" content="2016-03-11">
+            <time itemprop="dateCreated" datetime="2016-03-11T12:37:26+08:00" content="2016-03-11">
               2016-03-11
             </time>
           </span>
@@ -1314,8 +1317,8 @@ mysqladmin [option] command [command option] command ......
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -1347,9 +1350,11 @@ mysqladmin [option] command [command option] command ......
 
       
         
-          <p>Nginx是一款面向性能设计的HTTP服务器，相较于Apache、lighttpd具有占有内存少，稳定性高等优势。<br>Nginx安装完毕后，会有响应的安装目录，安装目录里nginx.conf为nginx的主配置文件，ginx主配置文件分为4部分，main（全局配置）、server（主机设置）、upstream（负载均衡服务器设）和location（URL匹配特定位置的设置），这四者关系为：server继承main，location继承server，upstream既不会继承其他设置也不会被继承。</p>
+          <pre><code>mysqladmin 工具的使用格式：
+mysqladmin [option] command [command option] command ......
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx配置文件nginx.conf中文详解/#more" rel="contents">
+            <a class="btn" href="/2016/03/11/Mysqladmin命令总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1420,7 +1425,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
