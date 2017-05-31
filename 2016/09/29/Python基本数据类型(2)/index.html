@@ -1,0 +1,980 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="运算符算数运算
+比较运算
+赋值运算
+逻辑运算
+成员运算
+基本数据类型数字int（整型）在32位机器上，整数的位数为32位，取值范围为-231～231-1，即-2147483648～2147483647　　在64位系统上，整数的位数为64位，取值范围为-263～263-1，即-9223372036854775808～9223372036854775807
+布尔值真或假1 或 0
+列表列表是我们最以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基本数据类型（2）">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/Python基本数据类型(2)/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="运算符算数运算
+比较运算
+赋值运算
+逻辑运算
+成员运算
+基本数据类型数字int（整型）在32位机器上，整数的位数为32位，取值范围为-231～231-1，即-2147483648～2147483647　　在64位系统上，整数的位数为64位，取值范围为-263～263-1，即-9223372036854775808～9223372036854775807
+布尔值真或假1 或 0
+列表列表是我们最以">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/4nt2ibtr4p8ml38xlmwpw6x1/image_1bheu6umff4v1b6fcgcfp1cvj55.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/e4z4h376lf2icfztgp258ld8/image_1bheu78nsovv5dt85p1arp1j7t5i.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/f11gboar432vlc7hg9pmb0ua/image_1bheu7igh1917j23gvi1eb5mgm5v.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/2edjxpjrbn6iapqylmo25rm1/image_1bheu826u1b672mn18fa1lvk1teg6c.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/upkgwg23ml0mwztriqbbeiic/image_1bheu8il81adl1jgs1b96o81b8i6p.png">
+<meta property="og:updated_time" content="2017-05-31T10:16:50.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基本数据类型（2）">
+<meta name="twitter:description" content="运算符算数运算
+比较运算
+赋值运算
+逻辑运算
+成员运算
+基本数据类型数字int（整型）在32位机器上，整数的位数为32位，取值范围为-231～231-1，即-2147483648～2147483647　　在64位系统上，整数的位数为64位，取值范围为-263～263-1，即-9223372036854775808～9223372036854775807
+布尔值真或假1 或 0
+列表列表是我们最以">
+<meta name="twitter:image" content="http://static.zybuluo.com/BruceTang/4nt2ibtr4p8ml38xlmwpw6x1/image_1bheu6umff4v1b6fcgcfp1cvj55.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Python基本数据类型（2） | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python基本数据类型（2）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-29T18:09:26+08:00" content="2016-09-29">
+              2016-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Python开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h3><p><img src="http://static.zybuluo.com/BruceTang/4nt2ibtr4p8ml38xlmwpw6x1/image_1bheu6umff4v1b6fcgcfp1cvj55.png" alt="image_1bheu6umff4v1b6fcgcfp1cvj55.png-104.2kB"></p>
+<h3 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a>比较运算</h3><p><img src="http://static.zybuluo.com/BruceTang/e4z4h376lf2icfztgp258ld8/image_1bheu78nsovv5dt85p1arp1j7t5i.png" alt="image_1bheu78nsovv5dt85p1arp1j7t5i.png-122.2kB"></p>
+<h3 id="赋值运算"><a href="#赋值运算" class="headerlink" title="赋值运算"></a>赋值运算</h3><p><img src="http://static.zybuluo.com/BruceTang/f11gboar432vlc7hg9pmb0ua/image_1bheu7igh1917j23gvi1eb5mgm5v.png" alt="image_1bheu7igh1917j23gvi1eb5mgm5v.png-102.2kB"></p>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><p><img src="http://static.zybuluo.com/BruceTang/2edjxpjrbn6iapqylmo25rm1/image_1bheu826u1b672mn18fa1lvk1teg6c.png" alt="image_1bheu826u1b672mn18fa1lvk1teg6c.png-56.3kB"></p>
+<h3 id="成员运算"><a href="#成员运算" class="headerlink" title="成员运算"></a>成员运算</h3><p><img src="http://static.zybuluo.com/BruceTang/upkgwg23ml0mwztriqbbeiic/image_1bheu8il81adl1jgs1b96o81b8i6p.png" alt="image_1bheu8il81adl1jgs1b96o81b8i6p.png-50kB"></p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><p><code>int（整型）</code><br>在32位机器上，整数的位数为32位，取值范围为-2<strong>31～2</strong>31-1，即-2147483648～2147483647<br>　　在64位系统上，整数的位数为64位，取值范围为-2<strong>63～2</strong>63-1，即-9223372036854775808～9223372036854775807</p>
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p><code>真或假</code><br><code>1 或 0</code></p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表是我们最以后最常用的数据类型之一，通过列表可以对数据实现最方便的存储、修改等操作</p>
+<h4 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h4><pre><code>names = [&apos;Alex&apos;,&quot;Tenglan&quot;,&apos;Eric&apos;]
+</code></pre><p>通过下标访问列表中的元素，下标从0开始计数</p>
+<pre><code>&gt;&gt;&gt; names[0]
+&apos;Alex&apos;
+&gt;&gt;&gt; names[2]
+&apos;Eric&apos;
+&gt;&gt;&gt; names[-1]
+&apos;Eric&apos;
+&gt;&gt;&gt; names[-2] #还可以倒着取
+&apos;Tenglan&apos;
+</code></pre><h4 id="切片-取多个元素"><a href="#切片-取多个元素" class="headerlink" title="切片:取多个元素"></a>切片:取多个元素</h4><pre><code>&gt;&gt;&gt; names = [&quot;Alex&quot;,&quot;Tenglan&quot;,&quot;Eric&quot;,&quot;Rain&quot;,&quot;Tom&quot;,&quot;Amy&quot;]
+&gt;&gt;&gt; names[1:4]  #取下标1至下标4之间的数字，包括1，不包括4
+[&apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;]
+&gt;&gt;&gt; names[1:-1] #取下标1至-1的值，不包括-1
+[&apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;]
+&gt;&gt;&gt; names[0:3] 
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;]
+&gt;&gt;&gt; names[:3] #如果是从头开始取，0可以忽略，跟上句效果一样
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;]
+&gt;&gt;&gt; names[3:] #如果想取最后一个，必须不能写-1，只能这么写
+[&apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;] 
+&gt;&gt;&gt; names[3:-1] #这样-1就不会被包含了
+[&apos;Rain&apos;, &apos;Tom&apos;]
+&gt;&gt;&gt; names[0::2] #后面的2是代表，每隔一个元素，就取一个
+[&apos;Alex&apos;, &apos;Eric&apos;, &apos;Tom&apos;] 
+&gt;&gt;&gt; names[::2] #和上句效果一样
+[&apos;Alex&apos;, &apos;Eric&apos;, &apos;Tom&apos;]
+</code></pre><h4 id="追加"><a href="#追加" class="headerlink" title="追加"></a>追加</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+&gt;&gt;&gt; names.append(&quot;我是新来的&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; names.insert(2,&quot;强行从Eric前面插入&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;强行从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+
+&gt;&gt;&gt; names.insert(5,&quot;从eric后面插入试试新姿势&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;强行从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入试试新姿势&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;强行从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入试试新姿势&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; names[2] = &quot;该换人了&quot;
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;该换人了&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入试试新姿势&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><pre><code>&gt;&gt;&gt; del names[2] 
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入试试新姿势&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; del names[4]
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; 
+&gt;&gt;&gt; names.remove(&quot;Eric&quot;) #删除指定元素
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; names.pop() #删除列表最后一个值 
+&apos;我是新来的&apos;
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+</code></pre><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+&gt;&gt;&gt; b = [1,2,3]
+&gt;&gt;&gt; names.extend(b)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+</code></pre><h4 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+
+&gt;&gt;&gt; name_copy = names.copy()
+&gt;&gt;&gt; name_copy
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+</code></pre><h4 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+&gt;&gt;&gt; names.count(&quot;Amy&quot;)
+</code></pre><h4 id="排序-amp-翻转"><a href="#排序-amp-翻转" class="headerlink" title="排序&amp;翻转"></a>排序&amp;翻转</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+&gt;&gt;&gt; names.sort() #排序
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: unorderable types: int() &lt; str()   #3.0里不同数据类型不能放在一起排序了，擦
+&gt;&gt;&gt; names[-3] = &apos;1&apos;
+&gt;&gt;&gt; names[-2] = &apos;2&apos;
+&gt;&gt;&gt; names[-1] = &apos;3&apos;
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]
+&gt;&gt;&gt; names.sort()
+&gt;&gt;&gt; names
+[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;Alex&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;]
+
+&gt;&gt;&gt; names.reverse() #反转
+&gt;&gt;&gt; names
+[&apos;Tom&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Alex&apos;, &apos;3&apos;, &apos;2&apos;, &apos;1&apos;]
+</code></pre><h4 id="获取下标"><a href="#获取下标" class="headerlink" title="获取下标"></a>获取下标</h4><pre><code>&gt;&gt;&gt; names
+[&apos;Tom&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Alex&apos;, &apos;3&apos;, &apos;2&apos;, &apos;1&apos;]
+&gt;&gt;&gt; names.index(&quot;Amy&quot;)
+2 #只返回找到的第一个下标
+</code></pre><h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组其实跟列表差不多，也是存一组数，只不是它一旦创建，便不能再修改，所以又叫只读列表<br>语法:<br><code>names = (&quot;alex&quot;,&quot;jack&quot;,&quot;eric&quot;)</code></p>
+<p><strong>元组常用操作：</strong><br>索引<br>切片<br>循环<br>长度<br>包含</p>
+<h3 id="字典（无序）"><a href="#字典（无序）" class="headerlink" title="字典（无序）"></a>字典（无序）</h3><p>字典一种key - value的数据类型，使用就像我们上学用的字典，通过笔划、字母来查对应页的详细内容。</p>
+<p>语法:</p>
+<pre><code>person = {&quot;name&quot;: &quot;mr.wu&quot;, &apos;age&apos;: 18}
+或
+person = dict({&quot;name&quot;: &quot;mr.wu&quot;, &apos;age&apos;: 18})
+</code></pre><p><strong>常用操作：</strong><br>索引<br>新增<br>删除<br>键、值、键值对<br>循环<br>长度</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>用户按照顺序循环可迭代对象中的内容，<br>PS：break、continue</p>
+<pre><code>li = [11,22,33,44]
+for item in li:
+    print item
+</code></pre><h3 id="enumrate"><a href="#enumrate" class="headerlink" title="enumrate"></a>enumrate</h3><p>为可迭代的对象添加序号</p>
+<pre><code>li = [11,22,33]
+for k,v in enumerate(li, 1):
+    print(k,v)
+</code></pre><h3 id="range和xrange"><a href="#range和xrange" class="headerlink" title="range和xrange"></a>range和xrange</h3><p>指定范围，生成指定的数字</p>
+<pre><code>print range(1, 10)
+# 结果：[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+print range(1, 10, 2)
+# 结果：[1, 3, 5, 7, 9]
+
+print range(30, 0, -2)
+# 结果：[30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2]
+</code></pre><h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><h3 id="元素分类"><a href="#元素分类" class="headerlink" title="元素分类"></a>元素分类</h3><p>有如下值集合 [11,22,33,44,55,66,77,88,99,90…]，将所有大于 66 的值保存至字典的第一个key中，将小于66的值保存至第二个key的值中<br>即： {‘k1’: 大于66的所有值, ‘k2’: 小于66的所有值}</p>
+<pre><code>item = [11,22,33,44,55,66,77,88,99,90]
+item1=[]
+item2=[]
+# items = {&apos;k1&apos;:&apos;&apos;,&apos;k2&apos;:&apos;&apos;}
+for i in item:
+    if i&lt;=66:
+        item1.append(i)
+    else:
+        item2.append(i)
+k1 ={&apos;k1&apos;:item1}
+k2 ={&apos;k2&apos;:item2}
+print (k1,k2)
+</code></pre><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>查找列表中元素，移除每个元素的空格，并查找以 a或A开头 并且以 c 结尾的所有元素。</p>
+<pre><code>li = [&quot;alec&quot;, &quot; aric&quot;, &quot;Alex&quot;, &quot;Tony&quot;, &quot;rain&quot;]
+tu = (&quot;alec&quot;, &quot; aric&quot;, &quot;Alex&quot;, &quot;Tony&quot;, &quot;rain&quot;) 
+dic = {&apos;k1&apos;: &quot;alex&quot;, &apos;k2&apos;: &apos; aric&apos;,  &quot;k3&quot;: &quot;Alex&quot;, &quot;k4&quot;: &quot;Tony&quot;}
+</code></pre><p>==========================================================</p>
+<pre><code>li = [&quot;alec&quot;, &quot; aric&quot;, &quot;Alex&quot;, &quot;Tony&quot;, &quot;rain&quot;]
+tu = (&quot;alec&quot;, &quot; aric&quot;, &quot;Alex&quot;, &quot;Tony&quot;, &quot;rain&quot;)
+dic = {&apos;k1&apos;: &quot;alex&quot;, &apos;k2&apos;: &apos; aric&apos;, &quot;k3&quot;: &quot;Alex&quot;, &quot;k4&quot;: &quot;Tony&quot;}
+for i in li:
+    b=i.strip()
+if (b.startswith(&quot;a&quot;) or b.startswith(&quot;A&quot;)) and b.endswith(&quot;c&quot;):
+    print(b)
+
+for i1 in tu:
+    c=i1.strip()
+if (c.startswith(&apos;a&apos;)or c.startswith(&apos;A&apos;)) and c.endswith(&apos;c&apos;):
+    print(c)
+
+for i2 in dic:
+    d=dic[i2].strip()
+if (d.startswith(&apos;a&apos;) or d.startswith(&apos;A&apos;)) and d.endswith(&apos;c&apos;):
+    print(d)
+</code></pre><h3 id="输出商品列表，用户输入序号，显示用户选中的商品"><a href="#输出商品列表，用户输入序号，显示用户选中的商品" class="headerlink" title="输出商品列表，用户输入序号，显示用户选中的商品"></a>输出商品列表，用户输入序号，显示用户选中的商品</h3><p>商品 li = [“手机”, “电脑”, ‘鼠标垫’, ‘游艇’]</p>
+<pre><code>li = [&quot;手机&quot;, &quot;电脑&quot;, &apos;鼠标垫&apos;, &apos;游艇&apos;]
+for key,i in enumerate (li,1):
+    print (key,i)
+user = int(input(&quot;输入序号&quot;))
+
+print (li[user-1])
+</code></pre><p>###　购物车<br>功能要求：</p>
+<p>１.要求用户输入总资产，例如：2000<br>２.显示商品列表，让用户根据序号选择商品，加入购物车<br>３.购买，如果商品总额大于总资产，提示账户余额不足，否则，购买成功。<br>４.附加：可充值、某商品移除购物车</p>
+<pre><code>goods = [
+    {&quot;name&quot;: &quot;电脑&quot;, &quot;price&quot;: 1999},
+    {&quot;name&quot;: &quot;鼠标&quot;, &quot;price&quot;: 10},
+    {&quot;name&quot;: &quot;游艇&quot;, &quot;price&quot;: 20},
+    {&quot;name&quot;: &quot;美女&quot;, &quot;price&quot;: 998},
+]
+</code></pre><p>==============================================================</p>
+<pre><code>shopping_cart = []
+salary = 2000
+goods = [
+    {&quot;name&quot;: &quot;电脑&quot;, &quot;price&quot;: 3000},
+    {&quot;name&quot;: &quot;鼠标&quot;, &quot;price&quot;: 103},
+    {&quot;name&quot;: &quot;游艇&quot;, &quot;price&quot;: 200000},
+    {&quot;name&quot;: &quot;美女&quot;, &quot;price&quot;: 998},
+]
+for i in enumerate(goods):
+    index = i[0]    #序号
+    p_list = i[1]   #商品清单
+    p_name_list = p_list.get(&apos;name&apos;)#商品名称列表
+    p_price_list = p_list.get(&apos;price&apos;)#商品价格列表
+    print(index,&quot;:&quot;,p_name_list,p_price_list)
+
+while True:
+    choice = input(&quot;please enter your choice:&quot;).strip()
+    if choice.isdigit():#如果选择为正整数
+        choice = int(choice)#输入为数字
+        if choice &lt; len(goods) and choice &gt;= 0:#选择小于列表长度大于0时
+            p_item = goods[choice]#加入购物车
+            p_name = p_item.get(&apos;name&apos;)
+            p_monery = p_item.get(&apos;price&apos;)
+            if p_monery &lt;= salary:#如果商品价格小于等于余额
+                shopping_cart.append(p_item)#加入购物车
+                salary -= p_monery#结算
+                print(&quot;购买的商品\033[32m:%s\033[0m已加入到购物车&quot;.center(40, &apos;-&apos;) %p_name)
+                for p_item in shopping_cart:
+                    print(p_name,p_monery)
+                    print(&quot;您的余额为\033[31m:%s\033[0m元&quot; % salary)
+            else:
+                print(&quot;您的余额不足，差%s元&quot;%(abs(p_monery - salary)))
+        else:
+            print(&quot;没有此件商品!&quot;)
+    else:
+        print(&quot;参数错误&quot;)
+    if choice == &quot;q&quot; or choice == &quot;quit&quot;:
+        cost = 0
+        print(&quot;您购买的商品清单如下:&quot;)
+        for p in shopping_cart:
+            print(p_name, p_monery)
+            cost += p_monery
+        print(&quot;\033[32m消费总金额:&quot;,cost,&quot;元\033[0m&quot;)
+        print(&quot;\033[32m您的余额为:&quot;,salary,&quot;元\033[0m&quot;)
+        break
+</code></pre><h3 id="用户交互，显示省市县三级联动的选择"><a href="#用户交互，显示省市县三级联动的选择" class="headerlink" title="用户交互，显示省市县三级联动的选择"></a>用户交互，显示省市县三级联动的选择</h3><pre><code>dic = {
+    &quot;河北&quot;: {
+        &quot;石家庄&quot;: [&quot;鹿泉&quot;, &quot;藁城&quot;, &quot;元氏&quot;],
+        &quot;邯郸&quot;: [&quot;永年&quot;, &quot;涉县&quot;, &quot;磁县&quot;],
+    }
+    &quot;河南&quot;: {
+        ...
+    }
+    &quot;山西&quot;: {
+        ...
+    }
+
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python开发/" rel="tag">#Python开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/28/初识Python(1)/" rel="next" title="初识Python(1)">
+                <i class="fa fa-chevron-left"></i> 初识Python(1)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/01/监控体系/" rel="prev" title="监控体系">
+                监控体系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">1.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算数运算"><span class="nav-number">1.1.</span> <span class="nav-text">算数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算"><span class="nav-number">1.2.</span> <span class="nav-text">比较运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值运算"><span class="nav-number">1.3.</span> <span class="nav-text">赋值运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算"><span class="nav-number">1.4.</span> <span class="nav-text">逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员运算"><span class="nav-number">1.5.</span> <span class="nav-text">成员运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">2.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字"><span class="nav-number">2.1.</span> <span class="nav-text">数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔值"><span class="nav-number">2.2.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">2.3.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义列表"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切片-取多个元素"><span class="nav-number">2.3.2.</span> <span class="nav-text">切片:取多个元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追加"><span class="nav-number">2.3.3.</span> <span class="nav-text">追加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">2.3.4.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">2.3.5.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.3.6.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展"><span class="nav-number">2.3.7.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝"><span class="nav-number">2.3.8.</span> <span class="nav-text">拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计"><span class="nav-number">2.3.9.</span> <span class="nav-text">统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序-amp-翻转"><span class="nav-number">2.3.10.</span> <span class="nav-text">排序&翻转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取下标"><span class="nav-number">2.3.11.</span> <span class="nav-text">获取下标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组"><span class="nav-number">2.4.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典（无序）"><span class="nav-number">2.5.</span> <span class="nav-text">字典（无序）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">3.1.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enumrate"><span class="nav-number">3.2.</span> <span class="nav-text">enumrate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#range和xrange"><span class="nav-number">3.3.</span> <span class="nav-text">range和xrange</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习题"><span class="nav-number">4.</span> <span class="nav-text">练习题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素分类"><span class="nav-number">4.1.</span> <span class="nav-text">元素分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找"><span class="nav-number">4.2.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出商品列表，用户输入序号，显示用户选中的商品"><span class="nav-number">4.3.</span> <span class="nav-text">输出商品列表，用户输入序号，显示用户选中的商品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户交互，显示省市县三级联动的选择"><span class="nav-number">4.4.</span> <span class="nav-text">用户交互，显示省市县三级联动的选择</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
