@@ -77,7 +77,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/1ssrtg2634qqi8dypnts51ae/image_1bherv5pd19hhj3l1fvokr1ghv3u.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/2v8080lrdihazt9uffuueocs/image_1bhes05ug1tjpt3hu6b12a2rg54b.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/g0vnmtzibc0jziml2e5tjhmq/image_1bhes0iip1db3anp1fn41c1nf4k4o.png">
-<meta property="og:updated_time" content="2017-05-31T09:36:53.237Z">
+<meta property="og:updated_time" content="2017-05-31T09:39:25.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Python(1)">
 <meta name="twitter:description" content="Python简介Python前世今生python的创始人为吉多·范罗苏姆（Guido van Rossum）。1989年的圣诞节期间，吉多·范罗苏姆为了在阿姆斯特丹打发时间，决心开发一个新的脚本解释程序，作为ABC语言的一种继承。  
@@ -585,8 +585,8 @@ def  main3():
 
 main()
 </code></pre><p><strong>最简洁的一行搞定</strong></p>
-<p>print(sum(range(1, 101))</p>
-<p>3、输出 1-100 内的所有奇数</p>
+<pre><code>print(sum(range(1, 101))
+</code></pre><p>3、输出 1-100 内的所有奇数</p>
 <pre><code>number = list(range(1,101))
 for i in number:
     if i%2 != 0:
@@ -611,8 +611,20 @@ sum = sum1-sum2
 print (sum)
 </code></pre><p>6、用户登陆（三次机会重试）</p>
 <pre><code>#_*_ coding:utf-8 _*_
-</code></pre><p>n = 1<br>name = ‘hahaha’<br>pwd = ‘hehehe’<br>while True:<br>    username = input(‘请输入用户名： ‘)<br>    password = input(‘请输入密码： ‘)<br>    if username == name and password == pwd:<br>        print (‘hello,%s’%username)<br>        exit()<br>    else:<br>        n = n + 1<br>        if n &gt; 3:<br>            exit()</p>
-
+n = 1
+name = &apos;hahaha&apos;
+pwd = &apos;hehehe&apos;
+while True:
+    username = input(&apos;请输入用户名： &apos;)
+    password = input(&apos;请输入密码： &apos;)
+    if username == name and password == pwd:
+        print (&apos;hello,%s&apos;%username)
+        exit()
+    else:
+        n = n + 1
+        if n &gt; 3:
+           exit()
+</code></pre>
       
     </div>
 
