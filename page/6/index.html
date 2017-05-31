@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/21/postgresql（2）--安装方式/" itemprop="url">
-                  postgresql（2）--安装方式
+                <a class="post-title-link" href="/2016/07/21/postgresql（3）--常用命令/" itemprop="url">
+                  postgresql（3）--常用命令
                 </a>
               
             
@@ -320,12 +320,11 @@
 
       
         
-          <h3 id="RPM安装方式"><a href="#RPM安装方式" class="headerlink" title="RPM安装方式"></a>RPM安装方式</h3><h4 id="rpm安装包"><a href="#rpm安装包" class="headerlink" title="rpm安装包"></a>rpm安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">postgresql94-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-contrib-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-devel-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-libs-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line">postgresql94-server-9.4.8-1PGDG.rhel6.x86_64.rpm</div><div class="line"></div><div class="line">cat psql_install.sh                                             #安装脚本</div><div class="line">rpm -ivh libxslt1-1.1.28-66.1.x86_64.rpm                        #依赖包</div><div class="line">rpm -ivh --force postgresql94-*</div><div class="line">service postgresql-9.4 initdb                                   #初始化</div><div class="line">sed -i &quot;s/peer/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf     #允许远程连接</div><div class="line">sed -i &quot;s/ident/trust/g&quot; /var/lib/pgsql/9.4/data/pg_hba.conf</div><div class="line">service postgresql-9.4 start</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/21/postgresql（2）--安装方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1066,117 +1065,6 @@ http{
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
-                  Nginx采用https加密访问后出现的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
-<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/" itemprop="url">
                   Nginx配置SSL证书部署HTTPS网站
                 </a>
@@ -1243,6 +1131,117 @@ http{
 <p>[root@bubidev-ng3 nginx]# pwd<br>/etc/nginx</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/11/Nginx配置SSL证书部署HTTPS网站/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/Nginx采用https加密访问后出现的问题/" itemprop="url">
+                  Nginx采用https加密访问后出现的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:26+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>线上的一个网站运行了一段时间，应领导要求，将其访问方式更改为https加密方式。<br>更改为https后，网站访问正常，但网站注册功能不能正常使用了！</p>
+<p>经过排查，是nginx配置里结合php部分漏洞了一个参数（fastcgi_param  HTTPS ）导致，添加上这个参数后，问题迎刃而解！<br>nginx支持https的配置时，需要在php区域配置中添加FastCGI服务，否则https不支持php文件。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/11/Nginx采用https加密访问后出现的问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
