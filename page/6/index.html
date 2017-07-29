@@ -259,6 +259,117 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/21/nginx rewrite 规则详解/" itemprop="url">
+                  nginx rewrite 规则详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T18:09:26+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Rewrite简介"><a href="#Rewrite简介" class="headerlink" title="Rewrite简介"></a>Rewrite简介</h3><p>rewrite功能就是，使用nginx提供的全局变量或自己设置的变量，结合正则表达式和标志位实现url重写以及重定向。<br>rewrite只能放在server{},location{},if{}中，并且只能对域名后边的除去传递的参数外的字符串起作用。<br>表明看rewrite和location功能有点像，都能实现跳转，主要区别<code>在于rewrite是在同一域名内更改获取资源的路径，而location是对一类路径做控制访问或反向代理，可以proxy_pass到其机器。</code><br>很多情况下rewrite也会写在location里，它们的执行顺序：</p>
+<p>执行server块的rewrite指令<br>执行location匹配<br>执行选定的location中的rewrite指令<br>如果其中某步URI被重写，则重新循环执行1-3，直到找到真实存在的文件；循环超过10次，则返回500 Internal Server Error错误。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/21/nginx rewrite 规则详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/04/MySQL问题系列- MySQL连接数被限制为214个/" itemprop="url">
                   MySQL问题系列- MySQL连接数被限制为214个
                 </a>
@@ -589,6 +700,115 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/21/postgresql（3）--常用命令/" itemprop="url">
+                  postgresql（3）--常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-21T20:37:26+08:00" content="2016-07-21">
+              2016-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
+                    <span itemprop="name">Postgresql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/21/postgresql（2）--安装方式/" itemprop="url">
                   postgresql（2）--安装方式
                 </a>
@@ -656,115 +876,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/21/postgresql（3）--常用命令/" itemprop="url">
-                  postgresql（3）--常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-21T20:37:26+08:00" content="2016-07-21">
-              2016-07-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
-                    <span itemprop="name">Postgresql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">创建数据库</div><div class="line">CREATE DATABASE test WITH OWNER = postgres ENCODING = &apos;UTF8&apos;;</div><div class="line"></div><div class="line">进入控制台方法，在postgreSQL的安装目的bin下执行命令： psql 数据库名，</div><div class="line"> 例： /usr/local/pgsql/bin/psql mydb</div><div class="line">指定host、用户名和数据库的话，如：</div><div class="line">/usr/local/pgsql/bin/psql -h localhost -U postgres -d test</div><div class="line"></div><div class="line">查看版本： psql --version 或 SELECT version();</div><div class="line"></div><div class="line">查看所有数据库：\l</div><div class="line"></div><div class="line">查看所有数据库（包括详细参数）：select * from pg_database;</div><div class="line"></div><div class="line">选择数据库：\c databasename</div><div class="line"></div><div class="line">查看所有表：\dt</div><div class="line"></div><div class="line">查看某个表的结构：\d tablename</div><div class="line"></div><div class="line">退出psql控制台：\q</div><div class="line"></div><div class="line">查看表的索引：</div><div class="line">select * from pg_indexes where tablename=&apos;log&apos;;</div><div class="line"></div><div class="line">导出备份数据库：</div><div class="line">pg_dump -h localhost -U postgres databasename &gt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导入恢复数据库(sql文件是pg_dump导出的文件就行，可以是整个数据库，也可以只是单个表，也可以只是结构等)：</div><div class="line">psql -h localhost -U postgres -d databasename &lt; /tmp/databasename.bak.yyyymmdd.sql</div><div class="line"></div><div class="line">导出数据结构，主要是加上参数-s：</div><div class="line">pg_dump -U username -W dbname -f /tmp/filename.sql</div><div class="line">导出某个表：</div><div class="line">pg_dump -h localhost -U postgres -t tablename dbname &gt; test.sql</div><div class="line"></div><div class="line">导出某个表的结构，同样是加参数&quot;-s&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -s dbname &gt; test_construct.sql</div><div class="line"></div><div class="line">导出某个表的数据，加参数&quot;-a&quot;：</div><div class="line">pg_dump -h localhost -U postgres -t tablename -a dbname &gt; test_data.sql</div><div class="line"></div><div class="line">查看序列：select * from information_schema.sequences where sequence_schema = &apos;public&apos;;</div><div class="line"></div><div class="line">查看数据库大小：select pg_size_pretty(pg_database_size(&apos;test&apos;));</div><div class="line"></div><div class="line">查看表的大小：select pg_size_pretty(pg_relation_size(&apos;test&apos;));</div></pre></td></tr></table></figure>
-
-          
         
       
     </div>
@@ -1263,116 +1374,6 @@ http{
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/Mysql优化系列--总结梳理/" itemprop="url">
-                  Mysql优化系列--总结梳理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于一个网站来说，在运行很长一段时间后，数据库瓶颈问题会越来越暴露出来。作为运维人员，对数据库做必要的优化十分重要！<br>    下面总结以往查阅到的以及自己工作中的一些优化操作经验，并根据OSI七层模型从下往上进行优化mysql数据库记录。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/Mysql优化系列--总结梳理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1418,7 +1419,7 @@ http{
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-count">78</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
