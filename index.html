@@ -259,6 +259,269 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/03/about-typescript-you-need-to-know-the-knowledge/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-03T09:06:58+08:00" content="2017-06-03">
+              2017-06-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于TypeScript你需要了解的知识"><a href="#关于TypeScript你需要了解的知识" class="headerlink" title="关于TypeScript你需要了解的知识"></a>关于TypeScript你需要了解的知识</h1><p>TypeScript is a language for application-scale JavaScript.<br>TypeScript adds optional types, classes, and modules to JavaScript.<br>TypeScript supports tools for large-scale JavaScript applications for any browser, for any host, on any OS.<br>TypeScript compiles to readable, standards-based JavaScript. </p>
+<p><a href="https://github.com/Microsoft/TypeScript" target="_blank" rel="external">TypeScript</a></p>
+<h2 id="搭建本地TypeScript开发环境"><a href="#搭建本地TypeScript开发环境" class="headerlink" title="搭建本地TypeScript开发环境"></a>搭建本地TypeScript开发环境</h2><ul>
+<li>通过npm安装typescript</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g typescript</div></pre></td></tr></table></figure>
+<ul>
+<li>手动编译ts文件</li>
+</ul>
+<p>创建一个<code>hello.ts</code>的文件，内容为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;  <span class="comment">// 创建一个Hello的类</span></div><div class="line">    <span class="keyword">constructor</span>() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello, TypeScript'</span>);  <span class="comment">// 在构造方法中进行输出</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> hello = <span class="keyword">new</span> Hello();  <span class="comment">// 创建Hello类的实例</span></div></pre></td></tr></table></figure>
+<p>通过<code>typescript</code>提供的<code>tsc</code>指令进行编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ tsc hello.ts </div><div class="line">$ tree ./</div><div class="line">./</div><div class="line">├── hello.js  <span class="comment"># tsc会吧ts文件编译成浏览器可执行的js文件</span></div><div class="line">└── hello.ts</div><div class="line"></div><div class="line">0 directories, 2 files</div></pre></td></tr></table></figure></p>
+<p>其内容为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat hello.js </div><div class="line">var Hello = (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">Hello</span></span>() &#123;</div><div class="line">        console.log(<span class="string">'Hello, TypeScript'</span>); // 在构造方法中进行输出</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> Hello;</div><div class="line">&#125;());</div><div class="line">var hello = new Hello(); // 创建Hello类的实例</div></pre></td></tr></table></figure></p>
+<p>用浏览器执行一下，看看会发生什么。</p>
+<p>然而，聪明的开发者已经会使用<code>vscode</code>和<code>webstorm</code>进行代码的自动编译了.</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li>多行字符串</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">`hello</span></div><div class="line">world`);</div></pre></td></tr></table></figure>
+<ul>
+<li>字符串模板</li>
+</ul>
+<p>双引号之间的内容会被当做一个字符串进行输出，而``之间的却可以被解析出来</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> lastName: <span class="built_in">string</span> = <span class="string">'An'</span>;</div><div class="line"><span class="keyword">let</span> firstName: <span class="built_in">string</span> = <span class="string">"sheng"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Name</span>(<span class="params">LastName, FirstName</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;LastName&#125;</span> <span class="subst">$&#123;FirstName&#125;</span>`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">`My LastName: <span class="subst">$&#123;lastName&#125;</span>`</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`My FirstName: <span class="subst">$&#123;firstName&#125;</span>`</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`My Name: <span class="subst">$&#123;Name(lastName, firstName)&#125;</span>`</span>);</div></pre></td></tr></table></figure>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li>参数类型</li>
+</ul>
+<p>在参数名称后面使用冒号来指定参数的类型</p>
+<p>变量类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myname: <span class="built_in">string</span> = <span class="string">'an sheng'</span>;</div><div class="line"><span class="keyword">let</span> alias = <span class="string">"xx"</span>;</div><div class="line"></div><div class="line"><span class="comment">// myname = 13;  // myname常量的类型指定了string，所以赋值的时候必须是string类型</span></div><div class="line"><span class="comment">// alias = 13;  // 在创建alias常量的时候，由于值是string类型，所以赋值的时候也必须是string类型</span></div></pre></td></tr></table></figure>
+<p>基本的类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">关键字</th>
+<th style="text-align:left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">string</td>
+<td style="text-align:left">字符串类型</td>
+</tr>
+<tr>
+<td style="text-align:left">number</td>
+<td style="text-align:left">整形</td>
+</tr>
+<tr>
+<td style="text-align:left">any</td>
+<td style="text-align:left">任意类型</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">布尔类型</td>
+</tr>
+</tbody>
+</table>
+<p>指定函数返回值类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;  <span class="comment">// 返回值可以是任意类型</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>): <span class="title">string</span> </span>&#123;  <span class="comment">// 返回值必须是字符串</span></div><div class="line">    <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>指定参数类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">age: <span class="built_in">number</span>, name: <span class="built_in">string</span></span>): <span class="title">string</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自定义类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Person &#123;</div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    age: <span class="built_in">number</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> zhangsan: Person = <span class="keyword">new</span> Person();</div><div class="line">zhangsan.age = <span class="number">18</span>;  <span class="comment">// 变量值必须是Person类中执行的</span></div><div class="line">zhangsan.name = <span class="string">"Hello"</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数默认值</li>
+</ul>
+<p>在参数声明后面用等号来指定参数的默认值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">let myname: string = 'Hello';  // 变量的默认值</div><div class="line"></div><div class="line">function test(a: string, b: string, c: string = 'ccc') &#123;  // 函数参数的默认值，默认值的参数一定要声明在最后面</div><div class="line">    console.log(a);</div><div class="line">    console.log(b);</div><div class="line">    console.log(c);</div><div class="line">&#125;</div><div class="line"></div><div class="line">test("xx", "yy");</div></pre></td></tr></table></figure>
+<ul>
+<li>可选参数</li>
+</ul>
+<p>在方法的参数声明后面用问好来标明此参数为可选参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function test(a: string, b?: string, c: string = 'ccc') &#123;  // 可选参数声明在默认参数的前面</div><div class="line">    console.log(a);</div><div class="line">    console.log(b);</div><div class="line">    console.log(c);</div><div class="line">&#125;</div><div class="line"></div><div class="line">test("aaa");</div></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>Rest and Spread操作符</li>
+</ul>
+<p>用来声明任意数量的方法参数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params">...args</span>) </span>&#123;  <span class="comment">// 任意数量的参数</span></div><div class="line">    args.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(arg)  <span class="comment">// 1 2 3 4 5</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">func1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="built_in">console</span>.log(b);</div><div class="line">    <span class="built_in">console</span>.log(c);</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> args1 = [<span class="number">1</span>, <span class="number">2</span>];</div><div class="line"><span class="keyword">let</span> args2 = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</div><div class="line">func1(...args1);  <span class="comment">// 1 2 undefined</span></div><div class="line">func1(...args2);  <span class="comment">// 5 6 7</span></div></pre></td></tr></table></figure>
+<ul>
+<li>generator函数</li>
+</ul>
+<p>控制函数的执行过程，手工暂停和恢复代码执行</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'start'</span>);</div><div class="line">    <span class="keyword">yield</span>;  <span class="comment">// 与Python中的yield关键词一样，遇到这个词就暂停</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"finish"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> func1 = doSomething();</div><div class="line">func1.next();  <span class="comment">// start</span></div><div class="line">func1.next();  <span class="comment">// finish</span></div></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">getStockPrice</span>(<span class="params">stock</span>) </span>&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">yield</span> <span class="built_in">Math</span>.random() * <span class="number">100</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> priceGenerator = getStockPrice(<span class="string">"IBM"</span>);  <span class="comment">// 股票</span></div><div class="line"><span class="keyword">let</span> limitPrice = <span class="number">15</span>;  <span class="comment">// 最小价格</span></div><div class="line"><span class="keyword">let</span> price = <span class="number">100</span>;  <span class="comment">// 起始值</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> (price &gt; limitPrice) &#123;</div><div class="line">    price = priceGenerator.next().value;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;price&#125;</span>`</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;price&#125;</span>`</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>析构表达式</li>
+</ul>
+<p>通过表达式将对象或数组拆解成任意数量的变量</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStock</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// 股票函数</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        code: <span class="string">"IMB"</span>,</div><div class="line">        price: <span class="number">100</span>,</div><div class="line">        PRICE: &#123;</div><div class="line">            price1: <span class="number">10000</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> &#123;code, price&#125; = getStock();  <span class="comment">// 转换成本地的变量</span></div><div class="line"><span class="built_in">console</span>.log(code, price);  <span class="comment">// IMB 100</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> &#123;code: hello, price: world&#125; = getStock();  <span class="comment">// 对象取出来的值转换到本地的hello和world变量中</span></div><div class="line"><span class="built_in">console</span>.log(hello, world);  <span class="comment">// IMB 100</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> &#123;PRICE: &#123;price1&#125;&#125; = getStock();  <span class="comment">// 获取嵌套对象里面的值</span></div><div class="line"><span class="built_in">console</span>.log(price1);  <span class="comment">// 10000</span></div></pre></td></tr></table></figure>
+<p>从数组里面中取值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</div><div class="line"><span class="keyword">let</span> [number1, number2, ...others] = array1;</div><div class="line"><span class="built_in">console</span>.log(number1, number2);  <span class="comment">// 1 2</span></div><div class="line"><span class="built_in">console</span>.log(others);  <span class="comment">// 3 4</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> [, , number3, number4] = array1;</div><div class="line"><span class="built_in">console</span>.log(number3, number4);  <span class="comment">// 3 4</span></div></pre></td></tr></table></figure>
+<p>用作函数的参数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">[number1, number2, ...others]</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(number1);  <span class="comment">// 1</span></div><div class="line">    <span class="built_in">console</span>.log(number2);  <span class="comment">// 2</span></div><div class="line">    <span class="built_in">console</span>.log(others);  <span class="comment">// [3, 4]</span></div><div class="line">&#125;</div><div class="line">doSomething(array1);</div></pre></td></tr></table></figure>
+<h2 id="表达式与循环"><a href="#表达式与循环" class="headerlink" title="表达式与循环"></a>表达式与循环</h2><ul>
+<li>箭头表达式</li>
+</ul>
+<p>用来声明匿名函数，消除传统匿名函数的this指针问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">arg1, arg2</span>) =&gt;</span> arg1 + arg2; <span class="comment">// 单行</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> sum1 = <span class="function">(<span class="params">arg1, arg2</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> arg1 + arg2;</div><div class="line">&#125;; <span class="comment">// 多行</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> sum2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line"></div><div class="line">&#125;; <span class="comment">// 没有参数</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> sum13 = <span class="function"><span class="params">arg1</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(arg1)</div><div class="line">&#125;; <span class="comment">// 单个参数</span></div></pre></td></tr></table></figure>
+<p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log(myArray.filter(<span class="function"><span class="params">value</span> =&gt;</span> value % <span class="number">2</span> == <span class="number">0</span>));  <span class="comment">// 取偶数 [2, 4]</span></div></pre></td></tr></table></figure>
+<ul>
+<li>for of循环</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</div><div class="line"><span class="comment">// myArray.desc = 'Hello,World';  // 属性</span></div><div class="line">myArray.forEach(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">console</span>.log(value));  <span class="comment">// 不支持属性</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n <span class="keyword">in</span> myArray) &#123;  <span class="comment">// 支持属性</span></div><div class="line">    <span class="built_in">console</span>.log(myArray[n]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n of myArray) &#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">5</span>) &#123;</div><div class="line">        <span class="keyword">break</span>;  <span class="comment">// 执行break</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(n)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
+<li>类</li>
+</ul>
+<p>类是typescript的核心，使用TypeScript开发时，大部分代码都是写在类里面的。</p>
+<p>定义类</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Person &#123;  <span class="comment">// 创建类</span></div><div class="line">    name: <span class="built_in">string</span>;  <span class="comment">// 类属性</span></div><div class="line"></div><div class="line">    eat() &#123;   <span class="comment">// 类方法</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'吃'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person();  <span class="comment">// 创建类</span></div><div class="line">p1.name = <span class="string">'Hello'</span>;  <span class="comment">// 类属性赋值</span></div><div class="line">p1.eat();  <span class="comment">// 调用类方法</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">控制符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">public</td>
+<td style="text-align:left">类的属性在内部和外部都可以被修改</td>
+</tr>
+<tr>
+<td style="text-align:left">private</td>
+<td style="text-align:left">私有的属性和方法只有在类的内部访问和修改</td>
+</tr>
+<tr>
+<td style="text-align:left">protected</td>
+<td style="text-align:left">受保护的属性和方法，在类的内部和子类被访问</td>
+</tr>
+</tbody>
+</table>
+<p>类的构造函数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Person &#123;  <span class="comment">// 创建类</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span></span>) &#123; <span class="comment">// 构造方法,public name声明name属性</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello, Person'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person(<span class="string">'AS'</span>);  <span class="comment">// 创建类</span></div><div class="line"><span class="built_in">console</span>.log(p1.name);</div></pre></td></tr></table></figure>
+<p>继承</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Person &#123;  <span class="comment">// 创建类</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span></span>) &#123; <span class="comment">// 构造方法,public name声明name属性</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    eat() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Employee <span class="keyword">extends</span> Person &#123;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span>, <span class="keyword">public</span> code: <span class="built_in">string</span></span>) &#123;</div><div class="line">        <span class="keyword">super</span>(name);</div><div class="line">        <span class="keyword">this</span>.code = code;</div><div class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    work() &#123;</div><div class="line">        <span class="keyword">super</span>.eat();</div><div class="line">        <span class="built_in">console</span>.log(<span class="number">4</span>);</div><div class="line">        <span class="keyword">this</span>.doWork();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> doWork() &#123;  <span class="comment">// 只能在内部调用</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="number">5</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> e1 = <span class="keyword">new</span> Employee(<span class="string">'Hello'</span>, <span class="string">'110'</span>);</div><div class="line">e1.work();</div></pre></td></tr></table></figure>
+<ul>
+<li>泛型</li>
+</ul>
+<p>用来指定数组只能存在的数据类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Person &#123;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span></span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> workers: <span class="built_in">Array</span>&lt;Person&gt; = [];</div><div class="line">workers[<span class="number">0</span>] = <span class="keyword">new</span> Person(<span class="string">"Hello"</span>);</div><div class="line">workers[<span class="number">1</span>] = <span class="keyword">new</span> Person(<span class="string">"World"</span>);</div><div class="line"><span class="comment">// workers[1] = 3;  // 并存放</span></div></pre></td></tr></table></figure>
+<ul>
+<li>接口</li>
+</ul>
+<p>用来建立某种代码约定，使得其他开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定。</p>
+<p>用接口来声明属性</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> IPerson &#123;  <span class="comment">// 声明接口</span></div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    age: <span class="built_in">number</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Person &#123;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> config: IPerson</span>) &#123;  <span class="comment">// 作为一个方法参数的类型声明</span></div><div class="line">        <span class="built_in">console</span>.log(config);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person(&#123;</div><div class="line">    name: <span class="string">'Hello'</span>,</div><div class="line">    age: <span class="number">20</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>用接口来声明方法</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> Animal &#123;</div><div class="line">    eat();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Sheep <span class="keyword">implements</span> Animal &#123;</div><div class="line">    eat() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Sheep 吃'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Tiger <span class="keyword">implements</span> Animal &#123;</div><div class="line">    eat() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Tiger 吃'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>模块</li>
+</ul>
+<p>模块可以帮助开发者将代码分割为可重用的单元，开发者可以自己决定将模块中的那些资源暴露出去供外部使用，那些资源只在模块内使用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">关键字</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">export</td>
+<td style="text-align:left">导出模块</td>
+</tr>
+<tr>
+<td style="text-align:left">import</td>
+<td style="text-align:left">导入模块</td>
+</tr>
+</tbody>
+</table>
+<p>导出模块</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> prop1;</div><div class="line"><span class="keyword">let</span> prop2;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Class1 &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">class</span> CLass2 &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>导入模块</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;Class1, func1, prop1&#125; <span class="keyword">from</span> <span class="string">"./a"</span>;</div><div class="line"><span class="built_in">console</span>.log(prop1);</div><div class="line"></div><div class="line">func1();</div><div class="line"></div><div class="line"><span class="keyword">new</span> Class1();</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/10/Python全栈之路系列文章/" itemprop="url">
                   Python全栈之路系列文章
                 </a>
@@ -713,6 +976,116 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/12/Docker 基础（10）--容器时间/" itemprop="url">
+                  Docker 基础（10）--容器时间跟宿主机时间同步
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-12T12:37:26+08:00" content="2017-03-12">
+              2017-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在Docker容器创建好之后，可能会发现容器时间跟宿主机时间不一致，这就需要同步它们的时间，让容器时间跟宿主机时间保持一致。如下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/12/Docker 基础（10）--容器时间/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/12/Docker高级（1）--架构总览/" itemprop="url">
                   Docker高级（1）--架构总览
                 </a>
@@ -1053,229 +1426,6 @@ docker run --privileged -itd -h node1 --name node1 centos /sbin/init
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（4）--镜像管理/" itemprop="url">
-                  Docker 基础（4）--镜像管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用容器生成镜像"><a href="#使用容器生成镜像" class="headerlink" title="使用容器生成镜像"></a>使用容器生成镜像</h3><pre><code>[root@tang ~]# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（4）--镜像管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（8）--网络管理/" itemprop="url">
-                  Docker 基础（8）--网络管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Docker四种网络模式"><a href="#Docker四种网络模式" class="headerlink" title="Docker四种网络模式"></a>Docker四种网络模式</h3><h4 id="第一种网络模式host"><a href="#第一种网络模式host" class="headerlink" title="第一种网络模式host"></a>第一种网络模式host</h4><pre><code>host模式: 使用--net=host指定docker使用的网络实际上和宿主机一样,在容器内看到的网卡ip是宿主机上的ip.
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（8）--网络管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/03/11/Docker 基础（6）--仓库管理/" itemprop="url">
                   Docker 基础（6）--仓库管理
                 </a>
@@ -1412,7 +1562,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
