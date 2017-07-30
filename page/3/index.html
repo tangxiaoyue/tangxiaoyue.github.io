@@ -259,119 +259,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/21/tomcat十大安全优化措施/" itemprop="url">
-                  tomcat十大安全优化措施
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-21T20:37:26+08:00" content="2017-01-21">
-              2017-01-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">Tomcat</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="telnet管理端口保护"><a href="#telnet管理端口保护" class="headerlink" title="telnet管理端口保护"></a>telnet管理端口保护</h3><p>使用telnet连接进来可以输入SHUTDOWN可以直接关闭tomcat，极不安全，必须关闭。可以修改默认的管理端口8005改为其他端口，修改SHUTDOWN指令为其他字符串。</p>
-<pre><code># vi conf/server.xml
-&lt;Server port=&quot;8365&quot; shutdown=&quot;IN0IT&quot;&gt;
-</code></pre><p>远程关闭Tomcat：<br>telnet ip port 后，然后键入大写的SHUTDOWN。其中port默认为8005</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/21/tomcat十大安全优化措施/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/01/02/MongoDB（1）--简介/" itemprop="url">
                   MongoDB（1）--简介
                 </a>
@@ -706,6 +593,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/23/shell脚本每天自动统计网站访问日志/" itemprop="url">
+                  shell脚本每天自动统计网站访问日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-23T20:37:26+08:00" content="2016-12-23">
+              2016-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>写了个shell脚本，可以用来统计每天的访问日志，并发送到电子邮箱，方便每天了解网站情况。<br>脚本统计了：<br>1、总访问量<br>2、总带宽<br>3、独立访客量<br>4、访问IP统计<br>5、访问url统计<br>6、来源统计<br>7、404统计<br>8、搜索引擎访问统计(谷歌，百度)<br>9、搜索引擎来源统计(谷歌，百度)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/23/shell脚本每天自动统计网站访问日志/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/" itemprop="url">
                   Linux 跟踪进程对CPU的占用情况，对内存的占用情况
                 </a>
@@ -773,116 +770,6 @@
 </ol>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/23/Linux 跟踪进程对CPU的占用情况，对内存的占用情况/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/23/shell脚本每天自动统计网站访问日志/" itemprop="url">
-                  shell脚本每天自动统计网站访问日志
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-23T20:37:26+08:00" content="2016-12-23">
-              2016-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux基础</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>写了个shell脚本，可以用来统计每天的访问日志，并发送到电子邮箱，方便每天了解网站情况。<br>脚本统计了：<br>1、总访问量<br>2、总带宽<br>3、独立访客量<br>4、访问IP统计<br>5、访问url统计<br>6、来源统计<br>7、404统计<br>8、搜索引擎访问统计(谷歌，百度)<br>9、搜索引擎来源统计(谷歌，百度)</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/23/shell脚本每天自动统计网站访问日志/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1039,116 +926,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/21/tomcat启动脚本/" itemprop="url">
-                  tomcat启动脚本
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T20:37:26+08:00" content="2016-12-21">
-              2016-12-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">Tomcat</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Tomcat多实例启动脚本"><a href="#Tomcat多实例启动脚本" class="headerlink" title="Tomcat多实例启动脚本"></a>Tomcat多实例启动脚本</h3><p>一般在初创公司中一台服务器上往往会部署多个Tomcat项目，以便于节省资源，下面以一台服务器上运行三个tomcat实例来写的一个启动脚本。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/21/tomcat启动脚本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/12/21/网络分析shell脚本(实时流量+连接统计)/" itemprop="url">
                   网络分析shell脚本(实时流量+连接统计)
                 </a>
@@ -1213,6 +990,116 @@
           <h3 id="此脚本包含的功能有"><a href="#此脚本包含的功能有" class="headerlink" title="此脚本包含的功能有"></a>此脚本包含的功能有</h3><p>1、实时监控任意网卡的流量<br>2、统计10秒内平均流量<br>3、统计每个端口在10秒内的平均流量，基于客户端和服务端端口统计。可以看出哪些端口占流量比较大，对于web服务器，一般是80端口。其它端口受到攻击时，也有可能其它端口流量比较大。所以此功能可以帮助我们端口流量是否正常。<br>4、统计在10s内占用带宽最大的前10个ip。此项功能可以帮助我们来查出是否有恶意占用带宽的ip。<br>5、统计连接状态。此项功能可以让我们看出哪些连接状态比较大。如果SYN-RECV状态比较多的话，有可以受到半连接攻击。如果ESTABLISED非常大，但通过日志发现没有那么多请求，或者通过tcpdump发现大量ip只建立连接不请求数据的话，可能是受到了全连接攻击，这时候如果你使用的是nginx服务器，可以在配置文件增加listen 80 deferred来防止。<br>6、统计各端口连接状态。当可能受到攻击时，此项功能可以帮助我们发现是哪个端口受到攻击。<br>7、统计端口为80且状态为ESTAB连接数最多的前10个IP。此项功能可以帮助我们来找出创建连接过多的Ip，进而屏蔽。<br>8、统计端口为80且状态为SYN-RECV连接数最多的前10个IP。当受到半连接攻击时，此项功能可以帮助我们找到恶意ip。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/21/网络分析shell脚本(实时流量+连接统计)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/21/tomcat启动脚本/" itemprop="url">
+                  tomcat启动脚本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T20:37:26+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Tomcat多实例启动脚本"><a href="#Tomcat多实例启动脚本" class="headerlink" title="Tomcat多实例启动脚本"></a>Tomcat多实例启动脚本</h3><p>一般在初创公司中一台服务器上往往会部署多个Tomcat项目，以便于节省资源，下面以一台服务器上运行三个tomcat实例来写的一个启动脚本。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/21/tomcat启动脚本/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1351,6 +1238,116 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/02/Postgresql（1）--简介/" itemprop="url">
+                  Postgresql（1）--简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T12:37:26+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Postgresql/" itemprop="url" rel="index">
+                    <span itemprop="name">Postgresql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="何为PostgreSQL"><a href="#何为PostgreSQL" class="headerlink" title="何为PostgreSQL"></a>何为PostgreSQL</h3><p>PostgreSQL是以加州大学伯克利分校计算机系开发的POSTGRES,Version4.2为基础的对象关系型数据库管理系统(ORDBMS)。POSTGRES开创的许多概念在很久以后才出现在商业数据库中。<br>PostgreSQL是最初伯克利代码的一个开放源码的继承者。它支持大部分SQL标准并且提供了许多其它现代特性：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/02/Postgresql（1）--简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1396,7 +1393,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
