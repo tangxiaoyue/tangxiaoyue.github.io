@@ -259,6 +259,119 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/11/Linux下防御DDOS攻击的操作梳理/" itemprop="url">
+                  Linux下防御DDOS攻击的操作梳理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-11T09:38:27+08:00" content="2016-12-11">
+              2016-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="DDOS介绍"><a href="#DDOS介绍" class="headerlink" title="DDOS介绍"></a>DDOS介绍</h3><p>DDOS的全称是Distributed Denial of Service，即”分布式拒绝服务攻击”，是指击者利用大量“肉鸡”对攻击目标发动大量的正常或非正常请求、耗尽目标主机资源或网络资源，从而使被攻击的主机不能为合法用户提供服务。</p>
+<p>DDOS攻击的本质是：<br>利用木桶原理，寻找利用系统应用的瓶颈；阻塞和耗尽；当前问题：用户的带宽小于攻击的规模，噪声访问带宽成为木桶的短板。</p>
+<p>可以参考下面的例子理解下DDOS攻击。<br>1）某饭店可以容纳100人同时就餐，某日有个商家恶意竞争，雇佣了200人来这个饭店坐着不吃不喝，导致饭店满满当当无法正常营业。（DDOS攻击成功）<br>2）老板当即大怒，派人把不吃不喝影响正常营业的人全都轰了出去，且不再让他们进来捣乱，饭店恢复了正常营业。（添加规则和黑名单进行DDOS防御，防御成功）<br>3）主动攻击的商家心存不满，这次请了五千人逐批次来捣乱，导致该饭店再次无法正常营业。（增加DDOS流量，改变攻击方式）<br>4）饭店把那些捣乱的人轰出去只后，另一批接踵而来。此时老板将饭店营业规模扩大，该饭店可同时容纳1万人就餐，5000人同时来捣乱饭店营业也不会受到影响。（增加硬防与其抗衡）</p>
+<p>DDOS攻击只不过是一个概称，其下有各种攻击方式，比如:”CC攻击、SYN攻击、NTP攻击、TCP攻击、DNS攻击等等”，现在DDOS发展变得越来越可怕，NTP服务放大攻击渐渐成为主流了，这意味着可以将每秒的攻击流量放大几百倍，比如每秒1G的SYN碎片攻击换成NTP放大攻击，就成为了200G或者更多。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/11/Linux下防御DDOS攻击的操作梳理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/02/Postgresql（1）--简介/" itemprop="url">
                   Postgresql（1）--简介
                 </a>
@@ -1229,116 +1342,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/03/zabbix 3.0 自定义监控--磁盘使用率/" itemprop="url">
-                  zabbix 3.0 自定义监控--磁盘使用率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T15:09:26+08:00" content="2016-10-03">
-              2016-10-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/运维监控/" itemprop="url" rel="index">
-                    <span itemprop="name">运维监控</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="磁盘监控脚本"><a href="#磁盘监控脚本" class="headerlink" title="磁盘监控脚本"></a>磁盘监控脚本</h2><p>本次zabbix监控磁盘测试。只监控磁盘的/目录和mount挂载的home两个目录使用率情况。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/03/zabbix 3.0 自定义监控--磁盘使用率/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1384,7 +1387,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

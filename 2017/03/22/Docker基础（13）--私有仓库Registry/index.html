@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -57,16 +57,19 @@
 
 
 
-<meta name="description" content="问题项目中，由于连接数过多，提示“Too many connections”，需要增加连接数。我在 /etc/my.cnf中修改了">
+<meta name="description" content="但有时候使用Docker Hub这样的公共仓库可能不方便，这种情况下用户可以使用registry创建一个本地仓库供私人使用，这点跟Maven的管理类似。使用私有仓库有许多优点：
+1）节省网络带宽，针对于每个镜像不用每个人都去中央仓库上面去下载，只需要从私有仓库中下载即可；2）提供镜像资源利用，针对于公司内部使用的镜像，推送到本地的私有仓库中，以供公司内部相关人员使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL问题系列- MySQL连接数被限制为214个">
-<meta property="og:url" content="http://yoursite.com/2016/09/04/MySQL问题系列- MySQL连接数被限制为214个/index.html">
+<meta property="og:title" content="Docker基础（13）--私有仓库Registry">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/Docker基础（13）--私有仓库Registry/index.html">
 <meta property="og:site_name" content="BRUCETANG">
-<meta property="og:description" content="问题项目中，由于连接数过多，提示“Too many connections”，需要增加连接数。我在 /etc/my.cnf中修改了">
-<meta property="og:updated_time" content="2017-05-03T22:54:52.844Z">
+<meta property="og:description" content="但有时候使用Docker Hub这样的公共仓库可能不方便，这种情况下用户可以使用registry创建一个本地仓库供私人使用，这点跟Maven的管理类似。使用私有仓库有许多优点：
+1）节省网络带宽，针对于每个镜像不用每个人都去中央仓库上面去下载，只需要从私有仓库中下载即可；2）提供镜像资源利用，针对于公司内部使用的镜像，推送到本地的私有仓库中，以供公司内部相关人员使用。">
+<meta property="og:updated_time" content="2017-08-13T07:11:09.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL问题系列- MySQL连接数被限制为214个">
-<meta name="twitter:description" content="问题项目中，由于连接数过多，提示“Too many connections”，需要增加连接数。我在 /etc/my.cnf中修改了">
+<meta name="twitter:title" content="Docker基础（13）--私有仓库Registry">
+<meta name="twitter:description" content="但有时候使用Docker Hub这样的公共仓库可能不方便，这种情况下用户可以使用registry创建一个本地仓库供私人使用，这点跟Maven的管理类似。使用私有仓库有许多优点：
+1）节省网络带宽，针对于每个镜像不用每个人都去中央仓库上面去下载，只需要从私有仓库中下载即可；2）提供镜像资源利用，针对于公司内部使用的镜像，推送到本地的私有仓库中，以供公司内部相关人员使用。">
 
 
 
@@ -84,7 +87,7 @@
   };
 </script>
 
-  <title> MySQL问题系列- MySQL连接数被限制为214个 | BRUCETANG </title>
+  <title> Docker基础（13）--私有仓库Registry | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +260,7 @@
             
             
               
-                MySQL问题系列- MySQL连接数被限制为214个
+                Docker基础（13）--私有仓库Registry
               
             
           </h1>
@@ -269,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T21:09:26+08:00" content="2016-09-04">
-              2016-09-04
+            <time itemprop="dateCreated" datetime="2017-03-22T20:37:26+08:00" content="2017-03-22">
+              2017-03-22
             </time>
           </span>
 
@@ -283,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -315,21 +318,107 @@
       
 
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>项目中，由于连接数过多，提示“Too many connections”，需要增加连接数。我在 /etc/my.cnf中修改了</p>
+        <p>但有时候使用Docker Hub这样的公共仓库可能不方便，这种情况下用户可以使用registry创建一个本地仓库供私人使用，这点跟Maven的管理类似。<br>使用私有仓库有许多优点：</p>
+<p>1）节省网络带宽，针对于每个镜像不用每个人都去中央仓库上面去下载，只需要从私有仓库中下载即可；<br>2）提供镜像资源利用，针对于公司内部使用的镜像，推送到本地的私有仓库中，以供公司内部相关人员使用。</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">max_connections = 2000</div></pre></td></tr></table></figure>
-<p>但是， 实际连接数一直被限制在 214<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &quot;max_connections&quot;;</div><div class="line">+-----------------+-------+</div><div class="line">| Variable_name   | Value |</div><div class="line">+-----------------+-------+</div><div class="line">| max_connections | 214   |</div><div class="line">+-----------------+-------+</div><div class="line">1 row in set</div></pre></td></tr></table></figure></p>
-<p><code>MySQL max_connections 总是 214</code> 。不能设大了？</p>
-<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>CentOS 7.1<br>MySQL 5.6.25</p>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>如果我设置连接小于214时，比如 200，那么实际连接数就是 200，也就是说，我的配置文件是没有问题的。</p>
-<p>查 MySQL 官方文档，里面说了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The maximum number of connections MySQL can support depends on the quality of the thread library on a given platform, the amount of RAM available, how much RAM is used for each connection, the workload from each connection, and the desired response time. Linux or Solaris should be able to support at 500 to 1000 simultaneous connections routinely and as many as 10,000 connections if you have many gigabytes of RAM available and the workload from each is low or the response time target undemanding. Windows is limited to (open tables × 2 + open connections) &lt; 2048 due to the Posix compatibility layer used on that platform.</div><div class="line"></div><div class="line">Increasing open-files-limit may be necessary. Also see Section 2.5, “Installing MySQL on Linux”, for how to raise the operating system limit on how many handles can be used by MySQL.</div></pre></td></tr></table></figure></p>
-<p>大概意思是 MySQL 能够支持的最大连接数量受限于操作系统,必要时可以增大 <code>open-files-limit</code>。换言之，连接数与文件打开数有关。</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@emsc ~]#  ulimit -n</div><div class="line">1024</div></pre></td></tr></table></figure></p>
-<p>可知，操作系统最大文件描述符限制为 1024， 在 配置文件中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@emsc ~]# vim /etc/security/limits.conf</div><div class="line">open_files_limit = 65535</div></pre></td></tr></table></figure></p>
-<p>实际上也没有生效</p>
-<p>更改 MySQL 在 Linux 的最大文件描述符限制，编辑 <code>/usr/lib/systemd/system/mysqld.service</code> 文件，在文件最后添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@emsc ~]# vim /usr/lib/systemd/system/mysqld.service</div><div class="line">LimitNOFILE=65535</div><div class="line">LimitNPROC=65535</div></pre></td></tr></table></figure></p>
-<p>保存后，执行下面命令，使配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ systemctl daemon-reload</div><div class="line">$ systemctl restart  mysqld.service</div></pre></td></tr></table></figure></p>
-<p>实际连接数到 2000 了，解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &quot;max_connections&quot;;</div><div class="line">+-----------------+-------+</div><div class="line">| Variable_name   | Value |</div><div class="line">+-----------------+-------+</div><div class="line">| max_connections | 2000  |</div><div class="line">+-----------------+-------+</div><div class="line">1 row in set</div></pre></td></tr></table></figure></p>
+<p>目前Docker Registry已经升级到了v2，最新版的Docker已不再支持v1。Registry v2使用Go语言编写，在性能和安全性上做了很多优化，重新设计了镜像的存储格式。如果需要安装registry v2，只需下载registry:2.2即可。Docker官方提供的工具docker-registry可以用于构建私有的镜像仓库。废话不多说了，下面记录下Docker私有仓库构建的过程：</p>
+<p>选择一台服务器（内外网地址：192.16.16.14）作为注册服务器，用于搭建私有仓库。（该机器要安装了Docker环境）</p>
+<h2 id="1）从Docker官方仓库里下载registry镜像"><a href="#1）从Docker官方仓库里下载registry镜像" class="headerlink" title="1）从Docker官方仓库里下载registry镜像"></a>1）从Docker官方仓库里下载registry镜像</h2><pre><code>[root@localhost ~]# docker pull registry:2.2
+</code></pre><hr>
+<p>或者：</p>
+<pre><code>[root@localhost ~]# docker pull registry
+[root@localhost ~]# docker pull registry:2.1.1
+</code></pre><p>下载完之后，可以通过该镜像启动一个容器</p>
+<pre><code>[root@localhost ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+docker.io/registry   2.2                 ad379b517aa6        14 months ago       224.5 MB
+</code></pre><p>默认情况下，会将私有仓库存放于容器内的/tmp/registry目录下，这样如果容器被删除，则存放于容器中的镜像也会丢失。<br>所以一般情况下会指定本地一个目录挂载到容器内的/tmp/registry下，如下：</p>
+<pre><code>root@localhost ~]# docker run -d --name=my_registry -p 5000:5000 -v /opt/data/registry:/tmp/registry docker.io/registry:2.2
+9fe45329bda17f61da04e6e8d2faf124fb22665a25270421bb8979a419809446
+
+ [root@master ~]# docker images
+REPOSITORY                                            TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos                                      latest              328edcd84f1b        9 days ago          192.5 MB
+docker.io/nginx                                       latest              b8efb18f159b        2 weeks ago         107.5 MB
+registry.access.redhat.com/rhel7/pod-infrastructure   latest              f66f4bd9b894        8 weeks ago         205.8 MB
+docker.io/registry  
+</code></pre><p>由上可以看到，已经启动了一个容器，地址为：172.16.16.14:5000。</p>
+<p>启动一个容器，并在容器里面部署tomcat（映射端口是8081）</p>
+<pre><code>[root@master ~]# docker run --privileged -itd -h tomcat --name tomcat -p 8081:8080 centos /sbin/init
+ac0ace6a47a18428fa08f129082782324b9f963db843a07484230edc0a75ec1b
+
+[root@localhost ~]# docker ps
+CONTAINER ID        IMAGE                    COMMAND                  CREATED              STATUS              PORTS                    NAMES
+d8e98b1068cd        docker.io/registry:2.2   &quot;/bin/registry /etc/d&quot;   About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp   my_registry
+</code></pre><p>由上可以看到，已经启动了一个容器，地址为：192.168.1.23:5000。</p>
+<h2 id="2）测试"><a href="#2）测试" class="headerlink" title="2）测试"></a>2）测试</h2><p>接下来可以把一个本地镜像push（如下面的tomcat7镜像）到私有仓库中。</p>
+<pre><code>[root@localhost ~]# docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+tomcat7              latest              97c6a43dd69c        18 minutes ago      562.3 MB
+docker.io/registry   2.2                 ad379b517aa6        14 months ago       224.5 MB
+</code></pre><p>修改一下该镜像的tag标识。</p>
+<pre><code>[root@localhost ~]# docker tag tomcat7 172.16.16.14:5000/tomcat7
+
+[root@localhost ~]# docker tag tomcat7 172.16.16.14:5000/tomcat7       //修改了tag后的镜像若要删除，docker rmi后面不能用镜像ID了，需要用docker rmi 172.16.16.14:5000/tomcat7:latest
+
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+172.16.16.14:5000/tomcat7   latest              97c6a43dd69c        18 minutes ago      562.3 MB
+tomcat7                     latest              97c6a43dd69c        18 minutes ago      562.3 MB
+docker.io/registry          2.2                 ad379b517aa6        14 months ago       224.5 MB
+</code></pre><p>接下来把上面修改tag后的镜像上传到私有仓库。</p>
+<pre><code>[root@localhost ~]# docker push 172.16.16.14:5000/tomcat7
+The push refers to a repository [172.16.16.14:5000/tomcat7]
+unable to ping registry endpoint https://192.168.1.23:5000/v0/
+v2 ping attempt failed with error: Get https://192.168.1.23:5000/v2/: http: server gave HTTP response to HTTPS client
+v1 ping attempt failed with error: Get https://172.16.16.14:5000/v1/_ping: http: server gave HTTP response to HTTPS client
+</code></pre><p>出现上面错误的原因分析：<br>因为Docker从1.3.X之后，与docker registry交互默认使用的是https，然而此处搭建的私有仓库只提供http服务，所以当与私有仓库交互时就会报上面的错误。<br>为了解决这个问题需要在启动docker server时增加启动参数为默认使用http访问。<br>需要在docker的配置文件/etc/sysconfig/docker （ubuntu系统中的docker配置文件时/etc/default/docker ）添加参数“–insecure-registry=172.16.16.14:5000”。</p>
+<hr>
+<p>温馨提示：<br>这个是在客户机的docker配置文件里添加的(即上传镜像到私有仓库里或从私有仓库下载镜像的客户机)。<br>比如说在A机器上将它的镜像上传到172.16.16.14的私有仓库上或从该私有仓库下载镜像，那么就在A机器的本地docker配置文件中添加。<br>我这里测试用的是同一台机器，即将注册机172.16.16.14本机的镜像上传到它的仓库内。</p>
+<hr>
+<pre><code>[root@localhost ~]# vim /etc/sysconfig/docker
+.......
+OPTIONS=&apos;--selinux-enabled --log-driver=journald&apos;
+改为
+OPTIONS=&apos;--selinux-enabled --log-driver=journald --insecure-registry=172.16.16.14:5000&apos;
+
+[root@localhost ~]# service docker restart
+</code></pre><p>由于docker服务重启后，所有容器都会被关闭。所以需要在docker重启后再次启动容器</p>
+<pre><code>[root@localhost ~]# docker start my_registry
+my_registry
+[root@localhost ~]# docker ps
+CONTAINER ID        IMAGE                    COMMAND                  CREATED              STATUS              PORTS                    NAMES
+d8e98b1068cd        docker.io/registry:2.2   &quot;/bin/registry /etc/d&quot;   About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp   my_registry
+</code></pre><p>再次提交到私有仓库</p>
+<pre><code>[root@localhost ~]# docker push 172.16.16.14:5000/tomcat7
+The push refers to a repository [172.16.16.14:5000/tomcat7]
+c6d7ce9e90d7: Pushed
+34e7b85d83e4: Pushed
+latest: digest: sha256:5fdcbaf254cb44dd26645f606cccea8de76118baff03485e40853c691a15956d size: 720
+</code></pre><p>上面命令执行无误后，就表示镜像已经push到私有仓库中去了。<br>查看私有仓库里的镜像（一定要保证下面能查看到仓库里有镜像！如果仓库里没有镜像，那么客户端机器就无法从该私有仓库下载镜像了）</p>
+<pre><code>[root@localhost ~]# curl -XGET http://172.16.16.14:5000/v2/_catalog    //即该私有仓库里有tomcat7镜像 
+{&quot;repositories&quot;:[&quot;tomcat7&quot;]}
+[root@localhost ~]# curl -XGET http://172.16.16.14:5000/v2/tomcat7/tags/list
+{&quot;name&quot;:&quot;tomcat7&quot;,&quot;tags&quot;:[&quot;latest&quot;]}
+</code></pre><p>或者浏览器里访问（103.110.186.23是注册机的外网ip，iptables防火墙内开放5000端口访问）：</p>
+<pre><code>http://172.16.16.14:5000/v2/_catalog
+http://172.16.16.14:5000/v2/tomcat7/tags/list
+</code></pre><p>现在可以将本地的tomcat7和172.16.16.14:5000/tomcat7镜像都删除，然后从私有仓库中下载</p>
+<pre><code>[root@localhost ~]# docker rmi tomcat7
+[root@localhost ~]# docker rmi 172.16.16.14:5000/tomcat7
+
+[root@localhost ~]# docker pull 172.16.16.14:5000/tomcat7
+[root@localhost ~]# docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+172.16.16.14:5000/tomcat7   latest              5hc8a2ip413w        3 days ago          562.3 MB
+</code></pre><hr>
+<p>这样，也就可以在同一局域网内的其他机器上，从该私有仓库中pull下来该镜像。<br>比如从172.16.16.14上拉取该私有仓库的tomcat镜像进行容器创建（注意，要在该机器的/etc/sysconfig/docker配置文件里添加–insecure-registry=172.16.16.14:5000参数）</p>
+<pre><code>[root@linux-node2 ~]# docker pull 172.16.16.14:5000/tomcat7
+
+[root@linux-node2 ~]# docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+172.16.16.14:5000/tomcat7   latest              2ec9e2eb978a        3 days ago          562.3 MB
+</code></pre><p>这样就搭建了Docker私有仓库，上面搭建的仓库是不需要认证的，我们可以结合nginx和https实现认证和加密功能。</p>
+<h2 id="注意查看镜像方法（docker-pull-registry-2-1-1）"><a href="#注意查看镜像方法（docker-pull-registry-2-1-1）" class="headerlink" title="注意查看镜像方法（docker pull registry:2.1.1）:"></a>注意查看镜像方法（docker pull registry:2.1.1）:</h2><p> curl -XGET <a href="http://registry_ip:5000/v2/_catalog" target="_blank" rel="external">http://registry_ip:5000/v2/_catalog</a><br>curl -XGET <a href="http://registry_ip:5000/v2/image_name/tags/list" target="_blank" rel="external">http://registry_ip:5000/v2/image_name/tags/list</a></p>
 
       
     </div>
@@ -344,7 +433,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
           
         </div>
       
@@ -353,16 +442,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/22/企业必会技能 tomcat(2)/" rel="next" title="企业必会技能 tomcat(2)">
-                <i class="fa fa-chevron-left"></i> 企业必会技能 tomcat(2)
+              <a href="/2017/03/21/Docker进阶（12）--Kubernetes部署/" rel="next" title="Docker进阶（12）--Kubernetes部署">
+                <i class="fa fa-chevron-left"></i> Docker进阶（12）--Kubernetes部署
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/21/nginx rewrite 规则详解/" rel="prev" title="nginx rewrite 规则详解">
-                nginx rewrite 规则详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/27/十大企业级Linux服务器安全防护要点/" rel="prev" title="十大企业级Linux服务器安全防护要点">
+                十大企业级Linux服务器安全防护要点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -479,7 +568,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">3.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决"><span class="nav-number">4.</span> <span class="nav-text">解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1）从Docker官方仓库里下载registry镜像"><span class="nav-number">1.</span> <span class="nav-text">1）从Docker官方仓库里下载registry镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2）测试"><span class="nav-number">2.</span> <span class="nav-text">2）测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意查看镜像方法（docker-pull-registry-2-1-1）"><span class="nav-number">3.</span> <span class="nav-text">注意查看镜像方法（docker pull registry:2.1.1）:</span></a></li></ol></div>
             
           </div>
         </section>

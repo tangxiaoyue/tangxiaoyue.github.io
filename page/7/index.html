@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
-                  MySQ binlog三种模式及设置方法
+                <a class="post-title-link" href="/2016/04/02/nginx限制每个ip访问的频率和并发量/" itemprop="url">
+                  nginx限制每个ip访问的频率和并发量
                 </a>
               
             
@@ -273,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
-              2016-03-12
+            <time itemprop="dateCreated" datetime="2016-04-02T08:09:26+08:00" content="2016-04-02">
+              2016-04-02
             </time>
           </span>
 
@@ -287,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -320,13 +320,39 @@
 
       
         
-          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
+          
+            <pre><code>使用limit_req_zone和limit_req指令配合使用来达到限制。一旦并发连接超过指定数量，就会返回503错误。
+
+&lt;!-- more --&gt;
+
+http{  
+       ...  
+       limit_req_zone$binary_remote_addr zone=allips:10m rate=20r/s;  
+       解释：#定义一个名为allips的limit_req_zone用来存储session，大小是10M内存，  
+            #以$binary_remote_addr为key,限制平均每秒的请求为20个，  
+            #1M能存储16000个状态，rete的值必须为整数，  
+            #如果限制两秒钟一个请求，可以设置成30r/m  
+       ...  
+       server{  
+         ...  
+         location {  
+           ...  
+           limit_reqzone=allips burst=5 nodelay;  
+           解释： #限制每ip每秒不超过20个请求，漏桶数burst为5  
+                 #brust的意思就是，如果第1秒、2,3,4秒请求为19个，  
+                 #第5秒的请求为25个是被允许的。  
+                 #但是如果你第1秒就25个请求，第2秒超过20的请求返回503错误。  
+                 #nodelay，如果不设置该选项，严格使用平均速率限制请求数，  
+                 #第1秒25个请求时，5个请求放到第2秒执行，  
+                 #设置nodelay，25个请求将在第1秒执行。  
+           ...  
+         }  
+         ...  
+       }  
+       ...  
+}
 </code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -434,6 +460,117 @@
           <p>对于一个网站来说，在运行很长一段时间后，数据库瓶颈问题会越来越暴露出来。作为运维人员，对数据库做必要的优化十分重要！<br>    下面总结以往查阅到的以及自己工作中的一些优化操作经验，并根据OSI七层模型从下往上进行优化mysql数据库记录。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/12/Mysql优化系列--总结梳理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/12/MySQ binlog三种模式及设置方法/" itemprop="url">
+                  MySQ binlog三种模式及设置方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T12:37:26+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="MySQ-binlog三种模式及设置方法"><a href="#MySQ-binlog三种模式及设置方法" class="headerlink" title="MySQ binlog三种模式及设置方法"></a>MySQ binlog三种模式及设置方法</h1><h2 id="Row-Level-行模式"><a href="#Row-Level-行模式" class="headerlink" title="Row Level 行模式"></a>Row Level 行模式</h2><pre><code>日志中会记录每一行数 据被修改的形式，然后在slave端再对相同的数据进行修改 
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/12/MySQ binlog三种模式及设置方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1235,117 +1372,6 @@ mysqladmin [option] command [command option] command ......
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/SaltStack（5）--Grains/" itemprop="url">
-                  SaltStack（5）--Grains
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-05T13:09:26+08:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SaltStack/" itemprop="url" rel="index">
-                    <span itemprop="name">SaltStack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>SaltStack里的Grains功能,讲的是minion端静态变量,在master端通过Granins可以获得minion对应的变量值.</p>
-<p>查看minion的全部静态变量，可以通过如下实现：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/05/SaltStack（5）--Grains/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1391,7 +1417,7 @@ mysqladmin [option] command [command option] command ......
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
