@@ -1,0 +1,1111 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker进阶（1）--Kubernetes部署">
+<meta property="og:url" content="http://yoursite.com/2017/03/21/Docker进阶（12）--Kubernetes部署/index.html">
+<meta property="og:site_name" content="BRUCETANG">
+<meta property="og:description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/907596/201705/907596-20170515171832432-144042188.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/907596/201705/907596-20170519001052713-1701525727.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/907596/201705/907596-20170519003144807-312268129.jpg">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/z29l5g0knbppszutrq9122m8/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/8c1vt1biiof51rrfsz8bvvj9/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/agb4vc4htifcavcpq8yoyfhp/image.png">
+<meta property="og:image" content="http://static.zybuluo.com/BruceTang/skwxz39gf6lt3a6233nxc1v5/image.png">
+<meta property="og:updated_time" content="2017-08-13T04:51:52.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker进阶（1）--Kubernetes部署">
+<meta name="twitter:description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/907596/201705/907596-20170515171832432-144042188.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Docker进阶（1）--Kubernetes部署 | BRUCETANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">BRUCETANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勿忘初衷，方得始终</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-linux fa-fw"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书" rel="section">
+            
+              <i class="menu-item-icon fa fa-book fa-fw"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Docker进阶（1）--Kubernetes部署
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-21T20:37:26+08:00" content="2017-03-21">
+              2017-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Kubernetes介绍"><a href="#Kubernetes介绍" class="headerlink" title="Kubernetes介绍"></a>Kubernetes介绍</h2><p>Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。<br>Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：<br>1) 使用Docker对应用程序包装(package)、实例化(instantiate)、运行(run)。<br>2) 将多台Docker主机抽象为一个资源，以集群的方式运行、管理跨机器的容器，包括任务调度、资源管理、弹性伸缩、滚动升级等功能。<br>3）使用编排系统（YAML File）快速构建容器集群，提供负载均衡，解决容器直接关联及通信问题<br>4) 解决Docker跨机器容器之间的通讯问题。<br>5）自动管理和修复容器，简单说，比如创建一个集群，里面有十个容器，如果某个容器异常关闭，那么，会尝试重启或重新分配容器，始终保证会有<br>   十个容器在运行，反而杀死多余的。<br>   Kubernetes的自我修复机制使得容器集群总是运行在用户期望的状态当前Kubernetes支持GCE、vShpere、CoreOS、OpenShift。</p>
+<a id="more"></a>
+<h2 id="Kubernetes和Mesos的区别"><a href="#Kubernetes和Mesos的区别" class="headerlink" title="Kubernetes和Mesos的区别"></a>Kubernetes和Mesos的区别</h2><p>1）Mesos是Apache下的开源分布式资源管理框架，它被称为是分布式系统的内核；<br>  Kubernetes是Google开源的容器集群管理系统，实现基于Docker构建容器，利用Kubernetes能很方面管理多台Docker主机中的容器。</p>
+<p>2）Mesos负责管理集群管资源（动态运行时，某机器有额外的资源，通知master来分配）；<br>   Kubernetes抽象出新的容器组合模型并且对其编排管理（把容器自由组合提供服务这事儿搞定了，从而微服务，serverless等才真<br>   正的优雅地在开发和运维之间不吵架地被实现），而且kubernetes把以前运维的很多很难搞的东西都变得容易了。比如OpenStack，<br>   Kubernetes是把OpenStack里面的VM换成了容器，但是实现地更漂亮，更精简，更抽象和本质化，用起来也更容易。</p>
+<p>3）Mesos相比Kubernetes发展的时间更久，总体情况更成熟，在生产环境有更多的使用经验，国外使用Mesos的公司有Twitter，Apple，<br>   Airbnb，Uber等，国内也有大批知名公司在使用Mesos，比如：小米、当当、豆瓣、去哪儿、携程、唯品会、知乎、新浪微博、爱奇艺、<br>   七牛、唯品会、bilibili、中国联通、中国移动、中国电信、华为、数人云等等。中大型公司会更倾向于使用Mesos，<br>   因为本身这些公司有一定的开发能力，Mesos提供了良好的API而且有非常多成熟的Framework跑在Mesos上，Mesos+Marathon+Zookeeper<br>   正常情况可以满足绝大部分需求，只需要写JSON或者DSL定义好service/application就好，只有一些特殊情况才确实需要写自己的Framework。</p>
+<p>   而kubernetes（k8s）现在也正在慢慢成熟起来，它在生产环境显然还需要更多时间来验证。京东目前已经在kubernetes上跑15W+容器了。</p>
+<p>   Mesos现在越来越适应并且被添加上了很多Kubernete的概念同时支持了很多Kubernetes的API。因此如果你需要它们的话，它将是对你的<br>   Kubernetes应用去获得更多能力的一个便捷方式（比如高可用的主干、更加高级的调度命令、去管控很大数目结点的能力），同时能够很好的<br>   适用于产品级工作环境中（毕竟Kubernetes任然还是一个初始版本）。</p>
+<p>4）如果你是一个集群世界的新手，Kubernetes是一个很棒的起点。它是最快的、最简单的、最轻量级的方法去摆脱束缚，同时开启面向集群开发的实践。<br>   它提供了一个高水平的可移植方案，因为它是被一些不同的贡献者所支持的（    例如微软、IBM、Red Hat、CoreOs、MesoSphere、VMWare等等）。</p>
+<p>   如果你已经有已经存在的工作任务（Hadoop、Spark、Kafka等等），Mesos给你提供了一个可以让你将不同工作任务相互交错的框架，然后混合进一个<br>   包含Kubernetes 应用的新的东西。</p>
+<p>   如果你还没有用Kubernetes 系列框架完成项目的能力，Mesos给了你一个减压阀。</p>
+<h2 id="Kubernetes结构图"><a href="#Kubernetes结构图" class="headerlink" title="Kubernetes结构图"></a>Kubernetes结构图</h2><p><img src="http://images2015.cnblogs.com/blog/907596/201705/907596-20170515171832432-144042188.png" alt="此处输入图片的描述"></p>
+<h2 id="kubernetes角色组成"><a href="#kubernetes角色组成" class="headerlink" title="kubernetes角色组成"></a>kubernetes角色组成</h2><p>1）Pod<br>在Kubernetes系统中，调度的最小颗粒不是单纯的容器，而是抽象成一个Pod，Pod是一个可以被创建、销毁、调度、管理的最小的部署单元。<br>比如一个或一组容器。Pod是kubernetes的最小操作单元，一个Pod可以由一个或多个容器组成；同一个Pod只能运行在同一个主机上，共享相<br>同的volumes、network、namespace；</p>
+<p>2）ReplicationController（RC）<br>RC用来管理Pod，一个RC可以由一个或多个Pod组成，在RC被创建后，系统会根据定义好的副本数来创建Pod数量。在运行过程中，如果Pod数量<br>小于定义的，就会重启停止的或重新分配Pod，反之则杀死多余的。当然，也可以动态伸缩运行的Pods规模或熟悉。RC通过label关联对应的Pods，<br>在滚动升级中，RC采用一个一个替换要更新的整个Pods中的Pod。</p>
+<p>Replication Controller是Kubernetes系统中最有用的功能，实现复制多个Pod副本，往往一个应用需要多个Pod来支撑，并且可以保证其复制的<br>副本数，即使副本所调度分配的宿主机出现异常，通过Replication Controller可以保证在其它主宿机启用同等数量的Pod。Replication Controller<br>可以通过repcon模板来创建多个Pod副本，同样也可以直接复制已存在Pod，需要通过Label selector来关联。</p>
+<p>3）Service<br>Service定义了一个Pod逻辑集合的抽象资源，Pod集合中的容器提供相同的功能。集合根据定义的Label和selector完成，当创建一个Service后，<br>会分配一个Cluster IP，这个IP与定义的端口提供这个集合一个统一的访问接口，并且实现负载均衡。</p>
+<p>Services是Kubernetes最外围的单元，通过虚拟一个访问IP及服务端口，可以访问我们定义好的Pod资源，目前的版本是通过iptables的nat转发来实现，<br>转发的目标端口为Kube_proxy生成的随机端口，目前只提供GOOGLE云上的访问调度，如GCE。</p>
+<p>4）Label<br>Label是用于区分Pod、Service、RC的key/value键值对；仅使用在Pod、Service、Replication Controller之间的关系识别，但对这些单元本身进行操<br>作时得使用name标签。Pod、Service、RC可以有多个label，但是每个label的key只能对应一个；主要是将Service的请求通过lable转发给后端提供服务的Pod集合；</p>
+<p>说说个人一点看法，目前Kubernetes保持一周一小版本、一个月一大版本的节奏，迭代速度极快，同时也带来了不同版本操作方法的差异，另外官网文档更新速度<br>相对滞后及欠缺，给初学者带来一定挑战。在上游接入层官方侧重点还放在GCE（Google Compute Engine）的对接优化，针对个人私有云还未推出一套可行的接入<br>解决方案。在v0.5版本中才引用service代理转发的机制，且是通过iptables来实现，在高并发下性能令人担忧。但作者依然看好Kubernetes未来的发展，至少目前<br>还未看到另外一个成体系、具备良好生态圈的平台，相信在V1.0时就会具备生产环境的服务支撑能力。</p>
+<h2 id="kubernetes组件组成"><a href="#kubernetes组件组成" class="headerlink" title="kubernetes组件组成"></a>kubernetes组件组成</h2><p>1）kubectl<br>客户端命令行工具，将接受的命令格式化后发送给kube-apiserver，作为整个系统的操作入口。</p>
+<p>2）kube-apiserver<br>作为整个系统的控制入口，以REST API服务提供接口。</p>
+<p>3）kube-controller-manager<br>用来执行整个系统中的后台任务，包括节点状态状况、Pod个数、Pods和Service的关联等。</p>
+<p>4）kube-scheduler<br>负责节点资源管理，接受来自kube-apiserver创建Pods任务，并分配到某个节点。</p>
+<p>5）etcd<br>负责节点间的服务发现和配置共享。</p>
+<p>6）kube-proxy<br>运行在每个计算节点上，负责Pod网络代理。定时从etcd获取到service信息来做相应的策略。</p>
+<p>7）kubelet<br>运行在每个计算节点上，作为agent，接受分配该节点的Pods任务及管理容器，周期性获取容器状态，反馈给kube-apiserver。</p>
+<p>8）DNS<br>一个可选的DNS服务，用于为每个Service对象创建DNS记录，这样所有的Pod就可以通过DNS访问服务了。</p>
+<h2 id="Kubelet"><a href="#Kubelet" class="headerlink" title="Kubelet"></a>Kubelet</h2><p><img src="http://images2015.cnblogs.com/blog/907596/201705/907596-20170519001052713-1701525727.png" alt="此处输入图片的描述"></p>
+<p>根据上图可知Kubelet是Kubernetes集群中每个Minion和Master API Server的连接点，Kubelet运行在每个Minion上，是Master API Server和Minion之间的桥梁，<br>接收Master API Server分配给它的commands和work，与持久性键值存储etcd、file、server和http进行交互，读取配置信息。Kubelet的主要工作是管理Pod和容<br>器的生命周期，其包括Docker Client、Root Directory、Pod Workers、Etcd Client、Cadvisor Client以及Health Checker组件，具体工作如下：<br>1) 通过Worker给Pod异步运行特定的Action。<br>2) 设置容器的环境变量。<br>3) 给容器绑定Volume。<br>4) 给容器绑定Port。<br>5) 根据指定的Pod运行一个单一容器。<br>6) 杀死容器。<br>7) 给指定的Pod创建network 容器。<br>8) 删除Pod的所有容器。<br>9) 同步Pod的状态。<br>10) 从Cadvisor获取container info、 pod info、root info、machine info。<br>11) 检测Pod的容器健康状态信息。<br>12) 在容器中运行命令。</p>
+<h2 id="kubernetes基本部署步骤"><a href="#kubernetes基本部署步骤" class="headerlink" title="kubernetes基本部署步骤"></a>kubernetes基本部署步骤</h2><p>1）minion节点安装docker<br>2）minion节点配置跨主机容器通信<br>3）master节点部署etcd、kube-apiserver、kube-controller-manager和kube-scheduler组件<br>4）minion节点部署kubelet、kube-proxy组件</p>
+<p>温馨提示：<br>如果minion主机没有安装docker，启动kubelet时会报如下错误：<br>Could not load kubeconfig file /var/lib/kubelet/kubeconfig: stat /var/lib/kubelet/kubeconfig: no such file or directory. Trying auth path instead.<br>Could not load kubernetes auth path /var/lib/kubelet/kubernetes_auth: stat /var/lib/kubelet/kubernetes_auth: no such file or directory. Continuing with defaults.<br>No cloud provider specified.</p>
+<h2 id="kubernetes集群环境部署过程记录"><a href="#kubernetes集群环境部署过程记录" class="headerlink" title="kubernetes集群环境部署过程记录"></a>kubernetes集群环境部署过程记录</h2><pre><code>主机名      IP              节点及功能              系统版本
+master      172.16.16.14    master、etcd、registry  centos7.2
+node1       172.16.16.16    node1                   centos7.2
+node2       172.16.16.22    node2                   centos7.2
+</code></pre><h3 id="设置三台机器的主机名"><a href="#设置三台机器的主机名" class="headerlink" title="设置三台机器的主机名"></a>设置三台机器的主机名</h3><pre><code>在master上执行
+[root@test-node1 ~]# hostnamectl --static set-hostname  master
+
+在node1上执行
+[root@test-node2 ~]# hostnamectl --static set-hostname   node1
+
+在node2上执行
+[root@test-node3 ~]# hostnamectl --static set-hostname  node2
+</code></pre><p>在三台机器上都要设置hosts，均执行如下命令：</p>
+<pre><code>[root@master ~]# vim /etc/hosts
+172.16.16.14 master etcd
+172.16.16.16 node1
+172.16.16.22 node2
+</code></pre><h3 id="关闭三台机器上的防火墙"><a href="#关闭三台机器上的防火墙" class="headerlink" title="关闭三台机器上的防火墙"></a>关闭三台机器上的防火墙</h3><pre><code>[root@master ~]# systemctl disable firewalld.service
+[root@master ~]#  systemctl stop firewalld.service
+</code></pre><h3 id="三台上部署docker服务，配置下载源允许从registry中拉去镜像"><a href="#三台上部署docker服务，配置下载源允许从registry中拉去镜像" class="headerlink" title="三台上部署docker服务，配置下载源允许从registry中拉去镜像"></a>三台上部署docker服务，配置下载源允许从registry中拉去镜像</h3><pre><code>[root@master ~]# yum install -y docker
+
+[root@master ~]# vim /etc/sysconfig/docker
+other_args=&quot;--registry-mirror=http://74ecfe5d.m.daocloud.io&quot;
+OPTIONS=&apos;--registry-mirror=http://74ecfe5d.m.daocloud.io&apos;
+
+[root@master ~]# systemctl  restart docker
+</code></pre><p>###在master上部署</p>
+<h4 id="安装etcd"><a href="#安装etcd" class="headerlink" title="安装etcd"></a>安装etcd</h4><p>k8s运行依赖etcd，需要先部署etcd，下面采用yum方式安装：</p>
+<pre><code>[root@master ~]# yum install etcd -y
+yum安装的etcd默认配置文件在/etc/etcd/etcd.conf，编辑配置文件：
+[root@master ~]# cp /etc/etcd/etcd.conf /etc/etcd/etcd.conf.bak
+[root@master ~]# grep -v &apos;^#&apos; /etc/etcd/etcd.conf|grep -v &apos;^$&apos; 
+ETCD_NAME=master            #节点名称
+ETCD_DATA_DIR=&quot;/var/lib/etcd/default.etcd&quot;   #数据存放位置
+ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379,http://0.0.0.0:4001&quot;       #监听客户端
+ETCD_ADVERTISE_CLIENT_URLS=&quot;http://etcd:2379,http://etcd:4001&quot;          #通知客户端
+</code></pre><h4 id="启动-etcd-并验证状态"><a href="#启动-etcd-并验证状态" class="headerlink" title="启动 etcd 并验证状态"></a>启动 etcd 并验证状态</h4><pre><code>[root@master ~]# systemctl start etcd
+[root@master ~]# ps -ef | grep etcd
+etcd     31253     1  1 01:23 ?        00:00:00 /usr/bin/etcd --name=master --data-dir=/var/lib/etcd/default.etcd --listen-client-urls=http://0.0.0.0:2379,http://0.0.0.0:4001
+root     31289  2093  0 01:24 pts/0    00:00:00 grep --color=auto etcd
+[root@master ~]# lsof -i:2379
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+etcd    31253 etcd    6u  IPv6  65924      0t0  TCP *:2379 (LISTEN)
+etcd    31253 etcd   11u  IPv6  64935      0t0  TCP localhost:47590-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   13u  IPv6  64936      0t0  TCP localhost:47592-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   15u  IPv6  64937      0t0  TCP localhost:47596-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   17u  IPv6  64938      0t0  TCP localhost:47600-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   19u  IPv6  64939      0t0  TCP localhost:47604-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   21u  IPv6  64940      0t0  TCP localhost:47608-&gt;localhost:2379 (ESTABLISHED)
+etcd    31253 etcd   29u  IPv6  64428      0t0  TCP localhost:2379-&gt;localhost:47590 (ESTABLISHED)
+etcd    31253 etcd   31u  IPv6  66612      0t0  TCP localhost:2379-&gt;localhost:47592 (ESTABLISHED)
+etcd    31253 etcd   32u  IPv6  64429      0t0  TCP localhost:2379-&gt;localhost:47596 (ESTABLISHED)
+etcd    31253 etcd   33u  IPv6  64430      0t0  TCP localhost:2379-&gt;localhost:47600 (ESTABLISHED)
+etcd    31253 etcd   34u  IPv6  64431      0t0  TCP localhost:2379-&gt;localhost:47604 (ESTABLISHED)
+etcd    31253 etcd   35u  IPv6  64432      0t0  TCP localhost:2379-&gt;localhost:47608 (ESTABLISHED)
+
+[root@master ~]# etcdctl set testdir/testkey0 0
+0
+[root@master ~]# etcdctl get testdir/testkey0
+0
+
+[root@master ~]# etcdctl -C http://etcd:4001 cluster-health
+member 8e9e05c52164694d is healthy: got healthy result from http://etcd:2379
+cluster is healthy
+[root@master ~]# etcdctl -C http://etcd:2379 cluster-health
+member 8e9e05c52164694d is healthy: got healthy result from http://etcd:2379
+cluster is healthy
+</code></pre><h4 id="安装-kubernets"><a href="#安装-kubernets" class="headerlink" title="安装 kubernets"></a>安装 kubernets</h4><pre><code>[root@master ~]# yum install kubernetes
+[root@master ~]# grep -v &apos;^#&apos; /etc/kubernetes/apiserver |grep -v &apos;^$&apos; 
+KUBE_API_ADDRESS=&quot;--insecure-bind-address=0.0.0.0&quot;
+KUBE_API_PORT=&quot;--port=8080&quot;
+KUBE_ETCD_SERVERS=&quot;--etcd-servers=http://etcd:2379&quot;
+KUBE_SERVICE_ADDRESSES=&quot;--service-cluster-ip-range=10.10.0.0/16&quot;
+KUBE_ADMISSION_CONTROL=&quot;--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota&quot;   #这里需要把ServiceAccount去掉
+KUBE_API_ARGS=&quot;&quot;     
+
+[root@master ~]# grep -v &apos;^#&apos; /etc/kubernetes/config |grep -v &apos;^$&apos;
+KUBE_LOGTOSTDERR=&quot;--logtostderr=true&quot;
+KUBE_LOG_LEVEL=&quot;--v=0&quot;
+KUBE_ALLOW_PRIV=&quot;--allow-privileged=false&quot;
+KUBE_MASTER=&quot;--master=http://master:8080&quot;     #这里填master的主机名
+</code></pre><h4 id="启动服务并设置开机自启动"><a href="#启动服务并设置开机自启动" class="headerlink" title="启动服务并设置开机自启动"></a>启动服务并设置开机自启动</h4><pre><code>[root@master ~]# systemctl enable kube-apiserver.service
+[root@master ~]# systemctl start kube-apiserver.service
+[root@master ~]# systemctl enable kube-controller-manager.service
+[root@master ~]# systemctl start kube-controller-manager.service
+[root@master ~]# systemctl enable kube-scheduler.service
+[root@master ~]# systemctl start kube-scheduler.service
+</code></pre><h3 id="接着部署-Node（在两台-node-节点机器上都要操作）"><a href="#接着部署-Node（在两台-node-节点机器上都要操作）" class="headerlink" title="接着部署 Node（在两台 node 节点机器上都要操作）"></a>接着部署 Node（在两台 node 节点机器上都要操作）</h3><h4 id="安装-kubernets-1"><a href="#安装-kubernets-1" class="headerlink" title="安装 kubernets"></a>安装 kubernets</h4><pre><code>[root@node1 ~]# yum install kubernetes 
+[root@node2 ~]# yum install kubernetes 
+
+配置并启动 kubernetes
+在 kubernetes master 上需要运行以下组件：Kubelet、Kubernets Proxy
+
+[root@node1 ~]# grep -v &apos;^#&apos; /etc/kubernetes/config |grep -v &apos;^$&apos;
+KUBE_LOGTOSTDERR=&quot;--logtostderr=true&quot;
+KUBE_LOG_LEVEL=&quot;--v=0&quot;
+KUBE_ALLOW_PRIV=&quot;--allow-privileged=false&quot;
+KUBE_MASTER=&quot;--master=http://master:8080&quot;
+
+[root@node1 ~]#  grep -v &apos;^#&apos; /etc/kubernetes/kubelet |grep -v &apos;^$&apos;
+KUBELET_ADDRESS=&quot;--address=0.0.0.0&quot;
+KUBELET_HOSTNAME=&quot;--hostname-override=node1&quot;    #特别注意这个，
+在另一个 node2 节点上，要改为 node2
+KUBELET_API_SERVER=&quot;--api-servers=http://master:8080&quot;
+KUBELET_POD_INFRA_CONTAINER=&quot;--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest&quot;
+KUBELET_ARGS=&quot;&quot;
+</code></pre><h4 id="启动服务并设置开机自启动-1"><a href="#启动服务并设置开机自启动-1" class="headerlink" title="启动服务并设置开机自启动"></a>启动服务并设置开机自启动</h4><pre><code>[root@node1 ~]# systemctl enable kubelet.service
+[root@node1 ~]# systemctl start kubelet.service
+[root@node1 ~]# systemctl enable kube-proxy.service
+[root@node1 ~]# systemctl start kube-proxy.service
+</code></pre><h4 id="在-master-上查看集群中节点及节点状态"><a href="#在-master-上查看集群中节点及节点状态" class="headerlink" title="在 master 上查看集群中节点及节点状态"></a>在 master 上查看集群中节点及节点状态</h4><pre><code>[root@master ~]# kubectl -s http://master:8080 get node
+NAME      STATUS    AGE
+node1     Ready     1m
+node2     Ready     1m
+[root@master ~]# kubectl get node
+NAME      STATUS    AGE
+node1     Ready     1m
+node2     Ready     1m
+</code></pre><p>到这里，就已经搭建了一个kubernetes集群，但目前该集群还不能很好的工作，请需要继续后续的操作。</p>
+<h3 id="kubernetes常用命令"><a href="#kubernetes常用命令" class="headerlink" title="kubernetes常用命令"></a>kubernetes常用命令</h3><p>查看node主机</p>
+<pre><code>[root@k8s-master ~]# kubectl get node        //有的环境是用monion，那么查看命令就是&quot;kubectl get minions&quot;  
+NAME        STATUS    AGE
+127.0.0.1   Ready     29m
+node1       Ready     1h
+node2       Ready     1h
+</code></pre><p>查看pods清单</p>
+<pre><code>[root@master ~]#  kubectl get pods  
+</code></pre><p>查看service清单</p>
+<pre><code>[root@master ~]# kubectl get services      //或者使用命令&quot;kubectl get services -o json&quot;
+</code></pre><p>查看replicationControllers清单</p>
+<pre><code>[root@k8s-master ~]# kubectl get replicationControllers   
+</code></pre><p>删除所有pods（同理将下面命令中的pods换成services或replicationControllers，就是删除所有的services或replicationContronllers）</p>
+<pre><code>[root@master ~]# for i in `kubectl get pod|tail -n +2|awk &apos;{print $1}&apos;`; do kubectl delete pod $i; done 
+</code></pre><p>除了上面那种查看方式，还可以通过Server api for REST方式（这个及时性更高）<br> 查看kubernetes版本</p>
+<pre><code>[root@k8s-master ~]# curl -s -L http://182.48.115.237:8080/api/v1beta1/version | python -mjson.tool
+</code></pre><p>查看pods清单</p>
+<pre><code>[root@k8s-master ~]# curl -s -L http://172.16.16.14:8080/api/v1beta1/pods | python -mjson.tool
+</code></pre><p>查看replicationControllers清单</p>
+<pre><code>[root@k8s-master ~]# curl -s -L http://172.16.16.14:8080/api/v1beta1/replicationControllers | python -mjson.tool
+</code></pre><p>查查看node主机（或者是minion主机，将下面命令中的node改成minion）</p>
+<pre><code>[root@k8s-master ~]# curl -s -L http://172.16.16.14:8080/api/v1beta1/node | python -m json.tool
+</code></pre><p>查看service清单</p>
+<pre><code>[root@k8s-master ~]# curl -s -L http://172.16.16.14:8080/api/v1beta1/services | python -m json.tool
+</code></pre><p>温馨提示：<br>在新版Kubernetes中，所有的操作命令都整合至kubectl，包括kubecfg、kubectl.sh、kubecfg.sh等</p>
+<h3 id="创建覆盖网络——Flannel"><a href="#创建覆盖网络——Flannel" class="headerlink" title="创建覆盖网络——Flannel"></a>创建覆盖网络——Flannel</h3><h4 id="安装Flannel（在-master、node-上均执行如下命令，进行安装）"><a href="#安装Flannel（在-master、node-上均执行如下命令，进行安装）" class="headerlink" title="安装Flannel（在 master、node 上均执行如下命令，进行安装）"></a>安装Flannel（在 master、node 上均执行如下命令，进行安装）</h4><pre><code>[root@master ~]# yum install flannel
+</code></pre><h4 id="配置-Flannel（在master、node上均编辑-etc-sysconfig-flanneld）"><a href="#配置-Flannel（在master、node上均编辑-etc-sysconfig-flanneld）" class="headerlink" title="配置 Flannel（在master、node上均编辑/etc/sysconfig/flanneld）"></a>配置 Flannel（在master、node上均编辑/etc/sysconfig/flanneld）</h4><pre><code>[root@master ~]#  grep -v &apos;^#&apos;  /etc/sysconfig/flanneld|grep -v &apos;^$&apos;
+FLANNEL_ETCD_ENDPOINTS=&quot;http://etcd:2379&quot;
+FLANNEL_ETCD_PREFIX=&quot;/atomic.io/network&quot;
+
+[root@node1 ~]# grep -v &apos;^#&apos; /etc/sysconfig/flanneld|grep -v &apos;^$&apos;
+FLANNEL_ETCD_ENDPOINTS=&quot;http://etcd:2379&quot;
+FLANNEL_ETCD_PREFIX=&quot;/atomic.io/network&quot;
+</code></pre><h4 id="配置-etcd-中关于-flannel-的-key（这个只在-master-上操作）"><a href="#配置-etcd-中关于-flannel-的-key（这个只在-master-上操作）" class="headerlink" title="配置 etcd 中关于 flannel 的 key（这个只在 master 上操作）"></a>配置 etcd 中关于 flannel 的 key（这个只在 master 上操作）</h4><p>Flannel使用Etcd进行配置，来保证多个Flannel实例之间的配置一致性，所以需要在 etcd 上进行如下配置：（’/atomic.io/network/config’这个 key与上文/etc/sysconfig/flannel 中的配置项FLANNEL_ETCD_PREFIX 是相对应的，错误的话启动就会出错）</p>
+<p>为flannel创建分配的网络</p>
+<pre><code>[root@master ~]# etcdctl mk /atomic.io/network/config  &apos;{ &quot;Network&quot;: &quot;10.10.0.0/16&quot; }&apos;
+{ &quot;Network&quot;: &quot;10.10.0.0/16&quot; }
+</code></pre><p>若要重新建，先删除：</p>
+<pre><code>[root@master ~]# etcdctl rm /atomic.io/network/config  &apos;{ &quot;Network&quot;: &quot;10.10.0.0/16&quot; }&apos;
+</code></pre><h4 id="启动-Flannel"><a href="#启动-Flannel" class="headerlink" title="启动 Flannel"></a>启动 Flannel</h4><p>启动 Flannel 之后，需要依次重启 docker、kubernete。</p>
+<p>在 master 执行：</p>
+<pre><code>[root@master ~]# systemctl enable flanneld.service
+[root@master ~]# systemctl start flanneld.service
+[root@master ~]# service docker restart
+[root@master ~]# systemctl restart kube-apiserver.service
+[root@master ~]# systemctl restart kube-controller-manager.service
+[root@master ~]# systemctl restart kube-scheduler.service
+</code></pre><p>在 node 上执行：</p>
+<pre><code>[root@node1 ~]# systemctl enable flanneld.service
+[root@node1 ~]# systemctl start flanneld.service
+[root@node1 ~]# service docker restart
+[root@node1 ~]# systemctl restart kubelet.service
+[root@knode1 ~]# systemctl restart kube-proxy.service
+</code></pre><p>然后通过ifconfig命令查看maste和node节点，发现docker0网桥网络的ip已经是上面指定的182.48.0.0网段了。并且在master和node节点上创建的容器间都是可以相互通信的，能相互ping通！</p>
+<h3 id="部署nginx-pod-和复制器"><a href="#部署nginx-pod-和复制器" class="headerlink" title="部署nginx pod 和复制器"></a>部署nginx pod 和复制器</h3><p>以下面的图来安装一个简单的静态内容的nginx应用：<br><img src="http://images2015.cnblogs.com/blog/907596/201705/907596-20170519003144807-312268129.jpg" alt="此处输入图片的描述"></p>
+<h4 id="首先部署nginx-pod-和复制器"><a href="#首先部署nginx-pod-和复制器" class="headerlink" title="首先部署nginx pod 和复制器"></a>首先部署nginx pod 和复制器</h4><pre><code>[root@master ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+docker.io/nginx     latest              b8efb18f159b        2 weeks ago         107.5 MB
+</code></pre><p>通过下面命令发现apiVersion版本是v1</p>
+<pre><code>[root@node2 ~]# curl -s -L http://172.16.16.14:8080/api/v1beta1/version | python -mjson.tool
+{
+    &quot;apiVersion&quot;: &quot;v1&quot;,
+    .......
+}
+</code></pre><h4 id="开始创建pod单元"><a href="#开始创建pod单元" class="headerlink" title="开始创建pod单元"></a>开始创建pod单元</h4><pre><code>[root@master ~]# mkdir -p /home/kubermange &amp;&amp; cd /home/kubermange
+[root@master kubermange]# vim nginx-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-controller
+spec:
+  replicas: 2                              #即2个备份
+  selector:
+    name: nginx
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: docker.io/nginx      #也可以从自己的私库获取镜像
+          ports:
+            - containerPort: 80
+
+[root@master kubermange]#  kubectl create -f nginx-rc.yaml 
+replicationcontroller &quot;nginx-controller&quot; created
+</code></pre><p>由于kubernetes要去gcr.io下载gcr.io/google_containers/pause镜像，然后下载nginx镜像，所以所创建的Pod需要等待一些时间才能处于running状态。</p>
+<p>然后查看pods清单</p>
+<pre><code>[root@master kubermange]# kubectl -s http://master:8080 get pods
+NAME                     READY     STATUS    RESTARTS   AGE
+nginx-controller-42mm5   1/1       Running   0          59s
+nginx-controller-m5x8s   1/1       Running   0          59s
+</code></pre><p>或者使用下面命令查看</p>
+<pre><code>[root@master kubermange]# kubectl  get pod
+NAME                     READY     STATUS    RESTARTS   AGE
+nginx-controller-42mm5   1/1       Running   0          26s
+nginx-controller-m5x8s   1/1       Running   0          26s
+</code></pre><p>可以使用describe 命令查看pod所分到的节点:</p>
+<pre><code>[root@master kubermange]# kubectl describe pod nginx-controller-42mm5 
+Name:        nginx-controller-42mm5
+Namespace:    default
+Node:        node2/172.16.16
+.....
+</code></pre><p>同理，查看另一个pod</p>
+<pre><code>[root@master kubermange]# kubectl describe pod nginx-controller-m5x8s
+Name:        nginx-controller-m5x8s
+Namespace:    default
+Node:        node1/172.16.16.16
+....
+</code></pre><p>由上可以看出，这个复制器启动了两个Pod，分别运行在172.16.16.22和172.16.16.16这两个节点上了。到这两个节点上查看，发现已经有nginx应用容器创建了。</p>
+<h4 id="部署节点内部可访问的nginx-service"><a href="#部署节点内部可访问的nginx-service" class="headerlink" title="部署节点内部可访问的nginx service"></a>部署节点内部可访问的nginx service</h4><p>Service的type有ClusterIP和NodePort之分，缺省是ClusterIP，这种类型的Service只能在集群内部访问。配置文件如下：</p>
+<pre><code>[root@master kubermange]# vim nginx-service-clusterip.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-clusterip
+spec:
+  ports:
+    - port: 8001
+      targetPort: 80
+      protocol: TCP
+  selector:
+    name: nginx
+</code></pre><p>然后执行下面的命令创建service:</p>
+<pre><code>[root@master kubermange]# kubectl create -f nginx-service-clusterip.yaml
+
+service &quot;nginx-service-clusterip&quot; created
+
+[root@master kubermange]# kubectl  get service
+NAME                      CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes                10.254.0.1    &lt;none&gt;        443/TCP    2h
+nginx-service-clusterip   10.10.40.26   &lt;none&gt;        8001/TCP   11m
+</code></pre><p>验证service的可访问性（访问节点）：<br>上面的输出告诉我们这个Service的Cluster IP是10.254.163.249，端口是8001。那么我们就来验证这个PortalNet IP的工作情况：<br>ssh登录到节点机上验证（可以提前做ssh无密码登录的信任关系，当然也可以不做，这样验证时要手动输入登录密码）</p>
+<pre><code>[root@master nginx]# kubectl exec -it nginx-controller-42mm5
+/bin/bash
+
+[root@master kubermange]# curl -s 10.10.40.26:8001     
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+</code></pre><p>由此可见，从前面部署复制器的部分可以知道nginx Pod运行在172.16.16.16和172.16.16.22这两个节点上。<br>从这两个节点上访问我们的服务来体现Service Cluster IP在所有集群节点的可到达性。</p>
+<h4 id="部署外部可访问的nginx-service"><a href="#部署外部可访问的nginx-service" class="headerlink" title="部署外部可访问的nginx service"></a>部署外部可访问的nginx service</h4><p>下面我们创建NodePort类型的Service，这种类型的Service在集群外部是可以访问。下表是本文用的配置文件：</p>
+<pre><code>[root@master kubermange]# vim nginx-service-nodeport.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-nodeport
+spec:
+  ports:
+    - port: 8000
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    name: nginx
+</code></pre><p>执行下面的命令创建service:</p>
+<pre><code>[root@master kubermange]# kubectl  create -f nginx-service-nodeport.yaml
+service &quot;nginx-service-nodeport&quot; created
+
+[root@master kubermange]# kubectl  get service
+NAME                      CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes                10.254.0.1     &lt;none&gt;        443/TCP          2h
+nginx-service-clusterip   10.10.40.26    &lt;none&gt;        8001/TCP         15m
+nginx-service-nodeport    10.10.14.181   &lt;nodes&gt;       8000:32444/TCP   12s
+</code></pre><p>使用下面的命令获得这个service的节点级别的端口：</p>
+<pre><code>[root@master kubermange]#  kubectl -s http://172.16.16.14:8080 describe service nginx-service-nodeport 2&gt;/dev/null | grep NodePort
+Type:            NodePort
+NodePort:        &lt;unset&gt;    32444/TCP
+</code></pre><p>验证service的可访问性（访问节点）：<br>上面的输出告诉我们这个Service的节点级别端口是32444。下面我们验证这个Service的工作情况：</p>
+<pre><code>[root@master kubermange]# curl 172.16.16.16:32444
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+
+[root@master kubermange]# curl 172.16.16.22:32444
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+</code></pre><p>登录另外两个节点机上，发现已经创建了nginx应用容器:</p>
+<pre><code>[root@node1 ~]# docker ps
+CONTAINER ID        IMAGE                                                        COMMAND                  CREATED             STATUS              PORTS               NAMES
+9f631f0f3bb3        docker.io/nginx                                              &quot;nginx -g &apos;daemon off&quot;   24 minutes ago      Up 24 minutes                           k8s_nginx.3d610115_nginx-controller-m5x8s_default_1e694ed1-7fde-11e7-993e-0017fa001d84_d9d54f6c
+3660b0732c8d        registry.access.redhat.com/rhel7/pod-infrastructure:latest   &quot;/pod&quot;                   24 minutes ago      Up 24 minutes                           k8s_POD.a8590b41_nginx-controller-m5x8s_default_1e694ed1-7fde-11e7-993e-0017fa001d84_b94a098a
+
+[root@node2 ~]# docker ps
+CONTAINER ID        IMAGE                                                        COMMAND                  CREATED             STATUS              PORTS               NAMES
+6a4a94994ffb        docker.io/nginx                                              &quot;nginx -g &apos;daemon off&quot;   24 minutes ago      Up 24 minutes                           k8s_nginx.3d610115_nginx-controller-42mm5_default_1e6935a7-7fde-11e7-993e-0017fa001d84_94838488
+f5d16056ac96        registry.access.redhat.com/rhel7/pod-infrastructure:latest   &quot;/pod&quot;                   25 minutes ago      Up 25 minutes                           k8s_POD.a8590b41_nginx-controller-42mm5_default_1e6935a7-7fde-11e7-993e-0017fa001d84_2cc3ece6
+</code></pre><p><img src="http://static.zybuluo.com/BruceTang/z29l5g0knbppszutrq9122m8/image.png" alt="image.png-128.7kB"></p>
+<p><img src="http://static.zybuluo.com/BruceTang/8c1vt1biiof51rrfsz8bvvj9/image.png" alt="image.png-106.7kB"></p>
+<p>1）可以扩容nginx应用容器，依次添加对应的应用容器的pod、service-clusterip、service-nodeport的yaml文件即可。<br>注意yaml文件中的name名。</p>
+<p>2）当然也可以添加其他应用容器，比如tomcat，也是依次创建pod、service-clusterip、service-nodeport的yaml文件。<br>注意yaml文件中的name名和port端口不要重复</p>
+<p>3）后面应用容器的集群环境完成后（外部可访问的端口是固定的），可以考虑做下master控制机的集群环境（即做etcd集群）。<br>可以在控制节点做负载均衡，还可以通过keepalived做高可用。</p>
+<h3 id="下面是tomcat应用容器创建实例中的3个yaml文件"><a href="#下面是tomcat应用容器创建实例中的3个yaml文件" class="headerlink" title="下面是tomcat应用容器创建实例中的3个yaml文件"></a>下面是tomcat应用容器创建实例中的3个yaml文件</h3><p>[root@master kubermange]# cat tomcat-rc.yaml<br>apiVersion: v1<br>kind: ReplicationController<br>metadata:<br>  name: tomcat-controller<br>spec:<br>  replicas: 2<br>  selector:<br>    name: tomcat<br>  template:<br>    metadata:<br>      labels:<br>        name: tomcat<br>    spec:<br>      containers:</p>
+<pre><code>- name: tomcat
+  image: docker.io/tomcat
+  ports:
+    - containerPort: 8080
+</code></pre><p>[root@master kubermange]# cat tomcat-service-clusterip.yaml<br>apiVersion: v1<br>kind: Service<br>metadata:<br>  name: tomcat-service-clusterip<br>spec:<br>  ports:</p>
+<pre><code>- port: 8801
+  targetPort: 8080
+  protocol: TCP
+</code></pre><p>  selector:<br>    name: tomcat</p>
+<p>[root@master kubermange]# cat tomcat-service-nodeport.yaml<br>apiVersion: v1<br>kind: Service<br>metadata:<br>  name: tomcat-service-nodeport<br>spec:<br>  ports:</p>
+<pre><code>- port: 8880
+  targetPort: 8080
+  protocol: TCP
+</code></pre><p>  type: NodePort<br>  selector:<br>    name: tomcat</p>
+<p>查看外部可访问的tomcat service的端口<br>[root@k8s-master kubermange]# kubectl -s <a href="http://172.16.16.14:8080" target="_blank" rel="external">http://172.16.16.14:8080</a> describe service tomcat-service-nodeport 2&gt;/dev/null | grep NodePort<br>Type:     NodePort<br>NodePort:   <unset> 32095/TCP</unset></p>
+<p><img src="http://static.zybuluo.com/BruceTang/agb4vc4htifcavcpq8yoyfhp/image.png" alt="image.png-280.5kB"></p>
+<p><img src="http://static.zybuluo.com/BruceTang/skwxz39gf6lt3a6233nxc1v5/image.png" alt="image.png-266.3kB"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/Docker 基础（11）--SSH方式登陆容器/" rel="next" title="Docker 基础（11）--SSH方式登陆容器">
+                <i class="fa fa-chevron-left"></i> Docker 基础（11）--SSH方式登陆容器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/十大企业级Linux服务器安全防护要点/" rel="prev" title="十大企业级Linux服务器安全防护要点">
+                十大企业级Linux服务器安全防护要点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://imgsrc.baidu.com/forum/w%3D580%3B/sign=ccd264b64390f60304b09c4f0929b21b/a8ec8a13632762d0b1534c38a9ec08fa503dc6cc.jpg"
+               alt="Bruce Tang" />
+          <p class="site-author-name" itemprop="name">Bruce Tang</p>
+          <p class="site-description motion-element" itemprop="description">勿忘初衷，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kubernetes介绍"><span class="nav-number">1.</span> <span class="nav-text">Kubernetes介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kubernetes和Mesos的区别"><span class="nav-number">2.</span> <span class="nav-text">Kubernetes和Mesos的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kubernetes结构图"><span class="nav-number">3.</span> <span class="nav-text">Kubernetes结构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kubernetes角色组成"><span class="nav-number">4.</span> <span class="nav-text">kubernetes角色组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kubernetes组件组成"><span class="nav-number">5.</span> <span class="nav-text">kubernetes组件组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kubelet"><span class="nav-number">6.</span> <span class="nav-text">Kubelet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kubernetes基本部署步骤"><span class="nav-number">7.</span> <span class="nav-text">kubernetes基本部署步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kubernetes集群环境部署过程记录"><span class="nav-number">8.</span> <span class="nav-text">kubernetes集群环境部署过程记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置三台机器的主机名"><span class="nav-number">8.1.</span> <span class="nav-text">设置三台机器的主机名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭三台机器上的防火墙"><span class="nav-number">8.2.</span> <span class="nav-text">关闭三台机器上的防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三台上部署docker服务，配置下载源允许从registry中拉去镜像"><span class="nav-number">8.3.</span> <span class="nav-text">三台上部署docker服务，配置下载源允许从registry中拉去镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装etcd"><span class="nav-number">8.3.1.</span> <span class="nav-text">安装etcd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-etcd-并验证状态"><span class="nav-number">8.3.2.</span> <span class="nav-text">启动 etcd 并验证状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-kubernets"><span class="nav-number">8.3.3.</span> <span class="nav-text">安装 kubernets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务并设置开机自启动"><span class="nav-number">8.3.4.</span> <span class="nav-text">启动服务并设置开机自启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着部署-Node（在两台-node-节点机器上都要操作）"><span class="nav-number">8.4.</span> <span class="nav-text">接着部署 Node（在两台 node 节点机器上都要操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-kubernets-1"><span class="nav-number">8.4.1.</span> <span class="nav-text">安装 kubernets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务并设置开机自启动-1"><span class="nav-number">8.4.2.</span> <span class="nav-text">启动服务并设置开机自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-master-上查看集群中节点及节点状态"><span class="nav-number">8.4.3.</span> <span class="nav-text">在 master 上查看集群中节点及节点状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kubernetes常用命令"><span class="nav-number">8.5.</span> <span class="nav-text">kubernetes常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建覆盖网络——Flannel"><span class="nav-number">8.6.</span> <span class="nav-text">创建覆盖网络——Flannel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Flannel（在-master、node-上均执行如下命令，进行安装）"><span class="nav-number">8.6.1.</span> <span class="nav-text">安装Flannel（在 master、node 上均执行如下命令，进行安装）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-Flannel（在master、node上均编辑-etc-sysconfig-flanneld）"><span class="nav-number">8.6.2.</span> <span class="nav-text">配置 Flannel（在master、node上均编辑/etc/sysconfig/flanneld）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-etcd-中关于-flannel-的-key（这个只在-master-上操作）"><span class="nav-number">8.6.3.</span> <span class="nav-text">配置 etcd 中关于 flannel 的 key（这个只在 master 上操作）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-Flannel"><span class="nav-number">8.6.4.</span> <span class="nav-text">启动 Flannel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署nginx-pod-和复制器"><span class="nav-number">8.7.</span> <span class="nav-text">部署nginx pod 和复制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先部署nginx-pod-和复制器"><span class="nav-number">8.7.1.</span> <span class="nav-text">首先部署nginx pod 和复制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始创建pod单元"><span class="nav-number">8.7.2.</span> <span class="nav-text">开始创建pod单元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署节点内部可访问的nginx-service"><span class="nav-number">8.7.3.</span> <span class="nav-text">部署节点内部可访问的nginx service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署外部可访问的nginx-service"><span class="nav-number">8.7.4.</span> <span class="nav-text">部署外部可访问的nginx service</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是tomcat应用容器创建实例中的3个yaml文件"><span class="nav-number">8.8.</span> <span class="nav-text">下面是tomcat应用容器创建实例中的3个yaml文件</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce Tang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

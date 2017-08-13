@@ -713,6 +713,116 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/21/Docker进阶（12）--Kubernetes部署/" itemprop="url">
+                  Docker进阶（1）--Kubernetes部署
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-21T20:37:26+08:00" content="2017-03-21">
+              2017-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Kubernetes介绍"><a href="#Kubernetes介绍" class="headerlink" title="Kubernetes介绍"></a>Kubernetes介绍</h2><p>Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。<br>Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：<br>1) 使用Docker对应用程序包装(package)、实例化(instantiate)、运行(run)。<br>2) 将多台Docker主机抽象为一个资源，以集群的方式运行、管理跨机器的容器，包括任务调度、资源管理、弹性伸缩、滚动升级等功能。<br>3）使用编排系统（YAML File）快速构建容器集群，提供负载均衡，解决容器直接关联及通信问题<br>4) 解决Docker跨机器容器之间的通讯问题。<br>5）自动管理和修复容器，简单说，比如创建一个集群，里面有十个容器，如果某个容器异常关闭，那么，会尝试重启或重新分配容器，始终保证会有<br>   十个容器在运行，反而杀死多余的。<br>   Kubernetes的自我修复机制使得容器集群总是运行在用户期望的状态当前Kubernetes支持GCE、vShpere、CoreOS、OpenShift。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/21/Docker进阶（12）--Kubernetes部署/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/12/Docker 基础（11）--SSH方式登陆容器/" itemprop="url">
                   Docker 基础（11）--SSH方式登陆容器
                 </a>
@@ -777,116 +887,6 @@
           <p>下面介绍下通过ssh方式登陆Docker容器的操作记录</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/12/Docker 基础（11）--SSH方式登陆容器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/12/Docker 基础（10）--容器时间/" itemprop="url">
-                  Docker 基础（10）--容器时间跟宿主机时间同步
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-12T12:37:26+08:00" content="2017-03-12">
-              2017-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在Docker容器创建好之后，可能会发现容器时间跟宿主机时间不一致，这就需要同步它们的时间，让容器时间跟宿主机时间保持一致。如下：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/12/Docker 基础（10）--容器时间/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1043,8 +1043,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Markdown语法大全/" itemprop="url">
-                  Markdown语法大全
+                <a class="post-title-link" href="/2017/03/12/Docker 基础（10）--容器时间/" itemprop="url">
+                  Docker 基础（10）--容器时间跟宿主机时间同步
                 </a>
               
             
@@ -1057,8 +1057,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T12:37:26+08:00" content="2017-03-11">
-              2017-03-11
+            <time itemprop="dateCreated" datetime="2017-03-12T12:37:26+08:00" content="2017-03-12">
+              2017-03-12
             </time>
           </span>
 
@@ -1071,8 +1071,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -1104,9 +1104,9 @@
 
       
         
-          <p><strong>题记：随着Markdown语言的热度不断提升，越来越多的人喜欢使用Markdown这种简洁、便宜的语言来编辑自己的blog、文章。下面笔者就一些简单常用的Markdown语句进行介绍，希望对大家在进行Markdown语言编辑自己的文章时有所帮助。</strong></p>
+          <p>在Docker容器创建好之后，可能会发现容器时间跟宿主机时间不一致，这就需要同步它们的时间，让容器时间跟宿主机时间保持一致。如下：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Markdown语法大全/#more" rel="contents">
+            <a class="btn" href="/2017/03/12/Docker 基础（10）--容器时间/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1153,8 +1153,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（3）--容器登入/" itemprop="url">
-                  Docker 基础（3）--容器登入
+                <a class="post-title-link" href="/2017/03/11/Docker问题梳理/" itemprop="url">
+                  Docker问题梳理--持续更新
                 </a>
               
             
@@ -1214,19 +1214,19 @@
 
       
         
-          <h3 id="docker-enter登入容器"><a href="#docker-enter登入容器" class="headerlink" title="docker-enter登入容器"></a>docker-enter登入容器</h3><blockquote>
-<p>强烈推荐使用此种方法：简单、方便</p>
-</blockquote>
-<pre><code>下载.bashrc_docker，并将内容放到.bashrc中。
+          
+            <h3 id="关于systemctl无法启动服务的问题处理"><a href="#关于systemctl无法启动服务的问题处理" class="headerlink" title="关于systemctl无法启动服务的问题处理"></a>关于systemctl无法启动服务的问题处理</h3><pre><code>问题：
 
-这个文件中定义了很多方便使用Docker的命令，比如docker-pid可以获取某个容器的 PID；
-而 docker-enter 可以进入容器或直接在容器内执行命令
+使用systemctl启动服务的时候出现以下异常：
+
+Failed to get D-Bus connection: Operation not permitted 
+
+
+解决：
+
+docker run --privileged -itd -h node1 --name node1 centos /sbin/init
 </code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（3）--容器登入/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -1270,8 +1270,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/Docker 基础（5）--容器管理/" itemprop="url">
-                  Docker 基础（5）--容器管理
+                <a class="post-title-link" href="/2017/03/11/Docker 基础（9）--Dockerfile/" itemprop="url">
+                  Docker 基础（9）--Dockerfile
                 </a>
               
             
@@ -1331,12 +1331,17 @@
 
       
         
-          <h4 id="查看启动的容器"><a href="#查看启动的容器" class="headerlink" title="查看启动的容器"></a>查看启动的容器</h4><pre><code>[root@tang ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-2f8c14f16e03        centos              &quot;/bin/bash&quot;         5 minutes ago       Up 2 minutes                            tang
+          <h2 id="使用Dockerfile构建nginx"><a href="#使用Dockerfile构建nginx" class="headerlink" title="使用Dockerfile构建nginx"></a>使用Dockerfile构建nginx</h2><pre><code>Dockerfile是由一行命令和语句组成的
+
+
+
+Dockerfile构建步骤：
+
+[root@tang /]# mkdir /dockerfile/nginx -p
+我们要在nginx目录上自动化创建一个nginx镜像
 </code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/11/Docker 基础（5）--容器管理/#more" rel="contents">
+            <a class="btn" href="/2017/03/11/Docker 基础（9）--Dockerfile/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1407,7 +1412,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-count">78</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
