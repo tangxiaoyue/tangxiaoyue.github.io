@@ -59,7 +59,7 @@
 
 <meta name="description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker进阶（1）--Kubernetes部署">
+<meta property="og:title" content="Docker进阶（12）--Kubernetes部署">
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Docker进阶（12）--Kubernetes部署/index.html">
 <meta property="og:site_name" content="BRUCETANG">
 <meta property="og:description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
@@ -70,9 +70,9 @@
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/8c1vt1biiof51rrfsz8bvvj9/image.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/agb4vc4htifcavcpq8yoyfhp/image.png">
 <meta property="og:image" content="http://static.zybuluo.com/BruceTang/skwxz39gf6lt3a6233nxc1v5/image.png">
-<meta property="og:updated_time" content="2017-08-13T04:51:52.798Z">
+<meta property="og:updated_time" content="2017-08-13T04:55:50.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker进阶（1）--Kubernetes部署">
+<meta name="twitter:title" content="Docker进阶（12）--Kubernetes部署">
 <meta name="twitter:description" content="Kubernetes介绍Kubernetes是Google开源的容器集群管理系统，是基于Docker构建一个容器的调度服务，提供资源调度、均衡容灾、服务注册、动态扩缩容等功能套件。Kubernetes提供应用部署、维护、 扩展机制等功能，利用Kubernetes能方便地管理跨机器运行容器化的应用，其主要功能如下：1) 使用Docker对应用程序包装(package)、实例化(instantiate">
 <meta name="twitter:image" content="http://images2015.cnblogs.com/blog/907596/201705/907596-20170515171832432-144042188.png">
 
@@ -92,7 +92,7 @@
   };
 </script>
 
-  <title> Docker进阶（1）--Kubernetes部署 | BRUCETANG </title>
+  <title> Docker进阶（12）--Kubernetes部署 | BRUCETANG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +265,7 @@
             
             
               
-                Docker进阶（1）--Kubernetes部署
+                Docker进阶（12）--Kubernetes部署
               
             
           </h1>
@@ -695,23 +695,57 @@ f5d16056ac96        registry.access.redhat.com/rhel7/pod-infrastructure:latest  
 <p>1）可以扩容nginx应用容器，依次添加对应的应用容器的pod、service-clusterip、service-nodeport的yaml文件即可。<br>注意yaml文件中的name名。</p>
 <p>2）当然也可以添加其他应用容器，比如tomcat，也是依次创建pod、service-clusterip、service-nodeport的yaml文件。<br>注意yaml文件中的name名和port端口不要重复</p>
 <p>3）后面应用容器的集群环境完成后（外部可访问的端口是固定的），可以考虑做下master控制机的集群环境（即做etcd集群）。<br>可以在控制节点做负载均衡，还可以通过keepalived做高可用。</p>
-<h3 id="下面是tomcat应用容器创建实例中的3个yaml文件"><a href="#下面是tomcat应用容器创建实例中的3个yaml文件" class="headerlink" title="下面是tomcat应用容器创建实例中的3个yaml文件"></a>下面是tomcat应用容器创建实例中的3个yaml文件</h3><p>[root@master kubermange]# cat tomcat-rc.yaml<br>apiVersion: v1<br>kind: ReplicationController<br>metadata:<br>  name: tomcat-controller<br>spec:<br>  replicas: 2<br>  selector:<br>    name: tomcat<br>  template:<br>    metadata:<br>      labels:<br>        name: tomcat<br>    spec:<br>      containers:</p>
-<pre><code>- name: tomcat
-  image: docker.io/tomcat
+<h3 id="下面是tomcat应用容器创建实例中的3个yaml文件"><a href="#下面是tomcat应用容器创建实例中的3个yaml文件" class="headerlink" title="下面是tomcat应用容器创建实例中的3个yaml文件"></a>下面是tomcat应用容器创建实例中的3个yaml文件</h3><pre><code>[root@master kubermange]# cat tomcat-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: tomcat-controller
+spec:
+  replicas: 2                             
+  selector:
+    name: tomcat
+  template:
+    metadata:
+      labels:
+        name: tomcat
+    spec:
+      containers:
+        - name: tomcat
+          image: docker.io/tomcat
+          ports:
+            - containerPort: 8080
+
+[root@master kubermange]# cat tomcat-service-clusterip.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-service-clusterip
+spec:
   ports:
-    - containerPort: 8080
-</code></pre><p>[root@master kubermange]# cat tomcat-service-clusterip.yaml<br>apiVersion: v1<br>kind: Service<br>metadata:<br>  name: tomcat-service-clusterip<br>spec:<br>  ports:</p>
-<pre><code>- port: 8801
-  targetPort: 8080
-  protocol: TCP
-</code></pre><p>  selector:<br>    name: tomcat</p>
-<p>[root@master kubermange]# cat tomcat-service-nodeport.yaml<br>apiVersion: v1<br>kind: Service<br>metadata:<br>  name: tomcat-service-nodeport<br>spec:<br>  ports:</p>
-<pre><code>- port: 8880
-  targetPort: 8080
-  protocol: TCP
-</code></pre><p>  type: NodePort<br>  selector:<br>    name: tomcat</p>
-<p>查看外部可访问的tomcat service的端口<br>[root@k8s-master kubermange]# kubectl -s <a href="http://172.16.16.14:8080" target="_blank" rel="external">http://172.16.16.14:8080</a> describe service tomcat-service-nodeport 2&gt;/dev/null | grep NodePort<br>Type:     NodePort<br>NodePort:   <unset> 32095/TCP</unset></p>
-<p><img src="http://static.zybuluo.com/BruceTang/agb4vc4htifcavcpq8yoyfhp/image.png" alt="image.png-280.5kB"></p>
+    - port: 8801
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    name: tomcat
+
+[root@master kubermange]# cat tomcat-service-nodeport.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-service-nodeport
+spec:
+  ports:
+    - port: 8880
+      targetPort: 8080
+      protocol: TCP
+  type: NodePort
+  selector:
+    name: tomcat
+</code></pre><p>查看外部可访问的tomcat service的端口</p>
+<pre><code>[root@k8s-master kubermange]# kubectl -s http://172.16.16.14:8080 describe service tomcat-service-nodeport 2&gt;/dev/null | grep NodePort
+Type:     NodePort
+NodePort:   &lt;unset&gt; 32095/TCP
+</code></pre><p><img src="http://static.zybuluo.com/BruceTang/agb4vc4htifcavcpq8yoyfhp/image.png" alt="image.png-280.5kB"></p>
 <p><img src="http://static.zybuluo.com/BruceTang/skwxz39gf6lt3a6233nxc1v5/image.png" alt="image.png-266.3kB"></p>
 
       
